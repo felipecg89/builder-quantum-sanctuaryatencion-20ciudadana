@@ -3,8 +3,20 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { User, Phone, Calendar, Users, Lock, Building2 } from "lucide-react";
 
 export default function Register() {
@@ -14,34 +26,37 @@ export default function Register() {
     age: "",
     gender: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (formData.password !== formData.confirmPassword) {
       alert("Las contraseñas no coinciden");
       return;
     }
-    
+
     setIsLoading(true);
-    
+
     // Simulate registration
     setTimeout(() => {
       // Store user data (in a real app, this would be sent to backend)
-      localStorage.setItem("user", JSON.stringify({ 
-        ...formData, 
-        authenticated: true 
-      }));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          ...formData,
+          authenticated: true,
+        }),
+      );
       navigate("/dashboard");
     }, 1000);
   };
 
   const updateFormData = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   return (
@@ -52,7 +67,9 @@ export default function Register() {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-full mb-4">
             <Building2 className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-slate-800">Presidencia Municipal</h1>
+          <h1 className="text-2xl font-bold text-slate-800">
+            Presidencia Municipal
+          </h1>
           <p className="text-slate-600 mt-1">Sistema de Audiencias</p>
         </div>
 
@@ -118,7 +135,10 @@ export default function Register() {
 
                 <div className="space-y-2">
                   <Label htmlFor="gender">Sexo</Label>
-                  <Select onValueChange={(value) => updateFormData("gender", value)} required>
+                  <Select
+                    onValueChange={(value) => updateFormData("gender", value)}
+                    required
+                  >
                     <SelectTrigger>
                       <SelectValue placeholder="Seleccionar" />
                     </SelectTrigger>
@@ -156,7 +176,9 @@ export default function Register() {
                     type="password"
                     placeholder="Confirma tu contraseña"
                     value={formData.confirmPassword}
-                    onChange={(e) => updateFormData("confirmPassword", e.target.value)}
+                    onChange={(e) =>
+                      updateFormData("confirmPassword", e.target.value)
+                    }
                     className="pl-10"
                     required
                   />
@@ -171,7 +193,10 @@ export default function Register() {
             <div className="mt-6 text-center">
               <p className="text-sm text-slate-600">
                 ¿Ya tienes cuenta?{" "}
-                <Link to="/login" className="text-blue-600 hover:text-blue-500 font-medium">
+                <Link
+                  to="/login"
+                  className="text-blue-600 hover:text-blue-500 font-medium"
+                >
                   Inicia sesión aquí
                 </Link>
               </p>

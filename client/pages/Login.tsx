@@ -3,7 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Phone, Lock, Building2 } from "lucide-react";
 
 export default function Login() {
@@ -15,11 +21,14 @@ export default function Login() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     // Simulate authentication
     setTimeout(() => {
       // Store user session (in a real app, this would be handled by proper auth)
-      localStorage.setItem("user", JSON.stringify({ phone, authenticated: true }));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ phone, authenticated: true }),
+      );
       navigate("/dashboard");
     }, 1000);
   };
@@ -32,13 +41,17 @@ export default function Login() {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-full mb-4">
             <Building2 className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-slate-800">Presidencia Municipal</h1>
+          <h1 className="text-2xl font-bold text-slate-800">
+            Presidencia Municipal
+          </h1>
           <p className="text-slate-600 mt-1">Sistema de Audiencias</p>
         </div>
 
         <Card className="border-slate-200 shadow-lg">
           <CardHeader className="space-y-1">
-            <CardTitle className="text-xl text-center">Iniciar Sesión</CardTitle>
+            <CardTitle className="text-xl text-center">
+              Iniciar Sesión
+            </CardTitle>
             <CardDescription className="text-center">
               Ingresa tus credenciales para acceder al sistema
             </CardDescription>
@@ -60,7 +73,7 @@ export default function Login() {
                   />
                 </div>
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="password">Contraseña</Label>
                 <div className="relative">
@@ -85,7 +98,10 @@ export default function Login() {
             <div className="mt-6 text-center">
               <p className="text-sm text-slate-600">
                 ¿No tienes cuenta?{" "}
-                <Link to="/register" className="text-blue-600 hover:text-blue-500 font-medium">
+                <Link
+                  to="/register"
+                  className="text-blue-600 hover:text-blue-500 font-medium"
+                >
                   Regístrate aquí
                 </Link>
               </p>

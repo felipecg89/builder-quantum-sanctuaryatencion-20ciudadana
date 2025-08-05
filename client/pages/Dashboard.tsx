@@ -3,14 +3,46 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Building2, LogOut, Mic, MicOff, Calendar as CalendarIcon, Plus, Phone, CheckCircle } from "lucide-react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  Building2,
+  LogOut,
+  Mic,
+  MicOff,
+  Calendar as CalendarIcon,
+  Plus,
+  Phone,
+  CheckCircle,
+} from "lucide-react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 
@@ -18,14 +50,24 @@ const CATEGORIES = {
   especie: "Ayuda en Especie",
   servicio: "Servicio",
   invitacion: "Invitación",
-  tramites: "Trámites"
+  tramites: "Trámites",
 };
 
 const CATEGORY_TYPES = {
   especie: ["Alimentos", "Medicamentos", "Ropa", "Materiales de construcción"],
-  servicio: ["Servicios médicos", "Servicios legales", "Servicios sociales", "Servicios técnicos"],
-  invitacion: ["Evento público", "Ceremonia oficial", "Reunión comunitaria", "Conferencia"],
-  tramites: ["Licencias", "Permisos", "Certificados", "Registros"]
+  servicio: [
+    "Servicios médicos",
+    "Servicios legales",
+    "Servicios sociales",
+    "Servicios técnicos",
+  ],
+  invitacion: [
+    "Evento público",
+    "Ceremonia oficial",
+    "Reunión comunitaria",
+    "Conferencia",
+  ],
+  tramites: ["Licencias", "Permisos", "Certificados", "Registros"],
 };
 
 export default function Dashboard() {
@@ -37,13 +79,13 @@ export default function Dashboard() {
   const [caseNumber, setCaseNumber] = useState("");
   const [isAddingNewType, setIsAddingNewType] = useState(false);
   const [newTypeValue, setNewTypeValue] = useState("");
-  
+
   const [formData, setFormData] = useState({
     category: "",
     type: "",
     description: "",
     meetingFormat: "",
-    selectedDate: null as Date | null
+    selectedDate: null as Date | null,
   });
 
   const navigate = useNavigate();
@@ -54,13 +96,13 @@ export default function Dashboard() {
       navigate("/login");
       return;
     }
-    
+
     const parsedUser = JSON.parse(userData);
     if (!parsedUser.authenticated) {
       navigate("/login");
       return;
     }
-    
+
     setUser(parsedUser);
   }, [navigate]);
 
@@ -70,18 +112,20 @@ export default function Dashboard() {
   };
 
   const handleCategoryChange = (category: string) => {
-    setFormData(prev => ({ ...prev, category, type: "" }));
+    setFormData((prev) => ({ ...prev, category, type: "" }));
   };
 
   const handleTypeChange = (type: string) => {
-    setFormData(prev => ({ ...prev, type }));
+    setFormData((prev) => ({ ...prev, type }));
   };
 
   const addNewType = () => {
     if (newTypeValue.trim() && formData.category) {
       // In a real app, this would save to backend
-      CATEGORY_TYPES[formData.category as keyof typeof CATEGORY_TYPES].push(newTypeValue);
-      setFormData(prev => ({ ...prev, type: newTypeValue }));
+      CATEGORY_TYPES[formData.category as keyof typeof CATEGORY_TYPES].push(
+        newTypeValue,
+      );
+      setFormData((prev) => ({ ...prev, type: newTypeValue }));
       setNewTypeValue("");
       setIsAddingNewType(false);
     }
@@ -101,9 +145,12 @@ export default function Dashboard() {
     const caseNum = `AUD-${Date.now().toString().slice(-6)}`;
     setCaseNumber(caseNum);
     setCurrentStep(6);
-    
+
     // In a real app, send data to backend and send email/SMS
-    console.log("Audience request submitted:", { ...formData, caseNumber: caseNum });
+    console.log("Audience request submitted:", {
+      ...formData,
+      caseNumber: caseNum,
+    });
   };
 
   const resetForm = () => {
@@ -112,7 +159,7 @@ export default function Dashboard() {
       type: "",
       description: "",
       meetingFormat: "",
-      selectedDate: null
+      selectedDate: null,
     });
     setCurrentStep(1);
     setCaseNumber("");
@@ -123,12 +170,18 @@ export default function Dashboard() {
 
   const isStepComplete = (step: number) => {
     switch (step) {
-      case 1: return !!formData.category;
-      case 2: return !!formData.type;
-      case 3: return !!audioDescription;
-      case 4: return !!formData.meetingFormat;
-      case 5: return formData.meetingFormat === "online" || !!formData.selectedDate;
-      default: return false;
+      case 1:
+        return !!formData.category;
+      case 2:
+        return !!formData.type;
+      case 3:
+        return !!audioDescription;
+      case 4:
+        return !!formData.meetingFormat;
+      case 5:
+        return formData.meetingFormat === "online" || !!formData.selectedDate;
+      default:
+        return false;
     }
   };
 
@@ -142,12 +195,16 @@ export default function Dashboard() {
               <Building2 className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-lg font-semibold text-slate-800">Presidencia Municipal</h1>
+              <h1 className="text-lg font-semibold text-slate-800">
+                Presidencia Municipal
+              </h1>
               <p className="text-sm text-slate-600">Sistema de Audiencias</p>
             </div>
           </div>
           <div className="flex items-center space-x-4">
-            <span className="text-sm text-slate-600">Bienvenido, {user.name}</span>
+            <span className="text-sm text-slate-600">
+              Bienvenido, {user.name}
+            </span>
             <Button variant="outline" size="sm" onClick={handleLogout}>
               <LogOut className="w-4 h-4 mr-2" />
               Cerrar Sesión
@@ -164,19 +221,27 @@ export default function Dashboard() {
               <div className="flex items-center justify-between">
                 {[1, 2, 3, 4, 5].map((step) => (
                   <div key={step} className="flex items-center">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-                      currentStep === step
-                        ? "bg-blue-600 text-white"
-                        : isStepComplete(step)
-                        ? "bg-green-500 text-white"
-                        : "bg-slate-200 text-slate-600"
-                    }`}>
-                      {isStepComplete(step) ? <CheckCircle className="w-5 h-5" /> : step}
+                    <div
+                      className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
+                        currentStep === step
+                          ? "bg-blue-600 text-white"
+                          : isStepComplete(step)
+                            ? "bg-green-500 text-white"
+                            : "bg-slate-200 text-slate-600"
+                      }`}
+                    >
+                      {isStepComplete(step) ? (
+                        <CheckCircle className="w-5 h-5" />
+                      ) : (
+                        step
+                      )}
                     </div>
                     {step < 5 && (
-                      <div className={`w-12 h-0.5 mx-2 ${
-                        isStepComplete(step) ? "bg-green-500" : "bg-slate-200"
-                      }`} />
+                      <div
+                        className={`w-12 h-0.5 mx-2 ${
+                          isStepComplete(step) ? "bg-green-500" : "bg-slate-200"
+                        }`}
+                      />
                     )}
                   </div>
                 ))}
@@ -193,18 +258,24 @@ export default function Dashboard() {
             <Card>
               <CardHeader>
                 <CardTitle>
-                  {currentStep === 1 && "Paso 1: Selecciona la Categoría de Ayuda"}
+                  {currentStep === 1 &&
+                    "Paso 1: Selecciona la Categoría de Ayuda"}
                   {currentStep === 2 && "Paso 2: Selecciona el Tipo de Ayuda"}
                   {currentStep === 3 && "Paso 3: Describe tu Solicitud"}
                   {currentStep === 4 && "Paso 4: Formato de la Audiencia"}
                   {currentStep === 5 && "Paso 5: Selecciona la Fecha"}
                 </CardTitle>
                 <CardDescription>
-                  {currentStep === 1 && "Elige la categoría que mejor describa tu solicitud"}
-                  {currentStep === 2 && "Especifica el tipo de ayuda que necesitas"}
-                  {currentStep === 3 && "Usa el micrófono para grabar una descripción detallada"}
-                  {currentStep === 4 && "¿Prefieres una audiencia presencial o en línea?"}
-                  {currentStep === 5 && "Selecciona una fecha disponible para tu audiencia"}
+                  {currentStep === 1 &&
+                    "Elige la categoría que mejor describa tu solicitud"}
+                  {currentStep === 2 &&
+                    "Especifica el tipo de ayuda que necesitas"}
+                  {currentStep === 3 &&
+                    "Usa el micrófono para grabar una descripción detallada"}
+                  {currentStep === 4 &&
+                    "¿Prefieres una audiencia presencial o en línea?"}
+                  {currentStep === 5 &&
+                    "Selecciona una fecha disponible para tu audiencia"}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -218,7 +289,9 @@ export default function Dashboard() {
                       {Object.entries(CATEGORIES).map(([key, label]) => (
                         <div key={key} className="flex items-center space-x-2">
                           <RadioGroupItem value={key} id={key} />
-                          <Label htmlFor={key} className="font-medium">{label}</Label>
+                          <Label htmlFor={key} className="font-medium">
+                            {label}
+                          </Label>
                         </div>
                       ))}
                     </RadioGroup>
@@ -228,13 +301,18 @@ export default function Dashboard() {
                 {/* Step 2: Type Selection */}
                 {currentStep === 2 && (
                   <div className="space-y-4">
-                    <Select value={formData.type} onValueChange={handleTypeChange}>
+                    <Select
+                      value={formData.type}
+                      onValueChange={handleTypeChange}
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Selecciona el tipo específico" />
                       </SelectTrigger>
                       <SelectContent>
                         {formData.category &&
-                          CATEGORY_TYPES[formData.category as keyof typeof CATEGORY_TYPES]?.map((type) => (
+                          CATEGORY_TYPES[
+                            formData.category as keyof typeof CATEGORY_TYPES
+                          ]?.map((type) => (
                             <SelectItem key={type} value={type}>
                               {type}
                             </SelectItem>
@@ -242,7 +320,10 @@ export default function Dashboard() {
                       </SelectContent>
                     </Select>
 
-                    <Dialog open={isAddingNewType} onOpenChange={setIsAddingNewType}>
+                    <Dialog
+                      open={isAddingNewType}
+                      onOpenChange={setIsAddingNewType}
+                    >
                       <DialogTrigger asChild>
                         <Button variant="outline" className="w-full">
                           <Plus className="w-4 h-4 mr-2" />
@@ -253,7 +334,12 @@ export default function Dashboard() {
                         <DialogHeader>
                           <DialogTitle>Agregar Nuevo Tipo</DialogTitle>
                           <DialogDescription>
-                            Describe el nuevo tipo de ayuda para la categoría: {CATEGORIES[formData.category as keyof typeof CATEGORIES]}
+                            Describe el nuevo tipo de ayuda para la categoría:{" "}
+                            {
+                              CATEGORIES[
+                                formData.category as keyof typeof CATEGORIES
+                              ]
+                            }
                           </DialogDescription>
                         </DialogHeader>
                         <div className="space-y-4">
@@ -263,7 +349,10 @@ export default function Dashboard() {
                             onChange={(e) => setNewTypeValue(e.target.value)}
                           />
                           <div className="flex justify-end space-x-2">
-                            <Button variant="outline" onClick={() => setIsAddingNewType(false)}>
+                            <Button
+                              variant="outline"
+                              onClick={() => setIsAddingNewType(false)}
+                            >
                               Cancelar
                             </Button>
                             <Button onClick={addNewType}>Agregar</Button>
@@ -282,7 +371,9 @@ export default function Dashboard() {
                         onClick={startRecording}
                         disabled={isRecording}
                         className={`w-32 h-32 rounded-full ${
-                          isRecording ? "bg-red-500 hover:bg-red-600" : "bg-blue-600 hover:bg-blue-700"
+                          isRecording
+                            ? "bg-red-500 hover:bg-red-600"
+                            : "bg-blue-600 hover:bg-blue-700"
                         }`}
                       >
                         {isRecording ? (
@@ -313,7 +404,12 @@ export default function Dashboard() {
                   <div className="space-y-4">
                     <RadioGroup
                       value={formData.meetingFormat}
-                      onValueChange={(value) => setFormData(prev => ({ ...prev, meetingFormat: value }))}
+                      onValueChange={(value) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          meetingFormat: value,
+                        }))
+                      }
                     >
                       <div className="flex items-center space-x-2">
                         <RadioGroupItem value="presencial" id="presencial" />
@@ -334,7 +430,8 @@ export default function Dashboard() {
                         <div className="flex items-center space-x-2">
                           <Phone className="w-5 h-5 text-blue-600" />
                           <p className="text-blue-800 text-sm">
-                            Nos comunicaremos contigo al número: <strong>{user.phone}</strong>
+                            Nos comunicaremos contigo al número:{" "}
+                            <strong>{user.phone}</strong>
                           </p>
                         </div>
                       </div>
@@ -343,34 +440,48 @@ export default function Dashboard() {
                 )}
 
                 {/* Step 5: Date Selection */}
-                {currentStep === 5 && formData.meetingFormat === "presencial" && (
-                  <div className="space-y-4">
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <Button variant="outline" className="w-full justify-start text-left font-normal">
-                          <CalendarIcon className="mr-2 h-4 w-4" />
-                          {selectedDate ? format(selectedDate, "PPP", { locale: es }) : "Selecciona una fecha"}
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
-                        <Calendar
-                          mode="single"
-                          selected={selectedDate}
-                          onSelect={(date) => {
-                            setSelectedDate(date);
-                            setFormData(prev => ({ ...prev, selectedDate: date }));
-                          }}
-                          disabled={(date) => date < new Date() || date.getDay() === 0 || date.getDay() === 6}
-                          initialFocus
-                        />
-                      </PopoverContent>
-                    </Popover>
+                {currentStep === 5 &&
+                  formData.meetingFormat === "presencial" && (
+                    <div className="space-y-4">
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button
+                            variant="outline"
+                            className="w-full justify-start text-left font-normal"
+                          >
+                            <CalendarIcon className="mr-2 h-4 w-4" />
+                            {selectedDate
+                              ? format(selectedDate, "PPP", { locale: es })
+                              : "Selecciona una fecha"}
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={selectedDate}
+                            onSelect={(date) => {
+                              setSelectedDate(date);
+                              setFormData((prev) => ({
+                                ...prev,
+                                selectedDate: date,
+                              }));
+                            }}
+                            disabled={(date) =>
+                              date < new Date() ||
+                              date.getDay() === 0 ||
+                              date.getDay() === 6
+                            }
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
 
-                    <p className="text-sm text-slate-600">
-                      * Las audiencias están disponibles de lunes a viernes en horario de oficina
-                    </p>
-                  </div>
-                )}
+                      <p className="text-sm text-slate-600">
+                        * Las audiencias están disponibles de lunes a viernes en
+                        horario de oficina
+                      </p>
+                    </div>
+                  )}
 
                 {/* Navigation Buttons */}
                 <div className="flex justify-between pt-6">
@@ -408,11 +519,11 @@ export default function Dashboard() {
               <div className="w-16 h-16 bg-green-500 rounded-full mx-auto flex items-center justify-center mb-6">
                 <CheckCircle className="w-8 h-8 text-white" />
               </div>
-              
+
               <h2 className="text-2xl font-bold text-slate-800 mb-4">
                 ¡Solicitud Enviada Exitosamente!
               </h2>
-              
+
               <div className="bg-slate-100 rounded-lg p-6 mb-6">
                 <p className="text-lg font-semibold text-slate-800 mb-2">
                   Tu número de caso es:
@@ -422,18 +533,20 @@ export default function Dashboard() {
 
               <div className="text-sm text-slate-600 space-y-2 mb-8">
                 <p>
-                  Hemos enviado los detalles de tu solicitud a tu correo electrónico
-                  y un mensaje SMS a tu teléfono <strong>{user.phone}</strong>
+                  Hemos enviado los detalles de tu solicitud a tu correo
+                  electrónico y un mensaje SMS a tu teléfono{" "}
+                  <strong>{user.phone}</strong>
                 </p>
                 <p>
-                  Te contactaremos pronto para confirmar los detalles de tu audiencia.
+                  Te contactaremos pronto para confirmar los detalles de tu
+                  audiencia.
                 </p>
               </div>
 
               <Button onClick={resetForm} className="mr-4">
                 Nueva Solicitud
               </Button>
-              
+
               <Button variant="outline" onClick={handleLogout}>
                 Cerrar Sesión
               </Button>

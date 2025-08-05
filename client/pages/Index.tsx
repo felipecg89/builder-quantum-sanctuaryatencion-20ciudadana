@@ -1,7 +1,22 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Building2, Calendar, Users, FileText, ArrowRight, Clock, Phone, Mail } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Building2,
+  Calendar,
+  Users,
+  FileText,
+  ArrowRight,
+  Clock,
+  Phone,
+  Mail,
+} from "lucide-react";
 
 export default function Index() {
   return (
@@ -15,8 +30,12 @@ export default function Index() {
                 <Building2 className="w-7 h-7 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-slate-800">Presidencia Municipal</h1>
-                <p className="text-sm text-slate-600">Sistema de Audiencias Ciudadanas</p>
+                <h1 className="text-xl font-bold text-slate-800">
+                  Presidencia Municipal
+                </h1>
+                <p className="text-sm text-slate-600">
+                  Sistema de Audiencias Ciudadanas
+                </p>
               </div>
             </div>
             <div className="flex space-x-3">
@@ -39,8 +58,9 @@ export default function Index() {
             <span className="text-blue-600">Presidente Municipal</span>
           </h2>
           <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
-            Sistema digital para solicitar audiencias ciudadanas de manera fácil, rápida y transparente.
-            Tu voz es importante para nuestra comunidad.
+            Sistema digital para solicitar audiencias ciudadanas de manera
+            fácil, rápida y transparente. Tu voz es importante para nuestra
+            comunidad.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" asChild className="text-lg px-8 py-6">
@@ -49,7 +69,12 @@ export default function Index() {
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
             </Button>
-            <Button size="lg" variant="outline" asChild className="text-lg px-8 py-6">
+            <Button
+              size="lg"
+              variant="outline"
+              asChild
+              className="text-lg px-8 py-6"
+            >
               <Link to="/login">Ya tengo cuenta</Link>
             </Button>
           </div>
@@ -114,7 +139,9 @@ export default function Index() {
                 <div className="w-12 h-12 bg-orange-100 rounded-lg mx-auto flex items-center justify-center mb-4">
                   <Building2 className="w-6 h-6 text-orange-600" />
                 </div>
-                <h4 className="font-semibold text-slate-800 mb-2">Ayuda en Especie</h4>
+                <h4 className="font-semibold text-slate-800 mb-2">
+                  Ayuda en Especie
+                </h4>
                 <p className="text-sm text-slate-600">
                   Alimentos, medicamentos, materiales y otros recursos
                 </p>
@@ -138,7 +165,9 @@ export default function Index() {
                 <div className="w-12 h-12 bg-green-100 rounded-lg mx-auto flex items-center justify-center mb-4">
                   <Calendar className="w-6 h-6 text-green-600" />
                 </div>
-                <h4 className="font-semibold text-slate-800 mb-2">Invitaciones</h4>
+                <h4 className="font-semibold text-slate-800 mb-2">
+                  Invitaciones
+                </h4>
                 <p className="text-sm text-slate-600">
                   Eventos, ceremonias y reuniones comunitarias
                 </p>
@@ -166,9 +195,12 @@ export default function Index() {
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
               <Clock className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-              <h4 className="font-semibold text-slate-800 mb-2">Horarios de Atención</h4>
+              <h4 className="font-semibold text-slate-800 mb-2">
+                Horarios de Atención
+              </h4>
               <p className="text-slate-600">
-                Lunes a Viernes<br />
+                Lunes a Viernes
+                <br />
                 9:00 AM - 5:00 PM
               </p>
             </div>
@@ -177,17 +209,18 @@ export default function Index() {
               <Phone className="w-12 h-12 text-blue-600 mx-auto mb-4" />
               <h4 className="font-semibold text-slate-800 mb-2">Contacto</h4>
               <p className="text-slate-600">
-                (55) 1234-5678<br />
+                (55) 1234-5678
+                <br />
                 Ext. 100
               </p>
             </div>
 
             <div>
               <Mail className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-              <h4 className="font-semibold text-slate-800 mb-2">Correo Electrónico</h4>
-              <p className="text-slate-600">
-                audiencias@municipio.gob.mx
-              </p>
+              <h4 className="font-semibold text-slate-800 mb-2">
+                Correo Electrónico
+              </h4>
+              <p className="text-slate-600">audiencias@municipio.gob.mx</p>
             </div>
           </div>
         </div>
