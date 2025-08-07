@@ -205,6 +205,11 @@ export default function AudienceHistory() {
     setLoginData({ phone: "", password: "" });
   };
 
+  const handleViewDetails = (audience: any) => {
+    setSelectedAudience(audience);
+    setIsDetailsOpen(true);
+  };
+
   const filteredAudiences = mockAudiences.filter(audience => {
     const matchesSearch = audience.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          audience.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
