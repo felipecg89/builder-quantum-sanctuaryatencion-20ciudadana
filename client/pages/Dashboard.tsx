@@ -508,8 +508,8 @@ export default function Dashboard() {
                     </div>
 
                     {/* Step Label */}
-                    <div className="mt-3 text-center">
-                      <span className={`text-xs sm:text-sm font-medium transition-colors duration-200 ${
+                    <div className="step-label-container">
+                      <span className={`step-label-text transition-colors duration-200 ${
                         currentStep === step.number
                           ? "text-blue-600"
                           : isStepComplete(step.number)
