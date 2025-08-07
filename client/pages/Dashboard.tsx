@@ -655,15 +655,6 @@ export default function Dashboard() {
                 {currentStep === 3 && (
                   <div className="space-y-6">
                     <div className="text-center space-y-6">
-                      <div className="space-y-2">
-                        <p className="text-lg font-medium text-slate-700">
-                          Describe tu solicitud
-                        </p>
-                        <p className="text-slate-600 max-w-md mx-auto">
-                          Proporciona detalles específicos sobre la ayuda que necesitas para que podamos atenderte mejor
-                        </p>
-                      </div>
-
                       <Button
                         onClick={() => setIsDescriptionDialogOpen(true)}
                         variant="outline"
