@@ -421,35 +421,48 @@ export default function Dashboard() {
                             </p>
                           </div>
 
-                          <div className="flex justify-end space-x-2">
-                            <Button
-                              variant="outline"
-                              onClick={() => {
-                                setIsAddingNewType(false);
-                                setNewTypeValue("");
-                                setNewTypeError("");
-                              }}
-                              disabled={isLoadingNewType}
-                            >
-                              Cancelar
-                            </Button>
-                            <Button
-                              onClick={addNewType}
-                              disabled={isLoadingNewType || !newTypeValue.trim()}
-                              className="min-w-[100px]"
-                            >
-                              {isLoadingNewType ? (
-                                <div className="flex items-center gap-2">
-                                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                                  Agregando...
-                                </div>
-                              ) : (
-                                <div className="flex items-center gap-2">
-                                  <Plus className="w-4 h-4" />
-                                  Agregar
-                                </div>
-                              )}
-                            </Button>
+                          <div className="flex justify-between items-center pt-2">
+                            <div className="text-xs text-slate-500">
+                              <kbd className="px-2 py-1 bg-slate-100 rounded text-xs">Enter</kbd> para agregar,
+                              <kbd className="px-2 py-1 bg-slate-100 rounded text-xs ml-1">Esc</kbd> para cancelar
+                            </div>
+                            <div className="flex space-x-2">
+                              <Button
+                                variant="outline"
+                                onClick={() => {
+                                  const hasContent = newTypeValue.trim().length > 0;
+                                  if (hasContent) {
+                                    const confirmClose = window.confirm("¿Estás seguro de cancelar? Se perderá el texto escrito.");
+                                    if (!confirmClose) return;
+                                  }
+                                  setIsAddingNewType(false);
+                                  setNewTypeValue("");
+                                  setNewTypeError("");
+                                }}
+                                disabled={isLoadingNewType}
+                                className="hover:bg-slate-50 transition-colors duration-200"
+                              >
+                                <X className="w-4 h-4 mr-1" />
+                                Cancelar
+                              </Button>
+                              <Button
+                                onClick={addNewType}
+                                disabled={isLoadingNewType || !newTypeValue.trim()}
+                                className="min-w-[120px] bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-lg hover:shadow-xl transition-all duration-200 disabled:from-slate-400 disabled:to-slate-500"
+                              >
+                                {isLoadingNewType ? (
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                    Agregando...
+                                  </div>
+                                ) : (
+                                  <div className="flex items-center gap-2">
+                                    <Plus className="w-4 h-4" />
+                                    Agregar Tipo
+                                  </div>
+                                )}
+                              </Button>
+                            </div>
                           </div>
                         </div>
                       </DialogContent>
