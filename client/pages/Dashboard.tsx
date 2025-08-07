@@ -111,6 +111,27 @@ export default function Dashboard() {
     setUser(parsedUser);
   }, [navigate]);
 
+  // Keyboard shortcuts for modal
+  const handleKeyDown = useCallback((event: KeyboardEvent) => {
+    if (!isAddingNewType) return;
+
+    if (event.key === 'Escape') {
+      const hasContent = newTypeValue.trim().length > 0;
+      if (hasContent) {
+        const confirmClose = window.confirm("¿Estás seguro de cancelar? Se perderá el texto escrito.");
+        if (!confirmClose) return;
+      }
+      setIsAddingNewType(false);
+      setNewTypeValue("");
+      setNewTypeError("");
+    }
+  }, [isAddingNewType, newTypeValue]);
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
+
   const handleLogout = () => {
     localStorage.removeItem("user");
     navigate("/login");
