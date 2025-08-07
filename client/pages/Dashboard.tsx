@@ -450,11 +450,11 @@ export default function Dashboard() {
           <>
             {/* Progress Steps */}
             <div className="mb-8">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between overflow-x-auto px-1">
                 {[1, 2, 3, 4, 5].map((step) => (
-                  <div key={step} className="flex items-center">
+                  <div key={step} className="flex items-center min-w-fit">
                     <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
+                      className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-xs sm:text-sm font-medium ${
                         currentStep === step
                           ? "bg-blue-600 text-white"
                           : isStepComplete(step)
@@ -463,14 +463,14 @@ export default function Dashboard() {
                       }`}
                     >
                       {isStepComplete(step) ? (
-                        <CheckCircle className="w-5 h-5" />
+                        <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                       ) : (
                         step
                       )}
                     </div>
                     {step < 5 && (
                       <div
-                        className={`w-12 h-0.5 mx-2 ${
+                        className={`w-8 sm:w-12 h-0.5 mx-1 sm:mx-2 ${
                           isStepComplete(step) ? "bg-green-500" : "bg-slate-200"
                         }`}
                       />
@@ -478,12 +478,12 @@ export default function Dashboard() {
                   </div>
                 ))}
               </div>
-              <div className="flex justify-between mt-2 text-xs text-slate-600">
-                <span>Categoría</span>
-                <span>Tipo</span>
-                <span>Descripción</span>
-                <span>Formato</span>
-                <span>Fecha</span>
+              <div className="flex justify-between mt-2 text-xs sm:text-sm text-slate-600 px-1">
+                <span className="text-center">Categoría</span>
+                <span className="text-center">Tipo</span>
+                <span className="text-center">Descripción</span>
+                <span className="text-center">Formato</span>
+                <span className="text-center">Fecha</span>
               </div>
             </div>
 
