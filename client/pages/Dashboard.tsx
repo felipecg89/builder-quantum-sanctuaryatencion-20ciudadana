@@ -118,18 +118,20 @@ export default function Dashboard() {
   useEffect(() => {
     const userData = localStorage.getItem("user");
     if (!userData) {
-      navigate("/login");
+      // Use setTimeout to defer navigation to avoid setState during render
+      setTimeout(() => navigate("/login"), 0);
       return;
     }
 
     const parsedUser = JSON.parse(userData);
     if (!parsedUser.authenticated) {
-      navigate("/login");
+      // Use setTimeout to defer navigation to avoid setState during render
+      setTimeout(() => navigate("/login"), 0);
       return;
     }
 
     setUser(parsedUser);
-  }, [navigate]);
+  }, []); // Remove navigate from dependencies
 
   // Keyboard shortcuts for modal
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
