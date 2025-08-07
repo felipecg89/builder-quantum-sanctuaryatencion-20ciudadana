@@ -82,6 +82,8 @@ export default function Dashboard() {
   const [caseNumber, setCaseNumber] = useState("");
   const [isAddingNewType, setIsAddingNewType] = useState(false);
   const [newTypeValue, setNewTypeValue] = useState("");
+  const [isLoadingNewType, setIsLoadingNewType] = useState(false);
+  const [newTypeError, setNewTypeError] = useState("");
 
   const [formData, setFormData] = useState({
     category: "",
