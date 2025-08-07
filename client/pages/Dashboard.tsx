@@ -668,21 +668,41 @@ export default function Dashboard() {
                       {audioDescription && (
                         <div className="bg-green-50 border border-green-200 rounded-lg p-4">
                           <div className="flex items-start justify-between">
-                            <div>
+                            <div className="flex-1">
                               <p className="text-green-800 text-sm font-medium mb-1">
                                 🎤 Descripción de audio:
                               </p>
-                              <p className="text-green-700 text-sm">
+                              <p className="text-green-700 text-sm mb-2">
                                 {audioDescription}
                               </p>
+                              {audioBlob && (
+                                <div className="flex items-center space-x-2">
+                                  <Button
+                                    onClick={playAudio}
+                                    size="sm"
+                                    variant="outline"
+                                    className="text-green-700 border-green-300 hover:bg-green-100"
+                                  >
+                                    ▶️ Reproducir
+                                  </Button>
+                                  <Button
+                                    onClick={deleteAudioRecording}
+                                    size="sm"
+                                    variant="outline"
+                                    className="text-red-600 border-red-300 hover:bg-red-50"
+                                  >
+                                    🗑️ Eliminar
+                                  </Button>
+                                </div>
+                              )}
                             </div>
                             <Button
                               variant="ghost"
                               size="sm"
                               onClick={() => setIsDescriptionDialogOpen(true)}
-                              className="text-green-600 hover:text-green-800"
+                              className="text-green-600 hover:text-green-800 ml-2"
                             >
-                              Editar
+                              ✏️ Editar
                             </Button>
                           </div>
                         </div>
