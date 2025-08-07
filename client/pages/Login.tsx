@@ -52,10 +52,10 @@ export default function Login() {
         <Card className="border-slate-200 shadow-lg">
           <CardHeader className="space-y-1">
             <CardTitle className="text-xl text-center">
-              Iniciar Sesión
+              Solicitar Audiencia
             </CardTitle>
             <CardDescription className="text-center">
-              Ingresa tus credenciales para acceder al sistema
+              Inicia sesión para comenzar tu solicitud de audiencia
             </CardDescription>
           </CardHeader>
           <CardContent>
