@@ -62,6 +62,13 @@ const CATEGORIES = {
   tramites: "Trámites",
 };
 
+const CATEGORY_ICONS = {
+  especie: Package,
+  servicio: Settings,
+  invitacion: Users,
+  tramites: FileText,
+};
+
 const CATEGORY_TYPES = {
   especie: ["Alimentos", "Medicamentos", "Ropa", "Materiales de construcción"],
   servicio: [
