@@ -668,15 +668,15 @@ export default function Dashboard() {
                         variant="outline"
                         className="w-full py-16 border-2 border-dashed border-slate-300 hover:border-blue-400 hover:bg-blue-50 transition-all duration-200 rounded-xl"
                       >
-                        <div className="flex flex-col items-center space-y-4">
+                        <div className="flex flex-col items-center space-y-6">
                           <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
                             <Plus className="w-8 h-8 text-blue-600" />
                           </div>
-                          <div className="space-y-2 text-center">
+                          <div className="space-y-3 text-center px-4">
                             <span className="text-xl font-semibold text-slate-700 block">
                               Agregar Descripción
                             </span>
-                            <span className="text-sm text-slate-500 block max-w-xs">
+                            <span className="text-sm text-slate-500 block max-w-sm mx-auto leading-relaxed">
                               Escribe o graba tu descripción de la ayuda solicitada
                             </span>
                           </div>
