@@ -87,6 +87,10 @@ export default function Dashboard() {
   const [newTypeError, setNewTypeError] = useState("");
   const [isDescriptionDialogOpen, setIsDescriptionDialogOpen] = useState(false);
   const [textDescription, setTextDescription] = useState("");
+  const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
+  const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
+  const [recordingTime, setRecordingTime] = useState(0);
+  const [recordingTimer, setRecordingTimer] = useState<NodeJS.Timeout | null>(null);
 
   const [formData, setFormData] = useState({
     category: "",
