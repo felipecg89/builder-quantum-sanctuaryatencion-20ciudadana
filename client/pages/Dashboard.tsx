@@ -426,40 +426,15 @@ export default function Dashboard() {
       {/* Header */}
       <header className="bg-white border-b border-slate-200 shadow-sm">
         <div className="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-4">
-            {/* Back Button */}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => {
-                const hasProgress = formData.category || textDescription || audioDescription;
-                if (hasProgress) {
-                  const confirmExit = window.confirm(
-                    "¿Estás seguro de salir? Se perderá el progreso de tu solicitud."
-                  );
-                  if (confirmExit) {
-                    navigate("/");
-                  }
-                } else {
-                  navigate("/");
-                }
-              }}
-              className="text-slate-600 hover:text-slate-800 hover:bg-slate-100 transition-all duration-200 hover:scale-105"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              <span className="hidden sm:inline ml-1">Inicio</span>
-            </Button>
-
-            <div className="flex items-center space-x-3">
-              <div className="flex items-center justify-center w-10 h-10 bg-blue-600 rounded-full">
-                <Building2 className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-lg font-semibold text-slate-800">
-                  Presidencia Municipal
-                </h1>
-                <p className="text-sm text-slate-600">Sistema de Audiencias</p>
-              </div>
+          <div className="flex items-center space-x-3">
+            <div className="flex items-center justify-center w-10 h-10 bg-blue-600 rounded-full">
+              <Building2 className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h1 className="text-lg font-semibold text-slate-800">
+                Presidencia Municipal
+              </h1>
+              <p className="text-sm text-slate-600">Sistema de Audiencias</p>
             </div>
           </div>
           <div className="flex items-center space-x-4">
