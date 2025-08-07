@@ -166,7 +166,6 @@ export default function FloatingBackButton() {
                 backdrop-blur-md border-2 border-slate-200 hover:border-slate-300
                 text-slate-700 hover:text-slate-900
                 ${location.pathname === "/dashboard" ? "border-orange-300 hover:border-orange-400" : ""}
-                ${showPulse ? "animate-pulse" : ""}
                 ${isModalOpen ? "opacity-0 pointer-events-none scale-75" : "opacity-100 pointer-events-auto scale-100"}
               `}
               size="sm"
