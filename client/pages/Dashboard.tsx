@@ -350,7 +350,7 @@ export default function Dashboard() {
   };
 
   const deleteAudioRecording = () => {
-    if (window.confirm('¿Est��s seguro de eliminar la grabaci��n de audio?')) {
+    if (window.confirm('¿Estás seguro de eliminar la grabaci��n de audio?')) {
       setAudioBlob(null);
       setAudioDescription("");
       setRecordingTime(0);
@@ -545,7 +545,7 @@ export default function Dashboard() {
               <CardContent className="space-y-3 sm:space-y-6 px-3 sm:px-6 pb-3 sm:pb-6">
                 {/* Step 1: Category Selection */}
                 {currentStep === 1 && (
-                  <div className="space-y-4">
+                  <div className="space-y-2 sm:space-y-4">
                     <RadioGroup
                       value={formData.category}
                       onValueChange={handleCategoryChange}
@@ -553,7 +553,7 @@ export default function Dashboard() {
                       {Object.entries(CATEGORIES).map(([key, label]) => {
                         const IconComponent = CATEGORY_ICONS[key as keyof typeof CATEGORY_ICONS];
                         return (
-                          <div key={key} className="flex items-center space-x-3 p-3 rounded-lg border border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200">
+                          <div key={key} className="flex items-center space-x-2 sm:space-x-3 p-2 sm:p-3 rounded-lg border border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200">
                             <RadioGroupItem value={key} id={key} />
                             <div className="flex items-center space-x-3 flex-1">
                               <div className="flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full">
