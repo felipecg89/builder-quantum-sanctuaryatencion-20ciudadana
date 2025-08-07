@@ -40,7 +40,41 @@ const mockAudiences = [
     requestDate: new Date("2024-01-15"),
     audienceDate: new Date("2024-01-20"),
     meetingFormat: "presencial",
-    result: "Aprobada - Se otorgó despensa mensual por 3 meses"
+    result: "Aprobada - Se otorgó despensa mensual por 3 meses",
+    responses: [
+      {
+        date: new Date("2024-01-16"),
+        author: "Oficina de Desarrollo Social",
+        message: "Su solicitud ha sido recibida y está siendo evaluada por nuestro equipo."
+      },
+      {
+        date: new Date("2024-01-18"),
+        author: "Coordinador de Programas",
+        message: "Se ha programado visita domiciliaria para verificar la situación familiar."
+      },
+      {
+        date: new Date("2024-01-20"),
+        author: "Director de Desarrollo Social",
+        message: "Solicitud aprobada. Se autorizó entrega de despensa mensual por 3 meses."
+      }
+    ],
+    followUps: [
+      {
+        date: new Date("2024-01-25"),
+        status: "Entrega realizada",
+        details: "Primera entrega de despensa realizada exitosamente."
+      },
+      {
+        date: new Date("2024-02-25"),
+        status: "Entrega realizada",
+        details: "Segunda entrega de despensa realizada exitosamente."
+      },
+      {
+        date: new Date("2024-03-25"),
+        status: "Entrega pendiente",
+        details: "Tercera entrega programada para la próxima semana."
+      }
+    ]
   },
   {
     id: "AUD-789012",
