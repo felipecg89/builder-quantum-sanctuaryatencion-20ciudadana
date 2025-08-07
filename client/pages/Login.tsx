@@ -182,6 +182,78 @@ export default function Login() {
         <div className="mt-6 text-center text-xs text-slate-500">
           Sistema oficial de audiencias municipales
         </div>
+
+        {/* Forgot Password Modal */}
+        {showForgotPassword && (
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div className="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
+              <div className="p-6">
+                <div className="text-center mb-6">
+                  <div className="w-12 h-12 bg-blue-100 rounded-full mx-auto flex items-center justify-center mb-4">
+                    <Lock className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-slate-800">Recuperar Contraseña</h3>
+                  <p className="text-slate-600 text-sm mt-2">
+                    Ingresa tu número de teléfono y te enviaremos instrucciones para restablecer tu contraseña
+                  </p>
+                </div>
+
+                <form onSubmit={handleForgotPassword} className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="forgotPhone">Número de Teléfono</Label>
+                    <div className="relative">
+                      <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+                      <Input
+                        id="forgotPhone"
+                        type="tel"
+                        placeholder="Ej: 55 1234 5678"
+                        value={forgotPasswordPhone}
+                        onChange={(e) => setForgotPasswordPhone(e.target.value)}
+                        className="pl-10"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex space-x-3">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      className="flex-1"
+                      onClick={() => {
+                        setShowForgotPassword(false);
+                        setForgotPasswordPhone("");
+                      }}
+                      disabled={isRecovering}
+                    >
+                      Cancelar
+                    </Button>
+                    <Button
+                      type="submit"
+                      className="flex-1"
+                      disabled={isRecovering}
+                    >
+                      {isRecovering ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                          Enviando...
+                        </>
+                      ) : (
+                        "Enviar Instrucciones"
+                      )}
+                    </Button>
+                  </div>
+                </form>
+
+                <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-blue-800 text-xs text-center">
+                    📱 Recibirás un SMS con las instrucciones para crear una nueva contraseña
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
