@@ -344,6 +344,17 @@ export default function Dashboard() {
   };
 
   const resetForm = () => {
+    // Stop recording if active
+    if (isRecording && mediaRecorder) {
+      stopRecording();
+    }
+
+    // Clear timer
+    if (recordingTimer) {
+      clearInterval(recordingTimer);
+      setRecordingTimer(null);
+    }
+
     setFormData({
       category: "",
       type: "",
@@ -356,6 +367,9 @@ export default function Dashboard() {
     setAudioDescription("");
     setTextDescription("");
     setIsDescriptionDialogOpen(false);
+    setAudioBlob(null);
+    setRecordingTime(0);
+    setMediaRecorder(null);
   };
 
   if (!user) return null;
