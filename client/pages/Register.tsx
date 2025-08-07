@@ -17,7 +17,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { User, Phone, Calendar, Users, Lock, Building2 } from "lucide-react";
+import { User, Phone, Calendar, Users, Lock, Building2, Eye, EyeOff } from "lucide-react";
 
 export default function Register() {
   const [formData, setFormData] = useState({
