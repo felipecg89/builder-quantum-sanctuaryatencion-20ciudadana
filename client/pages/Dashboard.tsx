@@ -431,13 +431,23 @@ export default function Dashboard() {
             <Button
               variant="ghost"
               size="sm"
-              asChild
-              className="text-slate-600 hover:text-slate-800 hover:bg-slate-100 transition-all duration-200"
+              onClick={() => {
+                const hasProgress = formData.category || textDescription || audioDescription;
+                if (hasProgress) {
+                  const confirmExit = window.confirm(
+                    "¿Estás seguro de salir? Se perderá el progreso de tu solicitud."
+                  );
+                  if (confirmExit) {
+                    navigate("/");
+                  }
+                } else {
+                  navigate("/");
+                }
+              }}
+              className="text-slate-600 hover:text-slate-800 hover:bg-slate-100 transition-all duration-200 hover:scale-105"
             >
-              <Link to="/" className="flex items-center gap-1">
-                <ArrowLeft className="w-4 h-4" />
-                <span className="hidden sm:inline">Inicio</span>
-              </Link>
+              <ArrowLeft className="w-4 h-4" />
+              <span className="hidden sm:inline ml-1">Inicio</span>
             </Button>
 
             <div className="flex items-center space-x-3">
