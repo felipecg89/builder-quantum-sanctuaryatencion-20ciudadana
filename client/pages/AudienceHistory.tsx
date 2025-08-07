@@ -93,6 +93,7 @@ export default function AudienceHistory() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showLogin, setShowLogin] = useState(true);
   const [loginData, setLoginData] = useState({ phone: "", password: "" });
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState<any>(null);
