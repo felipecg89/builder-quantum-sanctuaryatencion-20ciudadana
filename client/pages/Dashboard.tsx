@@ -426,9 +426,7 @@ export default function Dashboard() {
       case 3:
         return !!audioDescription || !!textDescription.trim();
       case 4:
-        return !!formData.meetingFormat;
-      case 5:
-        return formData.meetingFormat === "online" || !!formData.selectedDate;
+        return !!formData.meetingFormat && (formData.meetingFormat === "online" || !!formData.selectedDate);
       default:
         return false;
     }
