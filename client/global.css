@@ -212,7 +212,7 @@
   /* Large screens */
   @media (min-width: 769px) {
     .step-label-container {
-      max-width: 90px;
+      max-width: 100px;
     }
 
     .step-label-text {
