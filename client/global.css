@@ -201,7 +201,7 @@
   /* Medium screens */
   @media (min-width: 641px) and (max-width: 768px) {
     .step-label-container {
-      max-width: 70px;
+      max-width: 80px;
     }
 
     .step-label-text {
