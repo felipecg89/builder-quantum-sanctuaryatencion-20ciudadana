@@ -136,6 +136,17 @@ export default function Login() {
               </Button>
             </form>
 
+            {/* Forgot Password Link */}
+            <div className="mt-4 text-center">
+              <Button
+                variant="link"
+                className="text-slate-600 hover:text-blue-600 text-sm p-0 h-auto"
+                onClick={() => setShowForgotPassword(true)}
+              >
+                ¿Olvidaste tu contraseña?
+              </Button>
+            </div>
+
             <div className="mt-6 space-y-4">
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
