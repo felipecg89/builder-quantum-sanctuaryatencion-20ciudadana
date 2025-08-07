@@ -555,11 +555,11 @@ export default function Dashboard() {
                         return (
                           <div key={key} className="flex items-center space-x-2 sm:space-x-3 p-2 sm:p-3 rounded-lg border border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200">
                             <RadioGroupItem value={key} id={key} />
-                            <div className="flex items-center space-x-3 flex-1">
-                              <div className="flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full">
-                                <IconComponent className="w-4 h-4 text-blue-600" />
+                            <div className="flex items-center space-x-2 sm:space-x-3 flex-1">
+                              <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-full">
+                                <IconComponent className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600" />
                               </div>
-                              <Label htmlFor={key} className="font-medium text-slate-700 cursor-pointer flex-1">
+                              <Label htmlFor={key} className="font-medium text-sm sm:text-base text-slate-700 cursor-pointer flex-1">
                                 {label}
                               </Label>
                             </div>
