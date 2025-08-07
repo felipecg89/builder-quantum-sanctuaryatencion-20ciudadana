@@ -1039,14 +1039,14 @@ export default function Dashboard() {
                 )}
 
                 {/* Navigation Buttons */}
-                <div className="flex justify-between pt-6">
+                <div className="flex justify-between pt-4 sm:pt-6 gap-2">
                   <Button
                     variant="outline"
                     onClick={() => setCurrentStep(Math.max(1, currentStep - 1))}
                     disabled={currentStep === 1}
-                    className="flex items-center gap-2 transition-all duration-200 hover:scale-105"
+                    className="flex items-center gap-1 sm:gap-2 transition-all duration-200 hover:scale-105 text-xs sm:text-sm px-3 sm:px-4"
                   >
-                    <ChevronLeft className="w-4 h-4" />
+                    <ChevronLeft className="w-3 h-3 sm:w-4 sm:h-4" />
                     Anterior
                   </Button>
 
@@ -1054,19 +1054,19 @@ export default function Dashboard() {
                     <Button
                       onClick={() => setCurrentStep(currentStep + 1)}
                       disabled={!isStepComplete(currentStep)}
-                      className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 disabled:from-slate-400 disabled:to-slate-500 disabled:hover:scale-100 disabled:shadow-none px-6 py-2.5"
+                      className="flex items-center gap-1 sm:gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 disabled:from-slate-400 disabled:to-slate-500 disabled:hover:scale-100 disabled:shadow-none px-3 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm"
                     >
                       Siguiente
-                      <ChevronRight className="w-4 h-4" />
+                      <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
                     </Button>
                   ) : (
                     <Button
                       onClick={handleSubmit}
                       disabled={!isStepComplete(currentStep)}
-                      className="flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 disabled:from-slate-400 disabled:to-slate-500 disabled:hover:scale-100 disabled:shadow-none px-6 py-2.5"
+                      className="flex items-center gap-1 sm:gap-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 disabled:from-slate-400 disabled:to-slate-500 disabled:hover:scale-100 disabled:shadow-none px-3 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm"
                     >
-                      <Send className="w-4 h-4" />
-                      Enviar Solicitud
+                      <Send className="w-3 h-3 sm:w-4 sm:h-4" />
+                      Enviar
                     </Button>
                   )}
                 </div>
