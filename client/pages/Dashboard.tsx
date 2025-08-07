@@ -955,89 +955,92 @@ export default function Dashboard() {
                   </div>
                 )}
 
-                {/* Step 4: Meeting Format */}
+                {/* Step 4: Meeting Format and Date */}
                 {currentStep === 4 && (
-                  <div className="space-y-4">
-                    <RadioGroup
-                      value={formData.meetingFormat}
-                      onValueChange={(value) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          meetingFormat: value,
-                        }))
-                      }
-                    >
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="presencial" id="presencial" />
-                        <Label htmlFor="presencial" className="font-medium">
-                          Presencial - En las oficinas municipales
-                        </Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="online" id="online" />
-                        <Label htmlFor="online" className="font-medium">
-                          En Línea - Lo contactaremos vía telefónica
-                        </Label>
-                      </div>
-                    </RadioGroup>
-
-                    {formData.meetingFormat === "online" && (
-                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="space-y-6">
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-medium text-slate-800">Formato de la Audiencia</h3>
+                      <RadioGroup
+                        value={formData.meetingFormat}
+                        onValueChange={(value) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            meetingFormat: value,
+                          }))
+                        }
+                      >
                         <div className="flex items-center space-x-2">
-                          <Phone className="w-5 h-5 text-blue-600" />
-                          <p className="text-blue-800 text-sm">
-                            Nos comunicaremos contigo al número:{" "}
-                            <strong>{user.phone}</strong>
-                          </p>
+                          <RadioGroupItem value="presencial" id="presencial" />
+                          <Label htmlFor="presencial" className="font-medium">
+                            Presencial - En las oficinas municipales
+                          </Label>
                         </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="online" id="online" />
+                          <Label htmlFor="online" className="font-medium">
+                            En Línea - Lo contactaremos vía telefónica
+                          </Label>
+                        </div>
+                      </RadioGroup>
+
+                      {formData.meetingFormat === "online" && (
+                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                          <div className="flex items-center space-x-2">
+                            <Phone className="w-5 h-5 text-blue-600" />
+                            <p className="text-blue-800 text-sm">
+                              Nos comunicaremos contigo al número:{" "}
+                              <strong>{user.phone}</strong>
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Date Selection - only show if presencial is selected */}
+                    {formData.meetingFormat === "presencial" && (
+                      <div className="space-y-4">
+                        <h3 className="text-lg font-medium text-slate-800">Selecciona la Fecha</h3>
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <Button
+                              variant="outline"
+                              className="w-full justify-start text-left font-normal"
+                            >
+                              <CalendarIcon className="mr-2 h-4 w-4" />
+                              {selectedDate
+                                ? format(selectedDate, "PPP", { locale: es })
+                                : "Selecciona una fecha"}
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-auto p-0" align="start">
+                            <Calendar
+                              mode="single"
+                              selected={selectedDate}
+                              onSelect={(date) => {
+                                setSelectedDate(date);
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  selectedDate: date,
+                                }));
+                              }}
+                              disabled={(date) =>
+                                date < new Date() ||
+                                date.getDay() === 0 ||
+                                date.getDay() === 6
+                              }
+                              initialFocus
+                            />
+                          </PopoverContent>
+                        </Popover>
+
+                        <p className="text-sm text-slate-600">
+                          * Las audiencias están disponibles de lunes a viernes en
+                          horario de oficina
+                        </p>
                       </div>
                     )}
                   </div>
                 )}
-
-                {/* Step 5: Date Selection */}
-                {currentStep === 5 &&
-                  formData.meetingFormat === "presencial" && (
-                    <div className="space-y-4">
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <Button
-                            variant="outline"
-                            className="w-full justify-start text-left font-normal"
-                          >
-                            <CalendarIcon className="mr-2 h-4 w-4" />
-                            {selectedDate
-                              ? format(selectedDate, "PPP", { locale: es })
-                              : "Selecciona una fecha"}
-                          </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <Calendar
-                            mode="single"
-                            selected={selectedDate}
-                            onSelect={(date) => {
-                              setSelectedDate(date);
-                              setFormData((prev) => ({
-                                ...prev,
-                                selectedDate: date,
-                              }));
-                            }}
-                            disabled={(date) =>
-                              date < new Date() ||
-                              date.getDay() === 0 ||
-                              date.getDay() === 6
-                            }
-                            initialFocus
-                          />
-                        </PopoverContent>
-                      </Popover>
-
-                      <p className="text-sm text-slate-600">
-                        * Las audiencias están disponibles de lunes a viernes en
-                        horario de oficina
-                      </p>
-                    </div>
-                  )}
 
                 {/* Navigation Buttons */}
                 <div className="flex justify-between pt-6">
