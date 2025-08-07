@@ -121,66 +121,73 @@
   }
 
   /* Progress Steps Responsive */
-  .progress-steps {
+  .progress-step-container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    min-width: 100%;
+    width: 100%;
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    padding: 0 2px;
+    padding: 0 4px;
     scroll-behavior: smooth;
   }
 
-  .progress-steps::-webkit-scrollbar {
+  .progress-step-container::-webkit-scrollbar {
     display: none;
   }
 
-  .progress-step-item {
+  .progress-step-column {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    flex-shrink: 0;
-    min-width: fit-content;
+    flex: 1;
+    min-width: 0;
+    position: relative;
   }
 
-  /* Small screens (phones) */
+  .progress-step-circle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    height: 40px;
+  }
+
+  .progress-step-label {
+    margin-top: 0.75rem;
+    text-align: center;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  /* Small screens adjustments */
   @media (max-width: 640px) {
-    .progress-steps {
-      justify-content: flex-start;
-      gap: 0.25rem;
-      padding: 0 4px;
+    .progress-step-container {
+      padding: 0 2px;
     }
 
-    .progress-step-item .step-connector {
-      width: 1rem !important;
-      margin: 0 0.25rem !important;
+    .progress-step-circle-container {
+      height: 32px;
+    }
+
+    .progress-step-label {
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      line-height: 1.2;
     }
   }
 
   /* Very small screens */
   @media (max-width: 380px) {
-    .progress-steps {
-      gap: 0.125rem;
-      padding: 0 2px;
-    }
-
-    .progress-step-item .step-connector {
-      width: 0.75rem !important;
-      margin: 0 0.125rem !important;
-    }
-  }
-
-  /* Extra small screens */
-  @media (max-width: 320px) {
-    .progress-steps {
-      gap: 0;
+    .progress-step-container {
       padding: 0 1px;
     }
 
-    .progress-step-item .step-connector {
-      width: 0.5rem !important;
-      margin: 0 0.0625rem !important;
+    .progress-step-label {
+      font-size: 0.625rem;
+      margin-top: 0.375rem;
     }
   }
 }
