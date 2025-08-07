@@ -852,7 +852,7 @@ export default function Dashboard() {
                                     ? `🔴 Grabando... (${Math.floor(recordingTime / 60)}:${(recordingTime % 60).toString().padStart(2, '0')})`
                                     : audioBlob
                                     ? "✅ Audio grabado correctamente"
-                                    : "🎙️ Presiona para grabar tu descripción"}
+                                    : "🎙�� Presiona para grabar tu descripción"}
                                 </p>
                                 <p className="text-xs text-slate-500">
                                   {isRecording
@@ -1030,8 +1030,8 @@ export default function Dashboard() {
           </>
         ) : (
           /* Success/Confirmation Step */
-          <Card>
-            <CardContent className="text-center py-12">
+          <Card className="mx-1 sm:mx-0">
+            <CardContent className="text-center py-8 sm:py-12 px-4 sm:px-6">
               <div className="w-16 h-16 bg-green-500 rounded-full mx-auto flex items-center justify-center mb-6">
                 <CheckCircle className="w-8 h-8 text-white" />
               </div>
