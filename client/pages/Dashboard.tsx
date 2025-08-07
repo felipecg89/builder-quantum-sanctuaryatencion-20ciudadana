@@ -690,13 +690,16 @@ export default function Dashboard() {
                     {/* Show descriptions if available */}
                     <div className="space-y-4">
                       {textDescription && (
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                          <div className="flex items-start justify-between">
-                            <div>
-                              <p className="text-blue-800 text-sm font-medium mb-1">
-                                📝 Descripción escrita:
-                              </p>
-                              <p className="text-blue-700 text-sm">
+                        <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
+                          <div className="flex items-start justify-between gap-4">
+                            <div className="flex-1 space-y-3">
+                              <div className="flex items-center gap-2">
+                                <span className="text-lg">📝</span>
+                                <p className="text-blue-800 font-semibold">
+                                  Descripción escrita
+                                </p>
+                              </div>
+                              <p className="text-blue-700 leading-relaxed">
                                 {textDescription}
                               </p>
                             </div>
@@ -704,9 +707,9 @@ export default function Dashboard() {
                               variant="ghost"
                               size="sm"
                               onClick={() => setIsDescriptionDialogOpen(true)}
-                              className="text-blue-600 hover:text-blue-800"
+                              className="text-blue-600 hover:text-blue-800 hover:bg-blue-100 px-3 py-2 rounded-lg shrink-0"
                             >
-                              Editar
+                              ✏️ Editar
                             </Button>
                           </div>
                         </div>
