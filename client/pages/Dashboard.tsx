@@ -492,7 +492,9 @@ export default function Dashboard() {
                     variant="outline"
                     onClick={() => setCurrentStep(Math.max(1, currentStep - 1))}
                     disabled={currentStep === 1}
+                    className="flex items-center gap-2 transition-all duration-200 hover:scale-105"
                   >
+                    <ChevronLeft className="w-4 h-4" />
                     Anterior
                   </Button>
 
@@ -500,14 +502,18 @@ export default function Dashboard() {
                     <Button
                       onClick={() => setCurrentStep(currentStep + 1)}
                       disabled={!isStepComplete(currentStep)}
+                      className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 disabled:from-slate-400 disabled:to-slate-500 disabled:hover:scale-100 disabled:shadow-none px-6 py-2.5"
                     >
                       Siguiente
+                      <ChevronRight className="w-4 h-4" />
                     </Button>
                   ) : (
                     <Button
                       onClick={handleSubmit}
                       disabled={!isStepComplete(currentStep)}
+                      className="flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 disabled:from-slate-400 disabled:to-slate-500 disabled:hover:scale-100 disabled:shadow-none px-6 py-2.5"
                     >
+                      <Send className="w-4 h-4" />
                       Enviar Solicitud
                     </Button>
                   )}
