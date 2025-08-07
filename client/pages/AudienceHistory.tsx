@@ -104,6 +104,8 @@ export default function AudienceHistory() {
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
   const [dateFilter, setDateFilter] = useState("all");
+  const [selectedAudience, setSelectedAudience] = useState<any>(null);
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
   // Check if user is already authenticated
   useEffect(() => {
