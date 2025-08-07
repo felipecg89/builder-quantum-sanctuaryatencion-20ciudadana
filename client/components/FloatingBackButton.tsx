@@ -25,20 +25,46 @@ export default function FloatingBackButton() {
       case "/login":
         setTooltipText("Regresar al inicio");
         setDestination("home");
+        setShowPulse(false);
         break;
       case "/register":
         setTooltipText("Regresar al inicio");
         setDestination("home");
+        setShowPulse(false);
         break;
       case "/dashboard":
         setTooltipText("Salir del proceso (se perderá el progreso)");
         setDestination("home");
-        break;
+        // Show pulse if user has been on dashboard for more than 30 seconds
+        const pulseTimer = setTimeout(() => setShowPulse(true), 30000);
+        return () => clearTimeout(pulseTimer);
       default:
         setTooltipText("Página anterior");
         setDestination("back");
+        setShowPulse(false);
     }
   }, [location.pathname]);
+
+  const handleMouseDown = () => {
+    const timer = setTimeout(() => {
+      // Long press detected - show quick exit option
+      if (navigator.vibrate) {
+        navigator.vibrate([50, 50, 50]);
+      }
+      const quickExit = window.confirm("🚀 Salida rápida al inicio?\n\n⚡ Presiona OK para ir directamente al inicio");
+      if (quickExit) {
+        navigate("/");
+      }
+    }, 1000);
+    setLongPressTimer(timer);
+  };
+
+  const handleMouseUp = () => {
+    if (longPressTimer) {
+      clearTimeout(longPressTimer);
+      setLongPressTimer(null);
+    }
+  };
 
   const getIcon = () => {
     switch (destination) {
@@ -67,7 +93,7 @@ export default function FloatingBackButton() {
 
       if (hasProgress) {
         const confirmed = window.confirm(
-          "⚠️ ¿Estás seguro de salir?\n\nSe perderá todo el progreso de tu solicitud de audiencia.\n\n✅ Presiona OK para salir\n��� Presiona Cancelar para continuar"
+          "⚠️ ¿Estás seguro de salir?\n\nSe perderá todo el progreso de tu solicitud de audiencia.\n\n✅ Presiona OK para salir\n❌ Presiona Cancelar para continuar"
         );
 
         if (!confirmed) {
