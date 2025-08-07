@@ -1054,7 +1054,7 @@ export default function Dashboard() {
                     Anterior
                   </Button>
 
-                  {currentStep < 5 ? (
+                  {currentStep < 4 ? (
                     <Button
                       onClick={() => setCurrentStep(currentStep + 1)}
                       disabled={!isStepComplete(currentStep)}
