@@ -556,14 +556,18 @@ export default function Dashboard() {
                       value={formData.category}
                       onValueChange={handleCategoryChange}
                     >
-                      {Object.entries(CATEGORIES).map(([key, label]) => {
+                      {Object.entries(CATEGORIES).map(([key, label], index) => {
                         const IconComponent = CATEGORY_ICONS[key as keyof typeof CATEGORY_ICONS];
+                        const categoryNumber = index + 1;
                         return (
                           <div key={key} className="flex items-center space-x-3 p-3 rounded-lg border border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200">
                             <RadioGroupItem value={key} id={key} />
                             <div className="flex items-center space-x-3 flex-1">
-                              <div className="flex items-center justify-center w-8 h-8 bg-blue-100 rounded-full">
+                              <div className="relative flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full">
                                 <IconComponent className="w-4 h-4 text-blue-600" />
+                                <div className="absolute -top-1 -right-1 w-5 h-5 bg-blue-600 text-white text-xs font-bold rounded-full flex items-center justify-center">
+                                  {categoryNumber}
+                                </div>
                               </div>
                               <Label htmlFor={key} className="font-medium text-slate-700 cursor-pointer flex-1">
                                 {label}
