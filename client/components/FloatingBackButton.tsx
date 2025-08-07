@@ -13,6 +13,7 @@ export default function FloatingBackButton() {
   const [destination, setDestination] = useState("");
   const [showPulse, setShowPulse] = useState(false);
   const [longPressTimer, setLongPressTimer] = useState<NodeJS.Timeout | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Determine destination and tooltip based on current page
   useEffect(() => {
