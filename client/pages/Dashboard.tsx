@@ -450,13 +450,13 @@ export default function Dashboard() {
           <>
             {/* Progress Steps */}
             <div className="mb-8">
-              <div className="flex items-center justify-between overflow-x-auto px-1">
-                {[1, 2, 3, 4, 5].map((step) => (
-                  <div key={step} className="flex items-center min-w-fit">
+              <div className="progress-steps">
+                {[1, 2, 3, 4, 5].map((step, index) => (
+                  <div key={step} className="progress-step-item">
                     <div
-                      className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-xs sm:text-sm font-medium ${
+                      className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-xs sm:text-sm font-medium transition-all duration-200 ${
                         currentStep === step
-                          ? "bg-blue-600 text-white"
+                          ? "bg-blue-600 text-white shadow-lg scale-110"
                           : isStepComplete(step)
                             ? "bg-green-500 text-white"
                             : "bg-slate-200 text-slate-600"
@@ -470,7 +470,7 @@ export default function Dashboard() {
                     </div>
                     {step < 5 && (
                       <div
-                        className={`w-8 sm:w-12 h-0.5 mx-1 sm:mx-2 ${
+                        className={`step-connector w-6 sm:w-8 md:w-12 h-0.5 mx-1 sm:mx-2 transition-colors duration-200 ${
                           isStepComplete(step) ? "bg-green-500" : "bg-slate-200"
                         }`}
                       />
@@ -478,12 +478,12 @@ export default function Dashboard() {
                   </div>
                 ))}
               </div>
-              <div className="flex justify-between mt-2 text-xs sm:text-sm text-slate-600 px-1">
-                <span className="text-center">Categoría</span>
-                <span className="text-center">Tipo</span>
-                <span className="text-center">Descripción</span>
-                <span className="text-center">Formato</span>
-                <span className="text-center">Fecha</span>
+              <div className="grid grid-cols-5 gap-1 mt-3 text-xs sm:text-sm text-slate-600">
+                <span className="text-center truncate">Categoría</span>
+                <span className="text-center truncate">Tipo</span>
+                <span className="text-center truncate">Descripción</span>
+                <span className="text-center truncate">Formato</span>
+                <span className="text-center truncate">Fecha</span>
               </div>
             </div>
 
