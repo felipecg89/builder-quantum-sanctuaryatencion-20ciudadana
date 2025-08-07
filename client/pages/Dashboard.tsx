@@ -531,8 +531,7 @@ export default function Dashboard() {
                     "Paso 1: Selecciona la Categoría de Ayuda"}
                   {currentStep === 2 && "Paso 2: Selecciona el Tipo de Ayuda"}
                   {currentStep === 3 && "Describe tu solicitud"}
-                  {currentStep === 4 && "Paso 4: Formato de la Audiencia"}
-                  {currentStep === 5 && "Paso 5: Selecciona la Fecha"}
+                  {currentStep === 4 && "Paso 4: Formato y Fecha de la Audiencia"}
                 </CardTitle>
                 <CardDescription className="text-sm sm:text-base">
                   {currentStep === 1 &&
@@ -540,9 +539,7 @@ export default function Dashboard() {
                   {currentStep === 2 &&
                     "Especifica el tipo de ayuda que necesitas"}
                   {currentStep === 4 &&
-                    "¿Prefieres una audiencia presencial o en línea?"}
-                  {currentStep === 5 &&
-                    "Selecciona una fecha disponible para tu audiencia"}
+                    "Selecciona el formato de audiencia y fecha si es presencial"}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4 sm:space-y-6 px-4 sm:px-6 pb-4 sm:pb-6">
@@ -901,7 +898,7 @@ export default function Dashboard() {
                                     ? `🔴 Grabando... (${Math.floor(recordingTime / 60)}:${(recordingTime % 60).toString().padStart(2, '0')})`
                                     : audioBlob
                                     ? "✅ Audio grabado correctamente"
-                                    : "🎙�� Presiona para grabar tu descripción"}
+                                    : "🎙���� Presiona para grabar tu descripción"}
                                 </p>
                                 <p className="text-xs text-slate-500">
                                   {isRecording
