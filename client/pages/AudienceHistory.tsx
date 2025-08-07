@@ -273,6 +273,116 @@ export default function AudienceHistory() {
     </div>
   );
 
+  // Show login form if not authenticated
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-50 flex items-center justify-center p-4">
+        <div className="w-full max-w-md">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-full mb-4">
+              <Building2 className="w-8 h-8 text-white" />
+            </div>
+            <h1 className="text-2xl font-bold text-slate-800">Presidencia Municipal</h1>
+            <p className="text-slate-600 mt-1">Sistema de Audiencias</p>
+          </div>
+
+          <Card className="border-slate-200 shadow-lg">
+            <CardHeader className="space-y-1">
+              <CardTitle className="text-xl text-center">Acceder al Historial</CardTitle>
+              <CardDescription className="text-center">
+                Ingresa tus credenciales para ver tus audiencias
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleLogin} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Número de Teléfono</Label>
+                  <div className="relative">
+                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+                    <Input
+                      id="phone"
+                      type="tel"
+                      placeholder="Ej: 55 1234 5678"
+                      value={loginData.phone}
+                      onChange={(e) => setLoginData(prev => ({ ...prev, phone: e.target.value }))}
+                      className="pl-10"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="password">Contraseña</Label>
+                  <div className="relative">
+                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+                    <Input
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Tu contraseña"
+                      value={loginData.password}
+                      onChange={(e) => setLoginData(prev => ({ ...prev, password: e.target.value }))}
+                      className="pl-10 pr-10"
+                      required
+                    />
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      className="absolute right-1 top-1/2 transform -translate-y-1/2 h-7 w-7 p-0 hover:bg-transparent"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? (
+                        <EyeOff className="w-4 h-4 text-slate-400" />
+                      ) : (
+                        <Eye className="w-4 h-4 text-slate-400" />
+                      )}
+                    </Button>
+                  </div>
+                </div>
+
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                  {isLoading ? "Verificando..." : "Acceder al Historial"}
+                </Button>
+              </form>
+
+              <div className="mt-6 space-y-4">
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <span className="w-full border-t border-slate-200" />
+                  </div>
+                  <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-white px-2 text-slate-500">O</span>
+                  </div>
+                </div>
+
+                <div className="text-center">
+                  <p className="text-sm text-slate-600 mb-3">
+                    ¿No tienes cuenta?
+                  </p>
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="w-full border-2 border-blue-600 text-blue-700 hover:bg-blue-600 hover:text-white"
+                  >
+                    <Link to="/register" className="flex items-center justify-center">
+                      <User className="w-4 h-4 mr-2" />
+                      Crear Nueva Cuenta
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <div className="mt-6 text-center text-xs text-slate-500">
+            Sistema oficial de audiencias municipales
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Header */}
