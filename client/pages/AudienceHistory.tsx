@@ -87,10 +87,63 @@ const STATUS_CONFIG = {
 };
 
 export default function AudienceHistory() {
+  const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showLogin, setShowLogin] = useState(true);
+  const [loginData, setLoginData] = useState({ phone: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [user, setUser] = useState<any>(null);
+
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
   const [dateFilter, setDateFilter] = useState("all");
+
+  // Check if user is already authenticated
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      const parsedUser = JSON.parse(userData);
+      if (parsedUser.authenticated) {
+        setUser(parsedUser);
+        setIsAuthenticated(true);
+        setShowLogin(false);
+      }
+    }
+  }, []);
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    // Simulate login verification
+    setTimeout(() => {
+      // Simple validation
+      if (loginData.phone && loginData.password) {
+        const userData = {
+          phone: loginData.phone,
+          name: "Usuario Ejemplo", // In real app, this would come from backend
+          authenticated: true
+        };
+        localStorage.setItem("user", JSON.stringify(userData));
+        setUser(userData);
+        setIsAuthenticated(true);
+        setShowLogin(false);
+      } else {
+        alert("Por favor ingresa tu teléfono y contraseña");
+      }
+      setIsLoading(false);
+    }, 1000);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+    setIsAuthenticated(false);
+    setShowLogin(true);
+    setLoginData({ phone: "", password: "" });
+  };
 
   const filteredAudiences = mockAudiences.filter(audience => {
     const matchesSearch = audience.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
