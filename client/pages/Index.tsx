@@ -38,14 +38,6 @@ export default function Index() {
                 </p>
               </div>
             </div>
-            <div className="flex space-x-3">
-              <Button asChild variant="outline">
-                <Link to="/login">Iniciar Sesión</Link>
-              </Button>
-              <Button asChild>
-                <Link to="/register">Registrarse</Link>
-              </Button>
-            </div>
           </div>
         </div>
       </header>
