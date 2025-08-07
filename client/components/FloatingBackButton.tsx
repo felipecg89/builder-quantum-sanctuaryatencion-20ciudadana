@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import PulseIndicator from "./PulseIndicator";
 
 export default function FloatingBackButton() {
   const navigate = useNavigate();
