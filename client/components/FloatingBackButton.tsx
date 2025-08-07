@@ -186,12 +186,6 @@ export default function FloatingBackButton() {
               <span className="sr-only">{tooltipText}</span>
             </Button>
 
-            {/* Pulse indicator for urgent attention */}
-            <PulseIndicator
-              show={showPulse && location.pathname === "/dashboard"}
-              color="orange"
-              size="sm"
-            />
           </div>
         </TooltipTrigger>
         <TooltipContent
