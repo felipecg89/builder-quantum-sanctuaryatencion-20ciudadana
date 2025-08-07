@@ -129,27 +129,21 @@ export default function FloatingBackButton() {
   // Check for open modals/dialogs
   useEffect(() => {
     const checkForModals = () => {
-      const modals = document.querySelectorAll('[role="dialog"], .fixed.inset-0, [data-state="open"]');
-      const hasOpenModal = Array.from(modals).some(modal => {
-        const computedStyle = window.getComputedStyle(modal);
-        return computedStyle.display !== 'none' && computedStyle.visibility !== 'hidden';
-      });
-      setIsModalOpen(hasOpenModal);
+      // Check for common modal patterns
+      const hasDialog = document.querySelector('[role="dialog"][data-state="open"]');
+      const hasModalBackdrop = document.querySelector('.fixed.inset-0.z-50, .fixed.inset-0.z-\\[50\\]');
+      const hasOpenModal = document.querySelector('[data-state="open"]');
+
+      setIsModalOpen(!!(hasDialog || hasModalBackdrop || hasOpenModal));
     };
 
     // Check immediately
     checkForModals();
 
-    // Set up observer for DOM changes
-    const observer = new MutationObserver(checkForModals);
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ['data-state', 'class', 'style']
-    });
+    // Check periodically (lightweight)
+    const interval = setInterval(checkForModals, 500);
 
-    return () => observer.disconnect();
+    return () => clearInterval(interval);
   }, []);
 
   // Don't show on home page or when modals are open
