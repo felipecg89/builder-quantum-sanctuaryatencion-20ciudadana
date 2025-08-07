@@ -361,7 +361,7 @@ export default function Dashboard() {
     // Generate case number
     const caseNum = `AUD-${Date.now().toString().slice(-6)}`;
     setCaseNumber(caseNum);
-    setCurrentStep(6);
+    setCurrentStep(5);
 
     // In a real app, send data to backend and send email/SMS
     console.log("Audience request submitted:", {
