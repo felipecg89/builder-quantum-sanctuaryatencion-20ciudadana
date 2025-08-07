@@ -85,7 +85,26 @@ const mockAudiences = [
     requestDate: new Date("2024-01-22"),
     audienceDate: new Date("2024-01-28"),
     meetingFormat: "online",
-    result: null
+    result: null,
+    responses: [
+      {
+        date: new Date("2024-01-23"),
+        author: "Oficina de Salud Municipal",
+        message: "Su solicitud ha sido recibida. Se requiere documentación médica adicional."
+      },
+      {
+        date: new Date("2024-01-25"),
+        author: "Coordinador de Salud",
+        message: "Documentación recibida. Se está evaluando con el comité médico."
+      }
+    ],
+    followUps: [
+      {
+        date: new Date("2024-01-26"),
+        status: "En evaluación",
+        details: "Expediente enviado al comité médico municipal para evaluación."
+      }
+    ]
   },
   {
     id: "AUD-345678",
