@@ -494,39 +494,180 @@ export default function Dashboard() {
                   </div>
                 )}
 
-                {/* Step 3: Audio Description */}
+                {/* Step 3: Description */}
                 {currentStep === 3 && (
                   <div className="space-y-4">
-                    <div className="text-center">
-                      <Button
-                        onClick={startRecording}
-                        disabled={isRecording}
-                        className={`w-32 h-32 rounded-full ${
-                          isRecording
-                            ? "bg-red-500 hover:bg-red-600"
-                            : "bg-blue-600 hover:bg-blue-700"
-                        }`}
-                      >
-                        {isRecording ? (
-                          <MicOff className="w-12 h-12" />
-                        ) : (
-                          <Mic className="w-12 h-12" />
-                        )}
-                      </Button>
-                      <p className="mt-4 text-sm text-slate-600">
-                        {isRecording
-                          ? "Grabando... Habla claramente"
-                          : "Presiona para grabar tu descripción"}
+                    <div className="text-center space-y-4">
+                      <p className="text-slate-600">
+                        Describe detalladamente tu solicitud de ayuda
                       </p>
+
+                      <Button
+                        onClick={() => setIsDescriptionDialogOpen(true)}
+                        variant="outline"
+                        className="w-full py-12 border-2 border-dashed border-slate-300 hover:border-blue-400 hover:bg-blue-50 transition-all duration-200"
+                      >
+                        <div className="flex flex-col items-center space-y-2">
+                          <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                            <Plus className="w-6 h-6 text-blue-600" />
+                          </div>
+                          <span className="text-lg font-medium text-slate-700">
+                            Agregar Descripción
+                          </span>
+                          <span className="text-sm text-slate-500">
+                            Escribe o graba tu descripción de la ayuda solicitada
+                          </span>
+                        </div>
+                      </Button>
                     </div>
 
-                    {audioDescription && (
-                      <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                        <p className="text-green-800 text-sm font-medium">
-                          ✓ {audioDescription}
-                        </p>
-                      </div>
-                    )}
+                    {/* Show descriptions if available */}
+                    <div className="space-y-3">
+                      {textDescription && (
+                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                          <div className="flex items-start justify-between">
+                            <div>
+                              <p className="text-blue-800 text-sm font-medium mb-1">
+                                📝 Descripción escrita:
+                              </p>
+                              <p className="text-blue-700 text-sm">
+                                {textDescription}
+                              </p>
+                            </div>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => setIsDescriptionDialogOpen(true)}
+                              className="text-blue-600 hover:text-blue-800"
+                            >
+                              Editar
+                            </Button>
+                          </div>
+                        </div>
+                      )}
+
+                      {audioDescription && (
+                        <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                          <div className="flex items-start justify-between">
+                            <div>
+                              <p className="text-green-800 text-sm font-medium mb-1">
+                                🎤 Descripción de audio:
+                              </p>
+                              <p className="text-green-700 text-sm">
+                                {audioDescription}
+                              </p>
+                            </div>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => setIsDescriptionDialogOpen(true)}
+                              className="text-green-600 hover:text-green-800"
+                            >
+                              Editar
+                            </Button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Description Dialog */}
+                    <Dialog open={isDescriptionDialogOpen} onOpenChange={setIsDescriptionDialogOpen}>
+                      <DialogContent className="max-w-2xl">
+                        <DialogHeader>
+                          <DialogTitle>Describe tu Solicitud de Ayuda</DialogTitle>
+                          <DialogDescription>
+                            Proporciona una descripción detallada de la ayuda que necesitas.
+                            Puedes escribir o usar el micrófono para grabar tu descripción.
+                          </DialogDescription>
+                        </DialogHeader>
+
+                        <div className="space-y-6">
+                          {/* Text Description Section */}
+                          <div className="space-y-3">
+                            <Label htmlFor="textDesc">Descripción escrita</Label>
+                            <Textarea
+                              id="textDesc"
+                              placeholder="Describe detalladamente tu solicitud de ayuda..."
+                              value={textDescription}
+                              onChange={(e) => setTextDescription(e.target.value)}
+                              className="min-h-32 resize-none"
+                              maxLength={500}
+                            />
+                            <div className="flex justify-between text-xs text-slate-500">
+                              <span>Máximo 500 caracteres</span>
+                              <span>{textDescription.length}/500</span>
+                            </div>
+                          </div>
+
+                          {/* Divider */}
+                          <div className="relative">
+                            <div className="absolute inset-0 flex items-center">
+                              <span className="w-full border-t border-slate-200" />
+                            </div>
+                            <div className="relative flex justify-center text-xs uppercase">
+                              <span className="bg-white px-2 text-slate-500">O</span>
+                            </div>
+                          </div>
+
+                          {/* Audio Recording Section */}
+                          <div className="space-y-4">
+                            <Label>Descripción por audio</Label>
+                            <div className="flex flex-col items-center space-y-4 p-6 bg-slate-50 rounded-lg">
+                              <Button
+                                onClick={startRecording}
+                                disabled={isRecording}
+                                className={`w-20 h-20 rounded-full transition-all duration-200 ${
+                                  isRecording
+                                    ? "bg-red-500 hover:bg-red-600 animate-pulse"
+                                    : "bg-blue-600 hover:bg-blue-700 hover:scale-105"
+                                }`}
+                              >
+                                {isRecording ? (
+                                  <MicOff className="w-8 h-8" />
+                                ) : (
+                                  <Mic className="w-8 h-8" />
+                                )}
+                              </Button>
+                              <div className="text-center">
+                                <p className="text-sm font-medium text-slate-700">
+                                  {isRecording
+                                    ? "🔴 Grabando... Habla claramente"
+                                    : "Presiona para grabar tu descripción"}
+                                </p>
+                                <p className="text-xs text-slate-500 mt-1">
+                                  {isRecording
+                                    ? "El micrófono está activo"
+                                    : "Graba hasta 2 minutos de audio"}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Dialog Actions */}
+                          <div className="flex justify-between pt-4">
+                            <Button
+                              variant="outline"
+                              onClick={() => {
+                                setIsDescriptionDialogOpen(false);
+                              }}
+                            >
+                              <X className="w-4 h-4 mr-2" />
+                              Cancelar
+                            </Button>
+                            <Button
+                              onClick={() => {
+                                setIsDescriptionDialogOpen(false);
+                              }}
+                              disabled={!textDescription.trim() && !audioDescription}
+                              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
+                            >
+                              <CheckCircle className="w-4 h-4 mr-2" />
+                              Guardar Descripción
+                            </Button>
+                          </div>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
                   </div>
                 )}
 
