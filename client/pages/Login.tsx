@@ -110,16 +110,34 @@ export default function Login() {
               </Button>
             </form>
 
-            <div className="mt-6 text-center">
-              <p className="text-sm text-slate-600">
-                ¿No tienes cuenta?{" "}
-                <Link
-                  to="/register"
-                  className="text-blue-600 hover:text-blue-500 font-medium"
+            <div className="mt-6 space-y-4">
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <span className="w-full border-t border-slate-200" />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-white px-2 text-slate-500">O</span>
+                </div>
+              </div>
+
+              <div className="text-center">
+                <p className="text-sm text-slate-600 mb-3">
+                  ¿Es tu primera vez?
+                </p>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="w-full border-2 border-blue-600 text-blue-700 hover:bg-blue-600 hover:text-white"
                 >
-                  Regístrate aquí
-                </Link>
-              </p>
+                  <Link to="/register" className="flex items-center justify-center">
+                    <User className="w-4 h-4 mr-2" />
+                    Crear Nueva Cuenta
+                  </Link>
+                </Button>
+                <p className="text-xs text-slate-500 mt-2">
+                  Registro rápido con solo tus datos básicos
+                </p>
+              </div>
             </div>
           </CardContent>
         </Card>
