@@ -482,18 +482,18 @@ export default function Dashboard() {
 
                       {/* Step Circle */}
                       <div
-                        className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-xs sm:text-sm font-medium transition-all duration-200 relative z-10 bg-white ${
+                        className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold transition-all duration-200 relative z-10 border-2 ${
                           currentStep === step.number
-                            ? "bg-blue-600 text-white shadow-lg scale-110"
+                            ? "bg-blue-600 text-white border-blue-600 shadow-lg scale-110"
                             : isStepComplete(step.number)
-                              ? "bg-green-500 text-white"
-                              : "bg-slate-200 text-slate-600"
+                              ? "bg-green-500 text-white border-green-500"
+                              : "bg-white text-slate-600 border-slate-300"
                         }`}
                       >
                         {isStepComplete(step.number) ? (
                           <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                         ) : (
-                          step.number
+                          <span className="font-bold">{step.number}</span>
                         )}
                       </div>
 
