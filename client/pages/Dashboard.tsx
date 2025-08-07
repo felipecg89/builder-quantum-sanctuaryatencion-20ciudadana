@@ -371,18 +371,7 @@ export default function Dashboard() {
       audioDescription,
     });
 
-    // Start countdown
-    setRedirectCountdown(4);
-    const countdownInterval = setInterval(() => {
-      setRedirectCountdown((prev) => {
-        if (prev <= 1) {
-          clearInterval(countdownInterval);
-          navigate("/");
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
+    // No automatic redirect - user controls navigation
   };
 
   const resetForm = () => {
