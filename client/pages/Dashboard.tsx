@@ -47,6 +47,10 @@ import {
   Send,
   X,
   ArrowLeft,
+  Package,
+  Settings,
+  Users,
+  FileText,
 } from "lucide-react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
