@@ -248,7 +248,7 @@ export default function Dashboard() {
       case 2:
         return !!formData.type;
       case 3:
-        return !!audioDescription;
+        return !!audioDescription || !!textDescription.trim();
       case 4:
         return !!formData.meetingFormat;
       case 5:
