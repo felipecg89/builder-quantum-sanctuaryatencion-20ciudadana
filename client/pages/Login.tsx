@@ -37,6 +37,24 @@ export default function Login() {
     }, 1000);
   };
 
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!forgotPasswordPhone.trim()) {
+      alert("Por favor ingresa tu número de teléfono");
+      return;
+    }
+
+    setIsRecovering(true);
+
+    // Simulate password recovery
+    setTimeout(() => {
+      alert(`Se han enviado las instrucciones de recuperación al número ${forgotPasswordPhone}`);
+      setShowForgotPassword(false);
+      setForgotPasswordPhone("");
+      setIsRecovering(false);
+    }, 2000);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
