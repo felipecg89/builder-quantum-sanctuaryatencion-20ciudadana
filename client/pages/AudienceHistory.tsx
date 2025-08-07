@@ -390,33 +390,36 @@ export default function AudienceHistory() {
     <div className="min-h-screen bg-slate-50">
       {/* Header */}
       <header className="bg-white border-b border-slate-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center justify-center w-12 h-12 bg-blue-600 rounded-full">
-                <Building2 className="w-7 h-7 text-white" />
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 py-4 sm:py-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="flex items-center space-x-3 sm:space-x-4">
+              <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 rounded-full">
+                <Building2 className="w-5 h-5 sm:w-7 sm:h-7 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-slate-800">Historial de Audiencias</h1>
-                <p className="text-slate-600">Bienvenido, {user?.name || 'Usuario'}</p>
+                <h1 className="text-lg sm:text-2xl font-bold text-slate-800">Historial de Audiencias</h1>
+                <p className="text-sm sm:text-base text-slate-600">Bienvenido, {user?.name || 'Usuario'}</p>
               </div>
             </div>
 
-            <div className="flex items-center space-x-3">
-              <Button asChild className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800">
-                <Link to="/register" className="flex items-center gap-2">
-                  <Plus className="w-4 h-4" />
-                  Nueva Solicitud
+            <div className="flex items-center space-x-2 sm:space-x-3 w-full sm:w-auto">
+              <Button
+                asChild
+                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-xs sm:text-sm px-3 sm:px-4 py-2 flex-1 sm:flex-none"
+              >
+                <Link to="/register" className="flex items-center justify-center gap-1 sm:gap-2">
+                  <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <span className="truncate">Nueva Solicitud</span>
                 </Link>
               </Button>
 
               <Button
                 variant="outline"
                 onClick={handleLogout}
-                className="hover:bg-red-50 hover:text-red-700 hover:border-red-300"
+                className="hover:bg-red-50 hover:text-red-700 hover:border-red-300 text-xs sm:text-sm px-3 sm:px-4 py-2 flex-1 sm:flex-none"
               >
-                <Lock className="w-4 h-4 mr-2" />
-                Cerrar Sesión
+                <Lock className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                <span className="truncate">Cerrar Sesión</span>
               </Button>
             </div>
           </div>
