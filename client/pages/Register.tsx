@@ -64,6 +64,17 @@ export default function Register() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
+        {/* Back Button */}
+        <div className="mb-6">
+          <Button
+            variant="ghost"
+            onClick={() => navigate("/")}
+            className="flex items-center gap-2 text-slate-600 hover:text-slate-800 hover:bg-slate-100 p-2"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Regresar al Inicio
+          </Button>
+        </div>
 
         {/* Header */}
         <div className="text-center mb-8">
