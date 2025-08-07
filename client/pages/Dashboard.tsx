@@ -468,8 +468,7 @@ export default function Dashboard() {
                   { number: 1, label: "Categoría" },
                   { number: 2, label: "Tipo" },
                   { number: 3, label: "Descripción" },
-                  { number: 4, label: "Formato" },
-                  { number: 5, label: "Fecha" }
+                  { number: 4, label: "Formato" }
                 ].map((step, index) => (
                   <div key={step.number} className="flex flex-col items-center flex-1">
                     {/* Step Circle and Connector Container */}
