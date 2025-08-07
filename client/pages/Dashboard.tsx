@@ -425,15 +425,30 @@ export default function Dashboard() {
       {/* Header */}
       <header className="bg-white border-b border-slate-200 shadow-sm">
         <div className="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-3">
-            <div className="flex items-center justify-center w-10 h-10 bg-blue-600 rounded-full">
-              <Building2 className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-lg font-semibold text-slate-800">
-                Presidencia Municipal
-              </h1>
-              <p className="text-sm text-slate-600">Sistema de Audiencias</p>
+          <div className="flex items-center space-x-4">
+            {/* Back Button */}
+            <Button
+              variant="ghost"
+              size="sm"
+              asChild
+              className="text-slate-600 hover:text-slate-800 hover:bg-slate-100 transition-all duration-200"
+            >
+              <Link to="/" className="flex items-center gap-1">
+                <ArrowLeft className="w-4 h-4" />
+                <span className="hidden sm:inline">Inicio</span>
+              </Link>
+            </Button>
+
+            <div className="flex items-center space-x-3">
+              <div className="flex items-center justify-center w-10 h-10 bg-blue-600 rounded-full">
+                <Building2 className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h1 className="text-lg font-semibold text-slate-800">
+                  Presidencia Municipal
+                </h1>
+                <p className="text-sm text-slate-600">Sistema de Audiencias</p>
+              </div>
             </div>
           </div>
           <div className="flex items-center space-x-4">
