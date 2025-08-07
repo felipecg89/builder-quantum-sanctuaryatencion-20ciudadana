@@ -146,8 +146,8 @@ export default function FloatingBackButton() {
     return () => clearInterval(interval);
   }, []);
 
-  // Don't show on home page or when modals are open
-  if (location.pathname === "/" || isModalOpen) {
+  // Don't show on home page
+  if (location.pathname === "/") {
     return null;
   }
 
