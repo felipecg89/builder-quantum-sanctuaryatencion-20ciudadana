@@ -188,15 +188,28 @@ export default function Register() {
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
                   <Input
                     id="confirmPassword"
-                    type="password"
+                    type={showConfirmPassword ? "text" : "password"}
                     placeholder="Confirma tu contraseña"
                     value={formData.confirmPassword}
                     onChange={(e) =>
                       updateFormData("confirmPassword", e.target.value)
                     }
-                    className="pl-10"
+                    className="pl-10 pr-10"
                     required
                   />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    className="absolute right-1 top-1/2 transform -translate-y-1/2 h-7 w-7 p-0 hover:bg-transparent"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  >
+                    {showConfirmPassword ? (
+                      <EyeOff className="w-4 h-4 text-slate-400" />
+                    ) : (
+                      <Eye className="w-4 h-4 text-slate-400" />
+                    )}
+                  </Button>
                 </div>
               </div>
 
