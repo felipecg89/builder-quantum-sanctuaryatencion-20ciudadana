@@ -100,10 +100,14 @@ export default function Dashboard() {
   const [newTypeError, setNewTypeError] = useState("");
   const [isDescriptionDialogOpen, setIsDescriptionDialogOpen] = useState(false);
   const [textDescription, setTextDescription] = useState("");
-  const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
+  const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(
+    null,
+  );
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
   const [recordingTime, setRecordingTime] = useState(0);
-  const [recordingTimer, setRecordingTimer] = useState<NodeJS.Timeout | null>(null);
+  const [recordingTimer, setRecordingTimer] = useState<NodeJS.Timeout | null>(
+    null,
+  );
   const [redirectCountdown, setRedirectCountdown] = useState(4);
 
   const [formData, setFormData] = useState({
@@ -135,24 +139,29 @@ export default function Dashboard() {
   }, []); // Remove navigate from dependencies
 
   // Keyboard shortcuts for modal
-  const handleKeyDown = useCallback((event: KeyboardEvent) => {
-    if (!isAddingNewType) return;
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      if (!isAddingNewType) return;
 
-    if (event.key === 'Escape') {
-      const hasContent = newTypeValue.trim().length > 0;
-      if (hasContent) {
-        const confirmClose = window.confirm("¿Estás seguro de cancelar? Se perderá el texto escrito.");
-        if (!confirmClose) return;
+      if (event.key === "Escape") {
+        const hasContent = newTypeValue.trim().length > 0;
+        if (hasContent) {
+          const confirmClose = window.confirm(
+            "¿Estás seguro de cancelar? Se perderá el texto escrito.",
+          );
+          if (!confirmClose) return;
+        }
+        setIsAddingNewType(false);
+        setNewTypeValue("");
+        setNewTypeError("");
       }
-      setIsAddingNewType(false);
-      setNewTypeValue("");
-      setNewTypeError("");
-    }
-  }, [isAddingNewType, newTypeValue]);
+    },
+    [isAddingNewType, newTypeValue],
+  );
 
   useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, [handleKeyDown]);
 
   // Cleanup recording timer on unmount
@@ -175,41 +184,45 @@ export default function Dashboard() {
   const handleScreenshot = async () => {
     try {
       // Usar html2canvas para capturar la pantalla
-      const { default: html2canvas } = await import('html2canvas');
+      const { default: html2canvas } = await import("html2canvas");
 
       // Obtener el elemento de la tarjeta de confirmación
-      const confirmationCard = document.querySelector('.confirmation-card') as HTMLElement;
+      const confirmationCard = document.querySelector(
+        ".confirmation-card",
+      ) as HTMLElement;
 
       if (confirmationCard) {
         const canvas = await html2canvas(confirmationCard, {
-          backgroundColor: '#ffffff',
+          backgroundColor: "#ffffff",
           scale: 2, // Mejor calidad
           useCORS: true,
-          allowTaint: true
+          allowTaint: true,
         });
 
         // Crear enlace de descarga
-        const link = document.createElement('a');
+        const link = document.createElement("a");
         link.download = `folio-${caseNumber}.png`;
-        link.href = canvas.toDataURL('image/png');
+        link.href = canvas.toDataURL("image/png");
         link.click();
       } else {
         // Fallback: capturar toda la ventana
         const canvas = await html2canvas(document.body, {
-          backgroundColor: '#ffffff',
+          backgroundColor: "#ffffff",
           scale: 1,
           useCORS: true,
-          allowTaint: true
+          allowTaint: true,
         });
 
-        const link = document.createElement('a');
+        const link = document.createElement("a");
         link.download = `folio-${caseNumber}.png`;
-        link.href = canvas.toDataURL('image/png');
+        link.href = canvas.toDataURL("image/png");
         link.click();
       }
     } catch (error) {
-      console.error('Error al capturar pantalla:', error);
-      alert('No se pudo capturar la pantalla. Intenta tomar una captura manual.');
+      console.error("Error al capturar pantalla:", error);
+      alert(
+        "No se pudo capturar la pantalla. Intenta tomar una captura manual.",
+      );
     }
   };
 
@@ -242,8 +255,13 @@ export default function Dashboard() {
     }
 
     // Check if type already exists
-    const existingTypes = CATEGORY_TYPES[formData.category as keyof typeof CATEGORY_TYPES];
-    if (existingTypes.some(type => type.toLowerCase() === newTypeValue.trim().toLowerCase())) {
+    const existingTypes =
+      CATEGORY_TYPES[formData.category as keyof typeof CATEGORY_TYPES];
+    if (
+      existingTypes.some(
+        (type) => type.toLowerCase() === newTypeValue.trim().toLowerCase(),
+      )
+    ) {
       setNewTypeError("Este tipo ya existe en la categoría");
       return;
     }
@@ -252,7 +270,7 @@ export default function Dashboard() {
 
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // Add the new type
       CATEGORY_TYPES[formData.category as keyof typeof CATEGORY_TYPES].push(
@@ -269,7 +287,6 @@ export default function Dashboard() {
 
       // Show success message (you could add a toast here)
       console.log("Nuevo tipo agregado exitosamente:", newTypeValue.trim());
-
     } catch (error) {
       setNewTypeError("Error al agregar el tipo. Intenta nuevamente.");
     } finally {
@@ -284,13 +301,13 @@ export default function Dashboard() {
         audio: {
           echoCancellation: true,
           noiseSuppression: true,
-          sampleRate: 44100
-        }
+          sampleRate: 44100,
+        },
       });
 
       // Create MediaRecorder instance
       const recorder = new MediaRecorder(stream, {
-        mimeType: 'audio/webm;codecs=opus'
+        mimeType: "audio/webm;codecs=opus",
       });
 
       const audioChunks: BlobPart[] = [];
@@ -302,7 +319,9 @@ export default function Dashboard() {
       };
 
       recorder.onstop = () => {
-        const audioBlob = new Blob(audioChunks, { type: 'audio/webm;codecs=opus' });
+        const audioBlob = new Blob(audioChunks, {
+          type: "audio/webm;codecs=opus",
+        });
         setAudioBlob(audioBlob);
 
         // Create a URL for the audio
@@ -310,10 +329,12 @@ export default function Dashboard() {
 
         // Set description with playback info
         const duration = Math.floor(recordingTime);
-        setAudioDescription(`Audio grabado (${duration}s) - Haz clic para reproducir`);
+        setAudioDescription(
+          `Audio grabado (${duration}s) - Haz clic para reproducir`,
+        );
 
         // Stop all tracks to release microphone
-        stream.getTracks().forEach(track => track.stop());
+        stream.getTracks().forEach((track) => track.stop());
 
         // Clear timer
         if (recordingTimer) {
@@ -324,9 +345,9 @@ export default function Dashboard() {
       };
 
       recorder.onerror = (event) => {
-        console.error('Recording error:', event);
+        console.error("Recording error:", event);
         setIsRecording(false);
-        alert('Error al grabar audio. Verifica los permisos del micrófono.');
+        alert("Error al grabar audio. Verifica los permisos del micrófono.");
       };
 
       // Start recording
@@ -336,34 +357,35 @@ export default function Dashboard() {
 
       // Start timer
       const timer = setInterval(() => {
-        setRecordingTime(prev => prev + 1);
+        setRecordingTime((prev) => prev + 1);
       }, 1000);
       setRecordingTimer(timer);
 
       // Auto-stop after 2 minutes (120 seconds)
       setTimeout(() => {
-        if (recorder.state === 'recording') {
+        if (recorder.state === "recording") {
           stopRecording();
         }
       }, 120000);
-
     } catch (error) {
-      console.error('Error accessing microphone:', error);
-      let errorMessage = 'No se pudo acceder al micrófono. ';
+      console.error("Error accessing microphone:", error);
+      let errorMessage = "No se pudo acceder al micrófono. ";
 
       if (error instanceof DOMException) {
         switch (error.name) {
-          case 'NotAllowedError':
-            errorMessage += 'Permisos denegados. Permite el acceso al micrófono en tu navegador.';
+          case "NotAllowedError":
+            errorMessage +=
+              "Permisos denegados. Permite el acceso al micrófono en tu navegador.";
             break;
-          case 'NotFoundError':
-            errorMessage += 'No se encontró micrófono en tu dispositivo.';
+          case "NotFoundError":
+            errorMessage += "No se encontró micrófono en tu dispositivo.";
             break;
-          case 'NotReadableError':
-            errorMessage += 'El micrófono está siendo usado por otra aplicación.';
+          case "NotReadableError":
+            errorMessage +=
+              "El micrófono está siendo usado por otra aplicación.";
             break;
           default:
-            errorMessage += 'Error desconocido.';
+            errorMessage += "Error desconocido.";
         }
       }
 
@@ -373,7 +395,7 @@ export default function Dashboard() {
   };
 
   const stopRecording = () => {
-    if (mediaRecorder && mediaRecorder.state === 'recording') {
+    if (mediaRecorder && mediaRecorder.state === "recording") {
       mediaRecorder.stop();
       setIsRecording(false);
       setMediaRecorder(null);
@@ -384,15 +406,15 @@ export default function Dashboard() {
     if (audioBlob) {
       const audioUrl = URL.createObjectURL(audioBlob);
       const audio = new Audio(audioUrl);
-      audio.play().catch(error => {
-        console.error('Error playing audio:', error);
-        alert('Error al reproducir el audio');
+      audio.play().catch((error) => {
+        console.error("Error playing audio:", error);
+        alert("Error al reproducir el audio");
       });
     }
   };
 
   const deleteAudioRecording = () => {
-    if (window.confirm('¿Estás seguro de eliminar la grabaci��n de audio?')) {
+    if (window.confirm("¿Estás seguro de eliminar la grabaci��n de audio?")) {
       setAudioBlob(null);
       setAudioDescription("");
       setRecordingTime(0);
@@ -457,7 +479,10 @@ export default function Dashboard() {
       case 3:
         return !!audioDescription || !!textDescription.trim();
       case 4:
-        return !!formData.meetingFormat && (formData.meetingFormat === "online" || !!formData.selectedDate);
+        return (
+          !!formData.meetingFormat &&
+          (formData.meetingFormat === "online" || !!formData.selectedDate)
+        );
       default:
         return false;
     }
@@ -476,7 +501,9 @@ export default function Dashboard() {
               <h1 className="text-sm sm:text-lg font-semibold text-slate-800">
                 Presidencia Municipal
               </h1>
-              <p className="text-xs sm:text-sm text-slate-600">Sistema de Audiencias</p>
+              <p className="text-xs sm:text-sm text-slate-600">
+                Sistema de Audiencias
+              </p>
             </div>
           </div>
           <div className="flex items-center">
@@ -487,7 +514,15 @@ export default function Dashboard() {
         </div>
       </header>
 
-      <div className="max-w-4xl mx-auto px-1 sm:px-4 py-2 sm:py-8" data-progress={currentStep > 1 || !!formData.category || !!textDescription || !!audioDescription}>
+      <div
+        className="max-w-4xl mx-auto px-1 sm:px-4 py-2 sm:py-8"
+        data-progress={
+          currentStep > 1 ||
+          !!formData.category ||
+          !!textDescription ||
+          !!audioDescription
+        }
+      >
         {currentStep < 5 ? (
           <>
             {/* Progress Steps */}
@@ -497,16 +532,21 @@ export default function Dashboard() {
                   { number: 1, label: "Categoría" },
                   { number: 2, label: "Tipo" },
                   { number: 3, label: "Descripción" },
-                  { number: 4, label: "Formato y Fecha" }
+                  { number: 4, label: "Formato y Fecha" },
                 ].map((step, index) => (
-                  <div key={step.number} className="flex flex-col items-center flex-1">
+                  <div
+                    key={step.number}
+                    className="flex flex-col items-center flex-1"
+                  >
                     {/* Step Circle and Connector Container */}
                     <div className="flex items-center w-full justify-center relative">
                       {/* Left Connector */}
                       {index > 0 && (
                         <div
                           className={`absolute right-1/2 top-1/2 transform -translate-y-1/2 w-6 sm:w-8 md:w-12 h-0.5 transition-colors duration-200 ${
-                            isStepComplete(step.number - 1) ? "bg-green-500" : "bg-slate-200"
+                            isStepComplete(step.number - 1)
+                              ? "bg-green-500"
+                              : "bg-slate-200"
                           }`}
                         />
                       )}
@@ -532,7 +572,9 @@ export default function Dashboard() {
                       {index < 3 && (
                         <div
                           className={`absolute left-1/2 top-1/2 transform -translate-y-1/2 w-6 sm:w-8 md:w-12 h-0.5 transition-colors duration-200 ${
-                            isStepComplete(step.number) ? "bg-green-500" : "bg-slate-200"
+                            isStepComplete(step.number)
+                              ? "bg-green-500"
+                              : "bg-slate-200"
                           }`}
                         />
                       )}
@@ -540,13 +582,15 @@ export default function Dashboard() {
 
                     {/* Step Label */}
                     <div className="step-label-container">
-                      <span className={`step-label-text transition-colors duration-200 ${
-                        currentStep === step.number
-                          ? "text-blue-600"
-                          : isStepComplete(step.number)
-                            ? "text-green-600"
-                            : "text-slate-600"
-                      }`}>
+                      <span
+                        className={`step-label-text transition-colors duration-200 ${
+                          currentStep === step.number
+                            ? "text-blue-600"
+                            : isStepComplete(step.number)
+                              ? "text-green-600"
+                              : "text-slate-600"
+                        }`}
+                      >
                         {step.label}
                       </span>
                     </div>
@@ -562,7 +606,8 @@ export default function Dashboard() {
                     "Paso 1: Selecciona la Categoría de Ayuda"}
                   {currentStep === 2 && "Paso 2: Selecciona el Tipo de Ayuda"}
                   {currentStep === 3 && "Describe tu solicitud"}
-                  {currentStep === 4 && "Paso 4: Formato y Fecha de la Audiencia"}
+                  {currentStep === 4 &&
+                    "Paso 4: Formato y Fecha de la Audiencia"}
                 </CardTitle>
                 <CardDescription className="text-xs sm:text-base leading-tight">
                   {currentStep === 1 &&
@@ -582,15 +627,22 @@ export default function Dashboard() {
                       onValueChange={handleCategoryChange}
                     >
                       {Object.entries(CATEGORIES).map(([key, label]) => {
-                        const IconComponent = CATEGORY_ICONS[key as keyof typeof CATEGORY_ICONS];
+                        const IconComponent =
+                          CATEGORY_ICONS[key as keyof typeof CATEGORY_ICONS];
                         return (
-                          <div key={key} className="flex items-center space-x-2 sm:space-x-3 p-2 sm:p-3 rounded-lg border border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200">
+                          <div
+                            key={key}
+                            className="flex items-center space-x-2 sm:space-x-3 p-2 sm:p-3 rounded-lg border border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200"
+                          >
                             <RadioGroupItem value={key} id={key} />
                             <div className="flex items-center space-x-2 sm:space-x-3 flex-1">
                               <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-full">
                                 <IconComponent className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600" />
                               </div>
-                              <Label htmlFor={key} className="font-medium text-sm sm:text-base text-slate-700 cursor-pointer flex-1">
+                              <Label
+                                htmlFor={key}
+                                className="font-medium text-sm sm:text-base text-slate-700 cursor-pointer flex-1"
+                              >
                                 {label}
                               </Label>
                             </div>
@@ -657,11 +709,15 @@ export default function Dashboard() {
                                 setNewTypeError(""); // Clear error when typing
                               }}
                               onKeyPress={(e) => {
-                                if (e.key === 'Enter' && !isLoadingNewType) {
+                                if (e.key === "Enter" && !isLoadingNewType) {
                                   addNewType();
                                 }
                               }}
-                              className={newTypeError ? "border-red-500 focus-visible:ring-red-500" : ""}
+                              className={
+                                newTypeError
+                                  ? "border-red-500 focus-visible:ring-red-500"
+                                  : ""
+                              }
                               disabled={isLoadingNewType}
                             />
                             {newTypeError && (
@@ -671,22 +727,37 @@ export default function Dashboard() {
                               </p>
                             )}
                             <p className="text-xs text-slate-500">
-                              Mínimo 3 caracteres. Será agregado a "{CATEGORIES[formData.category as keyof typeof CATEGORIES]}"
+                              Mínimo 3 caracteres. Será agregado a "
+                              {
+                                CATEGORIES[
+                                  formData.category as keyof typeof CATEGORIES
+                                ]
+                              }
+                              "
                             </p>
                           </div>
 
                           <div className="flex justify-between items-center pt-2">
                             <div className="text-xs text-slate-500">
-                              <kbd className="px-2 py-1 bg-slate-100 rounded text-xs">Enter</kbd> para agregar,
-                              <kbd className="px-2 py-1 bg-slate-100 rounded text-xs ml-1">Esc</kbd> para cancelar
+                              <kbd className="px-2 py-1 bg-slate-100 rounded text-xs">
+                                Enter
+                              </kbd>{" "}
+                              para agregar,
+                              <kbd className="px-2 py-1 bg-slate-100 rounded text-xs ml-1">
+                                Esc
+                              </kbd>{" "}
+                              para cancelar
                             </div>
                             <div className="flex space-x-2">
                               <Button
                                 variant="outline"
                                 onClick={() => {
-                                  const hasContent = newTypeValue.trim().length > 0;
+                                  const hasContent =
+                                    newTypeValue.trim().length > 0;
                                   if (hasContent) {
-                                    const confirmClose = window.confirm("¿Estás seguro de cancelar? Se perderá el texto escrito.");
+                                    const confirmClose = window.confirm(
+                                      "¿Estás seguro de cancelar? Se perderá el texto escrito.",
+                                    );
                                     if (!confirmClose) return;
                                   }
                                   setIsAddingNewType(false);
@@ -701,7 +772,9 @@ export default function Dashboard() {
                               </Button>
                               <Button
                                 onClick={addNewType}
-                                disabled={isLoadingNewType || !newTypeValue.trim()}
+                                disabled={
+                                  isLoadingNewType || !newTypeValue.trim()
+                                }
                                 className="min-w-[120px] bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-lg hover:shadow-xl transition-all duration-200 disabled:from-slate-400 disabled:to-slate-500"
                               >
                                 {isLoadingNewType ? (
@@ -742,7 +815,8 @@ export default function Dashboard() {
                               Agregar Descripción
                             </span>
                             <span className="text-sm text-slate-500 block max-w-sm mx-auto leading-relaxed">
-                              Escribe o graba tu descripción de la ayuda solicitada
+                              Escribe o graba tu descripción de la ayuda
+                              solicitada
                             </span>
                           </div>
                         </div>
@@ -825,25 +899,35 @@ export default function Dashboard() {
                     </div>
 
                     {/* Description Dialog */}
-                    <Dialog open={isDescriptionDialogOpen} onOpenChange={setIsDescriptionDialogOpen}>
+                    <Dialog
+                      open={isDescriptionDialogOpen}
+                      onOpenChange={setIsDescriptionDialogOpen}
+                    >
                       <DialogContent className="max-w-2xl">
                         <DialogHeader>
-                          <DialogTitle>Describe tu Solicitud de Ayuda</DialogTitle>
+                          <DialogTitle>
+                            Describe tu Solicitud de Ayuda
+                          </DialogTitle>
                           <DialogDescription>
-                            Proporciona una descripción detallada de la ayuda que necesitas.
-                            Puedes escribir o usar el micrófono para grabar tu descripción.
+                            Proporciona una descripción detallada de la ayuda
+                            que necesitas. Puedes escribir o usar el micrófono
+                            para grabar tu descripción.
                           </DialogDescription>
                         </DialogHeader>
 
                         <div className="space-y-6">
                           {/* Text Description Section */}
                           <div className="space-y-3">
-                            <Label htmlFor="textDesc">Descripción escrita</Label>
+                            <Label htmlFor="textDesc">
+                              Descripción escrita
+                            </Label>
                             <Textarea
                               id="textDesc"
                               placeholder="Describe detalladamente tu solicitud de ayuda..."
                               value={textDescription}
-                              onChange={(e) => setTextDescription(e.target.value)}
+                              onChange={(e) =>
+                                setTextDescription(e.target.value)
+                              }
                               className="min-h-32 resize-none"
                               maxLength={500}
                             />
@@ -859,7 +943,9 @@ export default function Dashboard() {
                               <span className="w-full border-t border-slate-200" />
                             </div>
                             <div className="relative flex justify-center text-xs uppercase">
-                              <span className="bg-white px-2 text-slate-500">O</span>
+                              <span className="bg-white px-2 text-slate-500">
+                                O
+                              </span>
                             </div>
                           </div>
 
@@ -867,12 +953,14 @@ export default function Dashboard() {
                           <div className="space-y-4">
                             <Label>Descripción por audio</Label>
                             <div className="flex flex-col items-center space-y-4 p-6 bg-slate-50 rounded-lg border border-slate-200">
-
                               {/* Recording Timer */}
                               {isRecording && (
                                 <div className="bg-red-100 border border-red-200 rounded-lg px-4 py-2 mb-2">
                                   <p className="text-red-800 font-mono text-lg">
-                                    🔴 {Math.floor(recordingTime / 60)}:{(recordingTime % 60).toString().padStart(2, '0')}
+                                    🔴 {Math.floor(recordingTime / 60)}:
+                                    {(recordingTime % 60)
+                                      .toString()
+                                      .padStart(2, "0")}
                                   </p>
                                 </div>
                               )}
@@ -880,7 +968,9 @@ export default function Dashboard() {
                               {/* Recording Controls */}
                               <div className="flex items-center space-x-4">
                                 <Button
-                                  onClick={isRecording ? stopRecording : startRecording}
+                                  onClick={
+                                    isRecording ? stopRecording : startRecording
+                                  }
                                   className={`w-16 h-16 rounded-full transition-all duration-200 ${
                                     isRecording
                                       ? "bg-red-500 hover:bg-red-600 animate-pulse shadow-lg"
@@ -922,17 +1012,17 @@ export default function Dashboard() {
                               <div className="text-center space-y-1">
                                 <p className="text-sm font-medium text-slate-700">
                                   {isRecording
-                                    ? `🔴 Grabando... (${Math.floor(recordingTime / 60)}:${(recordingTime % 60).toString().padStart(2, '0')})`
+                                    ? `🔴 Grabando... (${Math.floor(recordingTime / 60)}:${(recordingTime % 60).toString().padStart(2, "0")})`
                                     : audioBlob
-                                    ? "✅ Audio grabado correctamente"
-                                    : "🎙���� Presiona para grabar tu descripción"}
+                                      ? "✅ Audio grabado correctamente"
+                                      : "🎙���� Presiona para grabar tu descripción"}
                                 </p>
                                 <p className="text-xs text-slate-500">
                                   {isRecording
                                     ? "Presiona el botón rojo para detener"
                                     : audioBlob
-                                    ? "Usa ▶️ para reproducir o 🗑️ para eliminar"
-                                    : "Máximo 2 minutos de grabación"}
+                                      ? "Usa ▶️ para reproducir o 🗑️ para eliminar"
+                                      : "Máximo 2 minutos de grabación"}
                                 </p>
                               </div>
 
@@ -945,7 +1035,7 @@ export default function Dashboard() {
                                       className="w-1 bg-red-500 rounded-full animate-pulse"
                                       style={{
                                         height: `${Math.random() * 20 + 10}px`,
-                                        animationDelay: `${i * 0.1}s`
+                                        animationDelay: `${i * 0.1}s`,
                                       }}
                                     />
                                   ))}
@@ -969,7 +1059,9 @@ export default function Dashboard() {
                               onClick={() => {
                                 setIsDescriptionDialogOpen(false);
                               }}
-                              disabled={!textDescription.trim() && !audioDescription}
+                              disabled={
+                                !textDescription.trim() && !audioDescription
+                              }
                               className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
                             >
                               <CheckCircle className="w-4 h-4 mr-2" />
@@ -986,7 +1078,9 @@ export default function Dashboard() {
                 {currentStep === 4 && (
                   <div className="space-y-6">
                     <div className="space-y-4">
-                      <h3 className="text-lg font-medium text-slate-800">Formato de la Audiencia</h3>
+                      <h3 className="text-lg font-medium text-slate-800">
+                        Formato de la Audiencia
+                      </h3>
                       <RadioGroup
                         value={formData.meetingFormat}
                         onValueChange={(value) =>
@@ -1026,7 +1120,9 @@ export default function Dashboard() {
                     {/* Date Selection - only show if presencial is selected */}
                     {formData.meetingFormat === "presencial" && (
                       <div className="space-y-4">
-                        <h3 className="text-lg font-medium text-slate-800">Selecciona la Fecha</h3>
+                        <h3 className="text-lg font-medium text-slate-800">
+                          Selecciona la Fecha
+                        </h3>
                         <Popover>
                           <PopoverTrigger asChild>
                             <Button
@@ -1039,7 +1135,10 @@ export default function Dashboard() {
                                 : "Selecciona una fecha"}
                             </Button>
                           </PopoverTrigger>
-                          <PopoverContent className="w-auto p-0 bg-white shadow-lg border border-slate-200" align="start">
+                          <PopoverContent
+                            className="w-auto p-0 bg-white shadow-lg border border-slate-200"
+                            align="start"
+                          >
                             <Calendar
                               mode="single"
                               selected={selectedDate}
@@ -1061,8 +1160,8 @@ export default function Dashboard() {
                         </Popover>
 
                         <p className="text-sm text-slate-600">
-                          * Las audiencias están disponibles de lunes a viernes en
-                          horario de oficina
+                          * Las audiencias están disponibles de lunes a viernes
+                          en horario de oficina
                         </p>
                       </div>
                     )}
@@ -1141,7 +1240,6 @@ export default function Dashboard() {
                   audiencia.
                 </p>
               </div>
-
 
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Button

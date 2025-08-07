@@ -91,7 +91,6 @@ export default function Index() {
         </div>
       </section>
 
-
       {/* Features Section */}
       <section className="py-16 px-4 bg-white/50">
         <div className="max-w-6xl mx-auto">

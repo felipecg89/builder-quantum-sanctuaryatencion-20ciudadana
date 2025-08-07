@@ -10,7 +10,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Phone, Lock, Building2, Eye, EyeOff, User, ArrowLeft } from "lucide-react";
+import {
+  Phone,
+  Lock,
+  Building2,
+  Eye,
+  EyeOff,
+  User,
+  ArrowLeft,
+} from "lucide-react";
 
 export default function Login() {
   const [phone, setPhone] = useState("");
@@ -48,7 +56,9 @@ export default function Login() {
 
     // Simulate password recovery
     setTimeout(() => {
-      alert(`Se han enviado las instrucciones de recuperación al número ${forgotPasswordPhone}`);
+      alert(
+        `Se han enviado las instrucciones de recuperación al número ${forgotPasswordPhone}`,
+      );
       setShowForgotPassword(false);
       setForgotPasswordPhone("");
       setIsRecovering(false);
@@ -91,7 +101,8 @@ export default function Login() {
             </CardDescription>
             <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
               <p className="text-blue-800 text-sm text-center">
-                🎯 <strong>Proceso rápido:</strong> Login → Solicitud → Confirmación
+                🎯 <strong>Proceso rápido:</strong> Login → Solicitud →
+                Confirmación
               </p>
             </div>
           </CardHeader>
@@ -177,7 +188,10 @@ export default function Login() {
                   variant="outline"
                   className="w-full border-2 border-blue-600 text-blue-700 hover:bg-blue-600 hover:text-white"
                 >
-                  <Link to="/register" className="flex items-center justify-center">
+                  <Link
+                    to="/register"
+                    className="flex items-center justify-center"
+                  >
                     <User className="w-4 h-4 mr-2" />
                     Crear Nueva Cuenta
                   </Link>
@@ -203,9 +217,12 @@ export default function Login() {
                   <div className="w-12 h-12 bg-blue-100 rounded-full mx-auto flex items-center justify-center mb-4">
                     <Lock className="w-6 h-6 text-blue-600" />
                   </div>
-                  <h3 className="text-lg font-semibold text-slate-800">Recuperar Contraseña</h3>
+                  <h3 className="text-lg font-semibold text-slate-800">
+                    Recuperar Contraseña
+                  </h3>
                   <p className="text-slate-600 text-sm mt-2">
-                    Ingresa tu número de teléfono y te enviaremos instrucciones para restablecer tu contraseña
+                    Ingresa tu número de teléfono y te enviaremos instrucciones
+                    para restablecer tu contraseña
                   </p>
                 </div>
 
@@ -258,7 +275,8 @@ export default function Login() {
 
                 <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
                   <p className="text-blue-800 text-xs text-center">
-                    📱 Recibirás un SMS con las instrucciones para crear una nueva contraseña
+                    📱 Recibirás un SMS con las instrucciones para crear una
+                    nueva contraseña
                   </p>
                 </div>
               </div>

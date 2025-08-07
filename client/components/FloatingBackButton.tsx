@@ -1,6 +1,11 @@
 import { ArrowLeft, Home, ChevronLeft, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -10,7 +15,9 @@ export default function FloatingBackButton() {
   const [isPressed, setIsPressed] = useState(false);
   const [tooltipText, setTooltipText] = useState("");
   const [destination, setDestination] = useState("");
-  const [longPressTimer, setLongPressTimer] = useState<NodeJS.Timeout | null>(null);
+  const [longPressTimer, setLongPressTimer] = useState<NodeJS.Timeout | null>(
+    null,
+  );
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Determine destination and tooltip based on current page
@@ -40,7 +47,9 @@ export default function FloatingBackButton() {
       if (navigator.vibrate) {
         navigator.vibrate([50, 50, 50]);
       }
-      const quickExit = window.confirm("🚀 Salida rápida al inicio?\n\n⚡ Presiona OK para ir directamente al inicio");
+      const quickExit = window.confirm(
+        "🚀 Salida rápida al inicio?\n\n⚡ Presiona OK para ir directamente al inicio",
+      );
       if (quickExit) {
         navigate("/");
       }
@@ -58,11 +67,17 @@ export default function FloatingBackButton() {
   const getIcon = () => {
     switch (destination) {
       case "home":
-        return <Home className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />;
+        return (
+          <Home className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
+        );
       case "back":
-        return <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-200" />;
+        return (
+          <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-200" />
+        );
       default:
-        return <ArrowLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform duration-200" />;
+        return (
+          <ArrowLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform duration-200" />
+        );
     }
   };
 
@@ -78,11 +93,12 @@ export default function FloatingBackButton() {
     if (location.pathname === "/dashboard") {
       // Try to get form data from localStorage or check if there's progress
       const userData = localStorage.getItem("user");
-      const hasProgress = document.querySelector('[data-progress="true"]') !== null;
+      const hasProgress =
+        document.querySelector('[data-progress="true"]') !== null;
 
       if (hasProgress) {
         const confirmed = window.confirm(
-          "⚠️ ¿Estás seguro de salir?\n\nSe perderá todo el progreso de tu solicitud de audiencia.\n\n✅ Presiona OK para salir\n❌ Presiona Cancelar para continuar"
+          "⚠️ ¿Estás seguro de salir?\n\nSe perderá todo el progreso de tu solicitud de audiencia.\n\n✅ Presiona OK para salir\n❌ Presiona Cancelar para continuar",
         );
 
         if (!confirmed) {
@@ -109,7 +125,10 @@ export default function FloatingBackButton() {
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
       // ESC key or Alt+Left Arrow
-      if (event.key === "Escape" || (event.altKey && event.key === "ArrowLeft")) {
+      if (
+        event.key === "Escape" ||
+        (event.altKey && event.key === "ArrowLeft")
+      ) {
         event.preventDefault();
         handleGoBack();
       }
@@ -123,8 +142,12 @@ export default function FloatingBackButton() {
   useEffect(() => {
     const checkForModals = () => {
       // Check for common modal patterns
-      const hasDialog = document.querySelector('[role="dialog"][data-state="open"]');
-      const hasModalBackdrop = document.querySelector('.fixed.inset-0.z-50, .fixed.inset-0.z-\\[50\\]');
+      const hasDialog = document.querySelector(
+        '[role="dialog"][data-state="open"]',
+      );
+      const hasModalBackdrop = document.querySelector(
+        ".fixed.inset-0.z-50, .fixed.inset-0.z-\\[50\\]",
+      );
       const hasOpenModal = document.querySelector('[data-state="open"]');
 
       setIsModalOpen(!!(hasDialog || hasModalBackdrop || hasOpenModal));
@@ -159,9 +182,10 @@ export default function FloatingBackButton() {
               disabled={isPressed}
               className={`
                 fixed top-4 left-4 z-40 w-14 h-14 rounded-full transition-all duration-300 group
-                ${isPressed
-                  ? "bg-slate-200 scale-95 shadow-inner"
-                  : "bg-white/95 hover:bg-white shadow-xl hover:shadow-2xl hover:scale-110"
+                ${
+                  isPressed
+                    ? "bg-slate-200 scale-95 shadow-inner"
+                    : "bg-white/95 hover:bg-white shadow-xl hover:shadow-2xl hover:scale-110"
                 }
                 backdrop-blur-md border-2 border-slate-200 hover:border-slate-300
                 text-slate-700 hover:text-slate-900
@@ -177,7 +201,6 @@ export default function FloatingBackButton() {
               )}
               <span className="sr-only">{tooltipText}</span>
             </Button>
-
           </div>
         </TooltipTrigger>
         <TooltipContent
@@ -199,13 +222,21 @@ export default function FloatingBackButton() {
 
             {/* Keyboard shortcuts */}
             <div className="border-t border-slate-600 pt-2 w-full">
-              <div className="text-xs text-slate-300 mb-1">Atajos de teclado:</div>
+              <div className="text-xs text-slate-300 mb-1">
+                Atajos de teclado:
+              </div>
               <div className="flex items-center space-x-2 text-xs text-slate-300">
-                <kbd className="px-1.5 py-0.5 bg-slate-700 rounded text-xs">Esc</kbd>
+                <kbd className="px-1.5 py-0.5 bg-slate-700 rounded text-xs">
+                  Esc
+                </kbd>
                 <span>o</span>
-                <kbd className="px-1.5 py-0.5 bg-slate-700 rounded text-xs">Alt</kbd>
+                <kbd className="px-1.5 py-0.5 bg-slate-700 rounded text-xs">
+                  Alt
+                </kbd>
                 <span>+</span>
-                <kbd className="px-1.5 py-0.5 bg-slate-700 rounded text-xs">←</kbd>
+                <kbd className="px-1.5 py-0.5 bg-slate-700 rounded text-xs">
+                  ←
+                </kbd>
               </div>
               <div className="text-xs text-slate-400 mt-1">
                 Mantén presionado para salida rápida
