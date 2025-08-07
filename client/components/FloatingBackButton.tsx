@@ -126,8 +126,34 @@ export default function FloatingBackButton() {
     return () => document.removeEventListener("keydown", handleKeyPress);
   }, [location.pathname]);
 
-  // Don't show on home page (moved after all hooks)
-  if (location.pathname === "/") {
+  // Check for open modals/dialogs
+  useEffect(() => {
+    const checkForModals = () => {
+      const modals = document.querySelectorAll('[role="dialog"], .fixed.inset-0, [data-state="open"]');
+      const hasOpenModal = Array.from(modals).some(modal => {
+        const computedStyle = window.getComputedStyle(modal);
+        return computedStyle.display !== 'none' && computedStyle.visibility !== 'hidden';
+      });
+      setIsModalOpen(hasOpenModal);
+    };
+
+    // Check immediately
+    checkForModals();
+
+    // Set up observer for DOM changes
+    const observer = new MutationObserver(checkForModals);
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['data-state', 'class', 'style']
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Don't show on home page or when modals are open
+  if (location.pathname === "/" || isModalOpen) {
     return null;
   }
 
