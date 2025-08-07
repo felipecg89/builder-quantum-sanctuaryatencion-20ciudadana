@@ -139,6 +139,18 @@ export default function Dashboard() {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [handleKeyDown]);
 
+  // Cleanup recording timer on unmount
+  useEffect(() => {
+    return () => {
+      if (recordingTimer) {
+        clearInterval(recordingTimer);
+      }
+      if (isRecording && mediaRecorder) {
+        mediaRecorder.stop();
+      }
+    };
+  }, [recordingTimer, isRecording, mediaRecorder]);
+
   const handleLogout = () => {
     localStorage.removeItem("user");
     navigate("/login");
