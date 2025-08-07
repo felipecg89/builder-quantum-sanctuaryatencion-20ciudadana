@@ -352,7 +352,14 @@ export default function Dashboard() {
     console.log("Audience request submitted:", {
       ...formData,
       caseNumber: caseNum,
+      textDescription,
+      audioDescription,
     });
+
+    // After 4 seconds, redirect to home page
+    setTimeout(() => {
+      navigate("/");
+    }, 4000);
   };
 
   const resetForm = () => {
