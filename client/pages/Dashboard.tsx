@@ -398,6 +398,7 @@ export default function Dashboard() {
     setAudioBlob(null);
     setRecordingTime(0);
     setMediaRecorder(null);
+    setRedirectCountdown(4);
   };
 
   if (!user) return null;
