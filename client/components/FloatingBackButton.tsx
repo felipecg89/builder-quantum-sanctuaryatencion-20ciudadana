@@ -125,6 +125,11 @@ export default function FloatingBackButton() {
     return () => document.removeEventListener("keydown", handleKeyPress);
   }, [location.pathname]);
 
+  // Don't show on home page (moved after all hooks)
+  if (location.pathname === "/") {
+    return null;
+  }
+
   return (
     <TooltipProvider>
       <Tooltip>
