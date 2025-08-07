@@ -174,16 +174,34 @@ export default function FloatingBackButton() {
         </TooltipTrigger>
         <TooltipContent
           side="right"
-          className="bg-slate-800 text-white border-slate-700 shadow-xl"
+          className="bg-slate-800 text-white border-slate-700 shadow-xl max-w-xs"
         >
-          <div className="flex flex-col items-start space-y-1">
-            <span className="font-medium">{tooltipText}</span>
-            <div className="flex items-center space-x-2 text-xs text-slate-300">
-              <kbd className="px-1.5 py-0.5 bg-slate-700 rounded text-xs">Esc</kbd>
-              <span>o</span>
-              <kbd className="px-1.5 py-0.5 bg-slate-700 rounded text-xs">Alt</kbd>
-              <span>+</span>
-              <kbd className="px-1.5 py-0.5 bg-slate-700 rounded text-xs">←</kbd>
+          <div className="flex flex-col items-start space-y-2">
+            <div className="flex items-center space-x-2">
+              {getIcon()}
+              <span className="font-medium">{tooltipText}</span>
+            </div>
+
+            {/* Page context */}
+            {location.pathname === "/dashboard" && (
+              <div className="text-xs text-orange-200 bg-orange-900/50 px-2 py-1 rounded">
+                ⚠️ Progreso se perderá al salir
+              </div>
+            )}
+
+            {/* Keyboard shortcuts */}
+            <div className="border-t border-slate-600 pt-2 w-full">
+              <div className="text-xs text-slate-300 mb-1">Atajos de teclado:</div>
+              <div className="flex items-center space-x-2 text-xs text-slate-300">
+                <kbd className="px-1.5 py-0.5 bg-slate-700 rounded text-xs">Esc</kbd>
+                <span>o</span>
+                <kbd className="px-1.5 py-0.5 bg-slate-700 rounded text-xs">Alt</kbd>
+                <span>+</span>
+                <kbd className="px-1.5 py-0.5 bg-slate-700 rounded text-xs">←</kbd>
+              </div>
+              <div className="text-xs text-slate-400 mt-1">
+                Mantén presionado para salida rápida
+              </div>
             </div>
           </div>
         </TooltipContent>
