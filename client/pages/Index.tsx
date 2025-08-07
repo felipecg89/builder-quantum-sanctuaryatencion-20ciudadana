@@ -67,15 +67,15 @@ export default function Index() {
               </Link>
             </Button>
 
-            {/* Secondary Button - Ya tengo cuenta */}
+            {/* Secondary Button - Ver Historial */}
             <Button
               size="lg"
               variant="outline"
               asChild
               className="text-lg font-semibold px-10 py-8 border-3 border-blue-600 text-blue-700 hover:bg-blue-600 hover:text-white shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 bg-white/90 backdrop-blur-sm hover:border-blue-500 ring-2 ring-blue-100 hover:ring-blue-200"
             >
-              <Link to="/login" className="flex items-center">
-                👤 Ya tengo cuenta
+              <Link to="/history" className="flex items-center">
+                📋 Ver Mis Audiencias
               </Link>
             </Button>
           </div>
