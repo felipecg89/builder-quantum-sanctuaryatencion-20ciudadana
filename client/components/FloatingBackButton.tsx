@@ -134,28 +134,43 @@ export default function FloatingBackButton() {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button
-            onClick={handleGoBack}
-            disabled={isPressed}
-            className={`
-              fixed top-4 left-4 z-[100] w-14 h-14 rounded-full transition-all duration-300 group
-              ${isPressed
-                ? "bg-slate-200 scale-95 shadow-inner"
-                : "bg-white/95 hover:bg-white shadow-xl hover:shadow-2xl hover:scale-110"
-              }
-              backdrop-blur-md border-2 border-slate-200 hover:border-slate-300
-              text-slate-700 hover:text-slate-900
-              ${location.pathname === "/dashboard" ? "border-orange-300 hover:border-orange-400" : ""}
-            `}
-            size="sm"
-          >
-            {isPressed ? (
-              <div className="w-4 h-4 border-2 border-slate-400 border-t-transparent rounded-full animate-spin" />
-            ) : (
-              getIcon()
-            )}
-            <span className="sr-only">{tooltipText}</span>
-          </Button>
+          <div className="relative">
+            <Button
+              onClick={handleGoBack}
+              onMouseDown={handleMouseDown}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
+              onTouchStart={handleMouseDown}
+              onTouchEnd={handleMouseUp}
+              disabled={isPressed}
+              className={`
+                fixed top-4 left-4 z-[100] w-14 h-14 rounded-full transition-all duration-300 group
+                ${isPressed
+                  ? "bg-slate-200 scale-95 shadow-inner"
+                  : "bg-white/95 hover:bg-white shadow-xl hover:shadow-2xl hover:scale-110"
+                }
+                backdrop-blur-md border-2 border-slate-200 hover:border-slate-300
+                text-slate-700 hover:text-slate-900
+                ${location.pathname === "/dashboard" ? "border-orange-300 hover:border-orange-400" : ""}
+                ${showPulse ? "animate-pulse" : ""}
+              `}
+              size="sm"
+            >
+              {isPressed ? (
+                <div className="w-4 h-4 border-2 border-slate-400 border-t-transparent rounded-full animate-spin" />
+              ) : (
+                getIcon()
+              )}
+              <span className="sr-only">{tooltipText}</span>
+            </Button>
+
+            {/* Pulse indicator for urgent attention */}
+            <PulseIndicator
+              show={showPulse && location.pathname === "/dashboard"}
+              color="orange"
+              size="sm"
+            />
+          </div>
         </TooltipTrigger>
         <TooltipContent
           side="right"
