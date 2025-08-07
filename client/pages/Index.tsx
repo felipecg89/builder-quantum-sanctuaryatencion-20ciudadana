@@ -62,21 +62,39 @@ export default function Index() {
             fácil, rápida y transparente. Tu voz es importante para nuestra
             comunidad.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" asChild className="text-lg px-8 py-6">
-              <Link to="/register">
-                Solicitar Audiencia
-                <ArrowRight className="ml-2 w-5 h-5" />
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            {/* Primary CTA Button - Solicitar Audiencia */}
+            <Button
+              size="lg"
+              asChild
+              className="text-xl font-bold px-12 py-8 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:from-blue-700 hover:via-blue-800 hover:to-blue-900 text-white shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 border-2 border-blue-500 hover:border-blue-400 ring-4 ring-blue-200 hover:ring-blue-300 animate-pulse hover:animate-none"
+            >
+              <Link to="/register" className="flex items-center">
+                🎙️ Solicitar Audiencia
+                <ArrowRight className="ml-3 w-6 h-6 animate-bounce" />
               </Link>
             </Button>
+
+            {/* Secondary Button - Ya tengo cuenta */}
             <Button
               size="lg"
               variant="outline"
               asChild
-              className="text-lg px-8 py-6"
+              className="text-lg font-semibold px-10 py-8 border-3 border-blue-600 text-blue-700 hover:bg-blue-600 hover:text-white shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 bg-white/90 backdrop-blur-sm hover:border-blue-500 ring-2 ring-blue-100 hover:ring-blue-200"
             >
-              <Link to="/login">Ya tengo cuenta</Link>
+              <Link to="/login" className="flex items-center">
+                👤 Ya tengo cuenta
+              </Link>
             </Button>
+          </div>
+
+          {/* Additional visual emphasis */}
+          <div className="mt-8 text-center">
+            <div className="inline-flex items-center space-x-2 text-blue-600 font-medium animate-bounce">
+              <span className="w-2 h-2 bg-blue-600 rounded-full animate-ping"></span>
+              <span className="text-sm">¡Comienza tu solicitud ahora!</span>
+              <span className="w-2 h-2 bg-blue-600 rounded-full animate-ping"></span>
+            </div>
           </div>
         </div>
       </section>
