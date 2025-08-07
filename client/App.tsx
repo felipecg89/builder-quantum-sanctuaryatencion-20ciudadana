@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
+import AudienceHistory from "./pages/AudienceHistory";
 import NotFound from "./pages/NotFound";
 import FloatingBackButton from "./components/FloatingBackButton";
 
