@@ -655,33 +655,40 @@ export default function Dashboard() {
 
                 {/* Step 3: Description */}
                 {currentStep === 3 && (
-                  <div className="space-y-4">
-                    <div className="text-center space-y-4">
-                      <p className="text-slate-600">
-                        Describe detalladamente tu solicitud de ayuda
-                      </p>
+                  <div className="space-y-6">
+                    <div className="text-center space-y-6">
+                      <div className="space-y-2">
+                        <p className="text-lg font-medium text-slate-700">
+                          Describe tu solicitud
+                        </p>
+                        <p className="text-slate-600 max-w-md mx-auto">
+                          Proporciona detalles específicos sobre la ayuda que necesitas para que podamos atenderte mejor
+                        </p>
+                      </div>
 
                       <Button
                         onClick={() => setIsDescriptionDialogOpen(true)}
                         variant="outline"
-                        className="w-full py-12 border-2 border-dashed border-slate-300 hover:border-blue-400 hover:bg-blue-50 transition-all duration-200"
+                        className="w-full py-16 border-2 border-dashed border-slate-300 hover:border-blue-400 hover:bg-blue-50 transition-all duration-200 rounded-xl"
                       >
-                        <div className="flex flex-col items-center space-y-2">
-                          <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                            <Plus className="w-6 h-6 text-blue-600" />
+                        <div className="flex flex-col items-center space-y-4">
+                          <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                            <Plus className="w-8 h-8 text-blue-600" />
                           </div>
-                          <span className="text-lg font-medium text-slate-700">
-                            Agregar Descripción
-                          </span>
-                          <span className="text-sm text-slate-500">
-                            Escribe o graba tu descripción de la ayuda solicitada
-                          </span>
+                          <div className="space-y-2 text-center">
+                            <span className="text-xl font-semibold text-slate-700 block">
+                              Agregar Descripción
+                            </span>
+                            <span className="text-sm text-slate-500 block max-w-xs">
+                              Escribe o graba tu descripción de la ayuda solicitada
+                            </span>
+                          </div>
                         </div>
                       </Button>
                     </div>
 
                     {/* Show descriptions if available */}
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                       {textDescription && (
                         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                           <div className="flex items-start justify-between">
