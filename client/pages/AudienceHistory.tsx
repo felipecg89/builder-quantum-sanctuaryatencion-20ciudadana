@@ -435,76 +435,89 @@ export default function AudienceHistory() {
           </div>
 
           {/* Filters Section */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Filter className="w-5 h-5" />
-                Filtros de Búsqueda
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="search">Buscar</Label>
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
-                    <Input
-                      id="search"
-                      placeholder="ID, descripción o tipo..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10"
+          <Collapsible open={isFiltersOpen} onOpenChange={setIsFiltersOpen}>
+            <Card>
+              <CollapsibleTrigger asChild>
+                <CardHeader className="cursor-pointer hover:bg-slate-50 transition-colors">
+                  <CardTitle className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Filter className="w-5 h-5" />
+                      Filtros de Búsqueda
+                    </div>
+                    <ChevronDown
+                      className={`w-5 h-5 transition-transform duration-200 ${
+                        isFiltersOpen ? "rotate-180" : ""
+                      }`}
                     />
+                  </CardTitle>
+                </CardHeader>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="search">Buscar</Label>
+                      <div className="relative">
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+                        <Input
+                          id="search"
+                          placeholder="ID, descripción o tipo..."
+                          value={searchTerm}
+                          onChange={(e) => setSearchTerm(e.target.value)}
+                          className="pl-10"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label>Categoría</Label>
+                      <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Todas las categorías" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">Todas las categorías</SelectItem>
+                          <SelectItem value="especie">Ayuda en Especie</SelectItem>
+                          <SelectItem value="servicio">Servicios</SelectItem>
+                          <SelectItem value="invitacion">Invitaciones</SelectItem>
+                          <SelectItem value="tramites">Trámites</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label>Estado</Label>
+                      <Select value={statusFilter} onValueChange={setStatusFilter}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Todos los estados" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">Todos los estados</SelectItem>
+                          <SelectItem value="completada">Completadas</SelectItem>
+                          <SelectItem value="pendiente">Pendientes</SelectItem>
+                          <SelectItem value="en_proceso">En Proceso</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label>Fecha</Label>
+                      <Select value={dateFilter} onValueChange={setDateFilter}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Todas las fechas" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">Todas las fechas</SelectItem>
+                          <SelectItem value="week">Última semana</SelectItem>
+                          <SelectItem value="month">Último mes</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label>Categoría</Label>
-                  <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Todas las categorías" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">Todas las categorías</SelectItem>
-                      <SelectItem value="especie">Ayuda en Especie</SelectItem>
-                      <SelectItem value="servicio">Servicios</SelectItem>
-                      <SelectItem value="invitacion">Invitaciones</SelectItem>
-                      <SelectItem value="tramites">Trámites</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-2">
-                  <Label>Estado</Label>
-                  <Select value={statusFilter} onValueChange={setStatusFilter}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Todos los estados" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">Todos los estados</SelectItem>
-                      <SelectItem value="completada">Completadas</SelectItem>
-                      <SelectItem value="pendiente">Pendientes</SelectItem>
-                      <SelectItem value="en_proceso">En Proceso</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-2">
-                  <Label>Fecha</Label>
-                  <Select value={dateFilter} onValueChange={setDateFilter}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Todas las fechas" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">Todas las fechas</SelectItem>
-                      <SelectItem value="week">Última semana</SelectItem>
-                      <SelectItem value="month">Último mes</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+                </CardContent>
+              </CollapsibleContent>
+            </Card>
+          </Collapsible>
 
           {/* Results */}
           <TabsContent value="all" className="space-y-4">
