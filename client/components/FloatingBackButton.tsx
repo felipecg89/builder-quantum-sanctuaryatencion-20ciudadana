@@ -14,11 +14,6 @@ export default function FloatingBackButton() {
   const [showPulse, setShowPulse] = useState(false);
   const [longPressTimer, setLongPressTimer] = useState<NodeJS.Timeout | null>(null);
 
-  // Don't show on home page
-  if (location.pathname === "/") {
-    return null;
-  }
-
   // Determine destination and tooltip based on current page
   useEffect(() => {
     switch (location.pathname) {
