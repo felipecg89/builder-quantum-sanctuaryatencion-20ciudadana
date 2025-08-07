@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import {
   Building2,
   Plus,
@@ -20,7 +21,8 @@ import {
   Search,
   Lock,
   User,
-  EyeOff
+  EyeOff,
+  ChevronDown
 } from "lucide-react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
