@@ -527,14 +527,22 @@ export default function Dashboard() {
                       value={formData.category}
                       onValueChange={handleCategoryChange}
                     >
-                      {Object.entries(CATEGORIES).map(([key, label]) => (
-                        <div key={key} className="flex items-center space-x-2">
-                          <RadioGroupItem value={key} id={key} />
-                          <Label htmlFor={key} className="font-medium">
-                            {label}
-                          </Label>
-                        </div>
-                      ))}
+                      {Object.entries(CATEGORIES).map(([key, label]) => {
+                        const IconComponent = CATEGORY_ICONS[key as keyof typeof CATEGORY_ICONS];
+                        return (
+                          <div key={key} className="flex items-center space-x-3 p-3 rounded-lg border border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200">
+                            <RadioGroupItem value={key} id={key} />
+                            <div className="flex items-center space-x-3 flex-1">
+                              <div className="flex items-center justify-center w-8 h-8 bg-blue-100 rounded-full">
+                                <IconComponent className="w-4 h-4 text-blue-600" />
+                              </div>
+                              <Label htmlFor={key} className="font-medium text-slate-700 cursor-pointer flex-1">
+                                {label}
+                              </Label>
+                            </div>
+                          </div>
+                        );
+                      })}
                     </RadioGroup>
                   </div>
                 )}
