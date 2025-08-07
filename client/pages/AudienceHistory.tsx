@@ -426,7 +426,7 @@ export default function AudienceHistory() {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 py-4 sm:py-8">
         <Tabs defaultValue="all" className="space-y-6">
           <div className="flex items-center justify-between">
             <TabsList className="grid w-full max-w-md grid-cols-4">
