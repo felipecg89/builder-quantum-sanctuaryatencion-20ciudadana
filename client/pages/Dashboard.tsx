@@ -731,34 +731,91 @@ export default function Dashboard() {
                           {/* Audio Recording Section */}
                           <div className="space-y-4">
                             <Label>Descripción por audio</Label>
-                            <div className="flex flex-col items-center space-y-4 p-6 bg-slate-50 rounded-lg">
-                              <Button
-                                onClick={startRecording}
-                                disabled={isRecording}
-                                className={`w-20 h-20 rounded-full transition-all duration-200 ${
-                                  isRecording
-                                    ? "bg-red-500 hover:bg-red-600 animate-pulse"
-                                    : "bg-blue-600 hover:bg-blue-700 hover:scale-105"
-                                }`}
-                              >
-                                {isRecording ? (
-                                  <MicOff className="w-8 h-8" />
-                                ) : (
-                                  <Mic className="w-8 h-8" />
+                            <div className="flex flex-col items-center space-y-4 p-6 bg-slate-50 rounded-lg border border-slate-200">
+
+                              {/* Recording Timer */}
+                              {isRecording && (
+                                <div className="bg-red-100 border border-red-200 rounded-lg px-4 py-2 mb-2">
+                                  <p className="text-red-800 font-mono text-lg">
+                                    🔴 {Math.floor(recordingTime / 60)}:{(recordingTime % 60).toString().padStart(2, '0')}
+                                  </p>
+                                </div>
+                              )}
+
+                              {/* Recording Controls */}
+                              <div className="flex items-center space-x-4">
+                                <Button
+                                  onClick={isRecording ? stopRecording : startRecording}
+                                  className={`w-16 h-16 rounded-full transition-all duration-200 ${
+                                    isRecording
+                                      ? "bg-red-500 hover:bg-red-600 animate-pulse shadow-lg"
+                                      : "bg-blue-600 hover:bg-blue-700 hover:scale-105 shadow-lg"
+                                  }`}
+                                >
+                                  {isRecording ? (
+                                    <div className="w-4 h-4 bg-white rounded-sm"></div>
+                                  ) : (
+                                    <Mic className="w-6 h-6" />
+                                  )}
+                                </Button>
+
+                                {/* Play button for recorded audio */}
+                                {audioBlob && !isRecording && (
+                                  <Button
+                                    onClick={playAudio}
+                                    variant="outline"
+                                    className="w-12 h-12 rounded-full hover:bg-green-50 hover:border-green-300"
+                                  >
+                                    ▶️
+                                  </Button>
                                 )}
-                              </Button>
-                              <div className="text-center">
+
+                                {/* Delete button for recorded audio */}
+                                {audioBlob && !isRecording && (
+                                  <Button
+                                    onClick={deleteAudioRecording}
+                                    variant="outline"
+                                    size="sm"
+                                    className="text-red-600 hover:text-red-800 hover:bg-red-50"
+                                  >
+                                    🗑️
+                                  </Button>
+                                )}
+                              </div>
+
+                              {/* Status Text */}
+                              <div className="text-center space-y-1">
                                 <p className="text-sm font-medium text-slate-700">
                                   {isRecording
-                                    ? "🔴 Grabando... Habla claramente"
-                                    : "Presiona para grabar tu descripción"}
+                                    ? `🔴 Grabando... (${Math.floor(recordingTime / 60)}:${(recordingTime % 60).toString().padStart(2, '0')})`
+                                    : audioBlob
+                                    ? "✅ Audio grabado correctamente"
+                                    : "🎙️ Presiona para grabar tu descripción"}
                                 </p>
-                                <p className="text-xs text-slate-500 mt-1">
+                                <p className="text-xs text-slate-500">
                                   {isRecording
-                                    ? "El micrófono está activo"
-                                    : "Graba hasta 2 minutos de audio"}
+                                    ? "Presiona el botón rojo para detener"
+                                    : audioBlob
+                                    ? "Usa ▶️ para reproducir o 🗑️ para eliminar"
+                                    : "Máximo 2 minutos de grabación"}
                                 </p>
                               </div>
+
+                              {/* Audio Visualization */}
+                              {isRecording && (
+                                <div className="flex items-center space-x-1">
+                                  {[...Array(5)].map((_, i) => (
+                                    <div
+                                      key={i}
+                                      className="w-1 bg-red-500 rounded-full animate-pulse"
+                                      style={{
+                                        height: `${Math.random() * 20 + 10}px`,
+                                        animationDelay: `${i * 0.1}s`
+                                      }}
+                                    />
+                                  ))}
+                                </div>
+                              )}
                             </div>
                           </div>
 
