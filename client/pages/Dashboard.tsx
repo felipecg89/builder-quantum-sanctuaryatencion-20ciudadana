@@ -172,6 +172,47 @@ export default function Dashboard() {
     navigate("/login");
   };
 
+  const handleScreenshot = async () => {
+    try {
+      // Usar html2canvas para capturar la pantalla
+      const { default: html2canvas } = await import('html2canvas');
+
+      // Obtener el elemento de la tarjeta de confirmación
+      const confirmationCard = document.querySelector('.confirmation-card') as HTMLElement;
+
+      if (confirmationCard) {
+        const canvas = await html2canvas(confirmationCard, {
+          backgroundColor: '#ffffff',
+          scale: 2, // Mejor calidad
+          useCORS: true,
+          allowTaint: true
+        });
+
+        // Crear enlace de descarga
+        const link = document.createElement('a');
+        link.download = `folio-${caseNumber}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      } else {
+        // Fallback: capturar toda la ventana
+        const canvas = await html2canvas(document.body, {
+          backgroundColor: '#ffffff',
+          scale: 1,
+          useCORS: true,
+          allowTaint: true
+        });
+
+        const link = document.createElement('a');
+        link.download = `folio-${caseNumber}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      }
+    } catch (error) {
+      console.error('Error al capturar pantalla:', error);
+      alert('No se pudo capturar la pantalla. Intenta tomar una captura manual.');
+    }
+  };
+
   const handleCategoryChange = (category: string) => {
     setFormData((prev) => ({ ...prev, category, type: "" }));
   };
