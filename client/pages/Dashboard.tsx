@@ -457,7 +457,7 @@ export default function Dashboard() {
       </header>
 
       <div className="max-w-4xl mx-auto px-2 sm:px-4 py-4 sm:py-8" data-progress={currentStep > 1 || !!formData.category || !!textDescription || !!audioDescription}>
-        {currentStep < 6 ? (
+        {currentStep < 5 ? (
           <>
             {/* Progress Steps */}
             <div className="mb-8">
