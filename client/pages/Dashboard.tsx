@@ -716,22 +716,25 @@ export default function Dashboard() {
                       )}
 
                       {audioDescription && (
-                        <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                          <div className="flex items-start justify-between">
-                            <div className="flex-1">
-                              <p className="text-green-800 text-sm font-medium mb-1">
-                                🎤 Descripción de audio:
-                              </p>
-                              <p className="text-green-700 text-sm mb-2">
+                        <div className="bg-green-50 border border-green-200 rounded-xl p-6">
+                          <div className="flex items-start justify-between gap-4">
+                            <div className="flex-1 space-y-3">
+                              <div className="flex items-center gap-2">
+                                <span className="text-lg">🎤</span>
+                                <p className="text-green-800 font-semibold">
+                                  Descripción de audio
+                                </p>
+                              </div>
+                              <p className="text-green-700 leading-relaxed">
                                 {audioDescription}
                               </p>
                               {audioBlob && (
-                                <div className="flex items-center space-x-2">
+                                <div className="flex items-center gap-3 pt-2">
                                   <Button
                                     onClick={playAudio}
                                     size="sm"
                                     variant="outline"
-                                    className="text-green-700 border-green-300 hover:bg-green-100"
+                                    className="text-green-700 border-green-300 hover:bg-green-100 flex items-center gap-2"
                                   >
                                     ▶️ Reproducir
                                   </Button>
@@ -739,7 +742,7 @@ export default function Dashboard() {
                                     onClick={deleteAudioRecording}
                                     size="sm"
                                     variant="outline"
-                                    className="text-red-600 border-red-300 hover:bg-red-50"
+                                    className="text-red-600 border-red-300 hover:bg-red-50 flex items-center gap-2"
                                   >
                                     🗑️ Eliminar
                                   </Button>
@@ -750,7 +753,7 @@ export default function Dashboard() {
                               variant="ghost"
                               size="sm"
                               onClick={() => setIsDescriptionDialogOpen(true)}
-                              className="text-green-600 hover:text-green-800 ml-2"
+                              className="text-green-600 hover:text-green-800 hover:bg-green-100 px-3 py-2 rounded-lg shrink-0"
                             >
                               ✏️ Editar
                             </Button>
