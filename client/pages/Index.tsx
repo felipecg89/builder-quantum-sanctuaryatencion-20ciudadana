@@ -99,6 +99,42 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Prominent CTA Section */}
+      <section className="py-8 px-4 bg-gradient-to-r from-blue-600 to-blue-800">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+            <h3 className="text-2xl font-bold text-white mb-3">
+              🚀 ¿Necesitas una audiencia con el Presidente Municipal?
+            </h3>
+            <p className="text-blue-100 mb-6 text-lg">
+              El proceso es 100% digital, rápido y seguro. ¡Solo toma 5 minutos!
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                size="lg"
+                asChild
+                className="text-lg font-bold px-10 py-6 bg-white text-blue-700 hover:bg-blue-50 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 border-2 border-white"
+              >
+                <Link to="/register" className="flex items-center">
+                  ✨ Iniciar Solicitud Ahora
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Link>
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                asChild
+                className="text-lg font-semibold px-8 py-6 border-2 border-white text-white hover:bg-white hover:text-blue-700 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              >
+                <Link to="/login">
+                  🔑 Acceder con mi cuenta
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="py-16 px-4 bg-white/50">
         <div className="max-w-6xl mx-auto">
