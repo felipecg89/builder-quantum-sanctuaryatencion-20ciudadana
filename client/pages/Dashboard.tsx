@@ -1107,7 +1107,7 @@ export default function Dashboard() {
         ) : (
           /* Success/Confirmation Step */
           <Card className="mx-1 sm:mx-0">
-            <CardContent className="text-center py-8 sm:py-12 px-4 sm:px-6">
+            <CardContent className="confirmation-card text-center py-8 sm:py-12 px-4 sm:px-6">
               <div className="w-16 h-16 bg-green-500 rounded-full mx-auto flex items-center justify-center mb-6">
                 <CheckCircle className="w-8 h-8 text-white" />
               </div>
