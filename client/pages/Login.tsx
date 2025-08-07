@@ -57,6 +57,11 @@ export default function Login() {
             <CardDescription className="text-center">
               Inicia sesión para comenzar tu solicitud de audiencia
             </CardDescription>
+            <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+              <p className="text-blue-800 text-sm text-center">
+                🎯 <strong>Proceso rápido:</strong> Login → Solicitud → Confirmación
+              </p>
+            </div>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
