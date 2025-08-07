@@ -323,24 +323,27 @@ export default function AudienceHistory() {
           </TabsContent>
 
           <TabsContent value="pending">
-            <div className="text-center py-12">
-              <h3 className="text-lg font-semibold mb-2">Audiencias Pendientes</h3>
-              <p className="text-slate-600 mb-4">Aquí se mostrarán solo las audiencias pendientes.</p>
-            </div>
+            <AudienceList
+              audiences={filteredAudiences.filter(a => a.status === "pendiente")}
+              title="Audiencias Pendientes"
+              emptyMessage="No tienes audiencias pendientes en este momento."
+            />
           </TabsContent>
 
           <TabsContent value="completed">
-            <div className="text-center py-12">
-              <h3 className="text-lg font-semibold mb-2">Audiencias Completadas</h3>
-              <p className="text-slate-600 mb-4">Aquí se mostrarán solo las audiencias completadas.</p>
-            </div>
+            <AudienceList
+              audiences={filteredAudiences.filter(a => a.status === "completada")}
+              title="Audiencias Completadas"
+              emptyMessage="No tienes audiencias completadas aún."
+            />
           </TabsContent>
 
           <TabsContent value="process">
-            <div className="text-center py-12">
-              <h3 className="text-lg font-semibold mb-2">Audiencias en Proceso</h3>
-              <p className="text-slate-600 mb-4">Aquí se mostrarán solo las audiencias en proceso.</p>
-            </div>
+            <AudienceList
+              audiences={filteredAudiences.filter(a => a.status === "en_proceso")}
+              title="Audiencias en Proceso"
+              emptyMessage="No tienes audiencias en proceso actualmente."
+            />
           </TabsContent>
         </Tabs>
       </div>
