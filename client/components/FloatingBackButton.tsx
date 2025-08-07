@@ -144,7 +144,7 @@ export default function FloatingBackButton() {
               onTouchEnd={handleMouseUp}
               disabled={isPressed}
               className={`
-                fixed top-4 left-4 z-[100] w-14 h-14 rounded-full transition-all duration-300 group
+                fixed top-4 left-4 z-40 w-14 h-14 rounded-full transition-all duration-300 group
                 ${isPressed
                   ? "bg-slate-200 scale-95 shadow-inner"
                   : "bg-white/95 hover:bg-white shadow-xl hover:shadow-2xl hover:scale-110"
