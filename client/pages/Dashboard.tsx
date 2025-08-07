@@ -392,19 +392,64 @@ export default function Dashboard() {
                           </DialogDescription>
                         </DialogHeader>
                         <div className="space-y-4">
-                          <Input
-                            placeholder="Nombre del nuevo tipo"
-                            value={newTypeValue}
-                            onChange={(e) => setNewTypeValue(e.target.value)}
-                          />
+                          <div className="space-y-2">
+                            <Label htmlFor="newType">Nombre del tipo</Label>
+                            <Input
+                              id="newType"
+                              placeholder="Ej: Apoyo educativo, Servicios veterinarios..."
+                              value={newTypeValue}
+                              onChange={(e) => {
+                                setNewTypeValue(e.target.value);
+                                setNewTypeError(""); // Clear error when typing
+                              }}
+                              onKeyPress={(e) => {
+                                if (e.key === 'Enter' && !isLoadingNewType) {
+                                  addNewType();
+                                }
+                              }}
+                              className={newTypeError ? "border-red-500 focus-visible:ring-red-500" : ""}
+                              disabled={isLoadingNewType}
+                            />
+                            {newTypeError && (
+                              <p className="text-sm text-red-600 flex items-center gap-1">
+                                <span className="w-4 h-4">⚠️</span>
+                                {newTypeError}
+                              </p>
+                            )}
+                            <p className="text-xs text-slate-500">
+                              Mínimo 3 caracteres. Será agregado a "{CATEGORIES[formData.category as keyof typeof CATEGORIES]}"
+                            </p>
+                          </div>
+
                           <div className="flex justify-end space-x-2">
                             <Button
                               variant="outline"
-                              onClick={() => setIsAddingNewType(false)}
+                              onClick={() => {
+                                setIsAddingNewType(false);
+                                setNewTypeValue("");
+                                setNewTypeError("");
+                              }}
+                              disabled={isLoadingNewType}
                             >
                               Cancelar
                             </Button>
-                            <Button onClick={addNewType}>Agregar</Button>
+                            <Button
+                              onClick={addNewType}
+                              disabled={isLoadingNewType || !newTypeValue.trim()}
+                              className="min-w-[100px]"
+                            >
+                              {isLoadingNewType ? (
+                                <div className="flex items-center gap-2">
+                                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                  Agregando...
+                                </div>
+                              ) : (
+                                <div className="flex items-center gap-2">
+                                  <Plus className="w-4 h-4" />
+                                  Agregar
+                                </div>
+                              )}
+                            </Button>
                           </div>
                         </div>
                       </DialogContent>
