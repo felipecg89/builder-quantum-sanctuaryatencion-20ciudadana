@@ -85,6 +85,8 @@ export default function Dashboard() {
   const [newTypeValue, setNewTypeValue] = useState("");
   const [isLoadingNewType, setIsLoadingNewType] = useState(false);
   const [newTypeError, setNewTypeError] = useState("");
+  const [isDescriptionDialogOpen, setIsDescriptionDialogOpen] = useState(false);
+  const [textDescription, setTextDescription] = useState("");
 
   const [formData, setFormData] = useState({
     category: "",
