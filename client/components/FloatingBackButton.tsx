@@ -11,6 +11,8 @@ export default function FloatingBackButton() {
   const [isPressed, setIsPressed] = useState(false);
   const [tooltipText, setTooltipText] = useState("");
   const [destination, setDestination] = useState("");
+  const [showPulse, setShowPulse] = useState(false);
+  const [longPressTimer, setLongPressTimer] = useState<NodeJS.Timeout | null>(null);
 
   // Don't show on home page
   if (location.pathname === "/") {
@@ -65,7 +67,7 @@ export default function FloatingBackButton() {
 
       if (hasProgress) {
         const confirmed = window.confirm(
-          "⚠️ ¿Estás seguro de salir?\n\nSe perderá todo el progreso de tu solicitud de audiencia.\n\n✅ Presiona OK para salir\n❌ Presiona Cancelar para continuar"
+          "⚠️ ¿Estás seguro de salir?\n\nSe perderá todo el progreso de tu solicitud de audiencia.\n\n✅ Presiona OK para salir\n��� Presiona Cancelar para continuar"
         );
 
         if (!confirmed) {
