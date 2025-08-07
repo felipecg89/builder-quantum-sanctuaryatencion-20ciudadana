@@ -10,7 +10,6 @@ export default function FloatingBackButton() {
   const [isPressed, setIsPressed] = useState(false);
   const [tooltipText, setTooltipText] = useState("");
   const [destination, setDestination] = useState("");
-  const [showPulse, setShowPulse] = useState(false);
   const [longPressTimer, setLongPressTimer] = useState<NodeJS.Timeout | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
