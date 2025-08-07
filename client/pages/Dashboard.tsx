@@ -493,7 +493,6 @@ export default function Dashboard() {
                   {currentStep === 1 &&
                     "Paso 1: Selecciona la Categoría de Ayuda"}
                   {currentStep === 2 && "Paso 2: Selecciona el Tipo de Ayuda"}
-                  {currentStep === 3 && "Paso 3: Describe tu Solicitud"}
                   {currentStep === 4 && "Paso 4: Formato de la Audiencia"}
                   {currentStep === 5 && "Paso 5: Selecciona la Fecha"}
                 </CardTitle>
@@ -502,8 +501,6 @@ export default function Dashboard() {
                     "Elige la categoría que mejor describa tu solicitud"}
                   {currentStep === 2 &&
                     "Especifica el tipo de ayuda que necesitas"}
-                  {currentStep === 3 &&
-                    "Usa el micrófono para grabar una descripción detallada"}
                   {currentStep === 4 &&
                     "¿Prefieres una audiencia presencial o en línea?"}
                   {currentStep === 5 &&
