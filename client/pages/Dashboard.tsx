@@ -1008,7 +1008,7 @@ export default function Dashboard() {
                                 : "Selecciona una fecha"}
                             </Button>
                           </PopoverTrigger>
-                          <PopoverContent className="w-auto p-0" align="start">
+                          <PopoverContent className="w-auto p-0 bg-white shadow-lg border border-slate-200" align="start">
                             <Calendar
                               mode="single"
                               selected={selectedDate}
