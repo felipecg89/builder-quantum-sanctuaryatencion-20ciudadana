@@ -237,6 +237,8 @@ export default function Dashboard() {
     setCurrentStep(1);
     setCaseNumber("");
     setAudioDescription("");
+    setTextDescription("");
+    setIsDescriptionDialogOpen(false);
   };
 
   if (!user) return null;
