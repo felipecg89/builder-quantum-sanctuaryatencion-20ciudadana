@@ -242,13 +242,15 @@
   /* Extra small screens */
   @media (max-width: 320px) {
     .step-label-container {
-      max-width: 45px;
-      min-height: 1.5rem;
+      max-width: 42px;
+      min-height: 1.25rem;
+      margin-top: 0.125rem;
     }
 
     .step-label-text {
-      font-size: 0.5rem;
-      letter-spacing: -0.025em;
+      font-size: 0.4375rem;
+      letter-spacing: -0.05em;
+      line-height: 0.9;
     }
   }
 }
