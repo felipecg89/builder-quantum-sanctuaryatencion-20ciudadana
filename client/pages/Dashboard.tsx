@@ -1073,8 +1073,15 @@ export default function Dashboard() {
                 <div className="flex justify-between pt-4 sm:pt-6 gap-2">
                   <Button
                     variant="outline"
-                    onClick={() => setCurrentStep(Math.max(1, currentStep - 1))}
-                    disabled={currentStep === 1}
+                    onClick={() => {
+                      if (currentStep === 1) {
+                        // If on first step, go back to previous page
+                        navigate(-1);
+                      } else {
+                        // Otherwise, go to previous step
+                        setCurrentStep(currentStep - 1);
+                      }
+                    }}
                     className="flex items-center gap-1 sm:gap-2 transition-all duration-200 hover:scale-105 text-xs sm:text-sm px-3 sm:px-4"
                   >
                     <ChevronLeft className="w-3 h-3 sm:w-4 sm:h-4" />
