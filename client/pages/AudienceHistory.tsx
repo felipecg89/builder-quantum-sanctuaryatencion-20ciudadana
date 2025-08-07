@@ -395,16 +395,27 @@ export default function AudienceHistory() {
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-slate-800">Historial de Audiencias</h1>
-                <p className="text-slate-600">Gestiona y consulta tus solicitudes</p>
+                <p className="text-slate-600">Bienvenido, {user?.name || 'Usuario'}</p>
               </div>
             </div>
-            
-            <Button asChild className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800">
-              <Link to="/register" className="flex items-center gap-2">
-                <Plus className="w-4 h-4" />
-                Nueva Solicitud
-              </Link>
-            </Button>
+
+            <div className="flex items-center space-x-3">
+              <Button asChild className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800">
+                <Link to="/register" className="flex items-center gap-2">
+                  <Plus className="w-4 h-4" />
+                  Nueva Solicitud
+                </Link>
+              </Button>
+
+              <Button
+                variant="outline"
+                onClick={handleLogout}
+                className="hover:bg-red-50 hover:text-red-700 hover:border-red-300"
+              >
+                <Lock className="w-4 h-4 mr-2" />
+                Cerrar Sesión
+              </Button>
+            </div>
           </div>
         </div>
       </header>
