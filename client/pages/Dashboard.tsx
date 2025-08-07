@@ -719,10 +719,10 @@ export default function Dashboard() {
                     </div>
 
                     {/* Show descriptions if available */}
-                    <div className="space-y-4">
+                    <div className="space-y-3 sm:space-y-4">
                       {textDescription && (
-                        <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
-                          <div className="flex items-start justify-between gap-4">
+                        <div className="bg-blue-50 border border-blue-200 rounded-xl p-3 sm:p-6">
+                          <div className="flex items-start justify-between gap-2 sm:gap-4">
                             <div className="flex-1 space-y-3">
                               <div className="flex items-center gap-2">
                                 <span className="text-lg">📝</span>
@@ -894,7 +894,7 @@ export default function Dashboard() {
                                     ? `🔴 Grabando... (${Math.floor(recordingTime / 60)}:${(recordingTime % 60).toString().padStart(2, '0')})`
                                     : audioBlob
                                     ? "✅ Audio grabado correctamente"
-                                    : "🎙���� Presiona para grabar tu descripción"}
+                                    : "🎙������ Presiona para grabar tu descripción"}
                                 </p>
                                 <p className="text-xs text-slate-500">
                                   {isRecording
