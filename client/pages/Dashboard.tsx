@@ -771,7 +771,7 @@ export default function Dashboard() {
                               onClick={() => setIsDescriptionDialogOpen(true)}
                               className="text-blue-600 hover:text-blue-800 hover:bg-blue-100 px-3 py-2 rounded-lg shrink-0"
                             >
-                              ✏️ Editar
+                              ✏��� Editar
                             </Button>
                           </div>
                         </div>
@@ -1137,6 +1137,15 @@ export default function Dashboard() {
 
 
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Button
+                  onClick={handleScreenshot}
+                  variant="outline"
+                  className="bg-green-50 hover:bg-green-100 border-green-300 text-green-700 hover:text-green-800"
+                >
+                  <Camera className="w-4 h-4 mr-2" />
+                  Capturar Pantalla
+                </Button>
+
                 <Button
                   onClick={() => navigate("/")}
                   className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
