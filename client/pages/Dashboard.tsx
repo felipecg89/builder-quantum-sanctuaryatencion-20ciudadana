@@ -208,13 +208,126 @@ export default function Dashboard() {
     }
   };
 
-  const startRecording = () => {
-    setIsRecording(true);
-    // In a real app, implement actual audio recording
-    setTimeout(() => {
+  const startRecording = async () => {
+    try {
+      // Request microphone permission
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true,
+          sampleRate: 44100
+        }
+      });
+
+      // Create MediaRecorder instance
+      const recorder = new MediaRecorder(stream, {
+        mimeType: 'audio/webm;codecs=opus'
+      });
+
+      const audioChunks: BlobPart[] = [];
+
+      recorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          audioChunks.push(event.data);
+        }
+      };
+
+      recorder.onstop = () => {
+        const audioBlob = new Blob(audioChunks, { type: 'audio/webm;codecs=opus' });
+        setAudioBlob(audioBlob);
+
+        // Create a URL for the audio
+        const audioUrl = URL.createObjectURL(audioBlob);
+
+        // Set description with playback info
+        const duration = Math.floor(recordingTime);
+        setAudioDescription(`Audio grabado (${duration}s) - Haz clic para reproducir`);
+
+        // Stop all tracks to release microphone
+        stream.getTracks().forEach(track => track.stop());
+
+        // Clear timer
+        if (recordingTimer) {
+          clearInterval(recordingTimer);
+          setRecordingTimer(null);
+        }
+        setRecordingTime(0);
+      };
+
+      recorder.onerror = (event) => {
+        console.error('Recording error:', event);
+        setIsRecording(false);
+        alert('Error al grabar audio. Verifica los permisos del micrófono.');
+      };
+
+      // Start recording
+      recorder.start(1000); // Collect data every 1 second
+      setMediaRecorder(recorder);
+      setIsRecording(true);
+
+      // Start timer
+      const timer = setInterval(() => {
+        setRecordingTime(prev => prev + 1);
+      }, 1000);
+      setRecordingTimer(timer);
+
+      // Auto-stop after 2 minutes (120 seconds)
+      setTimeout(() => {
+        if (recorder.state === 'recording') {
+          stopRecording();
+        }
+      }, 120000);
+
+    } catch (error) {
+      console.error('Error accessing microphone:', error);
+      let errorMessage = 'No se pudo acceder al micrófono. ';
+
+      if (error instanceof DOMException) {
+        switch (error.name) {
+          case 'NotAllowedError':
+            errorMessage += 'Permisos denegados. Permite el acceso al micrófono en tu navegador.';
+            break;
+          case 'NotFoundError':
+            errorMessage += 'No se encontró micrófono en tu dispositivo.';
+            break;
+          case 'NotReadableError':
+            errorMessage += 'El micrófono está siendo usado por otra aplicación.';
+            break;
+          default:
+            errorMessage += 'Error desconocido.';
+        }
+      }
+
+      alert(errorMessage);
       setIsRecording(false);
-      setAudioDescription("Descripción de audio grabada correctamente");
-    }, 3000);
+    }
+  };
+
+  const stopRecording = () => {
+    if (mediaRecorder && mediaRecorder.state === 'recording') {
+      mediaRecorder.stop();
+      setIsRecording(false);
+      setMediaRecorder(null);
+    }
+  };
+
+  const playAudio = () => {
+    if (audioBlob) {
+      const audioUrl = URL.createObjectURL(audioBlob);
+      const audio = new Audio(audioUrl);
+      audio.play().catch(error => {
+        console.error('Error playing audio:', error);
+        alert('Error al reproducir el audio');
+      });
+    }
+  };
+
+  const deleteAudioRecording = () => {
+    if (window.confirm('¿Estás seguro de eliminar la grabación de audio?')) {
+      setAudioBlob(null);
+      setAudioDescription("");
+      setRecordingTime(0);
+    }
   };
 
   const handleSubmit = () => {
