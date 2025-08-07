@@ -500,7 +500,7 @@ export default function Dashboard() {
                       </div>
 
                       {/* Right Connector */}
-                      {index < 4 && (
+                      {index < 3 && (
                         <div
                           className={`absolute left-1/2 top-1/2 transform -translate-y-1/2 w-6 sm:w-8 md:w-12 h-0.5 transition-colors duration-200 ${
                             isStepComplete(step.number) ? "bg-green-500" : "bg-slate-200"
