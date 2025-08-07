@@ -116,6 +116,107 @@ export default function AudienceHistory() {
     return <IconComponent className="w-4 h-4" />;
   };
 
+  // Reusable component for displaying audience lists
+  const AudienceList = ({ audiences, title, emptyMessage }: {
+    audiences: typeof mockAudiences,
+    title: string,
+    emptyMessage: string
+  }) => (
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <h3 className="text-lg font-semibold text-slate-800">
+          {audiences.length} audiencia{audiences.length !== 1 ? 's' : ''} {title.toLowerCase()}
+        </h3>
+      </div>
+
+      {audiences.length > 0 ? (
+        <div className="grid gap-4">
+          {audiences.map((audience) => (
+            <Card key={audience.id} className="hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
+                  {/* Left Section - Main Info */}
+                  <div className="lg:col-span-6">
+                    <div className="flex items-start justify-between mb-3">
+                      <div>
+                        <h4 className="font-semibold text-slate-800 mb-1">{audience.id}</h4>
+                        <div className="flex items-center gap-2 mb-2">
+                          <Badge className={CATEGORIES[audience.category as keyof typeof CATEGORIES].color}>
+                            {CATEGORIES[audience.category as keyof typeof CATEGORIES].name}
+                          </Badge>
+                          <Badge variant="outline">{audience.type}</Badge>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        {getStatusIcon(audience.status)}
+                        <Badge className={STATUS_CONFIG[audience.status as keyof typeof STATUS_CONFIG].color}>
+                          {STATUS_CONFIG[audience.status as keyof typeof STATUS_CONFIG].name}
+                        </Badge>
+                      </div>
+                    </div>
+                    <p className="text-slate-600 text-sm mb-3">{audience.description}</p>
+                  </div>
+
+                  {/* Right Section - Dates & Actions */}
+                  <div className="lg:col-span-4">
+                    <div className="space-y-2 text-sm">
+                      <div className="flex items-center gap-2 text-slate-600">
+                        <Calendar className="w-4 h-4" />
+                        <span>Solicitada: {format(audience.requestDate, "dd/MM/yyyy", { locale: es })}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-slate-600">
+                        <Clock className="w-4 h-4" />
+                        <span>Audiencia: {format(audience.audienceDate, "dd/MM/yyyy", { locale: es })}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-slate-600">
+                        {audience.meetingFormat === "presencial" ?
+                          <Building2 className="w-4 h-4" /> :
+                          <Phone className="w-4 h-4" />
+                        }
+                        <span>{audience.meetingFormat === "presencial" ? "Presencial" : "En línea"}</span>
+                      </div>
+                    </div>
+
+                    {audience.result && (
+                      <div className="mt-3 p-3 bg-green-50 border border-green-200 rounded-lg">
+                        <p className="text-green-800 text-sm font-medium">Resultado:</p>
+                        <p className="text-green-700 text-sm">{audience.result}</p>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Actions */}
+                  <div className="lg:col-span-2 flex flex-col gap-2">
+                    <Button size="sm" variant="outline" className="w-full">
+                      <Eye className="w-4 h-4 mr-2" />
+                      Ver Detalles
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      ) : (
+        <Card>
+          <CardContent className="p-12 text-center">
+            <div className="w-16 h-16 bg-slate-100 rounded-full mx-auto flex items-center justify-center mb-4">
+              <Search className="w-8 h-8 text-slate-400" />
+            </div>
+            <h3 className="text-lg font-semibold text-slate-800 mb-2">Sin audiencias</h3>
+            <p className="text-slate-600 mb-4">{emptyMessage}</p>
+            <Button asChild>
+              <Link to="/register">
+                <Plus className="w-4 h-4 mr-2" />
+                Nueva Solicitud
+              </Link>
+            </Button>
+          </CardContent>
+        </Card>
+      )}
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Header */}
