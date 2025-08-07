@@ -130,6 +130,7 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
     padding: 0 2px;
+    scroll-behavior: smooth;
   }
 
   .progress-steps::-webkit-scrollbar {
@@ -143,20 +144,43 @@
     min-width: fit-content;
   }
 
-  @media (max-width: 480px) {
+  /* Small screens (phones) */
+  @media (max-width: 640px) {
     .progress-steps {
-      gap: 0.5rem;
+      justify-content: flex-start;
+      gap: 0.25rem;
       padding: 0 4px;
     }
 
-    .progress-step-item {
-      flex-direction: column;
-      text-align: center;
-      min-width: 60px;
+    .progress-step-item .step-connector {
+      width: 1rem !important;
+      margin: 0 0.25rem !important;
+    }
+  }
+
+  /* Very small screens */
+  @media (max-width: 380px) {
+    .progress-steps {
+      gap: 0.125rem;
+      padding: 0 2px;
     }
 
     .progress-step-item .step-connector {
-      display: none;
+      width: 0.75rem !important;
+      margin: 0 0.125rem !important;
+    }
+  }
+
+  /* Extra small screens */
+  @media (max-width: 320px) {
+    .progress-steps {
+      gap: 0;
+      padding: 0 1px;
+    }
+
+    .progress-step-item .step-connector {
+      width: 0.5rem !important;
+      margin: 0 0.0625rem !important;
     }
   }
 }
