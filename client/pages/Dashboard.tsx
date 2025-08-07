@@ -124,15 +124,59 @@ export default function Dashboard() {
     setFormData((prev) => ({ ...prev, type }));
   };
 
-  const addNewType = () => {
-    if (newTypeValue.trim() && formData.category) {
-      // In a real app, this would save to backend
+  const addNewType = async () => {
+    // Reset error
+    setNewTypeError("");
+
+    // Validation
+    if (!newTypeValue.trim()) {
+      setNewTypeError("Por favor ingresa un nombre para el tipo");
+      return;
+    }
+
+    if (newTypeValue.trim().length < 3) {
+      setNewTypeError("El nombre debe tener al menos 3 caracteres");
+      return;
+    }
+
+    if (!formData.category) {
+      setNewTypeError("Primero selecciona una categoría");
+      return;
+    }
+
+    // Check if type already exists
+    const existingTypes = CATEGORY_TYPES[formData.category as keyof typeof CATEGORY_TYPES];
+    if (existingTypes.some(type => type.toLowerCase() === newTypeValue.trim().toLowerCase())) {
+      setNewTypeError("Este tipo ya existe en la categoría");
+      return;
+    }
+
+    setIsLoadingNewType(true);
+
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      // Add the new type
       CATEGORY_TYPES[formData.category as keyof typeof CATEGORY_TYPES].push(
-        newTypeValue,
+        newTypeValue.trim(),
       );
-      setFormData((prev) => ({ ...prev, type: newTypeValue }));
+
+      // Select the new type
+      setFormData((prev) => ({ ...prev, type: newTypeValue.trim() }));
+
+      // Reset form
       setNewTypeValue("");
+      setNewTypeError("");
       setIsAddingNewType(false);
+
+      // Show success message (you could add a toast here)
+      console.log("Nuevo tipo agregado exitosamente:", newTypeValue.trim());
+
+    } catch (error) {
+      setNewTypeError("Error al agregar el tipo. Intenta nuevamente.");
+    } finally {
+      setIsLoadingNewType(false);
     }
   };
 
