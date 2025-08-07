@@ -91,6 +91,7 @@ export default function Dashboard() {
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
   const [recordingTime, setRecordingTime] = useState(0);
   const [recordingTimer, setRecordingTimer] = useState<NodeJS.Timeout | null>(null);
+  const [redirectCountdown, setRedirectCountdown] = useState(4);
 
   const [formData, setFormData] = useState({
     category: "",
