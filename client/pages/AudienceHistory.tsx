@@ -718,6 +718,110 @@ export default function AudienceHistory() {
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* Details Modal */}
+      <Dialog open={isDetailsOpen} onOpenChange={setIsDetailsOpen}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Eye className="w-5 h-5" />
+              Detalles de la Audiencia: {selectedAudience?.id}
+            </DialogTitle>
+            <DialogDescription>
+              Información completa sobre la solicitud, respuestas y seguimientos
+            </DialogDescription>
+          </DialogHeader>
+
+          {selectedAudience && (
+            <div className="space-y-6">
+              {/* Basic Information */}
+              <div className="bg-slate-50 rounded-lg p-4">
+                <h3 className="font-semibold text-slate-800 mb-3">Información General</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-slate-600">Categoría</p>
+                    <p className="font-medium">{CATEGORY_CONFIG[selectedAudience.category as keyof typeof CATEGORY_CONFIG]?.name}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-slate-600">Tipo</p>
+                    <p className="font-medium">{selectedAudience.type}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-slate-600">Fecha de Solicitud</p>
+                    <p className="font-medium">{format(selectedAudience.requestDate, "PPP", { locale: es })}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-slate-600">Formato</p>
+                    <p className="font-medium">{selectedAudience.meetingFormat === "presencial" ? "Presencial" : "En línea"}</p>
+                  </div>
+                </div>
+                <div className="mt-4">
+                  <p className="text-sm text-slate-600">Descripción</p>
+                  <p className="font-medium">{selectedAudience.description}</p>
+                </div>
+                {selectedAudience.result && (
+                  <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+                    <p className="text-sm text-green-600 font-medium">Resultado Final</p>
+                    <p className="text-green-800">{selectedAudience.result}</p>
+                  </div>
+                )}
+              </div>
+
+              {/* Responses Timeline */}
+              <div>
+                <h3 className="font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5" />
+                  Historial de Respuestas
+                </h3>
+                <div className="space-y-4">
+                  {selectedAudience.responses?.map((response: any, index: number) => (
+                    <div key={index} className="border-l-4 border-blue-200 pl-4 py-2">
+                      <div className="flex justify-between items-start mb-2">
+                        <p className="font-medium text-slate-800">{response.author}</p>
+                        <p className="text-sm text-slate-500">{format(response.date, "PPP", { locale: es })}</p>
+                      </div>
+                      <p className="text-slate-700">{response.message}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Follow-ups */}
+              <div>
+                <h3 className="font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                  <AlertCircle className="w-5 h-5" />
+                  Seguimientos
+                </h3>
+                <div className="space-y-3">
+                  {selectedAudience.followUps?.map((followUp: any, index: number) => (
+                    <div key={index} className="border border-slate-200 rounded-lg p-4">
+                      <div className="flex justify-between items-start mb-2">
+                        <div className="flex items-center gap-2">
+                          <div className={`w-3 h-3 rounded-full ${
+                            followUp.status.includes("realizada") ? "bg-green-500" :
+                            followUp.status.includes("pendiente") ? "bg-yellow-500" :
+                            "bg-blue-500"
+                          }`}></div>
+                          <p className="font-medium text-slate-800">{followUp.status}</p>
+                        </div>
+                        <p className="text-sm text-slate-500">{format(followUp.date, "PPP", { locale: es })}</p>
+                      </div>
+                      <p className="text-slate-700">{followUp.details}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex justify-end gap-3 pt-4 border-t">
+                <Button variant="outline" onClick={() => setIsDetailsOpen(false)}>
+                  Cerrar
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
