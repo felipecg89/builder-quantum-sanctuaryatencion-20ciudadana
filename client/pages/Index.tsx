@@ -59,7 +59,7 @@ export default function Index() {
             <Button
               size="lg"
               asChild
-              className="text-xl font-bold px-12 py-8 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:from-blue-700 hover:via-blue-800 hover:to-blue-900 text-white shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 border-2 border-blue-500 hover:border-blue-400 ring-4 ring-blue-200 hover:ring-blue-300 animate-pulse hover:animate-none"
+              className="text-xl font-bold px-12 py-8 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:from-blue-700 hover:via-blue-800 hover:to-blue-900 text-white shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 border-2 border-blue-500 hover:border-blue-400 ring-4 ring-blue-200 hover:ring-blue-300"
             >
               <Link to="/register" className="flex items-center">
                 🎙️ Solicitar Audiencia
