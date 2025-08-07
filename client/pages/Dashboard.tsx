@@ -350,7 +350,7 @@ export default function Dashboard() {
   };
 
   const deleteAudioRecording = () => {
-    if (window.confirm('¿Estás seguro de eliminar la grabaci��n de audio?')) {
+    if (window.confirm('¿Est��s seguro de eliminar la grabaci��n de audio?')) {
       setAudioBlob(null);
       setAudioDescription("");
       setRecordingTime(0);
@@ -524,16 +524,16 @@ export default function Dashboard() {
               </div>
             </div>
 
-            <Card className="mx-1 sm:mx-0">
-              <CardHeader className="px-4 sm:px-6 py-4 sm:py-6">
-                <CardTitle className="text-lg sm:text-xl">
+            <Card className="mx-0 sm:mx-0">
+              <CardHeader className="px-3 sm:px-6 py-3 sm:py-6">
+                <CardTitle className="text-base sm:text-xl leading-tight">
                   {currentStep === 1 &&
                     "Paso 1: Selecciona la Categoría de Ayuda"}
                   {currentStep === 2 && "Paso 2: Selecciona el Tipo de Ayuda"}
                   {currentStep === 3 && "Describe tu solicitud"}
                   {currentStep === 4 && "Paso 4: Formato y Fecha de la Audiencia"}
                 </CardTitle>
-                <CardDescription className="text-sm sm:text-base">
+                <CardDescription className="text-xs sm:text-base leading-tight">
                   {currentStep === 1 &&
                     "Elige la categoría que mejor describa tu solicitud"}
                   {currentStep === 2 &&
@@ -542,7 +542,7 @@ export default function Dashboard() {
                     "Selecciona el formato de audiencia y fecha si es presencial"}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4 sm:space-y-6 px-4 sm:px-6 pb-4 sm:pb-6">
+              <CardContent className="space-y-3 sm:space-y-6 px-3 sm:px-6 pb-3 sm:pb-6">
                 {/* Step 1: Category Selection */}
                 {currentStep === 1 && (
                   <div className="space-y-4">
