@@ -357,10 +357,18 @@ export default function Dashboard() {
       audioDescription,
     });
 
-    // After 4 seconds, redirect to home page
-    setTimeout(() => {
-      navigate("/");
-    }, 4000);
+    // Start countdown
+    setRedirectCountdown(4);
+    const countdownInterval = setInterval(() => {
+      setRedirectCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(countdownInterval);
+          navigate("/");
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
   };
 
   const resetForm = () => {
