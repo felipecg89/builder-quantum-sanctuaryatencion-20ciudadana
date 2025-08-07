@@ -19,7 +19,6 @@ export default function App() {
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <FloatingBackButton />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/login" element={<Login />} />
