@@ -42,6 +42,9 @@ import {
   Plus,
   Phone,
   CheckCircle,
+  ChevronRight,
+  ChevronLeft,
+  Send,
 } from "lucide-react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
