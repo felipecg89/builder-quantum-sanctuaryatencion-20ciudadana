@@ -44,8 +44,7 @@ import {
   PartyPopper,
   Award,
   Megaphone,
-  MapPin,
-  Clock
+  MapPin
 } from "lucide-react";
 
 export default function Index() {
