@@ -98,7 +98,7 @@ const CATEGORY_TYPES = {
 
 export default function Dashboard() {
   const [user, setUser] = useState<any>(null);
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(0);
   const [isRecording, setIsRecording] = useState(false);
   const [audioDescription, setAudioDescription] = useState("");
   const [selectedDate, setSelectedDate] = useState<Date>();
@@ -1769,7 +1769,7 @@ export default function Dashboard() {
         <DialogContent className="max-w-2xl">
           <DialogHeader>
             <DialogTitle className="text-center text-xl text-green-700">
-              🎫 Ticket de Turno Confirmado
+              ���� Ticket de Turno Confirmado
             </DialogTitle>
           </DialogHeader>
 
