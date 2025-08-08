@@ -492,9 +492,28 @@ export default function Index() {
             </div>
             <span className="text-lg font-semibold">Presidencia Municipal</span>
           </div>
-          <p className="text-slate-400 mb-4">
+          <p className="text-slate-400 mb-6">
             Sistema oficial de audiencias ciudadanas
           </p>
+
+          {/* Admin Access */}
+          <div className="border-t border-slate-700 pt-6 mb-6">
+            <Button
+              asChild
+              variant="outline"
+              size="sm"
+              className="border-slate-600 text-slate-400 hover:text-white hover:border-slate-500"
+            >
+              <Link to="/admin/login" className="flex items-center gap-2">
+                <Shield className="w-4 h-4" />
+                Acceso Administrativo
+              </Link>
+            </Button>
+            <p className="text-xs text-slate-500 mt-2">
+              Panel exclusivo para funcionarios municipales
+            </p>
+          </div>
+
           <p className="text-slate-500 text-sm">
             © 2024 Presidencia Municipal. Todos los derechos reservados.
           </p>
