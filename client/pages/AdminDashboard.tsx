@@ -1094,6 +1094,191 @@ export default function AdminDashboard() {
             </div>
           </TabsContent>
 
+          {/* Gestión de Turnos de Viernes */}
+          <TabsContent value="turnos">
+            <Card>
+              <CardHeader>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <CardTitle className="flex items-center gap-2">
+                      <Clock className="w-5 h-5 text-green-600" />
+                      Gestión de Turnos - Audiencias Públicas de Viernes
+                    </CardTitle>
+                    <CardDescription>
+                      Administra los turnos y horarios para las audiencias públicas de cada viernes
+                    </CardDescription>
+                  </div>
+                  <Button className="bg-green-600 hover:bg-green-700">
+                    <Plus className="w-4 h-4 mr-2" />
+                    Configurar Fecha
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-6">
+                  {/* Información general */}
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                    <h3 className="font-semibold text-green-800 mb-2">Información del Sistema de Turnos</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-green-700">
+                      <div>
+                        <p className="font-medium">Frecuencia:</p>
+                        <p>Todos los viernes de cada mes</p>
+                      </div>
+                      <div>
+                        <p className="font-medium">Horario:</p>
+                        <p>9:00 AM - 12:00 PM</p>
+                      </div>
+                      <div>
+                        <p className="font-medium">Duración por turno:</p>
+                        <p>15 minutos</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Lista de fechas próximas */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-800 mb-4">Próximas Fechas de Audiencias Públicas</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {publicAudienceDates.map((dateOption, index) => (
+                        <Card
+                          key={index}
+                          className={`cursor-pointer transition-all duration-200 hover:shadow-md ${
+                            selectedManageDate?.date.getTime() === dateOption.date.getTime()
+                              ? 'border-green-500 bg-green-50'
+                              : 'border-slate-200 hover:border-green-300'
+                          }`}
+                          onClick={() => {
+                            setSelectedManageDate(dateOption);
+                            const slots = generateTimeSlots();
+                            setManageDateSlots(slots);
+                          }}
+                        >
+                          <CardContent className="p-4">
+                            <div className="space-y-2">
+                              <div className="flex justify-between items-start">
+                                <div>
+                                  <p className="font-medium text-slate-800">
+                                    {formatPublicAudienceDate(dateOption.date)}
+                                  </p>
+                                  <p className="text-sm text-slate-600">
+                                    Viernes #{dateOption.weekNumber} del mes
+                                  </p>
+                                </div>
+                                <Badge className={dateOption.isAvailable ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}>
+                                  {dateOption.isAvailable ? "Disponible" : "Completo"}
+                                </Badge>
+                              </div>
+                              <div className="flex justify-between text-sm">
+                                <span className="text-slate-600">Turnos ocupados:</span>
+                                <span className="font-medium text-green-600">
+                                  {dateOption.totalSlots - dateOption.slotsAvailable} / {dateOption.totalSlots}
+                                </span>
+                              </div>
+                              <div className="w-full bg-slate-200 rounded-full h-2">
+                                <div
+                                  className="bg-green-600 h-2 rounded-full transition-all duration-300"
+                                  style={{
+                                    width: `${((dateOption.totalSlots - dateOption.slotsAvailable) / dateOption.totalSlots) * 100}%`
+                                  }}
+                                ></div>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Gestión de horarios de la fecha seleccionada */}
+                  {selectedManageDate && (
+                    <div className="space-y-4">
+                      <div className="border-t pt-6">
+                        <h3 className="text-lg font-semibold text-slate-800 mb-4">
+                          Gestión de Turnos - {formatPublicAudienceDate(selectedManageDate.date)}
+                        </h3>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                          {manageDateSlots.map((slot) => (
+                            <Card
+                              key={slot.id}
+                              className={`${
+                                slot.available
+                                  ? 'border-green-200 bg-green-50'
+                                  : 'border-orange-200 bg-orange-50'
+                              }`}
+                            >
+                              <CardContent className="p-3">
+                                <div className="text-center space-y-2">
+                                  <p className="font-medium text-slate-800">{slot.time}</p>
+                                  <Badge
+                                    className={
+                                      slot.available
+                                        ? "bg-green-100 text-green-800"
+                                        : "bg-orange-100 text-orange-800"
+                                    }
+                                  >
+                                    {slot.available ? "Disponible" : "Ocupado"}
+                                  </Badge>
+                                  {!slot.available && slot.citizenName && (
+                                    <div className="space-y-1">
+                                      <p className="text-xs text-slate-600">Ciudadano:</p>
+                                      <p className="text-xs font-medium text-slate-800">{slot.citizenName}</p>
+                                    </div>
+                                  )}
+                                  <div className="flex gap-1">
+                                    {slot.available ? (
+                                      <Button
+                                        size="sm"
+                                        variant="outline"
+                                        className="w-full text-xs border-green-300 text-green-700 hover:bg-green-100"
+                                        onClick={() => {
+                                          // Simular asignación manual
+                                          const citizenName = prompt("Nombre del ciudadano:");
+                                          if (citizenName) {
+                                            const updatedSlots = manageDateSlots.map(s =>
+                                              s.id === slot.id
+                                                ? { ...s, available: false, citizenName }
+                                                : s
+                                            );
+                                            setManageDateSlots(updatedSlots);
+                                          }
+                                        }}
+                                      >
+                                        Asignar
+                                      </Button>
+                                    ) : (
+                                      <Button
+                                        size="sm"
+                                        variant="outline"
+                                        className="w-full text-xs border-red-300 text-red-700 hover:bg-red-100"
+                                        onClick={() => {
+                                          if (confirm("¿Liberar este turno?")) {
+                                            const updatedSlots = manageDateSlots.map(s =>
+                                              s.id === slot.id
+                                                ? { ...s, available: true, citizenName: undefined }
+                                                : s
+                                            );
+                                            setManageDateSlots(updatedSlots);
+                                          }
+                                        }}
+                                      >
+                                        Liberar
+                                      </Button>
+                                    )}
+                                  </div>
+                                </div>
+                              </CardContent>
+                            </Card>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
           <TabsContent value="reportes">
             <Card>
               <CardHeader>
