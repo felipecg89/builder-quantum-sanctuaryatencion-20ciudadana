@@ -256,6 +256,11 @@ export default function AdminDashboard() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [audiences, setAudiences] = useState(mockAdminData.recentAudiences);
+  const [activeTab, setActiveTab] = useState(() => {
+    // Verificar si se especifica una pestaña en la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('tab') || 'audiencias';
+  });
 
   // Estados para gestión de datos administrativos
   const [citizens, setCitizens] = useState(mockAdminData.citizens);
