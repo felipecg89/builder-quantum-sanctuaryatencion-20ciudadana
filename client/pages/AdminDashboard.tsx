@@ -561,7 +561,7 @@ export default function AdminDashboard() {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
-          <TabsList className="admin-tabs-list grid w-full grid-cols-6 h-20 p-3 rounded-xl">
+          <TabsList className="admin-tabs-list grid w-full grid-cols-7 h-20 p-3 rounded-xl">
             <TabsTrigger
               value="audiencias"
               className="admin-tab-trigger flex flex-col items-center gap-1.5 h-14 data-[state=active]:bg-gradient-to-br data-[state=active]:from-blue-500 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:border-blue-300 data-[state=active]:shadow-lg hover:bg-blue-50/70 transition-all duration-300 group"
