@@ -544,49 +544,67 @@ export default function AdminDashboard() {
           </Card>
         </div>
 
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-6 h-16 p-2 bg-gradient-to-r from-slate-50 to-slate-100 border shadow-sm">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
+          <TabsList className="admin-tabs-list grid w-full grid-cols-6 h-20 p-3 rounded-xl">
             <TabsTrigger
               value="audiencias"
-              className="flex flex-col items-center gap-1 h-12 data-[state=active]:bg-gradient-to-br data-[state=active]:from-blue-50 data-[state=active]:to-blue-100 data-[state=active]:text-blue-700 data-[state=active]:border-blue-200 data-[state=active]:shadow-md hover:bg-blue-50/50 transition-all duration-200"
+              className="admin-tab-trigger flex flex-col items-center gap-1.5 h-14 data-[state=active]:bg-gradient-to-br data-[state=active]:from-blue-500 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:border-blue-300 data-[state=active]:shadow-lg hover:bg-blue-50/70 transition-all duration-300 group"
             >
-              <MessageSquare className="w-4 h-4" />
-              <span className="text-xs font-medium">Audiencias</span>
+              <div className="relative">
+                <MessageSquare className="w-5 h-5 transition-transform group-hover:scale-110" />
+                <div className="absolute -top-1 -right-1 w-2 h-2 bg-blue-400 rounded-full data-[state=active]:bg-white animate-pulse"></div>
+              </div>
+              <span className="text-xs font-semibold tracking-wide">Audiencias</span>
             </TabsTrigger>
             <TabsTrigger
               value="ciudadanos"
-              className="flex flex-col items-center gap-1 h-12 data-[state=active]:bg-gradient-to-br data-[state=active]:from-purple-50 data-[state=active]:to-purple-100 data-[state=active]:text-purple-700 data-[state=active]:border-purple-200 data-[state=active]:shadow-md hover:bg-purple-50/50 transition-all duration-200"
+              className="admin-tab-trigger flex flex-col items-center gap-1.5 h-14 data-[state=active]:bg-gradient-to-br data-[state=active]:from-purple-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:border-purple-300 data-[state=active]:shadow-lg hover:bg-purple-50/70 transition-all duration-300 group"
             >
-              <Users className="w-4 h-4" />
-              <span className="text-xs font-medium">Ciudadanos</span>
+              <div className="relative">
+                <Users className="w-5 h-5 transition-transform group-hover:scale-110" />
+                <div className="absolute -top-1 -right-1 w-2 h-2 bg-purple-400 rounded-full data-[state=active]:bg-white animate-pulse"></div>
+              </div>
+              <span className="text-xs font-semibold tracking-wide">Ciudadanos</span>
             </TabsTrigger>
             <TabsTrigger
               value="expedientes"
-              className="flex flex-col items-center gap-1 h-12 data-[state=active]:bg-gradient-to-br data-[state=active]:from-amber-50 data-[state=active]:to-amber-100 data-[state=active]:text-amber-700 data-[state=active]:border-amber-200 data-[state=active]:shadow-md hover:bg-amber-50/50 transition-all duration-200"
+              className="admin-tab-trigger flex flex-col items-center gap-1.5 h-14 data-[state=active]:bg-gradient-to-br data-[state=active]:from-amber-500 data-[state=active]:to-amber-600 data-[state=active]:text-white data-[state=active]:border-amber-300 data-[state=active]:shadow-lg hover:bg-amber-50/70 transition-all duration-300 group"
             >
-              <FileText className="w-4 h-4" />
-              <span className="text-xs font-medium">Expedientes</span>
+              <div className="relative">
+                <FileText className="w-5 h-5 transition-transform group-hover:scale-110" />
+                <div className="absolute -top-1 -right-1 w-2 h-2 bg-amber-400 rounded-full data-[state=active]:bg-white animate-pulse"></div>
+              </div>
+              <span className="text-xs font-semibold tracking-wide">Expedientes</span>
             </TabsTrigger>
             <TabsTrigger
               value="personal"
-              className="flex flex-col items-center gap-1 h-12 data-[state=active]:bg-gradient-to-br data-[state=active]:from-indigo-50 data-[state=active]:to-indigo-100 data-[state=active]:text-indigo-700 data-[state=active]:border-indigo-200 data-[state=active]:shadow-md hover:bg-indigo-50/50 transition-all duration-200"
+              className="admin-tab-trigger flex flex-col items-center gap-1.5 h-14 data-[state=active]:bg-gradient-to-br data-[state=active]:from-indigo-500 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:border-indigo-300 data-[state=active]:shadow-lg hover:bg-indigo-50/70 transition-all duration-300 group"
             >
-              <UserPlus className="w-4 h-4" />
-              <span className="text-xs font-medium">Personal</span>
+              <div className="relative">
+                <UserPlus className="w-5 h-5 transition-transform group-hover:scale-110" />
+                <div className="absolute -top-1 -right-1 w-2 h-2 bg-indigo-400 rounded-full data-[state=active]:bg-white animate-pulse"></div>
+              </div>
+              <span className="text-xs font-semibold tracking-wide">Personal</span>
             </TabsTrigger>
             <TabsTrigger
               value="configuracion"
-              className="flex flex-col items-center gap-1 h-12 data-[state=active]:bg-gradient-to-br data-[state=active]:from-emerald-50 data-[state=active]:to-emerald-100 data-[state=active]:text-emerald-700 data-[state=active]:border-emerald-200 data-[state=active]:shadow-md hover:bg-emerald-50/50 transition-all duration-200 bg-emerald-50/30 border-emerald-100"
+              className="admin-tab-trigger flex flex-col items-center gap-1.5 h-14 data-[state=active]:bg-gradient-to-br data-[state=active]:from-emerald-500 data-[state=active]:to-emerald-600 data-[state=active]:text-white data-[state=active]:border-emerald-300 data-[state=active]:shadow-lg hover:bg-emerald-50/70 transition-all duration-300 group bg-emerald-50/50 border-emerald-200 ring-2 ring-emerald-100"
             >
-              <Wrench className="w-4 h-4" />
-              <span className="text-xs font-medium">Configuración</span>
+              <div className="relative">
+                <Wrench className="w-5 h-5 transition-transform group-hover:scale-110 group-hover:rotate-12" />
+                <div className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-400 rounded-full data-[state=active]:bg-white animate-pulse"></div>
+              </div>
+              <span className="text-xs font-semibold tracking-wide">Configuración</span>
             </TabsTrigger>
             <TabsTrigger
               value="reportes"
-              className="flex flex-col items-center gap-1 h-12 data-[state=active]:bg-gradient-to-br data-[state=active]:from-rose-50 data-[state=active]:to-rose-100 data-[state=active]:text-rose-700 data-[state=active]:border-rose-200 data-[state=active]:shadow-md hover:bg-rose-50/50 transition-all duration-200"
+              className="admin-tab-trigger flex flex-col items-center gap-1.5 h-14 data-[state=active]:bg-gradient-to-br data-[state=active]:from-rose-500 data-[state=active]:to-rose-600 data-[state=active]:text-white data-[state=active]:border-rose-300 data-[state=active]:shadow-lg hover:bg-rose-50/70 transition-all duration-300 group"
             >
-              <BarChart3 className="w-4 h-4" />
-              <span className="text-xs font-medium">Reportes</span>
+              <div className="relative">
+                <BarChart3 className="w-5 h-5 transition-transform group-hover:scale-110" />
+                <div className="absolute -top-1 -right-1 w-2 h-2 bg-rose-400 rounded-full data-[state=active]:bg-white animate-pulse"></div>
+              </div>
+              <span className="text-xs font-semibold tracking-wide">Reportes</span>
             </TabsTrigger>
           </TabsList>
 
