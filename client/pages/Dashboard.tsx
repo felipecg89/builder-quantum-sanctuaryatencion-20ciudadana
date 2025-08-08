@@ -120,6 +120,15 @@ export default function Dashboard() {
   );
   const [redirectCountdown, setRedirectCountdown] = useState(4);
 
+  // Estados para turnos de audiencias públicas
+  const [isTurnosModalOpen, setIsTurnosModalOpen] = useState(false);
+  const [selectedAudienceDate, setSelectedAudienceDate] = useState<PublicAudienceDate | null>(null);
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState<TimeSlot | null>(null);
+  const [turnosConsultaTema, setTurnosConsultaTema] = useState("");
+  const [availableDates, setAvailableDates] = useState<PublicAudienceDate[]>([]);
+  const [availableSlots, setAvailableSlots] = useState<TimeSlot[]>([]);
+  const [isBookingTurno, setIsBookingTurno] = useState(false);
+
   const [formData, setFormData] = useState({
     category: "",
     type: "",
