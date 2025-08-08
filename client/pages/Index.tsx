@@ -290,6 +290,170 @@ export default function Index() {
           </p>
         </div>
       </footer>
+
+      {/* Ayuda en Especie Modal */}
+      <Dialog open={isEspecieModalOpen} onOpenChange={setIsEspecieModalOpen}>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-xl">
+              <Package className="w-6 h-6 text-orange-600" />
+              Ayuda en Especie - Información Detallada
+            </DialogTitle>
+            <DialogDescription className="text-base">
+              Conoce todo lo que puedes solicitar como ayuda en especie a través del programa municipal
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-6">
+            {/* Introduction */}
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+              <h3 className="font-semibold text-orange-800 mb-2">¿Qué es la Ayuda en Especie?</h3>
+              <p className="text-orange-700 text-sm leading-relaxed">
+                La ayuda en especie son bienes materiales que el municipio proporciona directamente a las familias
+                que se encuentran en situación de vulnerabilidad o necesidad. No se entrega dinero, sino productos
+                concretos que cubren necesidades básicas.
+              </p>
+            </div>
+
+            {/* Categories */}
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Alimentos */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Heart className="w-5 h-5 text-red-500" />
+                  <h4 className="font-semibold text-slate-800">Alimentos Básicos</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Despensas mensuales completas</li>
+                  <li>• Leche en polvo para niños</li>
+                  <li>• Fórmulas especiales para bebés</li>
+                  <li>• Productos para adultos mayores</li>
+                  <li>• Suplementos nutricionales</li>
+                  <li>• Canastas navideñas</li>
+                </ul>
+              </div>
+
+              {/* Medicamentos */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Pill className="w-5 h-5 text-blue-500" />
+                  <h4 className="font-semibold text-slate-800">Medicamentos y Salud</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Medicamentos de uso común</li>
+                  <li>• Insulina y medicamentos crónicos</li>
+                  <li>• Material de curación</li>
+                  <li>• Equipo médico básico</li>
+                  <li>• Sillas de ruedas y muletas</li>
+                  <li>• Aparatos ortopédicos</li>
+                </ul>
+              </div>
+
+              {/* Materiales de Construcción */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Hammer className="w-5 h-5 text-gray-600" />
+                  <h4 className="font-semibold text-slate-800">Materiales de Construcción</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Cemento y arena</li>
+                  <li>• Varillas y alambrón</li>
+                  <li>• Láminas para techos</li>
+                  <li>• Tabiques y blocks</li>
+                  <li>• Materiales para pisos</li>
+                  <li>• Herramientas básicas</li>
+                </ul>
+              </div>
+
+              {/* Ropa y Enseres */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Shirt className="w-5 h-5 text-purple-500" />
+                  <h4 className="font-semibold text-slate-800">Ropa y Enseres</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Ropa para toda la familia</li>
+                  <li>• Zapatos y calzado</li>
+                  <li>• Cobijas y colchones</li>
+                  <li>• Utensilios de cocina</li>
+                  <li>• Artículos de higiene personal</li>
+                  <li>• Productos de limpieza</li>
+                </ul>
+              </div>
+
+              {/* Educación */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <GraduationCap className="w-5 h-5 text-green-500" />
+                  <h4 className="font-semibold text-slate-800">Material Educativo</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Útiles escolares completos</li>
+                  <li>• Uniformes escolares</li>
+                  <li>• Mochilas y zapatos escolares</li>
+                  <li>• Libros y material didáctico</li>
+                  <li>• Equipos de cómputo básicos</li>
+                  <li>• Material para manualidades</li>
+                </ul>
+              </div>
+
+              {/* Apoyo Especial */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Baby className="w-5 h-5 text-pink-500" />
+                  <h4 className="font-semibold text-slate-800">Apoyo Especial</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Pañales para bebés y adultos</li>
+                  <li>• Fórmulas especializadas</li>
+                  <li>• Equipos para discapacidad</li>
+                  <li>• Material para terapias</li>
+                  <li>• Productos geriátricos</li>
+                  <li>• Ayudas técnicas especiales</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Requirements */}
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <h3 className="font-semibold text-blue-800 mb-3">Requisitos Generales</h3>
+              <div className="grid md:grid-cols-2 gap-4 text-sm text-blue-700">
+                <div>
+                  <h4 className="font-medium mb-2">Documentación:</h4>
+                  <ul className="space-y-1">
+                    <li>• Identificación oficial</li>
+                    <li>• Comprobante de domicilio</li>
+                    <li>• Estudio socioeconómico</li>
+                    <li>• Recetas médicas (si aplica)</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2">Condiciones:</h4>
+                  <ul className="space-y-1">
+                    <li>• Residencia en el municipio</li>
+                    <li>• Situación de vulnerabilidad</li>
+                    <li>• Evaluación socioeconómica</li>
+                    <li>• Seguimiento del caso</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t">
+              <Button asChild className="flex-1">
+                <Link to="/login" className="flex items-center justify-center gap-2">
+                  <ArrowRight className="w-4 h-4" />
+                  Solicitar Ayuda en Especie
+                </Link>
+              </Button>
+              <Button variant="outline" onClick={() => setIsEspecieModalOpen(false)}>
+                Cerrar
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
