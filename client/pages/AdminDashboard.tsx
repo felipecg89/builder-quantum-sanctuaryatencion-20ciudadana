@@ -1458,10 +1458,22 @@ export default function AdminDashboard() {
                       públicas de cada viernes
                     </CardDescription>
                   </div>
-                  <Button className="bg-green-600 hover:bg-green-700">
-                    <Plus className="w-4 h-4 mr-2" />
-                    Configurar Fecha
-                  </Button>
+                  <div className="flex gap-2">
+                    <Button
+                      onClick={() => {
+                        loadTodayTurns();
+                        setShowTurnMonitor(true);
+                      }}
+                      className="bg-blue-600 hover:bg-blue-700"
+                    >
+                      <Activity className="w-4 h-4 mr-2" />
+                      Monitor de Turnos
+                    </Button>
+                    <Button className="bg-green-600 hover:bg-green-700">
+                      <Plus className="w-4 h-4 mr-2" />
+                      Configurar Fecha
+                    </Button>
+                  </div>
                 </div>
               </CardHeader>
               <CardContent>
