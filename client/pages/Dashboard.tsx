@@ -599,7 +599,7 @@ export default function Dashboard() {
       recorder.onerror = (event) => {
         console.error("Recording error:", event);
         setIsRecording(false);
-        alert("Error al grabar audio. Verifica los permisos del micrófono.");
+        alert("Error al grabar audio. Verifica los permisos del micr��fono.");
       };
 
       // Start recording
@@ -759,6 +759,17 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="flex items-center gap-2">
+            {currentStep > 0 && (
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => navigate('/')}
+                className="border-blue-200 text-blue-700 hover:bg-blue-50"
+              >
+                <ArrowLeft className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                <span className="hidden sm:inline">Inicio</span>
+              </Button>
+            )}
             <Button
               size="sm"
               variant="outline"
