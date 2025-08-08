@@ -50,7 +50,9 @@ import {
   Store,
   ClipboardCheck,
   Stamp,
-  FileCheck
+  FileCheck,
+  ArrowDown,
+  CheckCircle2
 } from "lucide-react";
 
 export default function Index() {
@@ -385,7 +387,7 @@ export default function Index() {
           <div className="space-y-6">
             {/* Introduction */}
             <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-              <h3 className="font-semibold text-orange-800 mb-2">¿Qué es la Ayuda en Especie?</h3>
+              <h3 className="font-semibold text-orange-800 mb-2">��Qué es la Ayuda en Especie?</h3>
               <p className="text-orange-700 text-sm leading-relaxed">
                 La ayuda en especie son bienes materiales que el municipio proporciona directamente a las familias
                 que se encuentran en situación de vulnerabilidad o necesidad. No se entrega dinero, sino productos
@@ -796,7 +798,7 @@ export default function Index() {
                   <li>• Concursos de fotografía municipal</li>
                   <li>• Certámenes de dibujo infantil</li>
                   <li>• Competencias deportivas locales</li>
-                  <li>• Convocatorias de voluntariado</li>
+                  <li>�� Convocatorias de voluntariado</li>
                   <li>• Selección de reinas y embajadores</li>
                   <li>• Concursos gastronómicos</li>
                   <li>• Torneos de ajedrez comunitarios</li>
