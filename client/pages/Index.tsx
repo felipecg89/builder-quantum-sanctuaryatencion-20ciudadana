@@ -380,7 +380,7 @@ export default function Index() {
                   <li>• Despensas mensuales completas</li>
                   <li>• Leche en polvo para niños</li>
                   <li>• Fórmulas especiales para bebés</li>
-                  <li>• Productos para adultos mayores</li>
+                  <li>��� Productos para adultos mayores</li>
                   <li>• Suplementos nutricionales</li>
                   <li>• Canastas navideñas</li>
                 </ul>
@@ -638,6 +638,204 @@ export default function Index() {
                 </Link>
               </Button>
               <Button variant="outline" onClick={() => setIsServiciosModalOpen(false)}>
+                Cerrar
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Invitaciones Modal */}
+      <Dialog open={isInvitacionesModalOpen} onOpenChange={setIsInvitacionesModalOpen}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-xl">
+              <Calendar className="w-6 h-6 text-green-600" />
+              Invitaciones y Eventos - Información Detallada
+            </DialogTitle>
+            <DialogDescription className="text-base">
+              Descubre los eventos públicos, ceremonias y reuniones comunitarias organizadas por el municipio
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-6">
+            {/* Introduction */}
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <h3 className="font-semibold text-green-800 mb-2">¿Qué son las Invitaciones Municipales?</h3>
+              <p className="text-green-700 text-sm leading-relaxed">
+                El municipio organiza diversos eventos públicos, ceremonias oficiales y reuniones comunitarias
+                para mantener informada a la ciudadanía, celebrar fechas importantes y fomentar la participación
+                ciudadana. Estas invitaciones permiten a los ciudadanos participar activamente en la vida municipal.
+              </p>
+            </div>
+
+            {/* Event Categories */}
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Eventos Públicos */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <PartyPopper className="w-5 h-5 text-blue-500" />
+                  <h4 className="font-semibold text-slate-800">Eventos Públicos</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Festivales culturales municipales</li>
+                  <li>• Ferias gastronómicas y artesanales</li>
+                  <li>• Conciertos al aire libre</li>
+                  <li>• Eventos deportivos comunitarios</li>
+                  <li>• Celebraciones patrias</li>
+                  <li>• Kermeses familiares</li>
+                  <li>• Exposiciones artísticas</li>
+                  <li>• Obras de teatro comunitarias</li>
+                </ul>
+              </div>
+
+              {/* Ceremonias Oficiales */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Award className="w-5 h-5 text-yellow-500" />
+                  <h4 className="font-semibold text-slate-800">Ceremonias Oficiales</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Toma de protesta de funcionarios</li>
+                  <li>• Entrega de reconocimientos ciudadanos</li>
+                  <li>• Ceremonias de grito de independencia</li>
+                  <li>• Inauguración de obras públicas</li>
+                  <li>• Homenajes a personajes ilustres</li>
+                  <li>• Graduaciones de programas municipales</li>
+                  <li>• Ceremonias religiosas cívicas</li>
+                  <li>• Actos protocolarios especiales</li>
+                </ul>
+              </div>
+
+              {/* Reuniones Comunitarias */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Users className="w-5 h-5 text-purple-500" />
+                  <h4 className="font-semibold text-slate-800">Reuniones Comunitarias</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Asambleas ciudadanas informativas</li>
+                  <li>• Consultas públicas sobre proyectos</li>
+                  <li>• Reuniones de colonos y vecinos</li>
+                  <li>• Sesiones de cabildo abierto</li>
+                  <li>• Foros de participación ciudadana</li>
+                  <li>• Presentación de informes municipales</li>
+                  <li>• Mesas de diálogo comunitario</li>
+                  <li>• Reuniones de comités ciudadanos</li>
+                </ul>
+              </div>
+
+              {/* Eventos Informativos */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Megaphone className="w-5 h-5 text-red-500" />
+                  <h4 className="font-semibold text-slate-800">Eventos Informativos</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Conferencias de prensa municipales</li>
+                  <li>• Presentación de nuevos programas</li>
+                  <li>• Talleres de capacitación ciudadana</li>
+                  <li>• Seminarios de desarrollo comunitario</li>
+                  <li>• Pláticas de salud pública</li>
+                  <li>• Charlas de protección civil</li>
+                  <li>• Cursos de emprendimiento</li>
+                  <li>• Capacitaciones laborales gratuitas</li>
+                </ul>
+              </div>
+
+              {/* Actividades Especiales */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Heart className="w-5 h-5 text-pink-500" />
+                  <h4 className="font-semibold text-slate-800">Actividades Especiales</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Jornadas de salud comunitaria</li>
+                  <li>• Campañas de donación de sangre</li>
+                  <li>• Brigadas de limpieza comunitaria</li>
+                  <li>• Programas de reforestación</li>
+                  <li>• Actividades del adulto mayor</li>
+                  <li>• Eventos para personas con discapacidad</li>
+                  <li>• Actividades navideñas especiales</li>
+                  <li>• Programas de intercambio cultural</li>
+                </ul>
+              </div>
+
+              {/* Convocatorias Ciudadanas */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <HandHeart className="w-5 h-5 text-indigo-500" />
+                  <h4 className="font-semibold text-slate-800">Convocatorias Ciudadanas</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Concursos de fotografía municipal</li>
+                  <li>• Certámenes de dibujo infantil</li>
+                  <li>• Competencias deportivas locales</li>
+                  <li>• Convocatorias de voluntariado</li>
+                  <li>• Selección de reinas y embajadores</li>
+                  <li>• Concursos gastronómicos</li>
+                  <li>• Torneos de ajedrez comunitarios</li>
+                  <li>• Festivales de talentos locales</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* How to Participate */}
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <h3 className="font-semibold text-blue-800 mb-3">¿Cómo Participar en los Eventos?</h3>
+              <div className="grid md:grid-cols-3 gap-4 text-sm text-blue-700">
+                <div>
+                  <h4 className="font-medium mb-2 flex items-center gap-1">
+                    <Megaphone className="w-4 h-4" />
+                    1. Mantente Informado
+                  </h4>
+                  <p>Sigue nuestras publicaciones oficiales y redes sociales para conocer próximos eventos</p>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2 flex items-center gap-1">
+                    <Calendar className="w-4 h-4" />
+                    2. Confirma Asistencia
+                  </h4>
+                  <p>Algunos eventos requieren confirmación previa. Registra tu asistencia cuando sea necesario</p>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2 flex items-center gap-1">
+                    <MapPin className="w-4 h-4" />
+                    3. Asiste Puntualmente
+                  </h4>
+                  <p>Llega a tiempo al lugar indicado y participa activamente en las actividades programadas</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Benefits */}
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+              <h3 className="font-semibold text-yellow-800 mb-2">Beneficios de Participar</h3>
+              <div className="grid md:grid-cols-2 gap-4 text-sm text-yellow-700">
+                <ul className="space-y-1">
+                  <li>• Mantenerte informado sobre decisiones municipales</li>
+                  <li>• Conocer nuevos programas y servicios disponibles</li>
+                  <li>• Participar en la toma de decisiones comunitarias</li>
+                  <li>• Fortalecer lazos comunitarios y vecinales</li>
+                </ul>
+                <ul className="space-y-1">
+                  <li>• Acceder a actividades culturales gratuitas</li>
+                  <li>• Obtener información de primera mano</li>
+                  <li>• Contribuir al desarrollo de tu comunidad</li>
+                  <li>• Disfrutar de entretenimiento familiar</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t">
+              <Button asChild className="flex-1">
+                <Link to="/login" className="flex items-center justify-center gap-2">
+                  <ArrowRight className="w-4 h-4" />
+                  Solicitar Invitación Especial
+                </Link>
+              </Button>
+              <Button variant="outline" onClick={() => setIsInvitacionesModalOpen(false)}>
                 Cerrar
               </Button>
             </div>
