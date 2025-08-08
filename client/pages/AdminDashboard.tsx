@@ -293,7 +293,7 @@ export default function AdminDashboard() {
     setIsManageOpen(false);
   };
 
-  const filteredAudiences = mockAdminData.recentAudiences.filter(audience => {
+  const filteredAudiences = audiences.filter(audience => {
     const matchesSearch = audience.citizen.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          audience.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          audience.description.toLowerCase().includes(searchTerm.toLowerCase());
