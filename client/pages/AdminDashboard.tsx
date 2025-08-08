@@ -534,13 +534,15 @@ export default function AdminDashboard() {
           </Card>
         </div>
 
-        <Tabs defaultValue="audiencias" className="space-y-6">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
           <TabsList className="grid w-full grid-cols-6">
             <TabsTrigger value="audiencias">Audiencias</TabsTrigger>
             <TabsTrigger value="ciudadanos">Ciudadanos</TabsTrigger>
             <TabsTrigger value="expedientes">Expedientes</TabsTrigger>
             <TabsTrigger value="personal">Personal</TabsTrigger>
-            <TabsTrigger value="configuracion">Configuración</TabsTrigger>
+            <TabsTrigger value="configuracion" className="bg-emerald-50 text-emerald-700 data-[state=active]:bg-emerald-100">
+              Configuración
+            </TabsTrigger>
             <TabsTrigger value="reportes">Reportes</TabsTrigger>
           </TabsList>
 
