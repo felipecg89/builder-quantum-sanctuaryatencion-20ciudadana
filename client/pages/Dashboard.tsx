@@ -1476,8 +1476,8 @@ export default function Dashboard() {
                         </Popover>
 
                         <p className="text-sm text-slate-600">
-                          * Las audiencias están disponibles de lunes a viernes
-                          en horario de oficina
+                          * Las citas presenciales están disponibles de lunes a viernes
+                          en horario de oficina (8:00 AM - 5:00 PM)
                         </p>
                       </div>
                     )}
