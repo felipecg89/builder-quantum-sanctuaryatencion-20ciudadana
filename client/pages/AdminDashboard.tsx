@@ -151,9 +151,22 @@ export default function AdminDashboard() {
   const [user, setUser] = useState<any>(null);
   const [selectedAudience, setSelectedAudience] = useState<any>(null);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [isManageOpen, setIsManageOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [categoryFilter, setCategoryFilter] = useState("all");
+  const [audiences, setAudiences] = useState(mockAdminData.recentAudiences);
+
+  // Estados para el modal de gestión
+  const [actionType, setActionType] = useState("");
+  const [response, setResponse] = useState("");
+  const [assignedTo, setAssignedTo] = useState("");
+  const [scheduledDate, setScheduledDate] = useState("");
+  const [scheduledTime, setScheduledTime] = useState("");
+  const [meetingFormat, setMeetingFormat] = useState("");
+  const [priority, setPriority] = useState("");
+  const [notes, setNotes] = useState("");
+
   const navigate = useNavigate();
 
   useEffect(() => {
