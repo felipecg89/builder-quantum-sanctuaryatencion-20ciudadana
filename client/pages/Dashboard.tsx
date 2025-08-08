@@ -353,27 +353,23 @@ export default function Dashboard() {
       });
       setAvailableDates(updatedDates);
 
-      // Mostrar confirmación mejorada
-      const confirmationMessage = `🎉 ¡Turno reservado exitosamente!
+      // Crear datos del ticket
+      const ticketData = {
+        turnNumber: turnNumber,
+        date: selectedAudienceDate.date,
+        formattedDate: formatPublicAudienceDate(selectedAudienceDate.date),
+        time: selectedTimeSlot.time,
+        tema: turnosConsultaTema,
+        citizenName: user.name,
+        citizenPhone: user.phone,
+        reservedAt: new Date()
+      };
 
-📋 DETALLES DE TU TURNO:
-• Número de turno: ${turnNumber}
-• Fecha: ${formatPublicAudienceDate(selectedAudienceDate.date)}
-• Hora: ${selectedTimeSlot.time}
-• Tema: ${turnosConsultaTema}
+      // Mostrar ticket visual
+      setCurrentTurnTicket(ticketData);
+      setShowTurnTicket(true);
 
-📍 INSTRUCCIONES IMPORTANTES:
-• Llega 15 minutos antes de tu turno
-• Trae identificación oficial
-• Ubicación: Presidencia Municipal
-• Duración máxima: 15 minutos
-
-💾 Tu turno ha sido guardado automáticamente.
-📱 Recibirás un recordatorio por SMS.`;
-
-      alert(confirmationMessage);
-
-      // Limpiar formulario
+      // Limpiar formulario del modal original
       setSelectedAudienceDate(null);
       setSelectedTimeSlot(null);
       setTurnosConsultaTema("");
