@@ -931,7 +931,7 @@ export default function Dashboard() {
                   {currentStep === 2 &&
                     "Especifica el tipo de ayuda, servicio o trámite que requieres"}
                   {currentStep === 4 &&
-                    "Selecciona el formato de audiencia y fecha si es presencial"}
+                    "Elige si prefieres atención virtual o presencial para tu solicitud"}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-3 sm:space-y-6 px-3 sm:px-6 pb-3 sm:pb-6">
