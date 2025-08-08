@@ -652,20 +652,229 @@ export default function AdminDashboard() {
 
               {/* Acciones Administrativas */}
               <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t">
-                <Button className="flex-1">
-                  <CheckCircle className="w-4 h-4 mr-2" />
-                  Aprobar
-                </Button>
-                <Button variant="outline" className="flex-1">
-                  <MessageSquare className="w-4 h-4 mr-2" />
-                  Responder
-                </Button>
-                <Button variant="outline" className="flex-1">
+                <Button
+                  className="flex-1"
+                  onClick={() => {
+                    setIsDetailsOpen(false);
+                    handleManage(selectedAudience);
+                  }}
+                >
                   <Edit className="w-4 h-4 mr-2" />
-                  Programar
+                  Gestionar
                 </Button>
                 <Button variant="outline" onClick={() => setIsDetailsOpen(false)}>
                   Cerrar
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Modal de Gestión Integral */}
+      <Dialog open={isManageOpen} onOpenChange={setIsManageOpen}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Edit className="w-5 h-5" />
+              Gestionar Audiencia: {selectedAudience?.id}
+            </DialogTitle>
+            <DialogDescription>
+              Realiza acciones administrativas sobre esta solicitud
+            </DialogDescription>
+          </DialogHeader>
+
+          {selectedAudience && (
+            <div className="space-y-6">
+              {/* Información Resumida */}
+              <div className="bg-slate-50 rounded-lg p-4">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <h4 className="font-semibold text-slate-800">{selectedAudience.citizen}</h4>
+                    <p className="text-sm text-slate-600">{selectedAudience.phone}</p>
+                    <div className="flex items-center gap-2 mt-2">
+                      <Badge className={CATEGORY_CONFIG[selectedAudience.category as keyof typeof CATEGORY_CONFIG].color}>
+                        {CATEGORY_CONFIG[selectedAudience.category as keyof typeof CATEGORY_CONFIG].name}
+                      </Badge>
+                      <Badge className={STATUS_CONFIG[selectedAudience.status as keyof typeof STATUS_CONFIG].color}>
+                        {STATUS_CONFIG[selectedAudience.status as keyof typeof STATUS_CONFIG].name}
+                      </Badge>
+                    </div>
+                  </div>
+                  <Badge className={PRIORITY_CONFIG[selectedAudience.priority as keyof typeof PRIORITY_CONFIG].color}>
+                    {PRIORITY_CONFIG[selectedAudience.priority as keyof typeof PRIORITY_CONFIG].name}
+                  </Badge>
+                </div>
+                <p className="text-sm text-slate-700 mt-3">{selectedAudience.description}</p>
+              </div>
+
+              {/* Selección de Acción */}
+              <div className="space-y-4">
+                <div>
+                  <Label htmlFor="action-type">Selecciona la acción a realizar</Label>
+                  <Select value={actionType} onValueChange={setActionType}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Elige una acción..." />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="aprobar">
+                        <div className="flex items-center gap-2">
+                          <CheckCircle className="w-4 h-4 text-green-600" />
+                          Aprobar Audiencia
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="rechazar">
+                        <div className="flex items-center gap-2">
+                          <XCircle className="w-4 h-4 text-red-600" />
+                          Rechazar Audiencia
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="responder">
+                        <div className="flex items-center gap-2">
+                          <MessageSquare className="w-4 h-4 text-blue-600" />
+                          Enviar Respuesta
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="programar">
+                        <div className="flex items-center gap-2">
+                          <CalendarDays className="w-4 h-4 text-purple-600" />
+                          Programar Audiencia
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="asignar">
+                        <div className="flex items-center gap-2">
+                          <UserPlus className="w-4 h-4 text-orange-600" />
+                          Asignar Responsable
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="completar">
+                        <div className="flex items-center gap-2">
+                          <CheckCircle className="w-4 h-4 text-green-600" />
+                          Marcar como Completada
+                        </div>
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Formularios Condicionales */}
+                {(actionType === "responder" || actionType === "rechazar") && (
+                  <div>
+                    <Label htmlFor="response">
+                      {actionType === "responder" ? "Respuesta para el ciudadano" : "Motivo del rechazo"}
+                    </Label>
+                    <Textarea
+                      id="response"
+                      placeholder={actionType === "responder"
+                        ? "Escribe tu respuesta..."
+                        : "Explica el motivo del rechazo..."}
+                      value={response}
+                      onChange={(e) => setResponse(e.target.value)}
+                      rows={4}
+                    />
+                  </div>
+                )}
+
+                {actionType === "programar" && (
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                      <Label htmlFor="scheduled-date">Fecha</Label>
+                      <Input
+                        id="scheduled-date"
+                        type="date"
+                        value={scheduledDate}
+                        onChange={(e) => setScheduledDate(e.target.value)}
+                        min={new Date().toISOString().split('T')[0]}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="scheduled-time">Hora</Label>
+                      <Input
+                        id="scheduled-time"
+                        type="time"
+                        value={scheduledTime}
+                        onChange={(e) => setScheduledTime(e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="meeting-format">Modalidad</Label>
+                      <Select value={meetingFormat} onValueChange={setMeetingFormat}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Selecciona modalidad" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="presencial">Presencial</SelectItem>
+                          <SelectItem value="virtual">Virtual</SelectItem>
+                          <SelectItem value="telefonica">Telefónica</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                )}
+
+                {(actionType === "asignar" || actionType === "aprobar" || actionType === "programar") && (
+                  <div>
+                    <Label htmlFor="assigned-to">Asignar a</Label>
+                    <Select value={assignedTo} onValueChange={setAssignedTo}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Selecciona responsable" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Dr. Martínez">Dr. Martínez - Servicios Médicos</SelectItem>
+                        <SelectItem value="Ing. López">Ing. López - Trámites y Licencias</SelectItem>
+                        <SelectItem value="Lic. García">Lic. García - Asuntos Sociales</SelectItem>
+                        <SelectItem value="C. Rodríguez">C. Rodríguez - Ayuda en Especie</SelectItem>
+                        <SelectItem value="Coord. Eventos">Coord. Eventos - Invitaciones</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
+
+                {/* Cambiar Prioridad */}
+                <div>
+                  <Label htmlFor="priority">Prioridad</Label>
+                  <Select value={priority} onValueChange={setPriority}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecciona prioridad" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="urgente">Urgente</SelectItem>
+                      <SelectItem value="alta">Alta</SelectItem>
+                      <SelectItem value="media">Media</SelectItem>
+                      <SelectItem value="baja">Baja</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Notas Adicionales */}
+                <div>
+                  <Label htmlFor="notes">Notas adicionales (opcional)</Label>
+                  <Textarea
+                    id="notes"
+                    placeholder="Agrega cualquier observación o comentario interno..."
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    rows={3}
+                  />
+                </div>
+              </div>
+
+              {/* Acciones */}
+              <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t">
+                <Button
+                  onClick={handleSaveAction}
+                  className="flex-1"
+                  disabled={!actionType}
+                >
+                  <Send className="w-4 h-4 mr-2" />
+                  Ejecutar Acción
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => setIsManageOpen(false)}
+                  className="flex-1"
+                >
+                  Cancelar
                 </Button>
               </div>
             </div>
