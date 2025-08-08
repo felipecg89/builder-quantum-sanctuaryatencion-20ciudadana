@@ -101,7 +101,7 @@ export default function Index() {
               className="text-xl font-bold px-12 py-8 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:from-blue-700 hover:via-blue-800 hover:to-blue-900 text-white shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 border-2 border-blue-500 hover:border-blue-400 ring-4 ring-blue-200 hover:ring-blue-300"
             >
               <Link to="/login" className="flex items-center">
-                🎙️ Solicitar Audiencia
+                ��️ Solicitar Audiencia
                 <ArrowRight className="ml-3 w-6 h-6 animate-bounce" />
               </Link>
             </Button>
@@ -709,7 +709,7 @@ export default function Index() {
                   <li>• Eventos deportivos comunitarios</li>
                   <li>• Celebraciones patrias</li>
                   <li>• Kermeses familiares</li>
-                  <li>• Exposiciones artísticas</li>
+                  <li>�� Exposiciones artísticas</li>
                   <li>• Obras de teatro comunitarias</li>
                 </ul>
               </div>
@@ -861,6 +861,229 @@ export default function Index() {
                 </Link>
               </Button>
               <Button variant="outline" onClick={() => setIsInvitacionesModalOpen(false)}>
+                Cerrar
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Trámites Modal */}
+      <Dialog open={isTramitesModalOpen} onOpenChange={setIsTramitesModalOpen}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-xl">
+              <FileText className="w-6 h-6 text-purple-600" />
+              Trámites Municipales - Información Detallada
+            </DialogTitle>
+            <DialogDescription className="text-base">
+              Conoce todos los trámites, licencias, permisos y certificados que puedes gestionar a través del municipio
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-6">
+            {/* Introduction */}
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+              <h3 className="font-semibold text-purple-800 mb-2">¿Qué trámites puedes realizar?</h3>
+              <p className="text-purple-700 text-sm leading-relaxed">
+                El municipio ofrece diversos servicios de tramitación para facilitar a los ciudadanos la obtención
+                de documentos oficiales, licencias, permisos y certificados necesarios para actividades comerciales,
+                construcción, eventos y otros requerimientos legales. Simplificamos los procesos para mayor eficiencia.
+              </p>
+            </div>
+
+            {/* Tramites Categories */}
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Licencias Comerciales */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Store className="w-5 h-5 text-blue-500" />
+                  <h4 className="font-semibold text-slate-800">Licencias Comerciales</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Licencia de funcionamiento comercial</li>
+                  <li>• Permiso para venta de alimentos</li>
+                  <li>• Licencia de venta de bebidas alcohólicas</li>
+                  <li>• Permiso para eventos y espectáculos</li>
+                  <li>• Licencia para establecimientos temporales</li>
+                  <li>• Autorización de horarios especiales</li>
+                  <li>• Permiso de ocupación de vía pública</li>
+                  <li>• Registro de actividad económica</li>
+                </ul>
+              </div>
+
+              {/* Permisos de Construcción */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Hammer className="w-5 h-5 text-orange-500" />
+                  <h4 className="font-semibold text-slate-800">Permisos de Construcción</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Licencia de construcción nueva</li>
+                  <li>• Permiso de remodelación y ampliación</li>
+                  <li>• Autorización de demolición</li>
+                  <li>• Permiso de excavación en vía pública</li>
+                  <li>• Licencia de subdivisión de predios</li>
+                  <li>• Autorización de uso de suelo</li>
+                  <li>• Constancia de alineamiento</li>
+                  <li>• Número oficial y nomenclatura</li>
+                </ul>
+              </div>
+
+              {/* Certificados y Constancias */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <ClipboardCheck className="w-5 h-5 text-green-500" />
+                  <h4 className="font-semibold text-slate-800">Certificados y Constancias</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Constancia de residencia</li>
+                  <li>• Certificado de no adeudo predial</li>
+                  <li>• Constancia de ingresos</li>
+                  <li>• Certificado de soltería</li>
+                  <li>• Constancia de dependencia económica</li>
+                  <li>• Certificado médico básico</li>
+                  <li>• Constancia de estudios</li>
+                  <li>• Carta de recomendación municipal</li>
+                </ul>
+              </div>
+
+              {/* Registros Civiles */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <FileCheck className="w-5 h-5 text-red-500" />
+                  <h4 className="font-semibold text-slate-800">Registros Civiles</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Registro de nacimiento</li>
+                  <li>• Actas de matrimonio civil</li>
+                  <li>• Registro de defunción</li>
+                  <li>• Corrección de actas</li>
+                  <li>• Reconocimiento de paternidad</li>
+                  <li>• Divorcios administrativos</li>
+                  <li>• Adopciones municipales</li>
+                  <li>• Cambio de nombre</li>
+                </ul>
+              </div>
+
+              {/* Trámites Vehiculares */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Car className="w-5 h-5 text-gray-600" />
+                  <h4 className="font-semibold text-slate-800">Trámites Vehiculares</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Refrendo de placas municipales</li>
+                  <li>• Licencias de conducir locales</li>
+                  <li>• Permisos de circulación especial</li>
+                  <li>• Tarjeta de circulación municipal</li>
+                  <li>• Permiso de transporte público</li>
+                  <li>• Autorización de remolques</li>
+                  <li>• Constancia de no infracciones</li>
+                  <li>• Cambio de propietario</li>
+                </ul>
+              </div>
+
+              {/* Trámites Fiscales */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <CreditCard className="w-5 h-5 text-purple-500" />
+                  <h4 className="font-semibold text-slate-800">Trámites Fiscales</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Alta en padrón de contribuyentes</li>
+                  <li>• Actualización de datos fiscales</li>
+                  <li>• Solicitud de convenios de pago</li>
+                  <li>• Exención de impuestos (casos especiales)</li>
+                  <li>• Certificado de no adeudo fiscal</li>
+                  <li>• Facturación de servicios municipales</li>
+                  <li>• Consulta de adeudos</li>
+                  <li>• Descuentos para adultos mayores</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Process Information */}
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <h3 className="font-semibold text-blue-800 mb-3">Proceso de Tramitación</h3>
+              <div className="grid md:grid-cols-4 gap-4 text-sm text-blue-700">
+                <div>
+                  <h4 className="font-medium mb-2 flex items-center gap-1">
+                    <PenTool className="w-4 h-4" />
+                    1. Solicitud
+                  </h4>
+                  <p>Presenta tu solicitud con la documentación requerida</p>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2 flex items-center gap-1">
+                    <ClipboardCheck className="w-4 h-4" />
+                    2. Revisión
+                  </h4>
+                  <p>Nuestro personal revisará tu expediente y documentos</p>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2 flex items-center gap-1">
+                    <CreditCard className="w-4 h-4" />
+                    3. Pago
+                  </h4>
+                  <p>Realiza el pago de derechos correspondientes</p>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2 flex items-center gap-1">
+                    <Stamp className="w-4 h-4" />
+                    4. Entrega
+                  </h4>
+                  <p>Recibe tu documento oficial listo</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Requirements */}
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+              <h3 className="font-semibold text-yellow-800 mb-3">Requisitos Generales</h3>
+              <div className="grid md:grid-cols-2 gap-4 text-sm text-yellow-700">
+                <div>
+                  <h4 className="font-medium mb-2">Documentación Básica:</h4>
+                  <ul className="space-y-1">
+                    <li>• Identificación oficial vigente</li>
+                    <li>• Comprobante de domicilio reciente</li>
+                    <li>• CURP actualizada</li>
+                    <li>• Formato de solicitud lleno</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2">Condiciones:</h4>
+                  <ul className="space-y-1">
+                    <li>• Ser mayor de edad o representante legal</li>
+                    <li>• Estar al corriente en pagos municipales</li>
+                    <li>• Cumplir con normativas específicas</li>
+                    <li>• Presentar documentos originales</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Important Notes */}
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <h3 className="font-semibold text-red-800 mb-2">Notas Importantes</h3>
+              <ul className="space-y-1 text-sm text-red-700">
+                <li>• Los tiempos de tramitación varían según el tipo de documento</li>
+                <li>• Algunos trámites requieren inspección previa</li>
+                <li>• Las tarifas están sujetas a la Ley de Ingresos Municipal vigente</li>
+                <li>• Documenta falsa o alterada será rechazada</li>
+                <li>• Consulta horarios de atención específicos para cada trámite</li>
+              </ul>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t">
+              <Button asChild className="flex-1">
+                <Link to="/login" className="flex items-center justify-center gap-2">
+                  <ArrowRight className="w-4 h-4" />
+                  Iniciar Trámite
+                </Link>
+              </Button>
+              <Button variant="outline" onClick={() => setIsTramitesModalOpen(false)}>
                 Cerrar
               </Button>
             </div>
