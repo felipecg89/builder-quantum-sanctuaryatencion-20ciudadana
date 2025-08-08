@@ -482,6 +482,197 @@ export default function Index() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Servicios Modal */}
+      <Dialog open={isServiciosModalOpen} onOpenChange={setIsServiciosModalOpen}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-xl">
+              <Users className="w-6 h-6 text-blue-600" />
+              Servicios Municipales - Información Detallada
+            </DialogTitle>
+            <DialogDescription className="text-base">
+              Descubre todos los servicios profesionales y especializados que el municipio pone a tu disposición
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-6">
+            {/* Introduction */}
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <h3 className="font-semibold text-blue-800 mb-2">¿Qué servicios ofrecemos?</h3>
+              <p className="text-blue-700 text-sm leading-relaxed">
+                El municipio cuenta con profesionales especializados en diferentes áreas para brindar servicios
+                gratuitos o a bajo costo a la ciudadanía que los necesite. Estos servicios están diseñados para
+                mejorar la calidad de vida y resolver problemáticas específicas de la comunidad.
+              </p>
+            </div>
+
+            {/* Services Categories */}
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Servicios Médicos */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Stethoscope className="w-5 h-5 text-red-500" />
+                  <h4 className="font-semibold text-slate-800">Servicios Médicos</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Consultas médicas generales</li>
+                  <li>• Atención pediátrica básica</li>
+                  <li>• Control de enfermedades crónicas</li>
+                  <li>• Servicios de enfermería</li>
+                  <li>• Primeros auxilios y emergencias</li>
+                  <li>• Campañas de vacunación</li>
+                  <li>• Terapias de rehabilitación</li>
+                  <li>• Apoyo psicológico</li>
+                </ul>
+              </div>
+
+              {/* Servicios Legales */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Scale className="w-5 h-5 text-blue-600" />
+                  <h4 className="font-semibold text-slate-800">Servicios Legales</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Asesoría jurídica gratuita</li>
+                  <li>• Mediación familiar</li>
+                  <li>• Trámites de registro civil</li>
+                  <li>• Asuntos de derecho familiar</li>
+                  <li>• Orientación en violencia doméstica</li>
+                  <li>• Defensoría pública</li>
+                  <li>• Tramitación de documentos</li>
+                  <li>• Contratos y convenios básicos</li>
+                </ul>
+              </div>
+
+              {/* Servicios Sociales */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <HandHeart className="w-5 h-5 text-green-500" />
+                  <h4 className="font-semibold text-slate-800">Servicios Sociales</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Trabajo social familiar</li>
+                  <li>• Programas para adultos mayores</li>
+                  <li>• Apoyo a personas con discapacidad</li>
+                  <li>• Orientación nutricional</li>
+                  <li>• Talleres de capacitación laboral</li>
+                  <li>• Programas de desarrollo comunitario</li>
+                  <li>• Gestión de becas educativas</li>
+                  <li>• Vinculación con programas federales</li>
+                </ul>
+              </div>
+
+              {/* Servicios Técnicos */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Wrench className="w-5 h-5 text-gray-600" />
+                  <h4 className="font-semibold text-slate-800">Servicios Técnicos</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Servicios de plomería básica</li>
+                  <li>• Reparaciones eléctricas menores</li>
+                  <li>• Mantenimiento de viviendas</li>
+                  <li>• Instalación de sistemas básicos</li>
+                  <li>• Reparación de electrodomésticos</li>
+                  <li>• Servicios de albañilería</li>
+                  <li>• Asesoría en construcción</li>
+                  <li>• Servicios de jardinería</li>
+                </ul>
+              </div>
+
+              {/* Servicios de Orientación */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <MessageSquare className="w-5 h-5 text-purple-500" />
+                  <h4 className="font-semibold text-slate-800">Orientación y Gestión</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Gestión ante dependencias</li>
+                  <li>• Orientación para trámites gubernamentales</li>
+                  <li>• Apoyo en gestión de programas sociales</li>
+                  <li>• Información sobre beneficios disponibles</li>
+                  <li>• Canalización a instituciones especializadas</li>
+                  <li>• Seguimiento de casos</li>
+                  <li>• Atención ciudadana</li>
+                  <li>• Resolución de conflictos vecinales</li>
+                </ul>
+              </div>
+
+              {/* Servicios Especializados */}
+              <div className="border border-slate-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Shield className="w-5 h-5 text-indigo-500" />
+                  <h4 className="font-semibold text-slate-800">Servicios Especializados</h4>
+                </div>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li>• Atención a víctimas de violencia</li>
+                  <li>• Programas de prevención de adicciones</li>
+                  <li>• Servicios funerarios básicos</li>
+                  <li>• Apoyo en situaciones de emergencia</li>
+                  <li>• Servicios veterinarios básicos</li>
+                  <li>• Programas de protección civil</li>
+                  <li>• Servicios ambientales</li>
+                  <li>• Atención en crisis</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* How to Access */}
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <h3 className="font-semibold text-green-800 mb-3">¿Cómo Acceder a los Servicios?</h3>
+              <div className="grid md:grid-cols-3 gap-4 text-sm text-green-700">
+                <div>
+                  <h4 className="font-medium mb-2 flex items-center gap-1">
+                    <PenTool className="w-4 h-4" />
+                    1. Solicitud
+                  </h4>
+                  <p>Solicita una audiencia especificando el tipo de servicio que necesitas</p>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2 flex items-center gap-1">
+                    <HelpCircle className="w-4 h-4" />
+                    2. Evaluación
+                  </h4>
+                  <p>Un especialista evaluará tu caso y determinará la mejor forma de ayudarte</p>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2 flex items-center gap-1">
+                    <HandHeart className="w-4 h-4" />
+                    3. Atención
+                  </h4>
+                  <p>Recibirás el servicio directamente o te canalizaremos con el especialista adecuado</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Important Notes */}
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+              <h3 className="font-semibold text-yellow-800 mb-2">Notas Importantes</h3>
+              <ul className="space-y-1 text-sm text-yellow-700">
+                <li>• Los servicios están sujetos a disponibilidad y capacidad</li>
+                <li>• Algunos servicios requieren cita previa</li>
+                <li>• La mayoría de servicios son gratuitos para ciudadanos del municipio</li>
+                <li>• Se dará prioridad según urgencia y vulnerabilidad del caso</li>
+                <li>• Mantén actualizada tu información de contacto</li>
+              </ul>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t">
+              <Button asChild className="flex-1">
+                <Link to="/login" className="flex items-center justify-center gap-2">
+                  <ArrowRight className="w-4 h-4" />
+                  Solicitar Servicio
+                </Link>
+              </Button>
+              <Button variant="outline" onClick={() => setIsServiciosModalOpen(false)}>
+                Cerrar
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
