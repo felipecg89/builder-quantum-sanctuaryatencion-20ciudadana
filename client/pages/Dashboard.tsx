@@ -770,7 +770,76 @@ export default function Dashboard() {
           !!audioDescription
         }
       >
-        {currentStep < 5 ? (
+        {currentStep === 0 ? (
+          /* Selector Principal de Servicio */
+          <Card className="mx-0 sm:mx-0">
+            <CardHeader className="px-3 sm:px-6 py-3 sm:py-6">
+              <CardTitle className="text-base sm:text-xl leading-tight text-center">
+                ¿Qué necesitas hoy?
+              </CardTitle>
+              <CardDescription className="text-center">
+                Selecciona el tipo de servicio que requieres
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6 px-3 sm:px-6 pb-3 sm:pb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Solicitudes Ciudadanas */}
+                <Card
+                  className="cursor-pointer hover:shadow-lg transition-all duration-200 border-2 hover:border-blue-300"
+                  onClick={() => setCurrentStep(1)}
+                >
+                  <CardContent className="p-6 text-center space-y-4">
+                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
+                      <Package className="w-8 h-8 text-blue-600" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-slate-800 mb-2">
+                        Solicitudes Ciudadanas
+                      </h3>
+                      <p className="text-sm text-slate-600 leading-relaxed">
+                        Solicita ayuda en especie, servicios, trámites e invitaciones.
+                        Modalidad virtual o presencial.
+                      </p>
+                    </div>
+                    <div className="space-y-2 text-xs text-slate-500">
+                      <p>• Ayuda en especie (alimentos, medicamentos)</p>
+                      <p>• Servicios (médicos, legales, sociales)</p>
+                      <p>• Trámites y permisos</p>
+                      <p>• Invitaciones a eventos</p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Turnos de Audiencias Públicas */}
+                <Card
+                  className="cursor-pointer hover:shadow-lg transition-all duration-200 border-2 hover:border-green-300 bg-green-50"
+                  onClick={() => setIsTurnosModalOpen(true)}
+                >
+                  <CardContent className="p-6 text-center space-y-4">
+                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                      <Clock className="w-8 h-8 text-green-600" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-green-800 mb-2">
+                        Audiencias Públicas de Viernes
+                      </h3>
+                      <p className="text-sm text-green-700 leading-relaxed">
+                        Reserva tu turno para consulta directa y presencial
+                        con el Presidente Municipal.
+                      </p>
+                    </div>
+                    <div className="space-y-2 text-xs text-green-600">
+                      <p>• Solo viernes de 9:00 AM a 12:00 PM</p>
+                      <p>• Consulta directa con el Presidente</p>
+                      <p>• Modalidad únicamente presencial</p>
+                      <p>• Duración: 15 minutos máximo</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </CardContent>
+          </Card>
+        ) : currentStep < 5 ? (
           <>
             {/* Progress Steps */}
             <div className="mb-8">
@@ -1769,7 +1838,7 @@ export default function Dashboard() {
         <DialogContent className="max-w-2xl">
           <DialogHeader>
             <DialogTitle className="text-center text-xl text-green-700">
-              ���� Ticket de Turno Confirmado
+              🎫 Ticket de Turno Confirmado
             </DialogTitle>
           </DialogHeader>
 
@@ -1856,7 +1925,7 @@ export default function Dashboard() {
             </div>
           )}
 
-          {/* Botones de acción */}
+          {/* Botones de acci��n */}
           <div className="flex flex-col sm:flex-row gap-3 pt-4">
             <Button
               onClick={handleTurnTicketScreenshot}
