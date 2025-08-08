@@ -70,6 +70,106 @@ const mockAdminData = {
     avgResponseTime: "2.3 días",
     satisfactionRate: "94%"
   },
+  citizens: [
+    {
+      id: "CIT-001",
+      name: "María González",
+      phone: "55 1234 5678",
+      email: "maria.gonzalez@email.com",
+      address: "Calle Principal 123, Col. Centro",
+      registrationDate: new Date("2024-01-15"),
+      totalRequests: 3,
+      status: "activo",
+      expediente: {
+        requests: [
+          {
+            id: "AUD-123456",
+            date: new Date("2024-01-25"),
+            category: "especie",
+            type: "Alimentos",
+            status: "completada",
+            result: "Apoyó otorgado - 2 despensas familiares entregadas",
+            assignedTo: "C. Rodríguez"
+          }
+        ],
+        notes: "Familia de 5 personas. Situación económica vulnerable."
+      }
+    },
+    {
+      id: "CIT-002",
+      name: "Carlos Rodríguez",
+      phone: "55 9876 5432",
+      email: "carlos.rodriguez@email.com",
+      address: "Av. Reforma 456, Col. Norte",
+      registrationDate: new Date("2024-01-10"),
+      totalRequests: 2,
+      status: "activo",
+      expediente: {
+        requests: [
+          {
+            id: "AUD-789012",
+            date: new Date("2024-01-23"),
+            category: "servicio",
+            type: "Servicios sociales",
+            status: "en_proceso",
+            result: "En evaluación médica",
+            assignedTo: "Dr. Martínez"
+          }
+        ],
+        notes: "Requiere apoyo médico urgente."
+      }
+    }
+  ],
+  staff: [
+    {
+      id: "STAFF-001",
+      name: "Dr. Martínez",
+      role: "Servicios Médicos",
+      department: "Salud",
+      email: "dr.martinez@municipio.gob.mx",
+      phone: "55 1111 2222",
+      activeAssignments: 12,
+      status: "activo"
+    },
+    {
+      id: "STAFF-002",
+      name: "Ing. López",
+      role: "Trámites y Licencias",
+      department: "Obras Públicas",
+      email: "ing.lopez@municipio.gob.mx",
+      phone: "55 3333 4444",
+      activeAssignments: 8,
+      status: "activo"
+    },
+    {
+      id: "STAFF-003",
+      name: "Lic. García",
+      role: "Asuntos Sociales",
+      department: "Desarrollo Social",
+      email: "lic.garcia@municipio.gob.mx",
+      phone: "55 5555 6666",
+      activeAssignments: 15,
+      status: "activo"
+    },
+    {
+      id: "STAFF-004",
+      name: "C. Rodríguez",
+      role: "Ayuda en Especie",
+      department: "Desarrollo Social",
+      email: "c.rodriguez@municipio.gob.mx",
+      phone: "55 7777 8888",
+      activeAssignments: 20,
+      status: "activo"
+    }
+  ],
+  audienceTypes: [
+    { id: "AT-001", category: "especie", name: "Alimentos", description: "Despensas y productos alimentarios", active: true },
+    { id: "AT-002", category: "especie", name: "Medicamentos", description: "Apoyo con medicamentos básicos", active: true },
+    { id: "AT-003", category: "servicio", name: "Servicios médicos", description: "Consultas y tratamientos médicos", active: true },
+    { id: "AT-004", category: "servicio", name: "Servicios sociales", description: "Apoyo psicológico y social", active: true },
+    { id: "AT-005", category: "tramites", name: "Licencias", description: "Permisos y licencias municipales", active: true },
+    { id: "AT-006", category: "invitacion", name: "Evento público", description: "Invitaciones a eventos oficiales", active: true }
+  ],
   recentAudiences: [
     {
       id: "AUD-123456",
