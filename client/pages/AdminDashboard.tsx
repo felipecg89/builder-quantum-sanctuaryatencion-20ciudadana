@@ -351,6 +351,13 @@ export default function AdminDashboard() {
     useState<PublicAudienceDate | null>(null);
   const [manageDateSlots, setManageDateSlots] = useState<TimeSlot[]>([]);
 
+  // Estados para monitor de turnos
+  const [showTurnMonitor, setShowTurnMonitor] = useState(false);
+  const [currentTurnActive, setCurrentTurnActive] = useState<any>(null);
+  const [nextTurns, setNextTurns] = useState<any[]>([]);
+  const [turnQueue, setTurnQueue] = useState<any[]>([]);
+  const [monitorDate, setMonitorDate] = useState<Date>(new Date());
+
   // Estados para el modal de gestión
   const [actionType, setActionType] = useState("");
   const [response, setResponse] = useState("");
