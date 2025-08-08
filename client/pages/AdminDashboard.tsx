@@ -321,6 +321,10 @@ export default function AdminDashboard() {
     }
 
     setUser(parsedAdmin);
+
+    // Inicializar fechas de audiencias públicas
+    const upcomingDates = getUpcomingPublicAudienceDates();
+    setPublicAudienceDates(upcomingDates);
   }, [navigate]);
 
   const handleLogout = () => {
