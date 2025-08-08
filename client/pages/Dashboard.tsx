@@ -1763,6 +1763,118 @@ export default function Dashboard() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Modal de Ticket de Turno */}
+      <Dialog open={showTurnTicket} onOpenChange={setShowTurnTicket}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-center text-xl text-green-700">
+              🎫 Ticket de Turno Confirmado
+            </DialogTitle>
+          </DialogHeader>
+
+          {currentTurnTicket && (
+            <div className="turn-ticket-card bg-gradient-to-br from-green-50 to-blue-50 border-2 border-green-200 rounded-lg p-6 space-y-6">
+              {/* Header del ticket */}
+              <div className="text-center border-b border-green-200 pb-4">
+                <div className="flex items-center justify-center gap-3 mb-2">
+                  <Building2 className="w-8 h-8 text-green-600" />
+                  <div>
+                    <h2 className="text-lg font-bold text-slate-800">Presidencia Municipal</h2>
+                    <p className="text-sm text-slate-600">Audiencia Pública de los Viernes</p>
+                  </div>
+                </div>
+                <div className="bg-green-100 border border-green-300 rounded-full px-4 py-2 inline-block">
+                  <p className="font-bold text-green-800">✅ TURNO CONFIRMADO</p>
+                </div>
+              </div>
+
+              {/* Información principal */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-3">
+                  <div className="bg-white rounded-lg p-3 border border-green-200">
+                    <p className="text-xs text-slate-600 uppercase tracking-wide">Número de Turno</p>
+                    <p className="text-2xl font-bold text-green-700">{currentTurnTicket.turnNumber}</p>
+                  </div>
+
+                  <div className="bg-white rounded-lg p-3 border border-green-200">
+                    <p className="text-xs text-slate-600 uppercase tracking-wide">Ciudadano</p>
+                    <p className="font-semibold text-slate-800">{currentTurnTicket.citizenName}</p>
+                    <p className="text-sm text-slate-600">{currentTurnTicket.citizenPhone}</p>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="bg-white rounded-lg p-3 border border-green-200">
+                    <p className="text-xs text-slate-600 uppercase tracking-wide">Fecha y Hora</p>
+                    <p className="font-semibold text-slate-800">{currentTurnTicket.formattedDate}</p>
+                    <p className="text-lg font-bold text-blue-600">{currentTurnTicket.time}</p>
+                  </div>
+
+                  <div className="bg-white rounded-lg p-3 border border-green-200">
+                    <p className="text-xs text-slate-600 uppercase tracking-wide">Tema de Consulta</p>
+                    <p className="text-sm text-slate-800">{currentTurnTicket.tema}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Instrucciones importantes */}
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                <h3 className="font-bold text-yellow-800 mb-2 flex items-center gap-2">
+                  ⚠️ Instrucciones Importantes
+                </h3>
+                <ul className="space-y-1 text-sm text-yellow-700">
+                  <li>• <strong>Llega 15 minutos antes</strong> de tu turno asignado</li>
+                  <li>• <strong>Trae identificación oficial</strong> (INE, pasaporte, cédula profesional)</li>
+                  <li>• <strong>Ubicación:</strong> Presidencia Municipal, Oficina del Presidente</li>
+                  <li>• <strong>Duración máxima:</strong> 15 minutos por consulta</li>
+                  <li>• <strong>Si no puedes asistir,</strong> cancela con anticipación</li>
+                </ul>
+              </div>
+
+              {/* Información adicional */}
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <h3 className="font-semibold text-blue-800 mb-2 flex items-center gap-2">
+                  📱 Recordatorios Automáticos
+                </h3>
+                <div className="space-y-1 text-sm text-blue-700">
+                  <p>✓ SMS enviado a {currentTurnTicket.citizenPhone}</p>
+                  <p>✓ Recordatorio 1 día antes del turno</p>
+                  <p>✓ Recordatorio 2 horas antes del turno</p>
+                </div>
+              </div>
+
+              {/* Footer con fecha de emisión */}
+              <div className="text-center pt-4 border-t border-green-200">
+                <p className="text-xs text-slate-500">
+                  Ticket generado el {format(currentTurnTicket.reservedAt, "dd/MM/yyyy 'a las' HH:mm", { locale: es })}
+                </p>
+                <p className="text-xs text-slate-500 mt-1">
+                  Conserva este ticket como comprobante de tu turno
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* Botones de acción */}
+          <div className="flex flex-col sm:flex-row gap-3 pt-4">
+            <Button
+              onClick={handleTurnTicketScreenshot}
+              className="flex-1 bg-blue-600 hover:bg-blue-700"
+            >
+              <Camera className="w-4 h-4 mr-2" />
+              Capturar Pantalla
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => setShowTurnTicket(false)}
+              className="flex-1"
+            >
+              Cerrar
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
