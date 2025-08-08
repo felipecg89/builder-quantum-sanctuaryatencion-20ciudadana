@@ -51,7 +51,6 @@ import {
   Clock,
   Users,
   Settings,
-  Users,
   FileText,
   Camera,
 } from "lucide-react";
