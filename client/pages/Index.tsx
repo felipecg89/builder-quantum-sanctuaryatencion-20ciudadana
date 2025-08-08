@@ -51,6 +51,7 @@ export default function Index() {
   const [isEspecieModalOpen, setIsEspecieModalOpen] = useState(false);
   const [isServiciosModalOpen, setIsServiciosModalOpen] = useState(false);
   const [isInvitacionesModalOpen, setIsInvitacionesModalOpen] = useState(false);
+  const [isTramitesModalOpen, setIsTramitesModalOpen] = useState(false);
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-50">
       {/* Header */}
@@ -697,7 +698,7 @@ export default function Index() {
                 <ul className="space-y-1 text-sm text-slate-600">
                   <li>• Toma de protesta de funcionarios</li>
                   <li>• Entrega de reconocimientos ciudadanos</li>
-                  <li>• Ceremonias de grito de independencia</li>
+                  <li>��� Ceremonias de grito de independencia</li>
                   <li>• Inauguración de obras públicas</li>
                   <li>• Homenajes a personajes ilustres</li>
                   <li>• Graduaciones de programas municipales</li>
