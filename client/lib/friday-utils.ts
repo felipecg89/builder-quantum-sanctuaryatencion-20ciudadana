@@ -1,5 +1,12 @@
-import { format, addDays, startOfMonth, endOfMonth, isFriday, getDay } from 'date-fns';
-import { es } from 'date-fns/locale';
+import {
+  format,
+  addDays,
+  startOfMonth,
+  endOfMonth,
+  isFriday,
+  getDay,
+} from "date-fns";
+import { es } from "date-fns/locale";
 
 export interface PublicAudienceDate {
   date: Date;
@@ -22,22 +29,22 @@ export const generateTimeSlots = (): TimeSlot[] => {
   const slots: TimeSlot[] = [];
   let hour = 9;
   let minute = 0;
-  
+
   while (hour < 12 || (hour === 12 && minute === 0)) {
-    const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+    const timeString = `${hour.toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")}`;
     slots.push({
-      id: `slot-${timeString.replace(':', '')}`,
+      id: `slot-${timeString.replace(":", "")}`,
       time: timeString,
-      available: true
+      available: true,
     });
-    
+
     minute += 15;
     if (minute >= 60) {
       minute = 0;
       hour++;
     }
   }
-  
+
   return slots;
 };
 
@@ -46,16 +53,16 @@ export const getFridaysInMonth = (year: number, month: number): Date[] => {
   const fridays: Date[] = [];
   const start = startOfMonth(new Date(year, month));
   const end = endOfMonth(new Date(year, month));
-  
+
   let currentDate = start;
-  
+
   while (currentDate <= end) {
     if (isFriday(currentDate)) {
       fridays.push(new Date(currentDate));
     }
     currentDate = addDays(currentDate, 1);
   }
-  
+
   return fridays;
 };
 
@@ -63,12 +70,15 @@ export const getFridaysInMonth = (year: number, month: number): Date[] => {
 export const getUpcomingPublicAudienceDates = (): PublicAudienceDate[] => {
   const dates: PublicAudienceDate[] = [];
   const today = new Date();
-  
+
   // Obtener viernes de los próximos 3 meses
   for (let i = 0; i < 3; i++) {
     const currentMonth = new Date(today.getFullYear(), today.getMonth() + i);
-    const fridays = getFridaysInMonth(currentMonth.getFullYear(), currentMonth.getMonth());
-    
+    const fridays = getFridaysInMonth(
+      currentMonth.getFullYear(),
+      currentMonth.getMonth(),
+    );
+
     fridays.forEach((friday, index) => {
       // Solo incluir viernes futuros
       if (friday >= today) {
@@ -77,12 +87,12 @@ export const getUpcomingPublicAudienceDates = (): PublicAudienceDate[] => {
           weekNumber: index + 1,
           isAvailable: true,
           slotsAvailable: 12, // 3 horas * 4 slots por hora = 12 slots
-          totalSlots: 12
+          totalSlots: 12,
         });
       }
     });
   }
-  
+
   return dates.sort((a, b) => a.date.getTime() - b.date.getTime());
 };
 
@@ -98,7 +108,7 @@ export const isPublicAudienceFriday = (date: Date): boolean => {
 
 // Generar número de turno
 export const generateTurnNumber = (date: Date, slotId: string): string => {
-  const dateStr = format(date, 'yyyyMMdd');
-  const slotNumber = slotId.replace('slot-', '');
+  const dateStr = format(date, "yyyyMMdd");
+  const slotNumber = slotId.replace("slot-", "");
   return `AP-${dateStr}-${slotNumber}`;
 };

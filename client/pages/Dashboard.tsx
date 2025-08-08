@@ -62,7 +62,7 @@ import {
   generateTimeSlots,
   generateTurnNumber,
   PublicAudienceDate,
-  TimeSlot
+  TimeSlot,
 } from "@/lib/friday-utils";
 
 const CATEGORIES = {
@@ -121,10 +121,15 @@ export default function Dashboard() {
 
   // Estados para turnos de audiencias públicas
   const [isTurnosModalOpen, setIsTurnosModalOpen] = useState(false);
-  const [selectedAudienceDate, setSelectedAudienceDate] = useState<PublicAudienceDate | null>(null);
-  const [selectedTimeSlot, setSelectedTimeSlot] = useState<TimeSlot | null>(null);
+  const [selectedAudienceDate, setSelectedAudienceDate] =
+    useState<PublicAudienceDate | null>(null);
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState<TimeSlot | null>(
+    null,
+  );
   const [turnosConsultaTema, setTurnosConsultaTema] = useState("");
-  const [availableDates, setAvailableDates] = useState<PublicAudienceDate[]>([]);
+  const [availableDates, setAvailableDates] = useState<PublicAudienceDate[]>(
+    [],
+  );
   const [availableSlots, setAvailableSlots] = useState<TimeSlot[]>([]);
   const [isBookingTurno, setIsBookingTurno] = useState(false);
 
@@ -212,33 +217,47 @@ export default function Dashboard() {
   };
 
   const handleBookTurno = async () => {
-    if (!selectedAudienceDate || !selectedTimeSlot || !turnosConsultaTema.trim()) return;
+    if (
+      !selectedAudienceDate ||
+      !selectedTimeSlot ||
+      !turnosConsultaTema.trim()
+    )
+      return;
 
     setIsBookingTurno(true);
 
     try {
       // Simular reserva de turno
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      const turnNumber = generateTurnNumber(selectedAudienceDate.date, selectedTimeSlot.id);
+      const turnNumber = generateTurnNumber(
+        selectedAudienceDate.date,
+        selectedTimeSlot.id,
+      );
 
       // Actualizar slot como ocupado
-      const updatedSlots = availableSlots.map(slot =>
+      const updatedSlots = availableSlots.map((slot) =>
         slot.id === selectedTimeSlot.id
-          ? { ...slot, available: false, citizenId: user.id, citizenName: user.name }
-          : slot
+          ? {
+              ...slot,
+              available: false,
+              citizenId: user.id,
+              citizenName: user.name,
+            }
+          : slot,
       );
       setAvailableSlots(updatedSlots);
 
       // Mostrar confirmación
-      alert(`¡Turno reservado exitosamente!\n\nNúmero de turno: ${turnNumber}\nFecha: ${formatPublicAudienceDate(selectedAudienceDate.date)}\nHora: ${selectedTimeSlot.time}\nTema: ${turnosConsultaTema}\n\nPor favor, llega 15 minutos antes de tu turno.`);
+      alert(
+        `¡Turno reservado exitosamente!\n\nNúmero de turno: ${turnNumber}\nFecha: ${formatPublicAudienceDate(selectedAudienceDate.date)}\nHora: ${selectedTimeSlot.time}\nTema: ${turnosConsultaTema}\n\nPor favor, llega 15 minutos antes de tu turno.`,
+      );
 
       // Limpiar formulario
       setSelectedAudienceDate(null);
       setSelectedTimeSlot(null);
       setTurnosConsultaTema("");
       setIsTurnosModalOpen(false);
-
     } catch (error) {
       alert("Error al reservar el turno. Intenta nuevamente.");
     } finally {
@@ -1371,7 +1390,8 @@ export default function Dashboard() {
               Turnos para Audiencias Públicas de los Viernes
             </DialogTitle>
             <DialogDescription className="text-base">
-              Solicita tu turno para participar en las audiencias públicas que se realizan todos los viernes de cada mes
+              Solicita tu turno para participar en las audiencias públicas que
+              se realizan todos los viernes de cada mes
             </DialogDescription>
           </DialogHeader>
 
@@ -1384,16 +1404,20 @@ export default function Dashboard() {
               </h3>
               <div className="space-y-2 text-sm text-green-700">
                 <p>
-                  <strong>• Propósito:</strong> Espacio abierto para consultas ciudadanas directas con el Presidente Municipal
+                  <strong>• Propósito:</strong> Espacio abierto para consultas
+                  ciudadanas directas con el Presidente Municipal
                 </p>
                 <p>
-                  <strong>• Modalidad:</strong> Presencial únicamente, en las instalaciones municipales
+                  <strong>• Modalidad:</strong> Presencial únicamente, en las
+                  instalaciones municipales
                 </p>
                 <p>
-                  <strong>• Horario:</strong> Viernes de 9:00 AM a 12:00 PM (turnos de 15 minutos)
+                  <strong>• Horario:</strong> Viernes de 9:00 AM a 12:00 PM
+                  (turnos de 15 minutos)
                 </p>
                 <p>
-                  <strong>• Importante:</strong> Este es un espacio para consultas y diálogo, no para solicitar ayuda específica
+                  <strong>• Importante:</strong> Este es un espacio para
+                  consultas y diálogo, no para solicitar ayuda específica
                 </p>
               </div>
             </div>
@@ -1408,9 +1432,10 @@ export default function Dashboard() {
                   <Card
                     key={index}
                     className={`cursor-pointer transition-all duration-200 hover:shadow-md ${
-                      selectedAudienceDate?.date.getTime() === dateOption.date.getTime()
-                        ? 'border-green-500 bg-green-50'
-                        : 'border-slate-200 hover:border-green-300'
+                      selectedAudienceDate?.date.getTime() ===
+                      dateOption.date.getTime()
+                        ? "border-green-500 bg-green-50"
+                        : "border-slate-200 hover:border-green-300"
                     }`}
                     onClick={() => handleSelectAudienceDate(dateOption)}
                   >
@@ -1449,21 +1474,25 @@ export default function Dashboard() {
                   {availableSlots.map((slot) => (
                     <Button
                       key={slot.id}
-                      variant={selectedTimeSlot?.id === slot.id ? "default" : "outline"}
+                      variant={
+                        selectedTimeSlot?.id === slot.id ? "default" : "outline"
+                      }
                       className={`h-12 ${
                         !slot.available
-                          ? 'opacity-50 cursor-not-allowed'
+                          ? "opacity-50 cursor-not-allowed"
                           : selectedTimeSlot?.id === slot.id
-                            ? 'bg-green-600 hover:bg-green-700'
-                            : 'hover:border-green-300 hover:text-green-700'
+                            ? "bg-green-600 hover:bg-green-700"
+                            : "hover:border-green-300 hover:text-green-700"
                       }`}
-                      onClick={() => slot.available && setSelectedTimeSlot(slot)}
+                      onClick={() =>
+                        slot.available && setSelectedTimeSlot(slot)
+                      }
                       disabled={!slot.available}
                     >
                       <div className="text-center">
                         <p className="font-medium">{slot.time}</p>
                         <p className="text-xs">
-                          {slot.available ? 'Disponible' : 'Ocupado'}
+                          {slot.available ? "Disponible" : "Ocupado"}
                         </p>
                       </div>
                     </Button>
@@ -1496,12 +1525,16 @@ export default function Dashboard() {
             {/* Instrucciones finales */}
             {selectedTimeSlot && turnosConsultaTema.trim() && (
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <h4 className="font-semibold text-blue-800 mb-2">Instrucciones importantes:</h4>
+                <h4 className="font-semibold text-blue-800 mb-2">
+                  Instrucciones importantes:
+                </h4>
                 <ul className="space-y-1 text-sm text-blue-700">
                   <li>• Llega 15 minutos antes de tu turno asignado</li>
                   <li>• Trae una identificación oficial</li>
                   <li>• La duración máxima por turno es de 15 minutos</li>
-                  <li>• Si no puedes asistir, cancela tu turno con anticipación</li>
+                  <li>
+                    • Si no puedes asistir, cancela tu turno con anticipación
+                  </li>
                   <li>• Solo se permite un turno por persona por mes</li>
                 </ul>
               </div>
@@ -1511,7 +1544,12 @@ export default function Dashboard() {
             <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t">
               <Button
                 onClick={handleBookTurno}
-                disabled={!selectedAudienceDate || !selectedTimeSlot || !turnosConsultaTema.trim() || isBookingTurno}
+                disabled={
+                  !selectedAudienceDate ||
+                  !selectedTimeSlot ||
+                  !turnosConsultaTema.trim() ||
+                  isBookingTurno
+                }
                 className="flex-1 bg-green-600 hover:bg-green-700"
               >
                 {isBookingTurno ? (

@@ -56,7 +56,7 @@ import {
   UserPlus,
   CalendarDays,
   Send,
-  Wrench
+  Wrench,
 } from "lucide-react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
@@ -65,7 +65,7 @@ import {
   formatPublicAudienceDate,
   generateTimeSlots,
   PublicAudienceDate,
-  TimeSlot
+  TimeSlot,
 } from "@/lib/friday-utils";
 
 // Mock data - En producción vendría de la API compartida
@@ -76,7 +76,7 @@ const mockAdminData = {
     todayAudiences: 8,
     completedThisMonth: 89,
     avgResponseTime: "2.3 días",
-    satisfactionRate: "94%"
+    satisfactionRate: "94%",
   },
   citizens: [
     {
@@ -97,11 +97,11 @@ const mockAdminData = {
             type: "Alimentos",
             status: "completada",
             result: "Apoyó otorgado - 2 despensas familiares entregadas",
-            assignedTo: "C. Rodríguez"
-          }
+            assignedTo: "C. Rodríguez",
+          },
         ],
-        notes: "Familia de 5 personas. Situación económica vulnerable."
-      }
+        notes: "Familia de 5 personas. Situación económica vulnerable.",
+      },
     },
     {
       id: "CIT-002",
@@ -121,12 +121,12 @@ const mockAdminData = {
             type: "Servicios sociales",
             status: "en_proceso",
             result: "En evaluación médica",
-            assignedTo: "Dr. Martínez"
-          }
+            assignedTo: "Dr. Martínez",
+          },
         ],
-        notes: "Requiere apoyo médico urgente."
-      }
-    }
+        notes: "Requiere apoyo médico urgente.",
+      },
+    },
   ],
   staff: [
     {
@@ -137,7 +137,7 @@ const mockAdminData = {
       email: "dr.martinez@municipio.gob.mx",
       phone: "55 1111 2222",
       activeAssignments: 12,
-      status: "activo"
+      status: "activo",
     },
     {
       id: "STAFF-002",
@@ -147,7 +147,7 @@ const mockAdminData = {
       email: "ing.lopez@municipio.gob.mx",
       phone: "55 3333 4444",
       activeAssignments: 8,
-      status: "activo"
+      status: "activo",
     },
     {
       id: "STAFF-003",
@@ -157,7 +157,7 @@ const mockAdminData = {
       email: "lic.garcia@municipio.gob.mx",
       phone: "55 5555 6666",
       activeAssignments: 15,
-      status: "activo"
+      status: "activo",
     },
     {
       id: "STAFF-004",
@@ -167,16 +167,52 @@ const mockAdminData = {
       email: "c.rodriguez@municipio.gob.mx",
       phone: "55 7777 8888",
       activeAssignments: 20,
-      status: "activo"
-    }
+      status: "activo",
+    },
   ],
   audienceTypes: [
-    { id: "AT-001", category: "especie", name: "Alimentos", description: "Despensas y productos alimentarios", active: true },
-    { id: "AT-002", category: "especie", name: "Medicamentos", description: "Apoyo con medicamentos básicos", active: true },
-    { id: "AT-003", category: "servicio", name: "Servicios médicos", description: "Consultas y tratamientos médicos", active: true },
-    { id: "AT-004", category: "servicio", name: "Servicios sociales", description: "Apoyo psicológico y social", active: true },
-    { id: "AT-005", category: "tramites", name: "Licencias", description: "Permisos y licencias municipales", active: true },
-    { id: "AT-006", category: "invitacion", name: "Evento público", description: "Invitaciones a eventos oficiales", active: true }
+    {
+      id: "AT-001",
+      category: "especie",
+      name: "Alimentos",
+      description: "Despensas y productos alimentarios",
+      active: true,
+    },
+    {
+      id: "AT-002",
+      category: "especie",
+      name: "Medicamentos",
+      description: "Apoyo con medicamentos básicos",
+      active: true,
+    },
+    {
+      id: "AT-003",
+      category: "servicio",
+      name: "Servicios médicos",
+      description: "Consultas y tratamientos médicos",
+      active: true,
+    },
+    {
+      id: "AT-004",
+      category: "servicio",
+      name: "Servicios sociales",
+      description: "Apoyo psicológico y social",
+      active: true,
+    },
+    {
+      id: "AT-005",
+      category: "tramites",
+      name: "Licencias",
+      description: "Permisos y licencias municipales",
+      active: true,
+    },
+    {
+      id: "AT-006",
+      category: "invitacion",
+      name: "Evento público",
+      description: "Invitaciones a eventos oficiales",
+      active: true,
+    },
   ],
   recentAudiences: [
     {
@@ -190,7 +226,7 @@ const mockAdminData = {
       priority: "alta",
       requestDate: new Date("2024-01-25"),
       assignedTo: null,
-      daysWaiting: 2
+      daysWaiting: 2,
     },
     {
       id: "AUD-789012",
@@ -203,7 +239,7 @@ const mockAdminData = {
       priority: "urgente",
       requestDate: new Date("2024-01-23"),
       assignedTo: "Dr. Martínez",
-      daysWaiting: 4
+      daysWaiting: 4,
     },
     {
       id: "AUD-345678",
@@ -216,7 +252,7 @@ const mockAdminData = {
       priority: "media",
       requestDate: new Date("2024-01-20"),
       assignedTo: "Ing. López",
-      daysWaiting: 0
+      daysWaiting: 0,
     },
     {
       id: "AUD-567890",
@@ -229,30 +265,46 @@ const mockAdminData = {
       priority: "baja",
       requestDate: new Date("2024-01-24"),
       assignedTo: null,
-      daysWaiting: 3
-    }
-  ]
+      daysWaiting: 3,
+    },
+  ],
 };
 
 const CATEGORY_CONFIG = {
   especie: { name: "Ayuda en Especie", color: "bg-orange-100 text-orange-800" },
   servicio: { name: "Servicios", color: "bg-blue-100 text-blue-800" },
   invitacion: { name: "Invitaciones", color: "bg-green-100 text-green-800" },
-  tramites: { name: "Trámites", color: "bg-purple-100 text-purple-800" }
+  tramites: { name: "Trámites", color: "bg-purple-100 text-purple-800" },
 };
 
 const STATUS_CONFIG = {
-  pendiente: { name: "Pendiente", color: "bg-yellow-100 text-yellow-800", icon: Clock },
-  en_proceso: { name: "En Proceso", color: "bg-blue-100 text-blue-800", icon: AlertCircle },
-  completada: { name: "Completada", color: "bg-green-100 text-green-800", icon: CheckCircle },
-  rechazada: { name: "Rechazada", color: "bg-red-100 text-red-800", icon: XCircle }
+  pendiente: {
+    name: "Pendiente",
+    color: "bg-yellow-100 text-yellow-800",
+    icon: Clock,
+  },
+  en_proceso: {
+    name: "En Proceso",
+    color: "bg-blue-100 text-blue-800",
+    icon: AlertCircle,
+  },
+  completada: {
+    name: "Completada",
+    color: "bg-green-100 text-green-800",
+    icon: CheckCircle,
+  },
+  rechazada: {
+    name: "Rechazada",
+    color: "bg-red-100 text-red-800",
+    icon: XCircle,
+  },
 };
 
 const PRIORITY_CONFIG = {
   urgente: { name: "Urgente", color: "bg-red-100 text-red-800" },
   alta: { name: "Alta", color: "bg-orange-100 text-orange-800" },
   media: { name: "Media", color: "bg-yellow-100 text-yellow-800" },
-  baja: { name: "Baja", color: "bg-gray-100 text-gray-800" }
+  baja: { name: "Baja", color: "bg-gray-100 text-gray-800" },
 };
 
 export default function AdminDashboard() {
@@ -267,13 +319,15 @@ export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState(() => {
     // Verificar si se especifica una pestaña en la URL
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('tab') || 'audiencias';
+    return urlParams.get("tab") || "audiencias";
   });
 
   // Estados para gestión de datos administrativos
   const [citizens, setCitizens] = useState(mockAdminData.citizens);
   const [staff, setStaff] = useState(mockAdminData.staff);
-  const [audienceTypes, setAudienceTypes] = useState(mockAdminData.audienceTypes);
+  const [audienceTypes, setAudienceTypes] = useState(
+    mockAdminData.audienceTypes,
+  );
 
   // Estados para modales de administración
   const [selectedCitizen, setSelectedCitizen] = useState<any>(null);
@@ -290,8 +344,11 @@ export default function AdminDashboard() {
   const [typeSearch, setTypeSearch] = useState("");
 
   // Estados para gestión de turnos de viernes
-  const [publicAudienceDates, setPublicAudienceDates] = useState<PublicAudienceDate[]>([]);
-  const [selectedManageDate, setSelectedManageDate] = useState<PublicAudienceDate | null>(null);
+  const [publicAudienceDates, setPublicAudienceDates] = useState<
+    PublicAudienceDate[]
+  >([]);
+  const [selectedManageDate, setSelectedManageDate] =
+    useState<PublicAudienceDate | null>(null);
   const [manageDateSlots, setManageDateSlots] = useState<TimeSlot[]>([]);
 
   // Estados para el modal de gestión
@@ -356,7 +413,7 @@ export default function AdminDashboard() {
       toast({
         title: "Error",
         description: "Selecciona una acción a realizar",
-        variant: "destructive"
+        variant: "destructive",
       });
       return;
     }
@@ -366,7 +423,7 @@ export default function AdminDashboard() {
       toast({
         title: "Error",
         description: "Escribe una respuesta para el ciudadano",
-        variant: "destructive"
+        variant: "destructive",
       });
       return;
     }
@@ -375,13 +432,13 @@ export default function AdminDashboard() {
       toast({
         title: "Error",
         description: "Selecciona fecha y hora para la audiencia",
-        variant: "destructive"
+        variant: "destructive",
       });
       return;
     }
 
     // Actualizar audiencia
-    const updatedAudiences = audiences.map(aud => {
+    const updatedAudiences = audiences.map((aud) => {
       if (aud.id === selectedAudience.id) {
         let newStatus = aud.status;
 
@@ -405,10 +462,12 @@ export default function AdminDashboard() {
           status: newStatus,
           assignedTo: assignedTo || aud.assignedTo,
           priority: priority || aud.priority,
-          scheduledDate: scheduledDate ? new Date(scheduledDate + " " + scheduledTime) : aud.scheduledDate,
+          scheduledDate: scheduledDate
+            ? new Date(scheduledDate + " " + scheduledTime)
+            : aud.scheduledDate,
           lastResponse: response || aud.lastResponse,
           notes: notes || aud.notes,
-          lastUpdate: new Date()
+          lastUpdate: new Date(),
         };
       }
       return aud;
@@ -423,25 +482,30 @@ export default function AdminDashboard() {
       responder: "Respuesta enviada al ciudadano",
       programar: "Audiencia programada exitosamente",
       asignar: "Responsable asignado correctamente",
-      completar: "Audiencia marcada como completada"
+      completar: "Audiencia marcada como completada",
     };
 
     toast({
       title: "Acción realizada",
-      description: actionMessages[actionType as keyof typeof actionMessages] || "Acción completada",
+      description:
+        actionMessages[actionType as keyof typeof actionMessages] ||
+        "Acción completada",
     });
 
     setIsManageOpen(false);
   };
 
-  const filteredAudiences = audiences.filter(audience => {
-    const matchesSearch = audience.citizen.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         audience.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         audience.description.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesStatus = statusFilter === "all" || audience.status === statusFilter;
-    const matchesCategory = categoryFilter === "all" || audience.category === categoryFilter;
-    
+  const filteredAudiences = audiences.filter((audience) => {
+    const matchesSearch =
+      audience.citizen.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      audience.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      audience.description.toLowerCase().includes(searchTerm.toLowerCase());
+
+    const matchesStatus =
+      statusFilter === "all" || audience.status === statusFilter;
+    const matchesCategory =
+      categoryFilter === "all" || audience.category === categoryFilter;
+
     return matchesSearch && matchesStatus && matchesCategory;
   });
 
@@ -460,7 +524,9 @@ export default function AdminDashboard() {
               <h1 className="text-xl font-semibold text-slate-800">
                 Panel Administrativo
               </h1>
-              <p className="text-sm text-slate-600">Sistema de Audiencias Municipales</p>
+              <p className="text-sm text-slate-600">
+                Sistema de Audiencias Municipales
+              </p>
             </div>
           </div>
           <div className="flex items-center space-x-4">
@@ -470,7 +536,7 @@ export default function AdminDashboard() {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setActiveTab('configuracion')}
+              onClick={() => setActiveTab("configuracion")}
               className="border-emerald-200 text-emerald-700 hover:bg-emerald-50"
             >
               <Wrench className="w-4 h-4 mr-2" />
@@ -492,7 +558,9 @@ export default function AdminDashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-slate-600">Total Audiencias</p>
-                  <p className="text-2xl font-bold text-slate-800">{mockAdminData.stats.totalAudiences}</p>
+                  <p className="text-2xl font-bold text-slate-800">
+                    {mockAdminData.stats.totalAudiences}
+                  </p>
                 </div>
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
                   <FileText className="w-6 h-6 text-blue-600" />
@@ -510,7 +578,9 @@ export default function AdminDashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-slate-600">Pendientes</p>
-                  <p className="text-2xl font-bold text-yellow-600">{mockAdminData.stats.pendingAudiences}</p>
+                  <p className="text-2xl font-bold text-yellow-600">
+                    {mockAdminData.stats.pendingAudiences}
+                  </p>
                 </div>
                 <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
                   <Clock className="w-6 h-6 text-yellow-600" />
@@ -528,7 +598,9 @@ export default function AdminDashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-slate-600">Hoy</p>
-                  <p className="text-2xl font-bold text-blue-600">{mockAdminData.stats.todayAudiences}</p>
+                  <p className="text-2xl font-bold text-blue-600">
+                    {mockAdminData.stats.todayAudiences}
+                  </p>
                 </div>
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
                   <Calendar className="w-6 h-6 text-blue-600" />
@@ -546,7 +618,9 @@ export default function AdminDashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-slate-600">Completadas</p>
-                  <p className="text-2xl font-bold text-green-600">{mockAdminData.stats.completedThisMonth}</p>
+                  <p className="text-2xl font-bold text-green-600">
+                    {mockAdminData.stats.completedThisMonth}
+                  </p>
                 </div>
                 <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
                   <CheckCircle className="w-6 h-6 text-green-600" />
@@ -560,7 +634,11 @@ export default function AdminDashboard() {
           </Card>
         </div>
 
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
+        <Tabs
+          value={activeTab}
+          onValueChange={setActiveTab}
+          className="space-y-8"
+        >
           <TabsList className="admin-tabs-list grid w-full grid-cols-7 h-20 p-3 rounded-xl">
             <TabsTrigger
               value="audiencias"
@@ -568,13 +646,16 @@ export default function AdminDashboard() {
             >
               <div className="relative">
                 <MessageSquare className="w-5 h-5 transition-transform group-hover:scale-110" />
-                {audiences.filter(a => a.status === 'pendiente').length > 0 && (
+                {audiences.filter((a) => a.status === "pendiente").length >
+                  0 && (
                   <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
-                    {audiences.filter(a => a.status === 'pendiente').length}
+                    {audiences.filter((a) => a.status === "pendiente").length}
                   </span>
                 )}
               </div>
-              <span className="text-xs font-semibold tracking-wide">Audiencias</span>
+              <span className="text-xs font-semibold tracking-wide">
+                Audiencias
+              </span>
             </TabsTrigger>
             <TabsTrigger
               value="ciudadanos"
@@ -586,7 +667,9 @@ export default function AdminDashboard() {
                   {citizens.length}
                 </span>
               </div>
-              <span className="text-xs font-semibold tracking-wide">Ciudadanos</span>
+              <span className="text-xs font-semibold tracking-wide">
+                Ciudadanos
+              </span>
             </TabsTrigger>
             <TabsTrigger
               value="expedientes"
@@ -595,10 +678,16 @@ export default function AdminDashboard() {
               <div className="relative">
                 <FileText className="w-5 h-5 transition-transform group-hover:scale-110" />
                 <span className="absolute -top-2 -right-2 bg-amber-100 text-amber-600 text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
-                  {citizens.reduce((total, citizen) => total + citizen.expediente.requests.length, 0)}
+                  {citizens.reduce(
+                    (total, citizen) =>
+                      total + citizen.expediente.requests.length,
+                    0,
+                  )}
                 </span>
               </div>
-              <span className="text-xs font-semibold tracking-wide">Expedientes</span>
+              <span className="text-xs font-semibold tracking-wide">
+                Expedientes
+              </span>
             </TabsTrigger>
             <TabsTrigger
               value="personal"
@@ -607,10 +696,12 @@ export default function AdminDashboard() {
               <div className="relative">
                 <UserPlus className="w-5 h-5 transition-transform group-hover:scale-110" />
                 <span className="absolute -top-2 -right-2 bg-indigo-100 text-indigo-600 text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
-                  {staff.filter(s => s.status === 'activo').length}
+                  {staff.filter((s) => s.status === "activo").length}
                 </span>
               </div>
-              <span className="text-xs font-semibold tracking-wide">Personal</span>
+              <span className="text-xs font-semibold tracking-wide">
+                Personal
+              </span>
             </TabsTrigger>
             <TabsTrigger
               value="configuracion"
@@ -619,10 +710,12 @@ export default function AdminDashboard() {
               <div className="relative">
                 <Wrench className="w-5 h-5 transition-transform group-hover:scale-110 group-hover:rotate-12" />
                 <span className="absolute -top-2 -right-2 bg-emerald-100 text-emerald-600 text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
-                  {audienceTypes.filter(t => t.active).length}
+                  {audienceTypes.filter((t) => t.active).length}
                 </span>
               </div>
-              <span className="text-xs font-semibold tracking-wide">Configuración</span>
+              <span className="text-xs font-semibold tracking-wide">
+                Configuración
+              </span>
             </TabsTrigger>
             <TabsTrigger
               value="turnos"
@@ -634,7 +727,9 @@ export default function AdminDashboard() {
                   {publicAudienceDates.length}
                 </span>
               </div>
-              <span className="text-xs font-semibold tracking-wide">Turnos</span>
+              <span className="text-xs font-semibold tracking-wide">
+                Turnos
+              </span>
             </TabsTrigger>
             <TabsTrigger
               value="reportes"
@@ -646,7 +741,9 @@ export default function AdminDashboard() {
                   ✓
                 </div>
               </div>
-              <span className="text-xs font-semibold tracking-wide">Reportes</span>
+              <span className="text-xs font-semibold tracking-wide">
+                Reportes
+              </span>
             </TabsTrigger>
           </TabsList>
 
@@ -693,7 +790,10 @@ export default function AdminDashboard() {
                       <SelectItem value="rechazada">Rechazadas</SelectItem>
                     </SelectContent>
                   </Select>
-                  <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+                  <Select
+                    value={categoryFilter}
+                    onValueChange={setCategoryFilter}
+                  >
                     <SelectTrigger className="w-full md:w-48">
                       <SelectValue placeholder="Filtrar por categoría" />
                     </SelectTrigger>
@@ -710,31 +810,64 @@ export default function AdminDashboard() {
                 {/* Lista de Audiencias */}
                 <div className="space-y-4">
                   {filteredAudiences.map((audience) => (
-                    <Card key={audience.id} className="hover:shadow-md transition-shadow">
+                    <Card
+                      key={audience.id}
+                      className="hover:shadow-md transition-shadow"
+                    >
                       <CardContent className="p-6">
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
                           {/* Info Principal */}
                           <div className="lg:col-span-6">
                             <div className="flex items-start justify-between mb-3">
                               <div>
-                                <h4 className="font-semibold text-slate-800">{audience.id}</h4>
-                                <p className="text-sm text-slate-600">{audience.citizen}</p>
-                                <p className="text-xs text-slate-500">{audience.phone}</p>
+                                <h4 className="font-semibold text-slate-800">
+                                  {audience.id}
+                                </h4>
+                                <p className="text-sm text-slate-600">
+                                  {audience.citizen}
+                                </p>
+                                <p className="text-xs text-slate-500">
+                                  {audience.phone}
+                                </p>
                               </div>
                               <div className="text-right">
-                                <Badge className={PRIORITY_CONFIG[audience.priority as keyof typeof PRIORITY_CONFIG].color}>
-                                  {PRIORITY_CONFIG[audience.priority as keyof typeof PRIORITY_CONFIG].name}
+                                <Badge
+                                  className={
+                                    PRIORITY_CONFIG[
+                                      audience.priority as keyof typeof PRIORITY_CONFIG
+                                    ].color
+                                  }
+                                >
+                                  {
+                                    PRIORITY_CONFIG[
+                                      audience.priority as keyof typeof PRIORITY_CONFIG
+                                    ].name
+                                  }
                                 </Badge>
                               </div>
                             </div>
                             <div className="space-y-2">
                               <div className="flex items-center gap-2">
-                                <Badge className={CATEGORY_CONFIG[audience.category as keyof typeof CATEGORY_CONFIG].color}>
-                                  {CATEGORY_CONFIG[audience.category as keyof typeof CATEGORY_CONFIG].name}
+                                <Badge
+                                  className={
+                                    CATEGORY_CONFIG[
+                                      audience.category as keyof typeof CATEGORY_CONFIG
+                                    ].color
+                                  }
+                                >
+                                  {
+                                    CATEGORY_CONFIG[
+                                      audience.category as keyof typeof CATEGORY_CONFIG
+                                    ].name
+                                  }
                                 </Badge>
-                                <span className="text-sm text-slate-600">• {audience.type}</span>
+                                <span className="text-sm text-slate-600">
+                                  • {audience.type}
+                                </span>
                               </div>
-                              <p className="text-sm text-slate-700">{audience.description}</p>
+                              <p className="text-sm text-slate-700">
+                                {audience.description}
+                              </p>
                             </div>
                           </div>
 
@@ -742,12 +875,25 @@ export default function AdminDashboard() {
                           <div className="lg:col-span-3">
                             <div className="space-y-2">
                               <div className="flex items-center gap-2">
-                                <Badge className={STATUS_CONFIG[audience.status as keyof typeof STATUS_CONFIG].color}>
-                                  {STATUS_CONFIG[audience.status as keyof typeof STATUS_CONFIG].name}
+                                <Badge
+                                  className={
+                                    STATUS_CONFIG[
+                                      audience.status as keyof typeof STATUS_CONFIG
+                                    ].color
+                                  }
+                                >
+                                  {
+                                    STATUS_CONFIG[
+                                      audience.status as keyof typeof STATUS_CONFIG
+                                    ].name
+                                  }
                                 </Badge>
                               </div>
                               <p className="text-xs text-slate-500">
-                                Solicitado: {format(audience.requestDate, "dd/MM/yyyy", { locale: es })}
+                                Solicitado:{" "}
+                                {format(audience.requestDate, "dd/MM/yyyy", {
+                                  locale: es,
+                                })}
                               </p>
                               {audience.daysWaiting > 0 && (
                                 <p className="text-xs text-orange-600">
@@ -810,7 +956,9 @@ export default function AdminDashboard() {
                 <div className="flex justify-between items-center">
                   <div>
                     <CardTitle>Gestión de Ciudadanos</CardTitle>
-                    <CardDescription>Administra los usuarios ciudadanos del sistema</CardDescription>
+                    <CardDescription>
+                      Administra los usuarios ciudadanos del sistema
+                    </CardDescription>
                   </div>
                   <Button>
                     <Plus className="w-4 h-4 mr-2" />
@@ -832,56 +980,83 @@ export default function AdminDashboard() {
 
                   <div className="space-y-3">
                     {citizens
-                      .filter(citizen =>
-                        citizen.name.toLowerCase().includes(citizenSearch.toLowerCase()) ||
-                        citizen.phone.includes(citizenSearch) ||
-                        citizen.email.toLowerCase().includes(citizenSearch.toLowerCase())
+                      .filter(
+                        (citizen) =>
+                          citizen.name
+                            .toLowerCase()
+                            .includes(citizenSearch.toLowerCase()) ||
+                          citizen.phone.includes(citizenSearch) ||
+                          citizen.email
+                            .toLowerCase()
+                            .includes(citizenSearch.toLowerCase()),
                       )
                       .map((citizen) => (
-                      <Card key={citizen.id} className="hover:shadow-md transition-shadow">
-                        <CardContent className="p-4">
-                          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
-                            <div className="lg:col-span-6">
-                              <h4 className="font-semibold text-slate-800">{citizen.name}</h4>
-                              <p className="text-sm text-slate-600">{citizen.phone} • {citizen.email}</p>
-                              <p className="text-xs text-slate-500">{citizen.address}</p>
+                        <Card
+                          key={citizen.id}
+                          className="hover:shadow-md transition-shadow"
+                        >
+                          <CardContent className="p-4">
+                            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+                              <div className="lg:col-span-6">
+                                <h4 className="font-semibold text-slate-800">
+                                  {citizen.name}
+                                </h4>
+                                <p className="text-sm text-slate-600">
+                                  {citizen.phone} • {citizen.email}
+                                </p>
+                                <p className="text-xs text-slate-500">
+                                  {citizen.address}
+                                </p>
+                              </div>
+                              <div className="lg:col-span-3">
+                                <p className="text-sm text-slate-600">
+                                  Solicitudes: {citizen.totalRequests}
+                                </p>
+                                <p className="text-xs text-slate-500">
+                                  Registro:{" "}
+                                  {format(
+                                    citizen.registrationDate,
+                                    "dd/MM/yyyy",
+                                    { locale: es },
+                                  )}
+                                </p>
+                                <Badge
+                                  className={
+                                    citizen.status === "activo"
+                                      ? "bg-green-100 text-green-800"
+                                      : "bg-red-100 text-red-800"
+                                  }
+                                >
+                                  {citizen.status}
+                                </Badge>
+                              </div>
+                              <div className="lg:col-span-3 flex gap-2">
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  onClick={() => {
+                                    setSelectedCitizen(citizen);
+                                    setIsExpedienteOpen(true);
+                                  }}
+                                >
+                                  <FileText className="w-4 h-4 mr-1" />
+                                  Expediente
+                                </Button>
+                                <Button
+                                  size="sm"
+                                  onClick={() => {
+                                    setSelectedCitizen(citizen);
+                                    setIsEditCitizenOpen(true);
+                                  }}
+                                >
+                                  <Edit className="w-4 h-4 mr-1" />
+                                  Editar
+                                </Button>
+                              </div>
                             </div>
-                            <div className="lg:col-span-3">
-                              <p className="text-sm text-slate-600">Solicitudes: {citizen.totalRequests}</p>
-                              <p className="text-xs text-slate-500">
-                                Registro: {format(citizen.registrationDate, "dd/MM/yyyy", { locale: es })}
-                              </p>
-                              <Badge className={citizen.status === "activo" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}>
-                                {citizen.status}
-                              </Badge>
-                            </div>
-                            <div className="lg:col-span-3 flex gap-2">
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                onClick={() => {
-                                  setSelectedCitizen(citizen);
-                                  setIsExpedienteOpen(true);
-                                }}
-                              >
-                                <FileText className="w-4 h-4 mr-1" />
-                                Expediente
-                              </Button>
-                              <Button
-                                size="sm"
-                                onClick={() => {
-                                  setSelectedCitizen(citizen);
-                                  setIsEditCitizenOpen(true);
-                                }}
-                              >
-                                <Edit className="w-4 h-4 mr-1" />
-                                Editar
-                              </Button>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
+                          </CardContent>
+                        </Card>
+                      ))}
                   </div>
                 </div>
               </CardContent>
@@ -893,37 +1068,62 @@ export default function AdminDashboard() {
             <Card>
               <CardHeader>
                 <CardTitle>Expedientes de Ciudadanos</CardTitle>
-                <CardDescription>Historial completo de solicitudes y resultados por ciudadano</CardDescription>
+                <CardDescription>
+                  Historial completo de solicitudes y resultados por ciudadano
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {citizens.map((citizen) => (
-                    <Card key={citizen.id} className="hover:shadow-md transition-shadow cursor-pointer"
-                          onClick={() => {
-                            setSelectedCitizen(citizen);
-                            setIsExpedienteOpen(true);
-                          }}>
+                    <Card
+                      key={citizen.id}
+                      className="hover:shadow-md transition-shadow cursor-pointer"
+                      onClick={() => {
+                        setSelectedCitizen(citizen);
+                        setIsExpedienteOpen(true);
+                      }}
+                    >
                       <CardContent className="p-4">
                         <div className="flex items-start justify-between mb-3">
                           <div>
-                            <h4 className="font-semibold text-slate-800">{citizen.name}</h4>
-                            <p className="text-sm text-slate-600">{citizen.phone}</p>
+                            <h4 className="font-semibold text-slate-800">
+                              {citizen.name}
+                            </h4>
+                            <p className="text-sm text-slate-600">
+                              {citizen.phone}
+                            </p>
                           </div>
                           <Badge className="bg-blue-100 text-blue-800">
                             {citizen.totalRequests} solicitudes
                           </Badge>
                         </div>
                         <div className="space-y-2">
-                          {citizen.expediente.requests.slice(0, 2).map((request, idx) => (
-                            <div key={idx} className="text-xs">
-                              <p className="text-slate-600">{request.type}</p>
-                              <Badge className={STATUS_CONFIG[request.status as keyof typeof STATUS_CONFIG].color}>
-                                {STATUS_CONFIG[request.status as keyof typeof STATUS_CONFIG].name}
-                              </Badge>
-                            </div>
-                          ))}
+                          {citizen.expediente.requests
+                            .slice(0, 2)
+                            .map((request, idx) => (
+                              <div key={idx} className="text-xs">
+                                <p className="text-slate-600">{request.type}</p>
+                                <Badge
+                                  className={
+                                    STATUS_CONFIG[
+                                      request.status as keyof typeof STATUS_CONFIG
+                                    ].color
+                                  }
+                                >
+                                  {
+                                    STATUS_CONFIG[
+                                      request.status as keyof typeof STATUS_CONFIG
+                                    ].name
+                                  }
+                                </Badge>
+                              </div>
+                            ))}
                         </div>
-                        <Button size="sm" className="w-full mt-3" variant="outline">
+                        <Button
+                          size="sm"
+                          className="w-full mt-3"
+                          variant="outline"
+                        >
                           <Eye className="w-4 h-4 mr-2" />
                           Ver Expediente Completo
                         </Button>
@@ -942,7 +1142,9 @@ export default function AdminDashboard() {
                 <div className="flex justify-between items-center">
                   <div>
                     <CardTitle>Personal de Apoyo</CardTitle>
-                    <CardDescription>Gestiona el personal para asignación de audiencias</CardDescription>
+                    <CardDescription>
+                      Gestiona el personal para asignación de audiencias
+                    </CardDescription>
                   </div>
                   <Button>
                     <Plus className="w-4 h-4 mr-2" />
@@ -964,43 +1166,72 @@ export default function AdminDashboard() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {staff
-                      .filter(member =>
-                        member.name.toLowerCase().includes(staffSearch.toLowerCase()) ||
-                        member.role.toLowerCase().includes(staffSearch.toLowerCase()) ||
-                        member.department.toLowerCase().includes(staffSearch.toLowerCase())
+                      .filter(
+                        (member) =>
+                          member.name
+                            .toLowerCase()
+                            .includes(staffSearch.toLowerCase()) ||
+                          member.role
+                            .toLowerCase()
+                            .includes(staffSearch.toLowerCase()) ||
+                          member.department
+                            .toLowerCase()
+                            .includes(staffSearch.toLowerCase()),
                       )
                       .map((member) => (
-                      <Card key={member.id} className="hover:shadow-md transition-shadow">
-                        <CardContent className="p-4">
-                          <div className="flex items-start justify-between mb-3">
-                            <div>
-                              <h4 className="font-semibold text-slate-800">{member.name}</h4>
-                              <p className="text-sm text-slate-600">{member.role}</p>
-                              <p className="text-xs text-slate-500">{member.department}</p>
+                        <Card
+                          key={member.id}
+                          className="hover:shadow-md transition-shadow"
+                        >
+                          <CardContent className="p-4">
+                            <div className="flex items-start justify-between mb-3">
+                              <div>
+                                <h4 className="font-semibold text-slate-800">
+                                  {member.name}
+                                </h4>
+                                <p className="text-sm text-slate-600">
+                                  {member.role}
+                                </p>
+                                <p className="text-xs text-slate-500">
+                                  {member.department}
+                                </p>
+                              </div>
+                              <Badge
+                                className={
+                                  member.status === "activo"
+                                    ? "bg-green-100 text-green-800"
+                                    : "bg-red-100 text-red-800"
+                                }
+                              >
+                                {member.status}
+                              </Badge>
                             </div>
-                            <Badge className={member.status === "activo" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}>
-                              {member.status}
-                            </Badge>
-                          </div>
-                          <div className="space-y-1 mb-3">
-                            <p className="text-xs text-slate-600">📧 {member.email}</p>
-                            <p className="text-xs text-slate-600">📞 {member.phone}</p>
-                            <p className="text-xs text-slate-600">📋 {member.activeAssignments} asignaciones activas</p>
-                          </div>
-                          <Button
-                            size="sm"
-                            className="w-full"
-                            onClick={() => {
-                              setSelectedStaff(member);
-                              setIsEditStaffOpen(true);
-                            }}
-                          >
-                            <Edit className="w-4 h-4 mr-2" />
-                            Editar
-                          </Button>
-                        </CardContent>
-                      </Card>
-                    ))}
+                            <div className="space-y-1 mb-3">
+                              <p className="text-xs text-slate-600">
+                                📧 {member.email}
+                              </p>
+                              <p className="text-xs text-slate-600">
+                                📞 {member.phone}
+                              </p>
+                              <p className="text-xs text-slate-600">
+                                📋 {member.activeAssignments} asignaciones
+                                activas
+                              </p>
+                            </div>
+                            <Button
+                              size="sm"
+                              className="w-full"
+                              onClick={() => {
+                                setSelectedStaff(member);
+                                setIsEditStaffOpen(true);
+                              }}
+                            >
+                              <Edit className="w-4 h-4 mr-2" />
+                              Editar
+                            </Button>
+                          </CardContent>
+                        </Card>
+                      ))}
                   </div>
                 </div>
               </CardContent>
@@ -1009,16 +1240,19 @@ export default function AdminDashboard() {
 
           {/* Configuración */}
           <TabsContent value="configuracion">
-            {activeTab === 'configuracion' && (
+            {activeTab === "configuracion" && (
               <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4 mb-6">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
                     <Wrench className="w-5 h-5 text-emerald-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-emerald-800">Panel de Configuración del Sistema</h3>
+                    <h3 className="font-semibold text-emerald-800">
+                      Panel de Configuración del Sistema
+                    </h3>
                     <p className="text-sm text-emerald-700">
-                      Administra todos los aspectos configurables del sistema de audiencias municipales
+                      Administra todos los aspectos configurables del sistema de
+                      audiencias municipales
                     </p>
                   </div>
                 </div>
@@ -1030,8 +1264,13 @@ export default function AdminDashboard() {
                 <CardHeader className="bg-emerald-50">
                   <div className="flex justify-between items-center">
                     <div>
-                      <CardTitle className="text-emerald-800">Tipos de Audiencias</CardTitle>
-                      <CardDescription>Configura las categorías y tipos de audiencias disponibles</CardDescription>
+                      <CardTitle className="text-emerald-800">
+                        Tipos de Audiencias
+                      </CardTitle>
+                      <CardDescription>
+                        Configura las categorías y tipos de audiencias
+                        disponibles
+                      </CardDescription>
                     </div>
                     <Button className="bg-emerald-600 hover:bg-emerald-700">
                       <Plus className="w-4 h-4 mr-2" />
@@ -1053,40 +1292,68 @@ export default function AdminDashboard() {
 
                     <div className="space-y-3">
                       {audienceTypes
-                        .filter(type =>
-                          type.name.toLowerCase().includes(typeSearch.toLowerCase()) ||
-                          type.description.toLowerCase().includes(typeSearch.toLowerCase())
+                        .filter(
+                          (type) =>
+                            type.name
+                              .toLowerCase()
+                              .includes(typeSearch.toLowerCase()) ||
+                            type.description
+                              .toLowerCase()
+                              .includes(typeSearch.toLowerCase()),
                         )
                         .map((type) => (
-                        <Card key={type.id} className="hover:shadow-md transition-shadow">
-                          <CardContent className="p-4">
-                            <div className="flex items-center justify-between">
-                              <div className="flex-1">
-                                <div className="flex items-center gap-3 mb-2">
-                                  <Badge className={CATEGORY_CONFIG[type.category as keyof typeof CATEGORY_CONFIG].color}>
-                                    {CATEGORY_CONFIG[type.category as keyof typeof CATEGORY_CONFIG].name}
-                                  </Badge>
-                                  <h4 className="font-semibold text-slate-800">{type.name}</h4>
-                                  <Badge className={type.active ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-800"}>
-                                    {type.active ? "Activo" : "Inactivo"}
-                                  </Badge>
+                          <Card
+                            key={type.id}
+                            className="hover:shadow-md transition-shadow"
+                          >
+                            <CardContent className="p-4">
+                              <div className="flex items-center justify-between">
+                                <div className="flex-1">
+                                  <div className="flex items-center gap-3 mb-2">
+                                    <Badge
+                                      className={
+                                        CATEGORY_CONFIG[
+                                          type.category as keyof typeof CATEGORY_CONFIG
+                                        ].color
+                                      }
+                                    >
+                                      {
+                                        CATEGORY_CONFIG[
+                                          type.category as keyof typeof CATEGORY_CONFIG
+                                        ].name
+                                      }
+                                    </Badge>
+                                    <h4 className="font-semibold text-slate-800">
+                                      {type.name}
+                                    </h4>
+                                    <Badge
+                                      className={
+                                        type.active
+                                          ? "bg-green-100 text-green-800"
+                                          : "bg-gray-100 text-gray-800"
+                                      }
+                                    >
+                                      {type.active ? "Activo" : "Inactivo"}
+                                    </Badge>
+                                  </div>
+                                  <p className="text-sm text-slate-600">
+                                    {type.description}
+                                  </p>
                                 </div>
-                                <p className="text-sm text-slate-600">{type.description}</p>
+                                <Button
+                                  size="sm"
+                                  onClick={() => {
+                                    setSelectedType(type);
+                                    setIsEditTypeOpen(true);
+                                  }}
+                                >
+                                  <Edit className="w-4 h-4 mr-2" />
+                                  Editar
+                                </Button>
                               </div>
-                              <Button
-                                size="sm"
-                                onClick={() => {
-                                  setSelectedType(type);
-                                  setIsEditTypeOpen(true);
-                                }}
-                              >
-                                <Edit className="w-4 h-4 mr-2" />
-                                Editar
-                              </Button>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
+                            </CardContent>
+                          </Card>
+                        ))}
                     </div>
                   </div>
                 </CardContent>
@@ -1105,7 +1372,8 @@ export default function AdminDashboard() {
                       Gestión de Turnos - Audiencias Públicas de Viernes
                     </CardTitle>
                     <CardDescription>
-                      Administra los turnos y horarios para las audiencias públicas de cada viernes
+                      Administra los turnos y horarios para las audiencias
+                      públicas de cada viernes
                     </CardDescription>
                   </div>
                   <Button className="bg-green-600 hover:bg-green-700">
@@ -1118,7 +1386,9 @@ export default function AdminDashboard() {
                 <div className="space-y-6">
                   {/* Información general */}
                   <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                    <h3 className="font-semibold text-green-800 mb-2">Información del Sistema de Turnos</h3>
+                    <h3 className="font-semibold text-green-800 mb-2">
+                      Información del Sistema de Turnos
+                    </h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-green-700">
                       <div>
                         <p className="font-medium">Frecuencia:</p>
@@ -1137,15 +1407,18 @@ export default function AdminDashboard() {
 
                   {/* Lista de fechas próximas */}
                   <div>
-                    <h3 className="text-lg font-semibold text-slate-800 mb-4">Próximas Fechas de Audiencias Públicas</h3>
+                    <h3 className="text-lg font-semibold text-slate-800 mb-4">
+                      Próximas Fechas de Audiencias Públicas
+                    </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                       {publicAudienceDates.map((dateOption, index) => (
                         <Card
                           key={index}
                           className={`cursor-pointer transition-all duration-200 hover:shadow-md ${
-                            selectedManageDate?.date.getTime() === dateOption.date.getTime()
-                              ? 'border-green-500 bg-green-50'
-                              : 'border-slate-200 hover:border-green-300'
+                            selectedManageDate?.date.getTime() ===
+                            dateOption.date.getTime()
+                              ? "border-green-500 bg-green-50"
+                              : "border-slate-200 hover:border-green-300"
                           }`}
                           onClick={() => {
                             setSelectedManageDate(dateOption);
@@ -1164,21 +1437,33 @@ export default function AdminDashboard() {
                                     Viernes #{dateOption.weekNumber} del mes
                                   </p>
                                 </div>
-                                <Badge className={dateOption.isAvailable ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}>
-                                  {dateOption.isAvailable ? "Disponible" : "Completo"}
+                                <Badge
+                                  className={
+                                    dateOption.isAvailable
+                                      ? "bg-green-100 text-green-800"
+                                      : "bg-red-100 text-red-800"
+                                  }
+                                >
+                                  {dateOption.isAvailable
+                                    ? "Disponible"
+                                    : "Completo"}
                                 </Badge>
                               </div>
                               <div className="flex justify-between text-sm">
-                                <span className="text-slate-600">Turnos ocupados:</span>
+                                <span className="text-slate-600">
+                                  Turnos ocupados:
+                                </span>
                                 <span className="font-medium text-green-600">
-                                  {dateOption.totalSlots - dateOption.slotsAvailable} / {dateOption.totalSlots}
+                                  {dateOption.totalSlots -
+                                    dateOption.slotsAvailable}{" "}
+                                  / {dateOption.totalSlots}
                                 </span>
                               </div>
                               <div className="w-full bg-slate-200 rounded-full h-2">
                                 <div
                                   className="bg-green-600 h-2 rounded-full transition-all duration-300"
                                   style={{
-                                    width: `${((dateOption.totalSlots - dateOption.slotsAvailable) / dateOption.totalSlots) * 100}%`
+                                    width: `${((dateOption.totalSlots - dateOption.slotsAvailable) / dateOption.totalSlots) * 100}%`,
                                   }}
                                 ></div>
                               </div>
@@ -1194,7 +1479,8 @@ export default function AdminDashboard() {
                     <div className="space-y-4">
                       <div className="border-t pt-6">
                         <h3 className="text-lg font-semibold text-slate-800 mb-4">
-                          Gestión de Turnos - {formatPublicAudienceDate(selectedManageDate.date)}
+                          Gestión de Turnos -{" "}
+                          {formatPublicAudienceDate(selectedManageDate.date)}
                         </h3>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -1203,13 +1489,15 @@ export default function AdminDashboard() {
                               key={slot.id}
                               className={`${
                                 slot.available
-                                  ? 'border-green-200 bg-green-50'
-                                  : 'border-orange-200 bg-orange-50'
+                                  ? "border-green-200 bg-green-50"
+                                  : "border-orange-200 bg-orange-50"
                               }`}
                             >
                               <CardContent className="p-3">
                                 <div className="text-center space-y-2">
-                                  <p className="font-medium text-slate-800">{slot.time}</p>
+                                  <p className="font-medium text-slate-800">
+                                    {slot.time}
+                                  </p>
                                   <Badge
                                     className={
                                       slot.available
@@ -1221,8 +1509,12 @@ export default function AdminDashboard() {
                                   </Badge>
                                   {!slot.available && slot.citizenName && (
                                     <div className="space-y-1">
-                                      <p className="text-xs text-slate-600">Ciudadano:</p>
-                                      <p className="text-xs font-medium text-slate-800">{slot.citizenName}</p>
+                                      <p className="text-xs text-slate-600">
+                                        Ciudadano:
+                                      </p>
+                                      <p className="text-xs font-medium text-slate-800">
+                                        {slot.citizenName}
+                                      </p>
                                     </div>
                                   )}
                                   <div className="flex gap-1">
@@ -1233,13 +1525,20 @@ export default function AdminDashboard() {
                                         className="w-full text-xs border-green-300 text-green-700 hover:bg-green-100"
                                         onClick={() => {
                                           // Simular asignación manual
-                                          const citizenName = prompt("Nombre del ciudadano:");
+                                          const citizenName = prompt(
+                                            "Nombre del ciudadano:",
+                                          );
                                           if (citizenName) {
-                                            const updatedSlots = manageDateSlots.map(s =>
-                                              s.id === slot.id
-                                                ? { ...s, available: false, citizenName }
-                                                : s
-                                            );
+                                            const updatedSlots =
+                                              manageDateSlots.map((s) =>
+                                                s.id === slot.id
+                                                  ? {
+                                                      ...s,
+                                                      available: false,
+                                                      citizenName,
+                                                    }
+                                                  : s,
+                                              );
                                             setManageDateSlots(updatedSlots);
                                           }
                                         }}
@@ -1253,11 +1552,16 @@ export default function AdminDashboard() {
                                         className="w-full text-xs border-red-300 text-red-700 hover:bg-red-100"
                                         onClick={() => {
                                           if (confirm("¿Liberar este turno?")) {
-                                            const updatedSlots = manageDateSlots.map(s =>
-                                              s.id === slot.id
-                                                ? { ...s, available: true, citizenName: undefined }
-                                                : s
-                                            );
+                                            const updatedSlots =
+                                              manageDateSlots.map((s) =>
+                                                s.id === slot.id
+                                                  ? {
+                                                      ...s,
+                                                      available: true,
+                                                      citizenName: undefined,
+                                                    }
+                                                  : s,
+                                              );
                                             setManageDateSlots(updatedSlots);
                                           }
                                         }}
@@ -1283,7 +1587,9 @@ export default function AdminDashboard() {
             <Card>
               <CardHeader>
                 <CardTitle>Reportes y Analytics</CardTitle>
-                <CardDescription>Estadísticas y reportes del sistema</CardDescription>
+                <CardDescription>
+                  Estadísticas y reportes del sistema
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1291,8 +1597,12 @@ export default function AdminDashboard() {
                     <CardContent className="p-6">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-sm text-slate-600">Ciudadanos Registrados</p>
-                          <p className="text-2xl font-bold text-slate-800">{citizens.length}</p>
+                          <p className="text-sm text-slate-600">
+                            Ciudadanos Registrados
+                          </p>
+                          <p className="text-2xl font-bold text-slate-800">
+                            {citizens.length}
+                          </p>
                         </div>
                         <Users className="w-8 h-8 text-blue-600" />
                       </div>
@@ -1302,8 +1612,12 @@ export default function AdminDashboard() {
                     <CardContent className="p-6">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-sm text-slate-600">Personal Activo</p>
-                          <p className="text-2xl font-bold text-slate-800">{staff.filter(s => s.status === "activo").length}</p>
+                          <p className="text-sm text-slate-600">
+                            Personal Activo
+                          </p>
+                          <p className="text-2xl font-bold text-slate-800">
+                            {staff.filter((s) => s.status === "activo").length}
+                          </p>
                         </div>
                         <UserPlus className="w-8 h-8 text-green-600" />
                       </div>
@@ -1313,8 +1627,12 @@ export default function AdminDashboard() {
                     <CardContent className="p-6">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-sm text-slate-600">Tipos Configurados</p>
-                          <p className="text-2xl font-bold text-slate-800">{audienceTypes.filter(t => t.active).length}</p>
+                          <p className="text-sm text-slate-600">
+                            Tipos Configurados
+                          </p>
+                          <p className="text-2xl font-bold text-slate-800">
+                            {audienceTypes.filter((t) => t.active).length}
+                          </p>
                         </div>
                         <Settings className="w-8 h-8 text-purple-600" />
                       </div>
@@ -1344,7 +1662,9 @@ export default function AdminDashboard() {
             <div className="space-y-6">
               {/* Información del Ciudadano */}
               <div className="bg-slate-50 rounded-lg p-4">
-                <h3 className="font-semibold text-slate-800 mb-3">Información del Ciudadano</h3>
+                <h3 className="font-semibold text-slate-800 mb-3">
+                  Información del Ciudadano
+                </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <p className="text-sm text-slate-600">Nombre</p>
@@ -1356,12 +1676,26 @@ export default function AdminDashboard() {
                   </div>
                   <div>
                     <p className="text-sm text-slate-600">Fecha de Solicitud</p>
-                    <p className="font-medium">{format(selectedAudience.requestDate, "PPP", { locale: es })}</p>
+                    <p className="font-medium">
+                      {format(selectedAudience.requestDate, "PPP", {
+                        locale: es,
+                      })}
+                    </p>
                   </div>
                   <div>
                     <p className="text-sm text-slate-600">Prioridad</p>
-                    <Badge className={PRIORITY_CONFIG[selectedAudience.priority as keyof typeof PRIORITY_CONFIG].color}>
-                      {PRIORITY_CONFIG[selectedAudience.priority as keyof typeof PRIORITY_CONFIG].name}
+                    <Badge
+                      className={
+                        PRIORITY_CONFIG[
+                          selectedAudience.priority as keyof typeof PRIORITY_CONFIG
+                        ].color
+                      }
+                    >
+                      {
+                        PRIORITY_CONFIG[
+                          selectedAudience.priority as keyof typeof PRIORITY_CONFIG
+                        ].name
+                      }
                     </Badge>
                   </div>
                 </div>
@@ -1379,7 +1713,10 @@ export default function AdminDashboard() {
                   <Edit className="w-4 h-4 mr-2" />
                   Gestionar
                 </Button>
-                <Button variant="outline" onClick={() => setIsDetailsOpen(false)}>
+                <Button
+                  variant="outline"
+                  onClick={() => setIsDetailsOpen(false)}
+                >
                   Cerrar
                 </Button>
               </div>
@@ -1407,28 +1744,66 @@ export default function AdminDashboard() {
               <div className="bg-slate-50 rounded-lg p-4">
                 <div className="flex items-start justify-between">
                   <div>
-                    <h4 className="font-semibold text-slate-800">{selectedAudience.citizen}</h4>
-                    <p className="text-sm text-slate-600">{selectedAudience.phone}</p>
+                    <h4 className="font-semibold text-slate-800">
+                      {selectedAudience.citizen}
+                    </h4>
+                    <p className="text-sm text-slate-600">
+                      {selectedAudience.phone}
+                    </p>
                     <div className="flex items-center gap-2 mt-2">
-                      <Badge className={CATEGORY_CONFIG[selectedAudience.category as keyof typeof CATEGORY_CONFIG].color}>
-                        {CATEGORY_CONFIG[selectedAudience.category as keyof typeof CATEGORY_CONFIG].name}
+                      <Badge
+                        className={
+                          CATEGORY_CONFIG[
+                            selectedAudience.category as keyof typeof CATEGORY_CONFIG
+                          ].color
+                        }
+                      >
+                        {
+                          CATEGORY_CONFIG[
+                            selectedAudience.category as keyof typeof CATEGORY_CONFIG
+                          ].name
+                        }
                       </Badge>
-                      <Badge className={STATUS_CONFIG[selectedAudience.status as keyof typeof STATUS_CONFIG].color}>
-                        {STATUS_CONFIG[selectedAudience.status as keyof typeof STATUS_CONFIG].name}
+                      <Badge
+                        className={
+                          STATUS_CONFIG[
+                            selectedAudience.status as keyof typeof STATUS_CONFIG
+                          ].color
+                        }
+                      >
+                        {
+                          STATUS_CONFIG[
+                            selectedAudience.status as keyof typeof STATUS_CONFIG
+                          ].name
+                        }
                       </Badge>
                     </div>
                   </div>
-                  <Badge className={PRIORITY_CONFIG[selectedAudience.priority as keyof typeof PRIORITY_CONFIG].color}>
-                    {PRIORITY_CONFIG[selectedAudience.priority as keyof typeof PRIORITY_CONFIG].name}
+                  <Badge
+                    className={
+                      PRIORITY_CONFIG[
+                        selectedAudience.priority as keyof typeof PRIORITY_CONFIG
+                      ].color
+                    }
+                  >
+                    {
+                      PRIORITY_CONFIG[
+                        selectedAudience.priority as keyof typeof PRIORITY_CONFIG
+                      ].name
+                    }
                   </Badge>
                 </div>
-                <p className="text-sm text-slate-700 mt-3">{selectedAudience.description}</p>
+                <p className="text-sm text-slate-700 mt-3">
+                  {selectedAudience.description}
+                </p>
               </div>
 
               {/* Selección de Acción */}
               <div className="space-y-4">
                 <div>
-                  <Label htmlFor="action-type">Selecciona la acción a realizar</Label>
+                  <Label htmlFor="action-type">
+                    Selecciona la acción a realizar
+                  </Label>
                   <Select value={actionType} onValueChange={setActionType}>
                     <SelectTrigger>
                       <SelectValue placeholder="Elige una acción..." />
@@ -1478,13 +1853,17 @@ export default function AdminDashboard() {
                 {(actionType === "responder" || actionType === "rechazar") && (
                   <div>
                     <Label htmlFor="response">
-                      {actionType === "responder" ? "Respuesta para el ciudadano" : "Motivo del rechazo"}
+                      {actionType === "responder"
+                        ? "Respuesta para el ciudadano"
+                        : "Motivo del rechazo"}
                     </Label>
                     <Textarea
                       id="response"
-                      placeholder={actionType === "responder"
-                        ? "Escribe tu respuesta..."
-                        : "Explica el motivo del rechazo..."}
+                      placeholder={
+                        actionType === "responder"
+                          ? "Escribe tu respuesta..."
+                          : "Explica el motivo del rechazo..."
+                      }
                       value={response}
                       onChange={(e) => setResponse(e.target.value)}
                       rows={4}
@@ -1501,7 +1880,7 @@ export default function AdminDashboard() {
                         type="date"
                         value={scheduledDate}
                         onChange={(e) => setScheduledDate(e.target.value)}
-                        min={new Date().toISOString().split('T')[0]}
+                        min={new Date().toISOString().split("T")[0]}
                       />
                     </div>
                     <div>
@@ -1515,7 +1894,10 @@ export default function AdminDashboard() {
                     </div>
                     <div>
                       <Label htmlFor="meeting-format">Modalidad</Label>
-                      <Select value={meetingFormat} onValueChange={setMeetingFormat}>
+                      <Select
+                        value={meetingFormat}
+                        onValueChange={setMeetingFormat}
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="Selecciona modalidad" />
                         </SelectTrigger>
@@ -1529,7 +1911,9 @@ export default function AdminDashboard() {
                   </div>
                 )}
 
-                {(actionType === "asignar" || actionType === "aprobar" || actionType === "programar") && (
+                {(actionType === "asignar" ||
+                  actionType === "aprobar" ||
+                  actionType === "programar") && (
                   <div>
                     <Label htmlFor="assigned-to">Asignar a</Label>
                     <Select value={assignedTo} onValueChange={setAssignedTo}>
@@ -1537,11 +1921,21 @@ export default function AdminDashboard() {
                         <SelectValue placeholder="Selecciona responsable" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="Dr. Martínez">Dr. Martínez - Servicios Médicos</SelectItem>
-                        <SelectItem value="Ing. López">Ing. López - Trámites y Licencias</SelectItem>
-                        <SelectItem value="Lic. García">Lic. García - Asuntos Sociales</SelectItem>
-                        <SelectItem value="C. Rodríguez">C. Rodríguez - Ayuda en Especie</SelectItem>
-                        <SelectItem value="Coord. Eventos">Coord. Eventos - Invitaciones</SelectItem>
+                        <SelectItem value="Dr. Martínez">
+                          Dr. Martínez - Servicios Médicos
+                        </SelectItem>
+                        <SelectItem value="Ing. López">
+                          Ing. López - Trámites y Licencias
+                        </SelectItem>
+                        <SelectItem value="Lic. García">
+                          Lic. García - Asuntos Sociales
+                        </SelectItem>
+                        <SelectItem value="C. Rodríguez">
+                          C. Rodríguez - Ayuda en Especie
+                        </SelectItem>
+                        <SelectItem value="Coord. Eventos">
+                          Coord. Eventos - Invitaciones
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -1635,28 +2029,50 @@ export default function AdminDashboard() {
                   </div>
                   <div>
                     <p className="text-sm text-slate-600">Fecha de Registro</p>
-                    <p className="font-medium">{format(selectedCitizen.registrationDate, "PPP", { locale: es })}</p>
+                    <p className="font-medium">
+                      {format(selectedCitizen.registrationDate, "PPP", {
+                        locale: es,
+                      })}
+                    </p>
                   </div>
                   <div>
-                    <p className="text-sm text-slate-600">Total de Solicitudes</p>
-                    <p className="font-medium">{selectedCitizen.totalRequests}</p>
+                    <p className="text-sm text-slate-600">
+                      Total de Solicitudes
+                    </p>
+                    <p className="font-medium">
+                      {selectedCitizen.totalRequests}
+                    </p>
                   </div>
                 </div>
               </div>
 
               {/* Notas del Expediente */}
               <div className="bg-yellow-50 rounded-lg p-4">
-                <h3 className="font-semibold text-slate-800 mb-2">Notas del Expediente</h3>
+                <h3 className="font-semibold text-slate-800 mb-2">
+                  Notas del Expediente
+                </h3>
                 <Textarea
                   value={selectedCitizen.expediente.notes}
                   onChange={(e) => {
-                    const updatedCitizens = citizens.map(c =>
+                    const updatedCitizens = citizens.map((c) =>
                       c.id === selectedCitizen.id
-                        ? { ...c, expediente: { ...c.expediente, notes: e.target.value } }
-                        : c
+                        ? {
+                            ...c,
+                            expediente: {
+                              ...c.expediente,
+                              notes: e.target.value,
+                            },
+                          }
+                        : c,
                     );
                     setCitizens(updatedCitizens);
-                    setSelectedCitizen({ ...selectedCitizen, expediente: { ...selectedCitizen.expediente, notes: e.target.value } });
+                    setSelectedCitizen({
+                      ...selectedCitizen,
+                      expediente: {
+                        ...selectedCitizen.expediente,
+                        notes: e.target.value,
+                      },
+                    });
                   }}
                   rows={3}
                   placeholder="Agregar notas sobre el ciudadano..."
@@ -1665,67 +2081,111 @@ export default function AdminDashboard() {
 
               {/* Historial de Solicitudes */}
               <div>
-                <h3 className="font-semibold text-slate-800 mb-4">Historial de Solicitudes</h3>
+                <h3 className="font-semibold text-slate-800 mb-4">
+                  Historial de Solicitudes
+                </h3>
                 <div className="space-y-4">
-                  {selectedCitizen.expediente.requests.map((request: any, index: number) => (
-                    <Card key={index} className="border-l-4 border-l-blue-500">
-                      <CardContent className="p-4">
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
-                          <div className="lg:col-span-6">
-                            <div className="flex items-center gap-2 mb-2">
-                              <Badge className={CATEGORY_CONFIG[request.category as keyof typeof CATEGORY_CONFIG].color}>
-                                {CATEGORY_CONFIG[request.category as keyof typeof CATEGORY_CONFIG].name}
-                              </Badge>
-                              <span className="font-medium">{request.type}</span>
-                            </div>
-                            <p className="text-sm text-slate-600 mb-2">ID: {request.id}</p>
-                            <p className="text-sm text-slate-600">
-                              Fecha: {format(request.date, "PPP", { locale: es })}
-                            </p>
-                          </div>
-
-                          <div className="lg:col-span-3">
-                            <Badge className={STATUS_CONFIG[request.status as keyof typeof STATUS_CONFIG].color}>
-                              {STATUS_CONFIG[request.status as keyof typeof STATUS_CONFIG].name}
-                            </Badge>
-                            {request.assignedTo && (
-                              <p className="text-xs text-blue-600 mt-1">
-                                Asignado a: {request.assignedTo}
+                  {selectedCitizen.expediente.requests.map(
+                    (request: any, index: number) => (
+                      <Card
+                        key={index}
+                        className="border-l-4 border-l-blue-500"
+                      >
+                        <CardContent className="p-4">
+                          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                            <div className="lg:col-span-6">
+                              <div className="flex items-center gap-2 mb-2">
+                                <Badge
+                                  className={
+                                    CATEGORY_CONFIG[
+                                      request.category as keyof typeof CATEGORY_CONFIG
+                                    ].color
+                                  }
+                                >
+                                  {
+                                    CATEGORY_CONFIG[
+                                      request.category as keyof typeof CATEGORY_CONFIG
+                                    ].name
+                                  }
+                                </Badge>
+                                <span className="font-medium">
+                                  {request.type}
+                                </span>
+                              </div>
+                              <p className="text-sm text-slate-600 mb-2">
+                                ID: {request.id}
                               </p>
-                            )}
-                          </div>
+                              <p className="text-sm text-slate-600">
+                                Fecha:{" "}
+                                {format(request.date, "PPP", { locale: es })}
+                              </p>
+                            </div>
 
-                          <div className="lg:col-span-3">
-                            <div className="space-y-2">
-                              <Label htmlFor={`result-${index}`}>Resultado/Observaciones</Label>
-                              <Textarea
-                                id={`result-${index}`}
-                                value={request.result}
-                                onChange={(e) => {
-                                  const updatedRequests = [...selectedCitizen.expediente.requests];
-                                  updatedRequests[index] = { ...updatedRequests[index], result: e.target.value };
+                            <div className="lg:col-span-3">
+                              <Badge
+                                className={
+                                  STATUS_CONFIG[
+                                    request.status as keyof typeof STATUS_CONFIG
+                                  ].color
+                                }
+                              >
+                                {
+                                  STATUS_CONFIG[
+                                    request.status as keyof typeof STATUS_CONFIG
+                                  ].name
+                                }
+                              </Badge>
+                              {request.assignedTo && (
+                                <p className="text-xs text-blue-600 mt-1">
+                                  Asignado a: {request.assignedTo}
+                                </p>
+                              )}
+                            </div>
 
-                                  const updatedCitizen = {
-                                    ...selectedCitizen,
-                                    expediente: { ...selectedCitizen.expediente, requests: updatedRequests }
-                                  };
+                            <div className="lg:col-span-3">
+                              <div className="space-y-2">
+                                <Label htmlFor={`result-${index}`}>
+                                  Resultado/Observaciones
+                                </Label>
+                                <Textarea
+                                  id={`result-${index}`}
+                                  value={request.result}
+                                  onChange={(e) => {
+                                    const updatedRequests = [
+                                      ...selectedCitizen.expediente.requests,
+                                    ];
+                                    updatedRequests[index] = {
+                                      ...updatedRequests[index],
+                                      result: e.target.value,
+                                    };
 
-                                  const updatedCitizens = citizens.map(c =>
-                                    c.id === selectedCitizen.id ? updatedCitizen : c
-                                  );
+                                    const updatedCitizen = {
+                                      ...selectedCitizen,
+                                      expediente: {
+                                        ...selectedCitizen.expediente,
+                                        requests: updatedRequests,
+                                      },
+                                    };
 
-                                  setCitizens(updatedCitizens);
-                                  setSelectedCitizen(updatedCitizen);
-                                }}
-                                rows={2}
-                                placeholder="Resultado de la gestión..."
-                              />
+                                    const updatedCitizens = citizens.map((c) =>
+                                      c.id === selectedCitizen.id
+                                        ? updatedCitizen
+                                        : c,
+                                    );
+
+                                    setCitizens(updatedCitizens);
+                                    setSelectedCitizen(updatedCitizen);
+                                  }}
+                                  rows={2}
+                                  placeholder="Resultado de la gestión..."
+                                />
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
+                        </CardContent>
+                      </Card>
+                    ),
+                  )}
                 </div>
               </div>
 
@@ -1735,7 +2195,7 @@ export default function AdminDashboard() {
                   onClick={() => {
                     toast({
                       title: "Expediente actualizado",
-                      description: "Los cambios se guardaron automáticamente"
+                      description: "Los cambios se guardaron automáticamente",
                     });
                   }}
                   className="flex-1"
@@ -1746,13 +2206,27 @@ export default function AdminDashboard() {
                 <Button
                   variant="outline"
                   onClick={() => {
-                    setSelectedCitizen({ ...selectedCitizen, expediente: { ...selectedCitizen.expediente, notes: selectedCitizen.expediente.notes + "\n[" + new Date().toLocaleString() + "] Expediente revisado por " + user.name } });
+                    setSelectedCitizen({
+                      ...selectedCitizen,
+                      expediente: {
+                        ...selectedCitizen.expediente,
+                        notes:
+                          selectedCitizen.expediente.notes +
+                          "\n[" +
+                          new Date().toLocaleString() +
+                          "] Expediente revisado por " +
+                          user.name,
+                      },
+                    });
                   }}
                 >
                   <Edit className="w-4 h-4 mr-2" />
                   Agregar Nota de Revisión
                 </Button>
-                <Button variant="outline" onClick={() => setIsExpedienteOpen(false)}>
+                <Button
+                  variant="outline"
+                  onClick={() => setIsExpedienteOpen(false)}
+                >
                   Cerrar
                 </Button>
               </div>
@@ -1779,7 +2253,12 @@ export default function AdminDashboard() {
                   <Input
                     id="edit-name"
                     value={selectedCitizen.name}
-                    onChange={(e) => setSelectedCitizen({ ...selectedCitizen, name: e.target.value })}
+                    onChange={(e) =>
+                      setSelectedCitizen({
+                        ...selectedCitizen,
+                        name: e.target.value,
+                      })
+                    }
                   />
                 </div>
                 <div>
@@ -1787,7 +2266,12 @@ export default function AdminDashboard() {
                   <Input
                     id="edit-phone"
                     value={selectedCitizen.phone}
-                    onChange={(e) => setSelectedCitizen({ ...selectedCitizen, phone: e.target.value })}
+                    onChange={(e) =>
+                      setSelectedCitizen({
+                        ...selectedCitizen,
+                        phone: e.target.value,
+                      })
+                    }
                   />
                 </div>
                 <div className="md:col-span-2">
@@ -1796,7 +2280,12 @@ export default function AdminDashboard() {
                     id="edit-email"
                     type="email"
                     value={selectedCitizen.email}
-                    onChange={(e) => setSelectedCitizen({ ...selectedCitizen, email: e.target.value })}
+                    onChange={(e) =>
+                      setSelectedCitizen({
+                        ...selectedCitizen,
+                        email: e.target.value,
+                      })
+                    }
                   />
                 </div>
                 <div className="md:col-span-2">
@@ -1804,12 +2293,22 @@ export default function AdminDashboard() {
                   <Input
                     id="edit-address"
                     value={selectedCitizen.address}
-                    onChange={(e) => setSelectedCitizen({ ...selectedCitizen, address: e.target.value })}
+                    onChange={(e) =>
+                      setSelectedCitizen({
+                        ...selectedCitizen,
+                        address: e.target.value,
+                      })
+                    }
                   />
                 </div>
                 <div>
                   <Label htmlFor="edit-status">Estado</Label>
-                  <Select value={selectedCitizen.status} onValueChange={(value) => setSelectedCitizen({ ...selectedCitizen, status: value })}>
+                  <Select
+                    value={selectedCitizen.status}
+                    onValueChange={(value) =>
+                      setSelectedCitizen({ ...selectedCitizen, status: value })
+                    }
+                  >
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -1826,11 +2325,13 @@ export default function AdminDashboard() {
                 <Button
                   variant="destructive"
                   onClick={() => {
-                    setCitizens(citizens.filter(c => c.id !== selectedCitizen.id));
+                    setCitizens(
+                      citizens.filter((c) => c.id !== selectedCitizen.id),
+                    );
                     setIsEditCitizenOpen(false);
                     toast({
                       title: "Ciudadano eliminado",
-                      description: "El registro ha sido eliminado del sistema"
+                      description: "El registro ha sido eliminado del sistema",
                     });
                   }}
                 >
@@ -1838,16 +2339,23 @@ export default function AdminDashboard() {
                   Eliminar
                 </Button>
                 <div className="flex gap-2">
-                  <Button variant="outline" onClick={() => setIsEditCitizenOpen(false)}>
+                  <Button
+                    variant="outline"
+                    onClick={() => setIsEditCitizenOpen(false)}
+                  >
                     Cancelar
                   </Button>
                   <Button
                     onClick={() => {
-                      setCitizens(citizens.map(c => c.id === selectedCitizen.id ? selectedCitizen : c));
+                      setCitizens(
+                        citizens.map((c) =>
+                          c.id === selectedCitizen.id ? selectedCitizen : c,
+                        ),
+                      );
                       setIsEditCitizenOpen(false);
                       toast({
                         title: "Ciudadano actualizado",
-                        description: "Los cambios se guardaron correctamente"
+                        description: "Los cambios se guardaron correctamente",
                       });
                     }}
                   >
@@ -1879,7 +2387,12 @@ export default function AdminDashboard() {
                   <Input
                     id="staff-name"
                     value={selectedStaff.name}
-                    onChange={(e) => setSelectedStaff({ ...selectedStaff, name: e.target.value })}
+                    onChange={(e) =>
+                      setSelectedStaff({
+                        ...selectedStaff,
+                        name: e.target.value,
+                      })
+                    }
                   />
                 </div>
                 <div>
@@ -1887,7 +2400,12 @@ export default function AdminDashboard() {
                   <Input
                     id="staff-role"
                     value={selectedStaff.role}
-                    onChange={(e) => setSelectedStaff({ ...selectedStaff, role: e.target.value })}
+                    onChange={(e) =>
+                      setSelectedStaff({
+                        ...selectedStaff,
+                        role: e.target.value,
+                      })
+                    }
                   />
                 </div>
                 <div>
@@ -1895,7 +2413,12 @@ export default function AdminDashboard() {
                   <Input
                     id="staff-department"
                     value={selectedStaff.department}
-                    onChange={(e) => setSelectedStaff({ ...selectedStaff, department: e.target.value })}
+                    onChange={(e) =>
+                      setSelectedStaff({
+                        ...selectedStaff,
+                        department: e.target.value,
+                      })
+                    }
                   />
                 </div>
                 <div>
@@ -1903,7 +2426,12 @@ export default function AdminDashboard() {
                   <Input
                     id="staff-phone"
                     value={selectedStaff.phone}
-                    onChange={(e) => setSelectedStaff({ ...selectedStaff, phone: e.target.value })}
+                    onChange={(e) =>
+                      setSelectedStaff({
+                        ...selectedStaff,
+                        phone: e.target.value,
+                      })
+                    }
                   />
                 </div>
                 <div className="md:col-span-2">
@@ -1912,12 +2440,22 @@ export default function AdminDashboard() {
                     id="staff-email"
                     type="email"
                     value={selectedStaff.email}
-                    onChange={(e) => setSelectedStaff({ ...selectedStaff, email: e.target.value })}
+                    onChange={(e) =>
+                      setSelectedStaff({
+                        ...selectedStaff,
+                        email: e.target.value,
+                      })
+                    }
                   />
                 </div>
                 <div>
                   <Label htmlFor="staff-status">Estado</Label>
-                  <Select value={selectedStaff.status} onValueChange={(value) => setSelectedStaff({ ...selectedStaff, status: value })}>
+                  <Select
+                    value={selectedStaff.status}
+                    onValueChange={(value) =>
+                      setSelectedStaff({ ...selectedStaff, status: value })
+                    }
+                  >
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -1934,11 +2472,11 @@ export default function AdminDashboard() {
                 <Button
                   variant="destructive"
                   onClick={() => {
-                    setStaff(staff.filter(s => s.id !== selectedStaff.id));
+                    setStaff(staff.filter((s) => s.id !== selectedStaff.id));
                     setIsEditStaffOpen(false);
                     toast({
                       title: "Personal eliminado",
-                      description: "El registro ha sido eliminado del sistema"
+                      description: "El registro ha sido eliminado del sistema",
                     });
                   }}
                 >
@@ -1946,16 +2484,23 @@ export default function AdminDashboard() {
                   Eliminar
                 </Button>
                 <div className="flex gap-2">
-                  <Button variant="outline" onClick={() => setIsEditStaffOpen(false)}>
+                  <Button
+                    variant="outline"
+                    onClick={() => setIsEditStaffOpen(false)}
+                  >
                     Cancelar
                   </Button>
                   <Button
                     onClick={() => {
-                      setStaff(staff.map(s => s.id === selectedStaff.id ? selectedStaff : s));
+                      setStaff(
+                        staff.map((s) =>
+                          s.id === selectedStaff.id ? selectedStaff : s,
+                        ),
+                      );
                       setIsEditStaffOpen(false);
                       toast({
                         title: "Personal actualizado",
-                        description: "Los cambios se guardaron correctamente"
+                        description: "Los cambios se guardaron correctamente",
                       });
                     }}
                   >
@@ -1987,12 +2532,19 @@ export default function AdminDashboard() {
                   <Input
                     id="type-name"
                     value={selectedType.name}
-                    onChange={(e) => setSelectedType({ ...selectedType, name: e.target.value })}
+                    onChange={(e) =>
+                      setSelectedType({ ...selectedType, name: e.target.value })
+                    }
                   />
                 </div>
                 <div>
                   <Label htmlFor="type-category">Categoría</Label>
-                  <Select value={selectedType.category} onValueChange={(value) => setSelectedType({ ...selectedType, category: value })}>
+                  <Select
+                    value={selectedType.category}
+                    onValueChange={(value) =>
+                      setSelectedType({ ...selectedType, category: value })
+                    }
+                  >
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -2009,13 +2561,26 @@ export default function AdminDashboard() {
                   <Textarea
                     id="type-description"
                     value={selectedType.description}
-                    onChange={(e) => setSelectedType({ ...selectedType, description: e.target.value })}
+                    onChange={(e) =>
+                      setSelectedType({
+                        ...selectedType,
+                        description: e.target.value,
+                      })
+                    }
                     rows={3}
                   />
                 </div>
                 <div>
                   <Label htmlFor="type-active">Estado</Label>
-                  <Select value={selectedType.active ? "true" : "false"} onValueChange={(value) => setSelectedType({ ...selectedType, active: value === "true" })}>
+                  <Select
+                    value={selectedType.active ? "true" : "false"}
+                    onValueChange={(value) =>
+                      setSelectedType({
+                        ...selectedType,
+                        active: value === "true",
+                      })
+                    }
+                  >
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -2031,11 +2596,13 @@ export default function AdminDashboard() {
                 <Button
                   variant="destructive"
                   onClick={() => {
-                    setAudienceTypes(audienceTypes.filter(t => t.id !== selectedType.id));
+                    setAudienceTypes(
+                      audienceTypes.filter((t) => t.id !== selectedType.id),
+                    );
                     setIsEditTypeOpen(false);
                     toast({
                       title: "Tipo eliminado",
-                      description: "El tipo de audiencia ha sido eliminado"
+                      description: "El tipo de audiencia ha sido eliminado",
                     });
                   }}
                 >
@@ -2043,16 +2610,23 @@ export default function AdminDashboard() {
                   Eliminar
                 </Button>
                 <div className="flex gap-2">
-                  <Button variant="outline" onClick={() => setIsEditTypeOpen(false)}>
+                  <Button
+                    variant="outline"
+                    onClick={() => setIsEditTypeOpen(false)}
+                  >
                     Cancelar
                   </Button>
                   <Button
                     onClick={() => {
-                      setAudienceTypes(audienceTypes.map(t => t.id === selectedType.id ? selectedType : t));
+                      setAudienceTypes(
+                        audienceTypes.map((t) =>
+                          t.id === selectedType.id ? selectedType : t,
+                        ),
+                      );
                       setIsEditTypeOpen(false);
                       toast({
                         title: "Tipo actualizado",
-                        description: "Los cambios se guardaron correctamente"
+                        description: "Los cambios se guardaron correctamente",
                       });
                     }}
                   >
