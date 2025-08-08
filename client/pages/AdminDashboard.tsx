@@ -1286,6 +1286,473 @@ export default function AdminDashboard() {
           )}
         </DialogContent>
       </Dialog>
+
+      {/* Modal de Expediente Ciudadano */}
+      <Dialog open={isExpedienteOpen} onOpenChange={setIsExpedienteOpen}>
+        <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <FileText className="w-5 h-5" />
+              Expediente: {selectedCitizen?.name}
+            </DialogTitle>
+            <DialogDescription>
+              Historial completo de solicitudes y resultados
+            </DialogDescription>
+          </DialogHeader>
+
+          {selectedCitizen && (
+            <div className="space-y-6">
+              {/* Información del Ciudadano */}
+              <div className="bg-slate-50 rounded-lg p-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-slate-600">Nombre Completo</p>
+                    <p className="font-medium">{selectedCitizen.name}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-slate-600">Teléfono</p>
+                    <p className="font-medium">{selectedCitizen.phone}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-slate-600">Email</p>
+                    <p className="font-medium">{selectedCitizen.email}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-slate-600">Dirección</p>
+                    <p className="font-medium">{selectedCitizen.address}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-slate-600">Fecha de Registro</p>
+                    <p className="font-medium">{format(selectedCitizen.registrationDate, "PPP", { locale: es })}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-slate-600">Total de Solicitudes</p>
+                    <p className="font-medium">{selectedCitizen.totalRequests}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Notas del Expediente */}
+              <div className="bg-yellow-50 rounded-lg p-4">
+                <h3 className="font-semibold text-slate-800 mb-2">Notas del Expediente</h3>
+                <Textarea
+                  value={selectedCitizen.expediente.notes}
+                  onChange={(e) => {
+                    const updatedCitizens = citizens.map(c =>
+                      c.id === selectedCitizen.id
+                        ? { ...c, expediente: { ...c.expediente, notes: e.target.value } }
+                        : c
+                    );
+                    setCitizens(updatedCitizens);
+                    setSelectedCitizen({ ...selectedCitizen, expediente: { ...selectedCitizen.expediente, notes: e.target.value } });
+                  }}
+                  rows={3}
+                  placeholder="Agregar notas sobre el ciudadano..."
+                />
+              </div>
+
+              {/* Historial de Solicitudes */}
+              <div>
+                <h3 className="font-semibold text-slate-800 mb-4">Historial de Solicitudes</h3>
+                <div className="space-y-4">
+                  {selectedCitizen.expediente.requests.map((request: any, index: number) => (
+                    <Card key={index} className="border-l-4 border-l-blue-500">
+                      <CardContent className="p-4">
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                          <div className="lg:col-span-6">
+                            <div className="flex items-center gap-2 mb-2">
+                              <Badge className={CATEGORY_CONFIG[request.category as keyof typeof CATEGORY_CONFIG].color}>
+                                {CATEGORY_CONFIG[request.category as keyof typeof CATEGORY_CONFIG].name}
+                              </Badge>
+                              <span className="font-medium">{request.type}</span>
+                            </div>
+                            <p className="text-sm text-slate-600 mb-2">ID: {request.id}</p>
+                            <p className="text-sm text-slate-600">
+                              Fecha: {format(request.date, "PPP", { locale: es })}
+                            </p>
+                          </div>
+
+                          <div className="lg:col-span-3">
+                            <Badge className={STATUS_CONFIG[request.status as keyof typeof STATUS_CONFIG].color}>
+                              {STATUS_CONFIG[request.status as keyof typeof STATUS_CONFIG].name}
+                            </Badge>
+                            {request.assignedTo && (
+                              <p className="text-xs text-blue-600 mt-1">
+                                Asignado a: {request.assignedTo}
+                              </p>
+                            )}
+                          </div>
+
+                          <div className="lg:col-span-3">
+                            <div className="space-y-2">
+                              <Label htmlFor={`result-${index}`}>Resultado/Observaciones</Label>
+                              <Textarea
+                                id={`result-${index}`}
+                                value={request.result}
+                                onChange={(e) => {
+                                  const updatedRequests = [...selectedCitizen.expediente.requests];
+                                  updatedRequests[index] = { ...updatedRequests[index], result: e.target.value };
+
+                                  const updatedCitizen = {
+                                    ...selectedCitizen,
+                                    expediente: { ...selectedCitizen.expediente, requests: updatedRequests }
+                                  };
+
+                                  const updatedCitizens = citizens.map(c =>
+                                    c.id === selectedCitizen.id ? updatedCitizen : c
+                                  );
+
+                                  setCitizens(updatedCitizens);
+                                  setSelectedCitizen(updatedCitizen);
+                                }}
+                                rows={2}
+                                placeholder="Resultado de la gestión..."
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+
+              {/* Acciones */}
+              <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t">
+                <Button
+                  onClick={() => {
+                    toast({
+                      title: "Expediente actualizado",
+                      description: "Los cambios se guardaron automáticamente"
+                    });
+                  }}
+                  className="flex-1"
+                >
+                  <CheckCircle className="w-4 h-4 mr-2" />
+                  Guardar Cambios
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setSelectedCitizen({ ...selectedCitizen, expediente: { ...selectedCitizen.expediente, notes: selectedCitizen.expediente.notes + "\n[" + new Date().toLocaleString() + "] Expediente revisado por " + user.name } });
+                  }}
+                >
+                  <Edit className="w-4 h-4 mr-2" />
+                  Agregar Nota de Revisión
+                </Button>
+                <Button variant="outline" onClick={() => setIsExpedienteOpen(false)}>
+                  Cerrar
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Modal Editar Ciudadano */}
+      <Dialog open={isEditCitizenOpen} onOpenChange={setIsEditCitizenOpen}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Editar Ciudadano</DialogTitle>
+            <DialogDescription>
+              Modifica la información del ciudadano
+            </DialogDescription>
+          </DialogHeader>
+
+          {selectedCitizen && (
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="edit-name">Nombre Completo</Label>
+                  <Input
+                    id="edit-name"
+                    value={selectedCitizen.name}
+                    onChange={(e) => setSelectedCitizen({ ...selectedCitizen, name: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="edit-phone">Teléfono</Label>
+                  <Input
+                    id="edit-phone"
+                    value={selectedCitizen.phone}
+                    onChange={(e) => setSelectedCitizen({ ...selectedCitizen, phone: e.target.value })}
+                  />
+                </div>
+                <div className="md:col-span-2">
+                  <Label htmlFor="edit-email">Email</Label>
+                  <Input
+                    id="edit-email"
+                    type="email"
+                    value={selectedCitizen.email}
+                    onChange={(e) => setSelectedCitizen({ ...selectedCitizen, email: e.target.value })}
+                  />
+                </div>
+                <div className="md:col-span-2">
+                  <Label htmlFor="edit-address">Dirección</Label>
+                  <Input
+                    id="edit-address"
+                    value={selectedCitizen.address}
+                    onChange={(e) => setSelectedCitizen({ ...selectedCitizen, address: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="edit-status">Estado</Label>
+                  <Select value={selectedCitizen.status} onValueChange={(value) => setSelectedCitizen({ ...selectedCitizen, status: value })}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="activo">Activo</SelectItem>
+                      <SelectItem value="inactivo">Inactivo</SelectItem>
+                      <SelectItem value="suspendido">Suspendido</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              <div className="flex justify-between pt-4">
+                <Button
+                  variant="destructive"
+                  onClick={() => {
+                    setCitizens(citizens.filter(c => c.id !== selectedCitizen.id));
+                    setIsEditCitizenOpen(false);
+                    toast({
+                      title: "Ciudadano eliminado",
+                      description: "El registro ha sido eliminado del sistema"
+                    });
+                  }}
+                >
+                  <XCircle className="w-4 h-4 mr-2" />
+                  Eliminar
+                </Button>
+                <div className="flex gap-2">
+                  <Button variant="outline" onClick={() => setIsEditCitizenOpen(false)}>
+                    Cancelar
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setCitizens(citizens.map(c => c.id === selectedCitizen.id ? selectedCitizen : c));
+                      setIsEditCitizenOpen(false);
+                      toast({
+                        title: "Ciudadano actualizado",
+                        description: "Los cambios se guardaron correctamente"
+                      });
+                    }}
+                  >
+                    <CheckCircle className="w-4 h-4 mr-2" />
+                    Guardar
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Modal Editar Personal */}
+      <Dialog open={isEditStaffOpen} onOpenChange={setIsEditStaffOpen}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Editar Personal</DialogTitle>
+            <DialogDescription>
+              Modifica la información del personal
+            </DialogDescription>
+          </DialogHeader>
+
+          {selectedStaff && (
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="staff-name">Nombre</Label>
+                  <Input
+                    id="staff-name"
+                    value={selectedStaff.name}
+                    onChange={(e) => setSelectedStaff({ ...selectedStaff, name: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="staff-role">Rol</Label>
+                  <Input
+                    id="staff-role"
+                    value={selectedStaff.role}
+                    onChange={(e) => setSelectedStaff({ ...selectedStaff, role: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="staff-department">Departamento</Label>
+                  <Input
+                    id="staff-department"
+                    value={selectedStaff.department}
+                    onChange={(e) => setSelectedStaff({ ...selectedStaff, department: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="staff-phone">Teléfono</Label>
+                  <Input
+                    id="staff-phone"
+                    value={selectedStaff.phone}
+                    onChange={(e) => setSelectedStaff({ ...selectedStaff, phone: e.target.value })}
+                  />
+                </div>
+                <div className="md:col-span-2">
+                  <Label htmlFor="staff-email">Email</Label>
+                  <Input
+                    id="staff-email"
+                    type="email"
+                    value={selectedStaff.email}
+                    onChange={(e) => setSelectedStaff({ ...selectedStaff, email: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="staff-status">Estado</Label>
+                  <Select value={selectedStaff.status} onValueChange={(value) => setSelectedStaff({ ...selectedStaff, status: value })}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="activo">Activo</SelectItem>
+                      <SelectItem value="inactivo">Inactivo</SelectItem>
+                      <SelectItem value="vacaciones">En Vacaciones</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              <div className="flex justify-between pt-4">
+                <Button
+                  variant="destructive"
+                  onClick={() => {
+                    setStaff(staff.filter(s => s.id !== selectedStaff.id));
+                    setIsEditStaffOpen(false);
+                    toast({
+                      title: "Personal eliminado",
+                      description: "El registro ha sido eliminado del sistema"
+                    });
+                  }}
+                >
+                  <XCircle className="w-4 h-4 mr-2" />
+                  Eliminar
+                </Button>
+                <div className="flex gap-2">
+                  <Button variant="outline" onClick={() => setIsEditStaffOpen(false)}>
+                    Cancelar
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setStaff(staff.map(s => s.id === selectedStaff.id ? selectedStaff : s));
+                      setIsEditStaffOpen(false);
+                      toast({
+                        title: "Personal actualizado",
+                        description: "Los cambios se guardaron correctamente"
+                      });
+                    }}
+                  >
+                    <CheckCircle className="w-4 h-4 mr-2" />
+                    Guardar
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Modal Editar Tipo de Audiencia */}
+      <Dialog open={isEditTypeOpen} onOpenChange={setIsEditTypeOpen}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Editar Tipo de Audiencia</DialogTitle>
+            <DialogDescription>
+              Modifica la configuración del tipo de audiencia
+            </DialogDescription>
+          </DialogHeader>
+
+          {selectedType && (
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="type-name">Nombre</Label>
+                  <Input
+                    id="type-name"
+                    value={selectedType.name}
+                    onChange={(e) => setSelectedType({ ...selectedType, name: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="type-category">Categoría</Label>
+                  <Select value={selectedType.category} onValueChange={(value) => setSelectedType({ ...selectedType, category: value })}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="especie">Ayuda en Especie</SelectItem>
+                      <SelectItem value="servicio">Servicios</SelectItem>
+                      <SelectItem value="invitacion">Invitaciones</SelectItem>
+                      <SelectItem value="tramites">Trámites</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="md:col-span-2">
+                  <Label htmlFor="type-description">Descripción</Label>
+                  <Textarea
+                    id="type-description"
+                    value={selectedType.description}
+                    onChange={(e) => setSelectedType({ ...selectedType, description: e.target.value })}
+                    rows={3}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="type-active">Estado</Label>
+                  <Select value={selectedType.active ? "true" : "false"} onValueChange={(value) => setSelectedType({ ...selectedType, active: value === "true" })}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="true">Activo</SelectItem>
+                      <SelectItem value="false">Inactivo</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              <div className="flex justify-between pt-4">
+                <Button
+                  variant="destructive"
+                  onClick={() => {
+                    setAudienceTypes(audienceTypes.filter(t => t.id !== selectedType.id));
+                    setIsEditTypeOpen(false);
+                    toast({
+                      title: "Tipo eliminado",
+                      description: "El tipo de audiencia ha sido eliminado"
+                    });
+                  }}
+                >
+                  <XCircle className="w-4 h-4 mr-2" />
+                  Eliminar
+                </Button>
+                <div className="flex gap-2">
+                  <Button variant="outline" onClick={() => setIsEditTypeOpen(false)}>
+                    Cancelar
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setAudienceTypes(audienceTypes.map(t => t.id === selectedType.id ? selectedType : t));
+                      setIsEditTypeOpen(false);
+                      toast({
+                        title: "Tipo actualizado",
+                        description: "Los cambios se guardaron correctamente"
+                      });
+                    }}
+                  >
+                    <CheckCircle className="w-4 h-4 mr-2" />
+                    Guardar
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
