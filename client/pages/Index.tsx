@@ -132,48 +132,177 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16 px-4 bg-white/50">
-        <div className="max-w-6xl mx-auto">
-          <h3 className="text-3xl font-bold text-center text-slate-800 mb-12">
-            ¿Cómo funciona nuestro sistema?
-          </h3>
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="border-slate-200 hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full mx-auto flex items-center justify-center mb-4">
-                  <Users className="w-8 h-8 text-blue-600" />
-                </div>
-                <CardTitle className="text-xl">Registro Simple</CardTitle>
-                <CardDescription>
-                  Regístrate con tus datos básicos y crea tu cuenta en minutos
-                </CardDescription>
-              </CardHeader>
-            </Card>
+      {/* Features Section - Process Flow */}
+      <section className="py-20 px-4 bg-gradient-to-b from-white to-blue-50">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <h3 className="text-4xl font-bold text-slate-800 mb-4">
+              ¿Cómo funciona nuestro sistema?
+            </h3>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              Un proceso simple y digital de 3 pasos para solicitar tu audiencia con el Presidente Municipal
+            </p>
+          </div>
 
-            <Card className="border-slate-200 hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full mx-auto flex items-center justify-center mb-4">
-                  <FileText className="w-8 h-8 text-green-600" />
-                </div>
-                <CardTitle className="text-xl">Solicita tu Audiencia</CardTitle>
-                <CardDescription>
-                  Completa el formulario y describe tu solicitud con audio
-                </CardDescription>
-              </CardHeader>
-            </Card>
+          {/* Desktop Flow */}
+          <div className="hidden md:block">
+            <div className="relative">
+              {/* Connection Line */}
+              <div className="absolute top-20 left-1/2 transform -translate-x-1/2 w-full max-w-3xl h-1 bg-gradient-to-r from-blue-200 via-green-200 to-purple-200 rounded-full"></div>
 
-            <Card className="border-slate-200 hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-full mx-auto flex items-center justify-center mb-4">
-                  <Calendar className="w-8 h-8 text-purple-600" />
+              <div className="grid md:grid-cols-3 gap-8 relative">
+                {/* Step 1 */}
+                <div className="relative">
+                  <div className="bg-white rounded-2xl shadow-xl border-2 border-blue-100 p-8 text-center transform hover:scale-105 transition-all duration-300 relative z-10">
+                    <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                      <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg">
+                        1
+                      </div>
+                    </div>
+                    <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto flex items-center justify-center mb-6 mt-2">
+                      <Users className="w-10 h-10 text-white" />
+                    </div>
+                    <h4 className="text-xl font-bold text-slate-800 mb-3">Registro Simple</h4>
+                    <p className="text-slate-600 leading-relaxed">
+                      Crea tu cuenta con datos básicos: nombre, teléfono y edad. ¡Solo toma 2 minutos!
+                    </p>
+                    <div className="mt-4 flex items-center justify-center text-sm text-blue-600">
+                      <Clock className="w-4 h-4 mr-1" />
+                      2 minutos
+                    </div>
+                  </div>
+                  {/* Arrow to next step */}
+                  <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 text-blue-400 hidden lg:block">
+                    <ArrowRight className="w-8 h-8" />
+                  </div>
                 </div>
-                <CardTitle className="text-xl">Agenda tu Cita</CardTitle>
-                <CardDescription>
-                  Recibe tu número de caso y confirma la fecha de tu audiencia
-                </CardDescription>
-              </CardHeader>
-            </Card>
+
+                {/* Step 2 */}
+                <div className="relative">
+                  <div className="bg-white rounded-2xl shadow-xl border-2 border-green-100 p-8 text-center transform hover:scale-105 transition-all duration-300 relative z-10">
+                    <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                      <div className="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg">
+                        2
+                      </div>
+                    </div>
+                    <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-full mx-auto flex items-center justify-center mb-6 mt-2">
+                      <FileText className="w-10 h-10 text-white" />
+                    </div>
+                    <h4 className="text-xl font-bold text-slate-800 mb-3">Solicita tu Audiencia</h4>
+                    <p className="text-slate-600 leading-relaxed">
+                      Completa 4 pasos: categoría, tipo, descripción y formato. Puedes grabar audio.
+                    </p>
+                    <div className="mt-4 flex items-center justify-center text-sm text-green-600">
+                      <Clock className="w-4 h-4 mr-1" />
+                      5 minutos
+                    </div>
+                  </div>
+                  {/* Arrow to next step */}
+                  <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 text-green-400 hidden lg:block">
+                    <ArrowRight className="w-8 h-8" />
+                  </div>
+                </div>
+
+                {/* Step 3 */}
+                <div className="relative">
+                  <div className="bg-white rounded-2xl shadow-xl border-2 border-purple-100 p-8 text-center transform hover:scale-105 transition-all duration-300 relative z-10">
+                    <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                      <div className="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg">
+                        3
+                      </div>
+                    </div>
+                    <div className="w-20 h-20 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full mx-auto flex items-center justify-center mb-6 mt-2">
+                      <CheckCircle2 className="w-10 h-10 text-white" />
+                    </div>
+                    <h4 className="text-xl font-bold text-slate-800 mb-3">Recibe Confirmación</h4>
+                    <p className="text-slate-600 leading-relaxed">
+                      Obtén tu número de folio y confirma fecha. Te contactamos por teléfono y SMS.
+                    </p>
+                    <div className="mt-4 flex items-center justify-center text-sm text-purple-600">
+                      <CheckCircle2 className="w-4 h-4 mr-1" />
+                      Inmediato
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile Flow */}
+          <div className="md:hidden space-y-8">
+            {/* Step 1 */}
+            <div className="relative">
+              <div className="bg-white rounded-2xl shadow-xl border-2 border-blue-100 p-6 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto flex items-center justify-center mb-4 relative">
+                  <Users className="w-8 h-8 text-white" />
+                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                    1
+                  </div>
+                </div>
+                <h4 className="text-lg font-bold text-slate-800 mb-2">Registro Simple</h4>
+                <p className="text-slate-600 text-sm">
+                  Crea tu cuenta con datos básicos en solo 2 minutos
+                </p>
+              </div>
+              {/* Down Arrow */}
+              <div className="flex justify-center my-4">
+                <ArrowDown className="w-6 h-6 text-blue-400" />
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="relative">
+              <div className="bg-white rounded-2xl shadow-xl border-2 border-green-100 p-6 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full mx-auto flex items-center justify-center mb-4 relative">
+                  <FileText className="w-8 h-8 text-white" />
+                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                    2
+                  </div>
+                </div>
+                <h4 className="text-lg font-bold text-slate-800 mb-2">Solicita tu Audiencia</h4>
+                <p className="text-slate-600 text-sm">
+                  Completa el formulario en 4 pasos simples
+                </p>
+              </div>
+              {/* Down Arrow */}
+              <div className="flex justify-center my-4">
+                <ArrowDown className="w-6 h-6 text-green-400" />
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="relative">
+              <div className="bg-white rounded-2xl shadow-xl border-2 border-purple-100 p-6 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full mx-auto flex items-center justify-center mb-4 relative">
+                  <CheckCircle2 className="w-8 h-8 text-white" />
+                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                    3
+                  </div>
+                </div>
+                <h4 className="text-lg font-bold text-slate-800 mb-2">Recibe Confirmación</h4>
+                <p className="text-slate-600 text-sm">
+                  Obtén tu folio y confirma la fecha de tu audiencia
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Summary */}
+          <div className="mt-16 text-center">
+            <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
+              <h4 className="text-2xl font-bold mb-4">¡Todo el proceso en menos de 10 minutos!</h4>
+              <p className="text-lg opacity-90 mb-6">
+                Desde el registro hasta la confirmación de tu audiencia
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button asChild size="lg" className="bg-white text-blue-600 hover:bg-blue-50">
+                  <Link to="/login" className="flex items-center gap-2">
+                    <ArrowRight className="w-5 h-5" />
+                    Comenzar Ahora
+                  </Link>
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -387,7 +516,7 @@ export default function Index() {
           <div className="space-y-6">
             {/* Introduction */}
             <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-              <h3 className="font-semibold text-orange-800 mb-2">��Qué es la Ayuda en Especie?</h3>
+              <h3 className="font-semibold text-orange-800 mb-2">¿Qué es la Ayuda en Especie?</h3>
               <p className="text-orange-700 text-sm leading-relaxed">
                 La ayuda en especie son bienes materiales que el municipio proporciona directamente a las familias
                 que se encuentran en situación de vulnerabilidad o necesidad. No se entrega dinero, sino productos
@@ -798,7 +927,7 @@ export default function Index() {
                   <li>• Concursos de fotografía municipal</li>
                   <li>• Certámenes de dibujo infantil</li>
                   <li>• Competencias deportivas locales</li>
-                  <li>�� Convocatorias de voluntariado</li>
+                  <li>• Convocatorias de voluntariado</li>
                   <li>• Selección de reinas y embajadores</li>
                   <li>• Concursos gastronómicos</li>
                   <li>• Torneos de ajedrez comunitarios</li>
