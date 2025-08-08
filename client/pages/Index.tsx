@@ -44,7 +44,13 @@ import {
   PartyPopper,
   Award,
   Megaphone,
-  MapPin
+  MapPin,
+  CreditCard,
+  Car,
+  Store,
+  ClipboardCheck,
+  Stamp,
+  FileCheck
 } from "lucide-react";
 
 export default function Index() {
@@ -735,7 +741,7 @@ export default function Index() {
                 <ul className="space-y-1 text-sm text-slate-600">
                   <li>• Asambleas ciudadanas informativas</li>
                   <li>• Consultas públicas sobre proyectos</li>
-                  <li>�� Reuniones de colonos y vecinos</li>
+                  <li>• Reuniones de colonos y vecinos</li>
                   <li>• Sesiones de cabildo abierto</li>
                   <li>• Foros de participación ciudadana</li>
                   <li>• Presentación de informes municipales</li>
