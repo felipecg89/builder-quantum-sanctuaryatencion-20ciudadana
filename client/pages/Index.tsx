@@ -32,7 +32,15 @@ import {
   Baby,
   Pill,
   Hammer,
-  Shirt
+  Shirt,
+  Stethoscope,
+  Scale,
+  HandHeart,
+  Wrench,
+  MessageSquare,
+  Shield,
+  PenTool,
+  HelpCircle
 } from "lucide-react";
 
 export default function Index() {
