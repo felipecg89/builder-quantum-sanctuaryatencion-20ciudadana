@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -8,6 +9,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
   Building2,
   Calendar,
   Users,
@@ -16,6 +24,15 @@ import {
   Clock,
   Phone,
   Mail,
+  Info,
+  Package,
+  Heart,
+  Home,
+  GraduationCap,
+  Baby,
+  Pill,
+  Hammer,
+  Shirt
 } from "lucide-react";
 
 export default function Index() {
