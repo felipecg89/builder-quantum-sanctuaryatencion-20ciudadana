@@ -27,6 +27,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "@/hooks/use-toast";
 import {
   Building2,
   Users,
@@ -50,7 +52,10 @@ import {
   ArrowUp,
   ArrowDown,
   TrendingUp,
-  Activity
+  Activity,
+  UserPlus,
+  CalendarDays,
+  Send
 } from "lucide-react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
