@@ -196,6 +196,103 @@ export default function AdminDashboard() {
     setIsDetailsOpen(true);
   };
 
+  const handleManage = (audience: any) => {
+    setSelectedAudience(audience);
+    setIsManageOpen(true);
+    // Limpiar formulario
+    setActionType("");
+    setResponse("");
+    setAssignedTo(audience.assignedTo || "");
+    setScheduledDate("");
+    setScheduledTime("");
+    setMeetingFormat("");
+    setPriority(audience.priority);
+    setNotes("");
+  };
+
+  const handleSaveAction = () => {
+    if (!actionType) {
+      toast({
+        title: "Error",
+        description: "Selecciona una acción a realizar",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Validaciones específicas
+    if (actionType === "responder" && !response.trim()) {
+      toast({
+        title: "Error",
+        description: "Escribe una respuesta para el ciudadano",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (actionType === "programar" && (!scheduledDate || !scheduledTime)) {
+      toast({
+        title: "Error",
+        description: "Selecciona fecha y hora para la audiencia",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Actualizar audiencia
+    const updatedAudiences = audiences.map(aud => {
+      if (aud.id === selectedAudience.id) {
+        let newStatus = aud.status;
+
+        switch (actionType) {
+          case "aprobar":
+            newStatus = "en_proceso";
+            break;
+          case "rechazar":
+            newStatus = "rechazada";
+            break;
+          case "programar":
+            newStatus = "en_proceso";
+            break;
+          case "completar":
+            newStatus = "completada";
+            break;
+        }
+
+        return {
+          ...aud,
+          status: newStatus,
+          assignedTo: assignedTo || aud.assignedTo,
+          priority: priority || aud.priority,
+          scheduledDate: scheduledDate ? new Date(scheduledDate + " " + scheduledTime) : aud.scheduledDate,
+          lastResponse: response || aud.lastResponse,
+          notes: notes || aud.notes,
+          lastUpdate: new Date()
+        };
+      }
+      return aud;
+    });
+
+    setAudiences(updatedAudiences);
+
+    // Mostrar mensaje de éxito
+    const actionMessages = {
+      aprobar: "Audiencia aprobada exitosamente",
+      rechazar: "Audiencia rechazada",
+      responder: "Respuesta enviada al ciudadano",
+      programar: "Audiencia programada exitosamente",
+      asignar: "Responsable asignado correctamente",
+      completar: "Audiencia marcada como completada"
+    };
+
+    toast({
+      title: "Acción realizada",
+      description: actionMessages[actionType as keyof typeof actionMessages] || "Acción completada",
+    });
+
+    setIsManageOpen(false);
+  };
+
   const filteredAudiences = mockAdminData.recentAudiences.filter(audience => {
     const matchesSearch = audience.citizen.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          audience.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
