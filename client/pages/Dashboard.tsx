@@ -1227,7 +1227,7 @@ export default function Dashboard() {
                           <DialogDescription>
                             Proporciona una descripción detallada de la ayuda
                             que necesitas. Puedes escribir o usar el micrófono
-                            para grabar tu descripción.
+                            para grabar tu descripci��n.
                           </DialogDescription>
                         </DialogHeader>
 
@@ -1660,20 +1660,19 @@ export default function Dashboard() {
               </h3>
               <div className="space-y-2 text-sm text-green-700">
                 <p>
-                  <strong>• Propósito:</strong> Espacio abierto para consultas
-                  ciudadanas directas con el Presidente Municipal
+                  <strong>• Propósito:</strong> Encuentro directo con el Presidente Municipal para consultas generales, quejas o propuestas ciudadanas
                 </p>
                 <p>
-                  <strong>• Modalidad:</strong> Presencial únicamente, en las
-                  instalaciones municipales
+                  <strong>• Modalidad:</strong> Solo presencial en la oficina del Presidente Municipal
                 </p>
                 <p>
-                  <strong>• Horario:</strong> Viernes de 9:00 AM a 12:00 PM
-                  (turnos de 15 minutos)
+                  <strong>• Horario:</strong> Todos los viernes de 9:00 AM a 12:00 PM (turnos de 15 minutos)
                 </p>
                 <p>
-                  <strong>• Importante:</strong> Este es un espacio para
-                  consultas y diálogo, no para solicitar ayuda específica
+                  <strong>• Diferencia:</strong> Para solicitudes específicas de ayuda, servicios o trámites, usa "Solicitudes Ciudadanas"
+                </p>
+                <p>
+                  <strong>• Importante:</strong> Este espacio es para diálogo directo, consultas generales y seguimiento de asuntos municipales
                 </p>
               </div>
             </div>
