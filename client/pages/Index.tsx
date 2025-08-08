@@ -162,17 +162,36 @@ export default function Index() {
             Tipos de Audiencias Disponibles
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="border-slate-200 hover:border-blue-300 transition-colors">
-              <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-orange-100 rounded-lg mx-auto flex items-center justify-center mb-4">
-                  <Building2 className="w-6 h-6 text-orange-600" />
+            <Card className="border-slate-200 hover:border-blue-300 transition-colors cursor-pointer group">
+              <CardContent className="p-6 text-center relative">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsEspecieModalOpen(true)}
+                  className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity p-1 h-8 w-8"
+                >
+                  <Info className="w-4 h-4 text-blue-600" />
+                </Button>
+                <div
+                  className="w-12 h-12 bg-orange-100 rounded-lg mx-auto flex items-center justify-center mb-4 cursor-pointer"
+                  onClick={() => setIsEspecieModalOpen(true)}
+                >
+                  <Package className="w-6 h-6 text-orange-600" />
                 </div>
                 <h4 className="font-semibold text-slate-800 mb-2">
                   Ayuda en Especie
                 </h4>
-                <p className="text-sm text-slate-600">
+                <p className="text-sm text-slate-600 mb-3">
                   Alimentos, medicamentos, materiales y otros recursos
                 </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setIsEspecieModalOpen(true)}
+                  className="text-xs hover:bg-orange-50 hover:border-orange-300"
+                >
+                  Ver detalles
+                </Button>
               </CardContent>
             </Card>
 
