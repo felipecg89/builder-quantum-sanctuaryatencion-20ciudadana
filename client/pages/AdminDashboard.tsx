@@ -406,26 +406,33 @@ export default function AdminDashboard() {
 
   const loadTodayTurns = () => {
     const today = new Date();
-    const dateKey = format(today, 'yyyy-MM-dd');
-    const savedTurnos = localStorage.getItem('publicAudienceTurnos');
+    const dateKey = format(today, "yyyy-MM-dd");
+    const savedTurnos = localStorage.getItem("publicAudienceTurnos");
     const allTurnos = savedTurnos ? JSON.parse(savedTurnos) : {};
     const todayTurnos = allTurnos[dateKey] || {};
 
     // Convertir a array y ordenar por hora
-    const turnsArray = Object.entries(todayTurnos).map(([slotId, turnData]: [string, any]) => ({
-      slotId,
-      time: slotId.replace('slot-', '').replace(/(\d{2})(\d{2})/, '$1:$2'),
-      ...turnData,
-      status: 'pendiente' // pendiente, activo, completado
-    })).sort((a, b) => a.time.localeCompare(b.time));
+    const turnsArray = Object.entries(todayTurnos)
+      .map(([slotId, turnData]: [string, any]) => ({
+        slotId,
+        time: slotId.replace("slot-", "").replace(/(\d{2})(\d{2})/, "$1:$2"),
+        ...turnData,
+        status: "pendiente", // pendiente, activo, completado
+      }))
+      .sort((a, b) => a.time.localeCompare(b.time));
 
     setTurnQueue(turnsArray);
     setMonitorDate(today);
 
     // Establecer el primer turno pendiente como siguiente
-    const nextPending = turnsArray.find(turn => turn.status === 'pendiente');
+    const nextPending = turnsArray.find((turn) => turn.status === "pendiente");
     if (nextPending) {
-      setNextTurns([nextPending, ...turnsArray.filter(t => t !== nextPending && t.status === 'pendiente').slice(0, 2)]);
+      setNextTurns([
+        nextPending,
+        ...turnsArray
+          .filter((t) => t !== nextPending && t.status === "pendiente")
+          .slice(0, 2),
+      ]);
     }
   };
 
@@ -436,15 +443,13 @@ export default function AdminDashboard() {
     setCurrentTurnActive(nextTurn);
 
     // Actualizar estado en la cola
-    const updatedQueue = turnQueue.map(turn =>
-      turn.slotId === nextTurn.slotId
-        ? { ...turn, status: 'activo' }
-        : turn
+    const updatedQueue = turnQueue.map((turn) =>
+      turn.slotId === nextTurn.slotId ? { ...turn, status: "activo" } : turn,
     );
     setTurnQueue(updatedQueue);
 
     // Actualizar lista de próximos turnos
-    const remainingTurns = updatedQueue.filter(t => t.status === 'pendiente');
+    const remainingTurns = updatedQueue.filter((t) => t.status === "pendiente");
     setNextTurns(remainingTurns.slice(0, 3));
   };
 
@@ -452,17 +457,17 @@ export default function AdminDashboard() {
     if (!currentTurnActive) return;
 
     // Actualizar estado en la cola
-    const updatedQueue = turnQueue.map(turn =>
+    const updatedQueue = turnQueue.map((turn) =>
       turn.slotId === currentTurnActive.slotId
-        ? { ...turn, status: 'completado' }
-        : turn
+        ? { ...turn, status: "completado" }
+        : turn,
     );
     setTurnQueue(updatedQueue);
 
     setCurrentTurnActive(null);
 
     // Actualizar lista de próximos turnos
-    const remainingTurns = updatedQueue.filter(t => t.status === 'pendiente');
+    const remainingTurns = updatedQueue.filter((t) => t.status === "pendiente");
     setNextTurns(remainingTurns.slice(0, 3));
   };
 
@@ -2743,7 +2748,10 @@ export default function AdminDashboard() {
               Monitor de Turnos - Audiencias Públicas
             </DialogTitle>
             <DialogDescription className="text-base">
-              Gestión en tiempo real de los turnos de audiencias públicas - {format(monitorDate, "EEEE, dd 'de' MMMM 'de' yyyy", { locale: es })}
+              Gestión en tiempo real de los turnos de audiencias públicas -{" "}
+              {format(monitorDate, "EEEE, dd 'de' MMMM 'de' yyyy", {
+                locale: es,
+              })}
             </DialogDescription>
           </DialogHeader>
 
@@ -2752,14 +2760,16 @@ export default function AdminDashboard() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <Card className="bg-blue-50 border-blue-200">
                 <CardContent className="p-4 text-center">
-                  <div className="text-2xl font-bold text-blue-600">{turnQueue.length}</div>
+                  <div className="text-2xl font-bold text-blue-600">
+                    {turnQueue.length}
+                  </div>
                   <div className="text-sm text-blue-700">Total Turnos</div>
                 </CardContent>
               </Card>
               <Card className="bg-green-50 border-green-200">
                 <CardContent className="p-4 text-center">
                   <div className="text-2xl font-bold text-green-600">
-                    {turnQueue.filter(t => t.status === 'completado').length}
+                    {turnQueue.filter((t) => t.status === "completado").length}
                   </div>
                   <div className="text-sm text-green-700">Completados</div>
                 </CardContent>
@@ -2767,7 +2777,7 @@ export default function AdminDashboard() {
               <Card className="bg-yellow-50 border-yellow-200">
                 <CardContent className="p-4 text-center">
                   <div className="text-2xl font-bold text-yellow-600">
-                    {turnQueue.filter(t => t.status === 'pendiente').length}
+                    {turnQueue.filter((t) => t.status === "pendiente").length}
                   </div>
                   <div className="text-sm text-yellow-700">Pendientes</div>
                 </CardContent>
@@ -2775,7 +2785,7 @@ export default function AdminDashboard() {
               <Card className="bg-red-50 border-red-200">
                 <CardContent className="p-4 text-center">
                   <div className="text-2xl font-bold text-red-600">
-                    {currentTurnActive ? '1' : '0'}
+                    {currentTurnActive ? "1" : "0"}
                   </div>
                   <div className="text-sm text-red-700">En Atención</div>
                 </CardContent>
@@ -2795,17 +2805,29 @@ export default function AdminDashboard() {
                   <div className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="bg-white rounded-lg p-4 border border-red-200">
-                        <p className="text-sm text-slate-600">Número de Turno</p>
-                        <p className="text-xl font-bold text-red-600">{currentTurnActive.turnNumber}</p>
+                        <p className="text-sm text-slate-600">
+                          Número de Turno
+                        </p>
+                        <p className="text-xl font-bold text-red-600">
+                          {currentTurnActive.turnNumber}
+                        </p>
                       </div>
                       <div className="bg-white rounded-lg p-4 border border-red-200">
                         <p className="text-sm text-slate-600">Ciudadano</p>
-                        <p className="font-semibold text-slate-800">{currentTurnActive.citizenName}</p>
-                        <p className="text-sm text-slate-600">{currentTurnActive.citizenPhone}</p>
+                        <p className="font-semibold text-slate-800">
+                          {currentTurnActive.citizenName}
+                        </p>
+                        <p className="text-sm text-slate-600">
+                          {currentTurnActive.citizenPhone}
+                        </p>
                       </div>
                       <div className="bg-white rounded-lg p-4 border border-red-200">
-                        <p className="text-sm text-slate-600">Hora Programada</p>
-                        <p className="text-lg font-bold text-slate-800">{currentTurnActive.time}</p>
+                        <p className="text-sm text-slate-600">
+                          Hora Programada
+                        </p>
+                        <p className="text-lg font-bold text-slate-800">
+                          {currentTurnActive.time}
+                        </p>
                       </div>
                     </div>
                     <div className="bg-white rounded-lg p-4 border border-red-200">
@@ -2825,8 +2847,12 @@ export default function AdminDashboard() {
                 ) : (
                   <div className="text-center py-8">
                     <Clock className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-                    <p className="text-slate-500">No hay turno en atención actualmente</p>
-                    <p className="text-sm text-slate-400">Presiona "Llamar Siguiente" para iniciar</p>
+                    <p className="text-slate-500">
+                      No hay turno en atención actualmente
+                    </p>
+                    <p className="text-sm text-slate-400">
+                      Presiona "Llamar Siguiente" para iniciar
+                    </p>
                   </div>
                 )}
               </CardContent>
@@ -2842,7 +2868,9 @@ export default function AdminDashboard() {
                   </CardTitle>
                   <Button
                     onClick={callNextTurn}
-                    disabled={nextTurns.length === 0 || currentTurnActive !== null}
+                    disabled={
+                      nextTurns.length === 0 || currentTurnActive !== null
+                    }
                     className="bg-blue-600 hover:bg-blue-700 disabled:bg-slate-400"
                   >
                     <MessageSquare className="w-4 h-4 mr-2" />
@@ -2854,18 +2882,35 @@ export default function AdminDashboard() {
                 {nextTurns.length > 0 ? (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {nextTurns.slice(0, 3).map((turn, index) => (
-                      <Card key={turn.slotId} className={`${index === 0 ? 'border-yellow-400 bg-yellow-50' : 'border-slate-200'}`}>
+                      <Card
+                        key={turn.slotId}
+                        className={`${index === 0 ? "border-yellow-400 bg-yellow-50" : "border-slate-200"}`}
+                      >
                         <CardContent className="p-4">
                           <div className="space-y-2">
                             <div className="flex justify-between items-center">
-                              <p className="font-bold text-slate-800">{turn.turnNumber}</p>
-                              <Badge className={index === 0 ? "bg-yellow-200 text-yellow-800" : "bg-slate-200 text-slate-700"}>
-                                {index === 0 ? 'Siguiente' : `En ${index + 1}`}
+                              <p className="font-bold text-slate-800">
+                                {turn.turnNumber}
+                              </p>
+                              <Badge
+                                className={
+                                  index === 0
+                                    ? "bg-yellow-200 text-yellow-800"
+                                    : "bg-slate-200 text-slate-700"
+                                }
+                              >
+                                {index === 0 ? "Siguiente" : `En ${index + 1}`}
                               </Badge>
                             </div>
-                            <p className="text-sm font-medium text-slate-700">{turn.citizenName}</p>
-                            <p className="text-xs text-slate-600">{turn.time}</p>
-                            <p className="text-xs text-slate-500 truncate">{turn.tema}</p>
+                            <p className="text-sm font-medium text-slate-700">
+                              {turn.citizenName}
+                            </p>
+                            <p className="text-xs text-slate-600">
+                              {turn.time}
+                            </p>
+                            <p className="text-xs text-slate-500 truncate">
+                              {turn.tema}
+                            </p>
                           </div>
                         </CardContent>
                       </Card>
@@ -2874,8 +2919,12 @@ export default function AdminDashboard() {
                 ) : (
                   <div className="text-center py-8">
                     <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
-                    <p className="text-slate-500">No hay más turnos pendientes</p>
-                    <p className="text-sm text-slate-400">Todos los turnos han sido atendidos</p>
+                    <p className="text-slate-500">
+                      No hay más turnos pendientes
+                    </p>
+                    <p className="text-sm text-slate-400">
+                      Todos los turnos han sido atendidos
+                    </p>
                   </div>
                 )}
               </CardContent>
@@ -2884,7 +2933,9 @@ export default function AdminDashboard() {
             {/* Lista Completa de Turnos */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-slate-800">Lista Completa de Turnos del Día</CardTitle>
+                <CardTitle className="text-slate-800">
+                  Lista Completa de Turnos del Día
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
@@ -2892,9 +2943,11 @@ export default function AdminDashboard() {
                     <div
                       key={turn.slotId}
                       className={`flex items-center justify-between p-3 rounded-lg border ${
-                        turn.status === 'activo' ? 'bg-red-50 border-red-200' :
-                        turn.status === 'completado' ? 'bg-green-50 border-green-200' :
-                        'bg-slate-50 border-slate-200'
+                        turn.status === "activo"
+                          ? "bg-red-50 border-red-200"
+                          : turn.status === "completado"
+                            ? "bg-green-50 border-green-200"
+                            : "bg-slate-50 border-slate-200"
                       }`}
                     >
                       <div className="flex items-center gap-4">
@@ -2904,19 +2957,29 @@ export default function AdminDashboard() {
                         </div>
                         <div>
                           <p className="font-semibold">{turn.turnNumber}</p>
-                          <p className="text-sm text-slate-600">{turn.citizenName}</p>
-                          <p className="text-xs text-slate-500">{turn.citizenPhone}</p>
+                          <p className="text-sm text-slate-600">
+                            {turn.citizenName}
+                          </p>
+                          <p className="text-xs text-slate-500">
+                            {turn.citizenPhone}
+                          </p>
                         </div>
                       </div>
                       <div className="text-right">
-                        <Badge className={
-                          turn.status === 'activo' ? "bg-red-100 text-red-800" :
-                          turn.status === 'completado' ? "bg-green-100 text-green-800" :
-                          "bg-yellow-100 text-yellow-800"
-                        }>
-                          {turn.status === 'activo' ? 'En Atención' :
-                           turn.status === 'completado' ? 'Completado' :
-                           'Pendiente'}
+                        <Badge
+                          className={
+                            turn.status === "activo"
+                              ? "bg-red-100 text-red-800"
+                              : turn.status === "completado"
+                                ? "bg-green-100 text-green-800"
+                                : "bg-yellow-100 text-yellow-800"
+                          }
+                        >
+                          {turn.status === "activo"
+                            ? "En Atención"
+                            : turn.status === "completado"
+                              ? "Completado"
+                              : "Pendiente"}
                         </Badge>
                       </div>
                     </div>
@@ -2926,8 +2989,13 @@ export default function AdminDashboard() {
                 {turnQueue.length === 0 && (
                   <div className="text-center py-8">
                     <Calendar className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-                    <p className="text-slate-500">No hay turnos programados para hoy</p>
-                    <p className="text-sm text-slate-400">Los turnos aparecerán aquí cuando los ciudadanos los reserven</p>
+                    <p className="text-slate-500">
+                      No hay turnos programados para hoy
+                    </p>
+                    <p className="text-sm text-slate-400">
+                      Los turnos aparecerán aquí cuando los ciudadanos los
+                      reserven
+                    </p>
                   </div>
                 )}
               </CardContent>
@@ -2936,17 +3004,11 @@ export default function AdminDashboard() {
 
           {/* Botones de acción */}
           <div className="flex justify-between pt-4 border-t">
-            <Button
-              variant="outline"
-              onClick={() => loadTodayTurns()}
-            >
+            <Button variant="outline" onClick={() => loadTodayTurns()}>
               <ArrowDown className="w-4 h-4 mr-2" />
               Actualizar Lista
             </Button>
-            <Button
-              variant="outline"
-              onClick={() => setShowTurnMonitor(false)}
-            >
+            <Button variant="outline" onClick={() => setShowTurnMonitor(false)}>
               Cerrar Monitor
             </Button>
           </div>

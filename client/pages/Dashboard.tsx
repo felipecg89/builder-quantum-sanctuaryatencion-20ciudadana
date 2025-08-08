@@ -169,9 +169,12 @@ export default function Dashboard() {
     setAvailableDates(upcomingDates);
 
     // Cargar turnos del usuario
-    const savedUserTurnos = localStorage.getItem('userPublicAudienceTurnos') || '[]';
+    const savedUserTurnos =
+      localStorage.getItem("userPublicAudienceTurnos") || "[]";
     const parsedUserTurnos = JSON.parse(savedUserTurnos);
-    const userTurnosFiltered = parsedUserTurnos.filter((turno: any) => turno.userId === parsedUser.id);
+    const userTurnosFiltered = parsedUserTurnos.filter(
+      (turno: any) => turno.userId === parsedUser.id,
+    );
     setUserTurnos(userTurnosFiltered);
   }, []); // Remove navigate from dependencies
 
@@ -223,19 +226,19 @@ export default function Dashboard() {
     setSelectedAudienceDate(date);
 
     // Cargar slots con datos persistidos
-    const savedTurnos = localStorage.getItem('publicAudienceTurnos');
+    const savedTurnos = localStorage.getItem("publicAudienceTurnos");
     const existingTurnos = savedTurnos ? JSON.parse(savedTurnos) : {};
-    const dateKey = format(date.date, 'yyyy-MM-dd');
+    const dateKey = format(date.date, "yyyy-MM-dd");
 
     const slots = generateTimeSlots();
-    const slotsWithReservations = slots.map(slot => {
+    const slotsWithReservations = slots.map((slot) => {
       const existingReservation = existingTurnos[dateKey]?.[slot.id];
       if (existingReservation) {
         return {
           ...slot,
           available: false,
           citizenId: existingReservation.citizenId,
-          citizenName: existingReservation.citizenName
+          citizenName: existingReservation.citizenName,
         };
       }
       return slot;
@@ -255,20 +258,26 @@ export default function Dashboard() {
 
     // Validaciones adicionales
     if (turnosConsultaTema.trim().length < 10) {
-      alert("Por favor, describe tu consulta con más detalle (mínimo 10 caracteres)");
+      alert(
+        "Por favor, describe tu consulta con más detalle (mínimo 10 caracteres)",
+      );
       return;
     }
 
     // Verificar si el usuario ya tiene un turno para este mes
-    const savedTurnos = localStorage.getItem('userPublicAudienceTurnos') || '[]';
+    const savedTurnos =
+      localStorage.getItem("userPublicAudienceTurnos") || "[]";
     const userTurnos = JSON.parse(savedTurnos);
-    const currentMonth = format(selectedAudienceDate.date, 'yyyy-MM');
-    const hasCurrentMonthTurno = userTurnos.some((turno: any) =>
-      turno.userId === user.id && turno.date.startsWith(currentMonth)
+    const currentMonth = format(selectedAudienceDate.date, "yyyy-MM");
+    const hasCurrentMonthTurno = userTurnos.some(
+      (turno: any) =>
+        turno.userId === user.id && turno.date.startsWith(currentMonth),
     );
 
     if (hasCurrentMonthTurno) {
-      alert("Ya tienes un turno reservado para este mes. Solo se permite un turno por persona por mes.");
+      alert(
+        "Ya tienes un turno reservado para este mes. Solo se permite un turno por persona por mes.",
+      );
       return;
     }
 
@@ -279,12 +288,14 @@ export default function Dashboard() {
       await new Promise((resolve) => setTimeout(resolve, 500));
 
       // Verificar disponibilidad nuevamente
-      const dateKey = format(selectedAudienceDate.date, 'yyyy-MM-dd');
-      const allTurnos = localStorage.getItem('publicAudienceTurnos');
+      const dateKey = format(selectedAudienceDate.date, "yyyy-MM-dd");
+      const allTurnos = localStorage.getItem("publicAudienceTurnos");
       const existingTurnos = allTurnos ? JSON.parse(allTurnos) : {};
 
       if (existingTurnos[dateKey]?.[selectedTimeSlot.id]) {
-        alert("Este turno ya fue reservado por otro ciudadano. Por favor, selecciona otro horario.");
+        alert(
+          "Este turno ya fue reservado por otro ciudadano. Por favor, selecciona otro horario.",
+        );
         setIsBookingTurno(false);
         return;
       }
@@ -307,26 +318,35 @@ export default function Dashboard() {
         citizenPhone: user.phone,
         tema: turnosConsultaTema,
         turnNumber: turnNumber,
-        reservedAt: new Date().toISOString()
+        reservedAt: new Date().toISOString(),
       };
 
-      localStorage.setItem('publicAudienceTurnos', JSON.stringify(existingTurnos));
+      localStorage.setItem(
+        "publicAudienceTurnos",
+        JSON.stringify(existingTurnos),
+      );
 
       // Guardar en historial del usuario
       const newUserTurno = {
         userId: user.id,
         turnNumber: turnNumber,
-        date: format(selectedAudienceDate.date, 'yyyy-MM-dd'),
+        date: format(selectedAudienceDate.date, "yyyy-MM-dd"),
         time: selectedTimeSlot.time,
         tema: turnosConsultaTema,
-        status: 'confirmado'
+        status: "confirmado",
       };
 
       userTurnos.push(newUserTurno);
-      localStorage.setItem('userPublicAudienceTurnos', JSON.stringify(userTurnos));
+      localStorage.setItem(
+        "userPublicAudienceTurnos",
+        JSON.stringify(userTurnos),
+      );
 
       // Actualizar estado local de turnos del usuario
-      setUserTurnos([...userTurnos.filter((t: any) => t.userId === user.id), newUserTurno]);
+      setUserTurnos([
+        ...userTurnos.filter((t: any) => t.userId === user.id),
+        newUserTurno,
+      ]);
 
       // Actualizar slot como ocupado en el estado local
       const updatedSlots = availableSlots.map((slot) =>
@@ -342,11 +362,11 @@ export default function Dashboard() {
       setAvailableSlots(updatedSlots);
 
       // Actualizar fechas disponibles
-      const updatedDates = availableDates.map(date => {
+      const updatedDates = availableDates.map((date) => {
         if (date.date.getTime() === selectedAudienceDate.date.getTime()) {
           return {
             ...date,
-            slotsAvailable: date.slotsAvailable - 1
+            slotsAvailable: date.slotsAvailable - 1,
           };
         }
         return date;
@@ -362,7 +382,7 @@ export default function Dashboard() {
         tema: turnosConsultaTema,
         citizenName: user.name,
         citizenPhone: user.phone,
-        reservedAt: new Date()
+        reservedAt: new Date(),
       };
 
       // Mostrar ticket visual
@@ -376,7 +396,9 @@ export default function Dashboard() {
       setIsTurnosModalOpen(false);
     } catch (error) {
       console.error("Error al reservar turno:", error);
-      alert("❌ Error al reservar el turno. Verifica tu conexión e intenta nuevamente.");
+      alert(
+        "❌ Error al reservar el turno. Verifica tu conexión e intenta nuevamente.",
+      );
     } finally {
       setIsBookingTurno(false);
     }
@@ -446,7 +468,7 @@ export default function Dashboard() {
 
         // Crear enlace de descarga
         const link = document.createElement("a");
-        link.download = `turno-${currentTurnTicket?.turnNumber || 'audiencia-publica'}.png`;
+        link.download = `turno-${currentTurnTicket?.turnNumber || "audiencia-publica"}.png`;
         link.href = canvas.toDataURL("image/png");
         link.click();
       }
@@ -797,8 +819,8 @@ export default function Dashboard() {
                         Solicitudes Ciudadanas
                       </h3>
                       <p className="text-sm text-slate-600 leading-relaxed">
-                        Solicita ayuda en especie, servicios, trámites e invitaciones.
-                        Modalidad virtual o presencial.
+                        Solicita ayuda en especie, servicios, trámites e
+                        invitaciones. Modalidad virtual o presencial.
                       </p>
                     </div>
                     <div className="space-y-2 text-xs text-slate-500">
@@ -824,8 +846,8 @@ export default function Dashboard() {
                         Audiencias Públicas de Viernes
                       </h3>
                       <p className="text-sm text-green-700 leading-relaxed">
-                        Reserva tu turno para consulta directa y presencial
-                        con el Presidente Municipal.
+                        Reserva tu turno para consulta directa y presencial con
+                        el Presidente Municipal.
                       </p>
                     </div>
                     <div className="space-y-2 text-xs text-green-600">
@@ -922,8 +944,7 @@ export default function Dashboard() {
                     "Paso 1: Categoría de tu Solicitud Ciudadana"}
                   {currentStep === 2 && "Paso 2: Tipo de Solicitud"}
                   {currentStep === 3 && "Paso 3: Describe tu Solicitud"}
-                  {currentStep === 4 &&
-                    "Paso 4: Modalidad de Atención"}
+                  {currentStep === 4 && "Paso 4: Modalidad de Atención"}
                 </CardTitle>
                 <CardDescription className="text-xs sm:text-base leading-tight">
                   {currentStep === 1 &&
@@ -1476,8 +1497,8 @@ export default function Dashboard() {
                         </Popover>
 
                         <p className="text-sm text-slate-600">
-                          * Las citas presenciales están disponibles de lunes a viernes
-                          en horario de oficina (8:00 AM - 5:00 PM)
+                          * Las citas presenciales están disponibles de lunes a
+                          viernes en horario de oficina (8:00 AM - 5:00 PM)
                         </p>
                       </div>
                     )}
@@ -1605,8 +1626,9 @@ export default function Dashboard() {
               Turnos para Audiencias Públicas de los Viernes
             </DialogTitle>
             <DialogDescription className="text-base">
-              Reserva tu turno para consulta directa y presencial con el Presidente Municipal.
-              Solo los viernes de cada mes - modalidad únicamente presencial.
+              Reserva tu turno para consulta directa y presencial con el
+              Presidente Municipal. Solo los viernes de cada mes - modalidad
+              únicamente presencial.
             </DialogDescription>
           </DialogHeader>
 
@@ -1632,17 +1654,31 @@ export default function Dashboard() {
                 {showUserTurnos && (
                   <div className="space-y-2">
                     {userTurnos.map((turno, index) => (
-                      <div key={index} className="bg-white rounded p-3 border border-blue-200">
+                      <div
+                        key={index}
+                        className="bg-white rounded p-3 border border-blue-200"
+                      >
                         <div className="flex justify-between items-start">
                           <div>
-                            <p className="font-medium text-blue-900">Turno #{turno.turnNumber}</p>
-                            <p className="text-sm text-blue-700">
-                              {format(new Date(turno.date), "EEEE, dd 'de' MMMM", { locale: es })} - {turno.time}
+                            <p className="font-medium text-blue-900">
+                              Turno #{turno.turnNumber}
                             </p>
-                            <p className="text-xs text-blue-600">Tema: {turno.tema}</p>
+                            <p className="text-sm text-blue-700">
+                              {format(
+                                new Date(turno.date),
+                                "EEEE, dd 'de' MMMM",
+                                { locale: es },
+                              )}{" "}
+                              - {turno.time}
+                            </p>
+                            <p className="text-xs text-blue-600">
+                              Tema: {turno.tema}
+                            </p>
                           </div>
                           <Badge className="bg-green-100 text-green-800">
-                            {turno.status === 'confirmado' ? 'Confirmado' : turno.status}
+                            {turno.status === "confirmado"
+                              ? "Confirmado"
+                              : turno.status}
                           </Badge>
                         </div>
                       </div>
@@ -1660,19 +1696,26 @@ export default function Dashboard() {
               </h3>
               <div className="space-y-2 text-sm text-green-700">
                 <p>
-                  <strong>• Propósito:</strong> Encuentro directo con el Presidente Municipal para consultas generales, quejas o propuestas ciudadanas
+                  <strong>• Propósito:</strong> Encuentro directo con el
+                  Presidente Municipal para consultas generales, quejas o
+                  propuestas ciudadanas
                 </p>
                 <p>
-                  <strong>• Modalidad:</strong> Solo presencial en la oficina del Presidente Municipal
+                  <strong>• Modalidad:</strong> Solo presencial en la oficina
+                  del Presidente Municipal
                 </p>
                 <p>
-                  <strong>• Horario:</strong> Todos los viernes de 9:00 AM a 12:00 PM (turnos de 15 minutos)
+                  <strong>• Horario:</strong> Todos los viernes de 9:00 AM a
+                  12:00 PM (turnos de 15 minutos)
                 </p>
                 <p>
-                  <strong>• Diferencia:</strong> Para solicitudes específicas de ayuda, servicios o trámites, usa "Solicitudes Ciudadanas"
+                  <strong>• Diferencia:</strong> Para solicitudes específicas de
+                  ayuda, servicios o trámites, usa "Solicitudes Ciudadanas"
                 </p>
                 <p>
-                  <strong>• Importante:</strong> Este espacio es para diálogo directo, consultas generales y seguimiento de asuntos municipales
+                  <strong>• Importante:</strong> Este espacio es para diálogo
+                  directo, consultas generales y seguimiento de asuntos
+                  municipales
                 </p>
               </div>
             </div>
@@ -1848,12 +1891,18 @@ export default function Dashboard() {
                 <div className="flex items-center justify-center gap-3 mb-2">
                   <Building2 className="w-8 h-8 text-green-600" />
                   <div>
-                    <h2 className="text-lg font-bold text-slate-800">Presidencia Municipal</h2>
-                    <p className="text-sm text-slate-600">Audiencia Pública de los Viernes</p>
+                    <h2 className="text-lg font-bold text-slate-800">
+                      Presidencia Municipal
+                    </h2>
+                    <p className="text-sm text-slate-600">
+                      Audiencia Pública de los Viernes
+                    </p>
                   </div>
                 </div>
                 <div className="bg-green-100 border border-green-300 rounded-full px-4 py-2 inline-block">
-                  <p className="font-bold text-green-800">✅ TURNO CONFIRMADO</p>
+                  <p className="font-bold text-green-800">
+                    ✅ TURNO CONFIRMADO
+                  </p>
                 </div>
               </div>
 
@@ -1861,27 +1910,47 @@ export default function Dashboard() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-3">
                   <div className="bg-white rounded-lg p-3 border border-green-200">
-                    <p className="text-xs text-slate-600 uppercase tracking-wide">Número de Turno</p>
-                    <p className="text-2xl font-bold text-green-700">{currentTurnTicket.turnNumber}</p>
+                    <p className="text-xs text-slate-600 uppercase tracking-wide">
+                      Número de Turno
+                    </p>
+                    <p className="text-2xl font-bold text-green-700">
+                      {currentTurnTicket.turnNumber}
+                    </p>
                   </div>
 
                   <div className="bg-white rounded-lg p-3 border border-green-200">
-                    <p className="text-xs text-slate-600 uppercase tracking-wide">Ciudadano</p>
-                    <p className="font-semibold text-slate-800">{currentTurnTicket.citizenName}</p>
-                    <p className="text-sm text-slate-600">{currentTurnTicket.citizenPhone}</p>
+                    <p className="text-xs text-slate-600 uppercase tracking-wide">
+                      Ciudadano
+                    </p>
+                    <p className="font-semibold text-slate-800">
+                      {currentTurnTicket.citizenName}
+                    </p>
+                    <p className="text-sm text-slate-600">
+                      {currentTurnTicket.citizenPhone}
+                    </p>
                   </div>
                 </div>
 
                 <div className="space-y-3">
                   <div className="bg-white rounded-lg p-3 border border-green-200">
-                    <p className="text-xs text-slate-600 uppercase tracking-wide">Fecha y Hora</p>
-                    <p className="font-semibold text-slate-800">{currentTurnTicket.formattedDate}</p>
-                    <p className="text-lg font-bold text-blue-600">{currentTurnTicket.time}</p>
+                    <p className="text-xs text-slate-600 uppercase tracking-wide">
+                      Fecha y Hora
+                    </p>
+                    <p className="font-semibold text-slate-800">
+                      {currentTurnTicket.formattedDate}
+                    </p>
+                    <p className="text-lg font-bold text-blue-600">
+                      {currentTurnTicket.time}
+                    </p>
                   </div>
 
                   <div className="bg-white rounded-lg p-3 border border-green-200">
-                    <p className="text-xs text-slate-600 uppercase tracking-wide">Tema de Consulta</p>
-                    <p className="text-sm text-slate-800">{currentTurnTicket.tema}</p>
+                    <p className="text-xs text-slate-600 uppercase tracking-wide">
+                      Tema de Consulta
+                    </p>
+                    <p className="text-sm text-slate-800">
+                      {currentTurnTicket.tema}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -1892,11 +1961,25 @@ export default function Dashboard() {
                   ⚠️ Instrucciones Importantes
                 </h3>
                 <ul className="space-y-1 text-sm text-yellow-700">
-                  <li>• <strong>Llega 15 minutos antes</strong> de tu turno asignado</li>
-                  <li>• <strong>Trae identificación oficial</strong> (INE, pasaporte, cédula profesional)</li>
-                  <li>• <strong>Ubicación:</strong> Presidencia Municipal, Oficina del Presidente</li>
-                  <li>• <strong>Duración máxima:</strong> 15 minutos por consulta</li>
-                  <li>• <strong>Si no puedes asistir,</strong> cancela con anticipación</li>
+                  <li>
+                    • <strong>Llega 15 minutos antes</strong> de tu turno
+                    asignado
+                  </li>
+                  <li>
+                    • <strong>Trae identificación oficial</strong> (INE,
+                    pasaporte, cédula profesional)
+                  </li>
+                  <li>
+                    • <strong>Ubicación:</strong> Presidencia Municipal, Oficina
+                    del Presidente
+                  </li>
+                  <li>
+                    • <strong>Duración máxima:</strong> 15 minutos por consulta
+                  </li>
+                  <li>
+                    • <strong>Si no puedes asistir,</strong> cancela con
+                    anticipación
+                  </li>
                 </ul>
               </div>
 
@@ -1915,7 +1998,12 @@ export default function Dashboard() {
               {/* Footer con fecha de emisión */}
               <div className="text-center pt-4 border-t border-green-200">
                 <p className="text-xs text-slate-500">
-                  Ticket generado el {format(currentTurnTicket.reservedAt, "dd/MM/yyyy 'a las' HH:mm", { locale: es })}
+                  Ticket generado el{" "}
+                  {format(
+                    currentTurnTicket.reservedAt,
+                    "dd/MM/yyyy 'a las' HH:mm",
+                    { locale: es },
+                  )}
                 </p>
                 <p className="text-xs text-slate-500 mt-1">
                   Conserva este ticket como comprobante de tu turno
