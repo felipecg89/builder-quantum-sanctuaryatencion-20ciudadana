@@ -497,19 +497,32 @@ export default function Index() {
 
           {/* Admin Access */}
           <div className="border-t border-slate-700 pt-6 mb-6">
-            <Button
-              asChild
-              variant="outline"
-              size="sm"
-              className="border-slate-600 text-slate-400 hover:text-white hover:border-slate-500"
-            >
-              <Link to="/admin/login" className="flex items-center gap-2">
-                <Shield className="w-4 h-4" />
-                Acceso Administrativo
-              </Link>
-            </Button>
-            <p className="text-xs text-slate-500 mt-2">
-              Panel exclusivo para funcionarios municipales
+            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+              <Button
+                asChild
+                variant="outline"
+                size="sm"
+                className="border-slate-600 text-slate-400 hover:text-white hover:border-slate-500"
+              >
+                <Link to="/admin/login" className="flex items-center gap-2">
+                  <Shield className="w-4 h-4" />
+                  Acceso Administrativo
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="sm"
+                className="border-emerald-600 text-emerald-400 hover:text-white hover:border-emerald-500 hover:bg-emerald-600"
+              >
+                <Link to="/admin/dashboard?tab=configuracion" className="flex items-center gap-2">
+                  <Wrench className="w-4 h-4" />
+                  Panel de Configuración
+                </Link>
+              </Button>
+            </div>
+            <p className="text-xs text-slate-500 mt-3">
+              Paneles exclusivos para funcionarios municipales
             </p>
           </div>
 
