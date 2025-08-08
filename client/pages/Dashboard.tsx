@@ -204,6 +204,49 @@ export default function Dashboard() {
     navigate("/login");
   };
 
+  // Funciones para turnos de audiencias públicas
+  const handleSelectAudienceDate = (date: PublicAudienceDate) => {
+    setSelectedAudienceDate(date);
+    const slots = generateTimeSlots();
+    setAvailableSlots(slots);
+    setSelectedTimeSlot(null);
+  };
+
+  const handleBookTurno = async () => {
+    if (!selectedAudienceDate || !selectedTimeSlot || !turnosConsultaTema.trim()) return;
+
+    setIsBookingTurno(true);
+
+    try {
+      // Simular reserva de turno
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      const turnNumber = generateTurnNumber(selectedAudienceDate.date, selectedTimeSlot.id);
+
+      // Actualizar slot como ocupado
+      const updatedSlots = availableSlots.map(slot =>
+        slot.id === selectedTimeSlot.id
+          ? { ...slot, available: false, citizenId: user.id, citizenName: user.name }
+          : slot
+      );
+      setAvailableSlots(updatedSlots);
+
+      // Mostrar confirmación
+      alert(`¡Turno reservado exitosamente!\n\nNúmero de turno: ${turnNumber}\nFecha: ${formatPublicAudienceDate(selectedAudienceDate.date)}\nHora: ${selectedTimeSlot.time}\nTema: ${turnosConsultaTema}\n\nPor favor, llega 15 minutos antes de tu turno.`);
+
+      // Limpiar formulario
+      setSelectedAudienceDate(null);
+      setSelectedTimeSlot(null);
+      setTurnosConsultaTema("");
+      setIsTurnosModalOpen(false);
+
+    } catch (error) {
+      alert("Error al reservar el turno. Intenta nuevamente.");
+    } finally {
+      setIsBookingTurno(false);
+    }
+  };
+
   const handleScreenshot = async () => {
     try {
       // Usar html2canvas para capturar la pantalla
