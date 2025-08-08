@@ -552,7 +552,11 @@ export default function AdminDashboard() {
             >
               <div className="relative">
                 <MessageSquare className="w-5 h-5 transition-transform group-hover:scale-110" />
-                <div className="absolute -top-1 -right-1 w-2 h-2 bg-blue-400 rounded-full data-[state=active]:bg-white animate-pulse"></div>
+                {audiences.filter(a => a.status === 'pendiente').length > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                    {audiences.filter(a => a.status === 'pendiente').length}
+                  </span>
+                )}
               </div>
               <span className="text-xs font-semibold tracking-wide">Audiencias</span>
             </TabsTrigger>
@@ -562,7 +566,9 @@ export default function AdminDashboard() {
             >
               <div className="relative">
                 <Users className="w-5 h-5 transition-transform group-hover:scale-110" />
-                <div className="absolute -top-1 -right-1 w-2 h-2 bg-purple-400 rounded-full data-[state=active]:bg-white animate-pulse"></div>
+                <span className="absolute -top-2 -right-2 bg-purple-100 text-purple-600 text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                  {citizens.length}
+                </span>
               </div>
               <span className="text-xs font-semibold tracking-wide">Ciudadanos</span>
             </TabsTrigger>
@@ -572,7 +578,9 @@ export default function AdminDashboard() {
             >
               <div className="relative">
                 <FileText className="w-5 h-5 transition-transform group-hover:scale-110" />
-                <div className="absolute -top-1 -right-1 w-2 h-2 bg-amber-400 rounded-full data-[state=active]:bg-white animate-pulse"></div>
+                <span className="absolute -top-2 -right-2 bg-amber-100 text-amber-600 text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                  {citizens.reduce((total, citizen) => total + citizen.expediente.requests.length, 0)}
+                </span>
               </div>
               <span className="text-xs font-semibold tracking-wide">Expedientes</span>
             </TabsTrigger>
@@ -582,7 +590,9 @@ export default function AdminDashboard() {
             >
               <div className="relative">
                 <UserPlus className="w-5 h-5 transition-transform group-hover:scale-110" />
-                <div className="absolute -top-1 -right-1 w-2 h-2 bg-indigo-400 rounded-full data-[state=active]:bg-white animate-pulse"></div>
+                <span className="absolute -top-2 -right-2 bg-indigo-100 text-indigo-600 text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                  {staff.filter(s => s.status === 'activo').length}
+                </span>
               </div>
               <span className="text-xs font-semibold tracking-wide">Personal</span>
             </TabsTrigger>
@@ -900,7 +910,7 @@ export default function AdminDashboard() {
                 <div className="flex justify-between items-center">
                   <div>
                     <CardTitle>Personal de Apoyo</CardTitle>
-                    <CardDescription>Gestiona el personal para asignación de audiencias</CardDescription>
+                    <CardDescription>Gestiona el personal para asignaci��n de audiencias</CardDescription>
                   </div>
                   <Button>
                     <Plus className="w-4 h-4 mr-2" />
