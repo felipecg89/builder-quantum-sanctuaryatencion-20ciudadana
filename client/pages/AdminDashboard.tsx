@@ -623,6 +623,15 @@ export default function AdminDashboard() {
             <Button
               variant="outline"
               size="sm"
+              onClick={() => navigate('/')}
+              className="border-blue-200 text-blue-700 hover:bg-blue-50"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Volver al Inicio
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
               onClick={() => setActiveTab("configuracion")}
               className="border-emerald-200 text-emerald-700 hover:bg-emerald-50"
             >
