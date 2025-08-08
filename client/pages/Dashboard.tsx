@@ -134,6 +134,8 @@ export default function Dashboard() {
   const [isBookingTurno, setIsBookingTurno] = useState(false);
   const [userTurnos, setUserTurnos] = useState<any[]>([]);
   const [showUserTurnos, setShowUserTurnos] = useState(false);
+  const [currentTurnTicket, setCurrentTurnTicket] = useState<any>(null);
+  const [showTurnTicket, setShowTurnTicket] = useState(false);
 
   const [formData, setFormData] = useState({
     category: "",
@@ -1235,7 +1237,7 @@ export default function Dashboard() {
                                     ? `🔴 Grabando... (${Math.floor(recordingTime / 60)}:${(recordingTime % 60).toString().padStart(2, "0")})`
                                     : audioBlob
                                       ? "✅ Audio grabado correctamente"
-                                      : "🎙����� Presiona para grabar tu descripción"}
+                                      : "🎙���� Presiona para grabar tu descripción"}
                                 </p>
                                 <p className="text-xs text-slate-500">
                                   {isRecording
