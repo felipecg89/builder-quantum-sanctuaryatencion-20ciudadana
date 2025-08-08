@@ -132,6 +132,8 @@ export default function Dashboard() {
   );
   const [availableSlots, setAvailableSlots] = useState<TimeSlot[]>([]);
   const [isBookingTurno, setIsBookingTurno] = useState(false);
+  const [userTurnos, setUserTurnos] = useState<any[]>([]);
+  const [showUserTurnos, setShowUserTurnos] = useState(false);
 
   const [formData, setFormData] = useState({
     category: "",
