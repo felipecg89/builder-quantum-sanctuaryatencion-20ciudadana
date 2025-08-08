@@ -1490,8 +1490,8 @@ export default function Dashboard() {
                     variant="outline"
                     onClick={() => {
                       if (currentStep === 1) {
-                        // If on first step, go back to previous page
-                        navigate(-1);
+                        // Volver al selector principal
+                        setCurrentStep(0);
                       } else {
                         // Otherwise, go to previous step
                         setCurrentStep(currentStep - 1);
