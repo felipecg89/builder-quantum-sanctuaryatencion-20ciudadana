@@ -599,7 +599,7 @@ export default function Dashboard() {
       recorder.onerror = (event) => {
         console.error("Recording error:", event);
         setIsRecording(false);
-        alert("Error al grabar audio. Verifica los permisos del micr��fono.");
+        alert("Error al grabar audio. Verifica los permisos del micrófono.");
       };
 
       // Start recording
@@ -1872,6 +1872,18 @@ export default function Dashboard() {
                     Reservar Turno
                   </>
                 )}
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setIsTurnosModalOpen(false);
+                  setCurrentStep(0);
+                }}
+                className="flex-1 border-blue-200 text-blue-700 hover:bg-blue-50"
+                disabled={isBookingTurno}
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Volver al Inicio
               </Button>
               <Button
                 variant="outline"
