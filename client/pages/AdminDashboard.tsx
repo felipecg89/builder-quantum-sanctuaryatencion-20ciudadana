@@ -257,6 +257,25 @@ export default function AdminDashboard() {
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [audiences, setAudiences] = useState(mockAdminData.recentAudiences);
 
+  // Estados para gestión de datos administrativos
+  const [citizens, setCitizens] = useState(mockAdminData.citizens);
+  const [staff, setStaff] = useState(mockAdminData.staff);
+  const [audienceTypes, setAudienceTypes] = useState(mockAdminData.audienceTypes);
+
+  // Estados para modales de administración
+  const [selectedCitizen, setSelectedCitizen] = useState<any>(null);
+  const [isExpedienteOpen, setIsExpedienteOpen] = useState(false);
+  const [isEditCitizenOpen, setIsEditCitizenOpen] = useState(false);
+  const [isEditStaffOpen, setIsEditStaffOpen] = useState(false);
+  const [isEditTypeOpen, setIsEditTypeOpen] = useState(false);
+  const [selectedStaff, setSelectedStaff] = useState<any>(null);
+  const [selectedType, setSelectedType] = useState<any>(null);
+
+  // Búsquedas específicas
+  const [citizenSearch, setCitizenSearch] = useState("");
+  const [staffSearch, setStaffSearch] = useState("");
+  const [typeSearch, setTypeSearch] = useState("");
+
   // Estados para el modal de gestión
   const [actionType, setActionType] = useState("");
   const [response, setResponse] = useState("");
