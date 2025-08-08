@@ -155,6 +155,10 @@ export default function Dashboard() {
     }
 
     setUser(parsedUser);
+
+    // Inicializar fechas disponibles para turnos
+    const upcomingDates = getUpcomingPublicAudienceDates();
+    setAvailableDates(upcomingDates);
   }, []); // Remove navigate from dependencies
 
   // Keyboard shortcuts for modal
