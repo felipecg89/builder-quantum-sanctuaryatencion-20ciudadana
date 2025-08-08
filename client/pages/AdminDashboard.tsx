@@ -625,6 +625,18 @@ export default function AdminDashboard() {
               <span className="text-xs font-semibold tracking-wide">Configuración</span>
             </TabsTrigger>
             <TabsTrigger
+              value="turnos"
+              className="admin-tab-trigger flex flex-col items-center gap-1.5 h-14 data-[state=active]:bg-gradient-to-br data-[state=active]:from-green-500 data-[state=active]:to-green-600 data-[state=active]:text-white data-[state=active]:border-green-300 data-[state=active]:shadow-lg hover:bg-green-50/70 transition-all duration-300 group"
+            >
+              <div className="relative">
+                <Clock className="w-5 h-5 transition-transform group-hover:scale-110" />
+                <span className="absolute -top-2 -right-2 bg-green-100 text-green-600 text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                  {publicAudienceDates.length}
+                </span>
+              </div>
+              <span className="text-xs font-semibold tracking-wide">Turnos</span>
+            </TabsTrigger>
+            <TabsTrigger
               value="reportes"
               className="admin-tab-trigger flex flex-col items-center gap-1.5 h-14 data-[state=active]:bg-gradient-to-br data-[state=active]:from-rose-500 data-[state=active]:to-rose-600 data-[state=active]:text-white data-[state=active]:border-rose-300 data-[state=active]:shadow-lg hover:bg-rose-50/70 transition-all duration-300 group"
             >
