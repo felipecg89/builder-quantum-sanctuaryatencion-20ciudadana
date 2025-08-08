@@ -40,7 +40,12 @@ import {
   MessageSquare,
   Shield,
   PenTool,
-  HelpCircle
+  HelpCircle,
+  PartyPopper,
+  Award,
+  Megaphone,
+  MapPin,
+  Clock
 } from "lucide-react";
 
 export default function Index() {
