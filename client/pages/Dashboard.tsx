@@ -165,6 +165,12 @@ export default function Dashboard() {
     // Inicializar fechas disponibles para turnos
     const upcomingDates = getUpcomingPublicAudienceDates();
     setAvailableDates(upcomingDates);
+
+    // Cargar turnos del usuario
+    const savedUserTurnos = localStorage.getItem('userPublicAudienceTurnos') || '[]';
+    const parsedUserTurnos = JSON.parse(savedUserTurnos);
+    const userTurnosFiltered = parsedUserTurnos.filter((turno: any) => turno.userId === parsedUser.id);
+    setUserTurnos(userTurnosFiltered);
   }, []); // Remove navigate from dependencies
 
   // Keyboard shortcuts for modal
