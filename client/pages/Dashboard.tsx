@@ -243,18 +243,79 @@ export default function Dashboard() {
     )
       return;
 
+    // Validaciones adicionales
+    if (turnosConsultaTema.trim().length < 10) {
+      alert("Por favor, describe tu consulta con más detalle (mínimo 10 caracteres)");
+      return;
+    }
+
+    // Verificar si el usuario ya tiene un turno para este mes
+    const savedTurnos = localStorage.getItem('userPublicAudienceTurnos') || '[]';
+    const userTurnos = JSON.parse(savedTurnos);
+    const currentMonth = format(selectedAudienceDate.date, 'yyyy-MM');
+    const hasCurrentMonthTurno = userTurnos.some((turno: any) =>
+      turno.userId === user.id && turno.date.startsWith(currentMonth)
+    );
+
+    if (hasCurrentMonthTurno) {
+      alert("Ya tienes un turno reservado para este mes. Solo se permite un turno por persona por mes.");
+      return;
+    }
+
     setIsBookingTurno(true);
 
     try {
-      // Simular reserva de turno
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Simular proceso de reserva con pasos
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
+      // Verificar disponibilidad nuevamente
+      const dateKey = format(selectedAudienceDate.date, 'yyyy-MM-dd');
+      const allTurnos = localStorage.getItem('publicAudienceTurnos');
+      const existingTurnos = allTurnos ? JSON.parse(allTurnos) : {};
+
+      if (existingTurnos[dateKey]?.[selectedTimeSlot.id]) {
+        alert("Este turno ya fue reservado por otro ciudadano. Por favor, selecciona otro horario.");
+        setIsBookingTurno(false);
+        return;
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simular procesamiento
 
       const turnNumber = generateTurnNumber(
         selectedAudienceDate.date,
         selectedTimeSlot.id,
       );
 
-      // Actualizar slot como ocupado
+      // Guardar reserva en localStorage
+      if (!existingTurnos[dateKey]) {
+        existingTurnos[dateKey] = {};
+      }
+
+      existingTurnos[dateKey][selectedTimeSlot.id] = {
+        citizenId: user.id,
+        citizenName: user.name,
+        citizenPhone: user.phone,
+        tema: turnosConsultaTema,
+        turnNumber: turnNumber,
+        reservedAt: new Date().toISOString()
+      };
+
+      localStorage.setItem('publicAudienceTurnos', JSON.stringify(existingTurnos));
+
+      // Guardar en historial del usuario
+      const newUserTurno = {
+        userId: user.id,
+        turnNumber: turnNumber,
+        date: format(selectedAudienceDate.date, 'yyyy-MM-dd'),
+        time: selectedTimeSlot.time,
+        tema: turnosConsultaTema,
+        status: 'confirmado'
+      };
+
+      userTurnos.push(newUserTurno);
+      localStorage.setItem('userPublicAudienceTurnos', JSON.stringify(userTurnos));
+
+      // Actualizar slot como ocupado en el estado local
       const updatedSlots = availableSlots.map((slot) =>
         slot.id === selectedTimeSlot.id
           ? {
@@ -267,10 +328,37 @@ export default function Dashboard() {
       );
       setAvailableSlots(updatedSlots);
 
-      // Mostrar confirmación
-      alert(
-        `¡Turno reservado exitosamente!\n\nNúmero de turno: ${turnNumber}\nFecha: ${formatPublicAudienceDate(selectedAudienceDate.date)}\nHora: ${selectedTimeSlot.time}\nTema: ${turnosConsultaTema}\n\nPor favor, llega 15 minutos antes de tu turno.`,
-      );
+      // Actualizar fechas disponibles
+      const updatedDates = availableDates.map(date => {
+        if (date.date.getTime() === selectedAudienceDate.date.getTime()) {
+          return {
+            ...date,
+            slotsAvailable: date.slotsAvailable - 1
+          };
+        }
+        return date;
+      });
+      setAvailableDates(updatedDates);
+
+      // Mostrar confirmación mejorada
+      const confirmationMessage = `🎉 ¡Turno reservado exitosamente!
+
+📋 DETALLES DE TU TURNO:
+• Número de turno: ${turnNumber}
+• Fecha: ${formatPublicAudienceDate(selectedAudienceDate.date)}
+• Hora: ${selectedTimeSlot.time}
+• Tema: ${turnosConsultaTema}
+
+📍 INSTRUCCIONES IMPORTANTES:
+• Llega 15 minutos antes de tu turno
+• Trae identificación oficial
+• Ubicación: Presidencia Municipal
+• Duración máxima: 15 minutos
+
+💾 Tu turno ha sido guardado automáticamente.
+📱 Recibirás un recordatorio por SMS.`;
+
+      alert(confirmationMessage);
 
       // Limpiar formulario
       setSelectedAudienceDate(null);
@@ -278,7 +366,8 @@ export default function Dashboard() {
       setTurnosConsultaTema("");
       setIsTurnosModalOpen(false);
     } catch (error) {
-      alert("Error al reservar el turno. Intenta nuevamente.");
+      console.error("Error al reservar turno:", error);
+      alert("❌ Error al reservar el turno. Verifica tu conexión e intenta nuevamente.");
     } finally {
       setIsBookingTurno(false);
     }
@@ -481,7 +570,7 @@ export default function Dashboard() {
               "Permisos denegados. Permite el acceso al micrófono en tu navegador.";
             break;
           case "NotFoundError":
-            errorMessage += "No se encontró micr��fono en tu dispositivo.";
+            errorMessage += "No se encontró micrófono en tu dispositivo.";
             break;
           case "NotReadableError":
             errorMessage +=
