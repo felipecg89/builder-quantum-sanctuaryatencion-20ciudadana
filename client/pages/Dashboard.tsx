@@ -1395,7 +1395,7 @@ export default function Dashboard() {
                   <div className="space-y-6">
                     <div className="space-y-4">
                       <h3 className="text-lg font-medium text-slate-800">
-                        Formato de la Audiencia
+                        Modalidad de Atención
                       </h3>
                       <RadioGroup
                         value={formData.meetingFormat}
