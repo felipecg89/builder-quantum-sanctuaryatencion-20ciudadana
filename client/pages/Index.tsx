@@ -222,7 +222,7 @@ export default function Index() {
                 </div>
                 <h4 className="font-semibold text-slate-800 mb-2">Servicios</h4>
                 <p className="text-sm text-slate-600 mb-3">
-                  Servicios médicos, legales, sociales y técnicos
+                  Servicios sociales, orientación y atención especializada
                 </p>
                 <Button
                   variant="outline"
@@ -420,7 +420,7 @@ export default function Index() {
                   <li>• Uniformes escolares</li>
                   <li>• Mochilas y zapatos escolares</li>
                   <li>• Libros y material didáctico</li>
-                  <li>• Equipos de c��mputo básicos</li>
+                  <li>• Equipos de cómputo básicos</li>
                   <li>• Material para manualidades</li>
                 </ul>
               </div>
