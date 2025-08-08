@@ -1605,8 +1605,8 @@ export default function Dashboard() {
               Turnos para Audiencias Públicas de los Viernes
             </DialogTitle>
             <DialogDescription className="text-base">
-              Solicita tu turno para participar en las audiencias públicas que
-              se realizan todos los viernes de cada mes
+              Reserva tu turno para consulta directa y presencial con el Presidente Municipal.
+              Solo los viernes de cada mes - modalidad únicamente presencial.
             </DialogDescription>
           </DialogHeader>
 
