@@ -51,6 +51,7 @@ import {
   Mail,
   ArrowUp,
   ArrowDown,
+  ArrowLeft,
   TrendingUp,
   Activity,
   UserPlus,
