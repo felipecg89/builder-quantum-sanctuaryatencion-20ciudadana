@@ -289,6 +289,11 @@ export default function AdminDashboard() {
   const [staffSearch, setStaffSearch] = useState("");
   const [typeSearch, setTypeSearch] = useState("");
 
+  // Estados para gestión de turnos de viernes
+  const [publicAudienceDates, setPublicAudienceDates] = useState<PublicAudienceDate[]>([]);
+  const [selectedManageDate, setSelectedManageDate] = useState<PublicAudienceDate | null>(null);
+  const [manageDateSlots, setManageDateSlots] = useState<TimeSlot[]>([]);
+
   // Estados para el modal de gestión
   const [actionType, setActionType] = useState("");
   const [response, setResponse] = useState("");
@@ -1197,7 +1202,7 @@ export default function AdminDashboard() {
 
           {selectedAudience && (
             <div className="space-y-6">
-              {/* Informaci��n Resumida */}
+              {/* Información Resumida */}
               <div className="bg-slate-50 rounded-lg p-4">
                 <div className="flex items-start justify-between">
                   <div>
