@@ -211,8 +211,27 @@ export default function Dashboard() {
   // Funciones para turnos de audiencias públicas
   const handleSelectAudienceDate = (date: PublicAudienceDate) => {
     setSelectedAudienceDate(date);
+
+    // Cargar slots con datos persistidos
+    const savedTurnos = localStorage.getItem('publicAudienceTurnos');
+    const existingTurnos = savedTurnos ? JSON.parse(savedTurnos) : {};
+    const dateKey = format(date.date, 'yyyy-MM-dd');
+
     const slots = generateTimeSlots();
-    setAvailableSlots(slots);
+    const slotsWithReservations = slots.map(slot => {
+      const existingReservation = existingTurnos[dateKey]?.[slot.id];
+      if (existingReservation) {
+        return {
+          ...slot,
+          available: false,
+          citizenId: existingReservation.citizenId,
+          citizenName: existingReservation.citizenName
+        };
+      }
+      return slot;
+    });
+
+    setAvailableSlots(slotsWithReservations);
     setSelectedTimeSlot(null);
   };
 
@@ -462,7 +481,7 @@ export default function Dashboard() {
               "Permisos denegados. Permite el acceso al micrófono en tu navegador.";
             break;
           case "NotFoundError":
-            errorMessage += "No se encontró micrófono en tu dispositivo.";
+            errorMessage += "No se encontró micr��fono en tu dispositivo.";
             break;
           case "NotReadableError":
             errorMessage +=
