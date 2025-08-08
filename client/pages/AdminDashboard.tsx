@@ -692,17 +692,279 @@ export default function AdminDashboard() {
             </Card>
           </TabsContent>
 
-          {/* Otras pestañas */}
-          <TabsContent value="usuarios">
+          {/* Gestión de Ciudadanos */}
+          <TabsContent value="ciudadanos">
             <Card>
               <CardHeader>
-                <CardTitle>Gestión de Usuarios</CardTitle>
-                <CardDescription>Administra los usuarios del sistema</CardDescription>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <CardTitle>Gestión de Ciudadanos</CardTitle>
+                    <CardDescription>Administra los usuarios ciudadanos del sistema</CardDescription>
+                  </div>
+                  <Button>
+                    <Plus className="w-4 h-4 mr-2" />
+                    Nuevo Ciudadano
+                  </Button>
+                </div>
               </CardHeader>
               <CardContent>
-                <p className="text-slate-600">Funcionalidad en desarrollo...</p>
+                <div className="space-y-4">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+                    <Input
+                      placeholder="Buscar por nombre, teléfono o email..."
+                      value={citizenSearch}
+                      onChange={(e) => setCitizenSearch(e.target.value)}
+                      className="pl-10"
+                    />
+                  </div>
+
+                  <div className="space-y-3">
+                    {citizens
+                      .filter(citizen =>
+                        citizen.name.toLowerCase().includes(citizenSearch.toLowerCase()) ||
+                        citizen.phone.includes(citizenSearch) ||
+                        citizen.email.toLowerCase().includes(citizenSearch.toLowerCase())
+                      )
+                      .map((citizen) => (
+                      <Card key={citizen.id} className="hover:shadow-md transition-shadow">
+                        <CardContent className="p-4">
+                          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+                            <div className="lg:col-span-6">
+                              <h4 className="font-semibold text-slate-800">{citizen.name}</h4>
+                              <p className="text-sm text-slate-600">{citizen.phone} • {citizen.email}</p>
+                              <p className="text-xs text-slate-500">{citizen.address}</p>
+                            </div>
+                            <div className="lg:col-span-3">
+                              <p className="text-sm text-slate-600">Solicitudes: {citizen.totalRequests}</p>
+                              <p className="text-xs text-slate-500">
+                                Registro: {format(citizen.registrationDate, "dd/MM/yyyy", { locale: es })}
+                              </p>
+                              <Badge className={citizen.status === "activo" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}>
+                                {citizen.status}
+                              </Badge>
+                            </div>
+                            <div className="lg:col-span-3 flex gap-2">
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => {
+                                  setSelectedCitizen(citizen);
+                                  setIsExpedienteOpen(true);
+                                }}
+                              >
+                                <FileText className="w-4 h-4 mr-1" />
+                                Expediente
+                              </Button>
+                              <Button
+                                size="sm"
+                                onClick={() => {
+                                  setSelectedCitizen(citizen);
+                                  setIsEditCitizenOpen(true);
+                                }}
+                              >
+                                <Edit className="w-4 h-4 mr-1" />
+                                Editar
+                              </Button>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
               </CardContent>
             </Card>
+          </TabsContent>
+
+          {/* Expedientes Ciudadanos */}
+          <TabsContent value="expedientes">
+            <Card>
+              <CardHeader>
+                <CardTitle>Expedientes de Ciudadanos</CardTitle>
+                <CardDescription>Historial completo de solicitudes y resultados por ciudadano</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {citizens.map((citizen) => (
+                    <Card key={citizen.id} className="hover:shadow-md transition-shadow cursor-pointer"
+                          onClick={() => {
+                            setSelectedCitizen(citizen);
+                            setIsExpedienteOpen(true);
+                          }}>
+                      <CardContent className="p-4">
+                        <div className="flex items-start justify-between mb-3">
+                          <div>
+                            <h4 className="font-semibold text-slate-800">{citizen.name}</h4>
+                            <p className="text-sm text-slate-600">{citizen.phone}</p>
+                          </div>
+                          <Badge className="bg-blue-100 text-blue-800">
+                            {citizen.totalRequests} solicitudes
+                          </Badge>
+                        </div>
+                        <div className="space-y-2">
+                          {citizen.expediente.requests.slice(0, 2).map((request, idx) => (
+                            <div key={idx} className="text-xs">
+                              <p className="text-slate-600">{request.type}</p>
+                              <Badge className={STATUS_CONFIG[request.status as keyof typeof STATUS_CONFIG].color}>
+                                {STATUS_CONFIG[request.status as keyof typeof STATUS_CONFIG].name}
+                              </Badge>
+                            </div>
+                          ))}
+                        </div>
+                        <Button size="sm" className="w-full mt-3" variant="outline">
+                          <Eye className="w-4 h-4 mr-2" />
+                          Ver Expediente Completo
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Gestión de Personal */}
+          <TabsContent value="personal">
+            <Card>
+              <CardHeader>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <CardTitle>Personal de Apoyo</CardTitle>
+                    <CardDescription>Gestiona el personal para asignación de audiencias</CardDescription>
+                  </div>
+                  <Button>
+                    <Plus className="w-4 h-4 mr-2" />
+                    Agregar Personal
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+                    <Input
+                      placeholder="Buscar por nombre, rol o departamento..."
+                      value={staffSearch}
+                      onChange={(e) => setStaffSearch(e.target.value)}
+                      className="pl-10"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {staff
+                      .filter(member =>
+                        member.name.toLowerCase().includes(staffSearch.toLowerCase()) ||
+                        member.role.toLowerCase().includes(staffSearch.toLowerCase()) ||
+                        member.department.toLowerCase().includes(staffSearch.toLowerCase())
+                      )
+                      .map((member) => (
+                      <Card key={member.id} className="hover:shadow-md transition-shadow">
+                        <CardContent className="p-4">
+                          <div className="flex items-start justify-between mb-3">
+                            <div>
+                              <h4 className="font-semibold text-slate-800">{member.name}</h4>
+                              <p className="text-sm text-slate-600">{member.role}</p>
+                              <p className="text-xs text-slate-500">{member.department}</p>
+                            </div>
+                            <Badge className={member.status === "activo" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}>
+                              {member.status}
+                            </Badge>
+                          </div>
+                          <div className="space-y-1 mb-3">
+                            <p className="text-xs text-slate-600">📧 {member.email}</p>
+                            <p className="text-xs text-slate-600">📞 {member.phone}</p>
+                            <p className="text-xs text-slate-600">📋 {member.activeAssignments} asignaciones activas</p>
+                          </div>
+                          <Button
+                            size="sm"
+                            className="w-full"
+                            onClick={() => {
+                              setSelectedStaff(member);
+                              setIsEditStaffOpen(true);
+                            }}
+                          >
+                            <Edit className="w-4 h-4 mr-2" />
+                            Editar
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Configuración */}
+          <TabsContent value="configuracion">
+            <div className="space-y-6">
+              <Card>
+                <CardHeader>
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <CardTitle>Tipos de Audiencias</CardTitle>
+                      <CardDescription>Configura las categorías y tipos de audiencias disponibles</CardDescription>
+                    </div>
+                    <Button>
+                      <Plus className="w-4 h-4 mr-2" />
+                      Nuevo Tipo
+                    </Button>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="relative">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+                      <Input
+                        placeholder="Buscar tipos de audiencia..."
+                        value={typeSearch}
+                        onChange={(e) => setTypeSearch(e.target.value)}
+                        className="pl-10"
+                      />
+                    </div>
+
+                    <div className="space-y-3">
+                      {audienceTypes
+                        .filter(type =>
+                          type.name.toLowerCase().includes(typeSearch.toLowerCase()) ||
+                          type.description.toLowerCase().includes(typeSearch.toLowerCase())
+                        )
+                        .map((type) => (
+                        <Card key={type.id} className="hover:shadow-md transition-shadow">
+                          <CardContent className="p-4">
+                            <div className="flex items-center justify-between">
+                              <div className="flex-1">
+                                <div className="flex items-center gap-3 mb-2">
+                                  <Badge className={CATEGORY_CONFIG[type.category as keyof typeof CATEGORY_CONFIG].color}>
+                                    {CATEGORY_CONFIG[type.category as keyof typeof CATEGORY_CONFIG].name}
+                                  </Badge>
+                                  <h4 className="font-semibold text-slate-800">{type.name}</h4>
+                                  <Badge className={type.active ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-800"}>
+                                    {type.active ? "Activo" : "Inactivo"}
+                                  </Badge>
+                                </div>
+                                <p className="text-sm text-slate-600">{type.description}</p>
+                              </div>
+                              <Button
+                                size="sm"
+                                onClick={() => {
+                                  setSelectedType(type);
+                                  setIsEditTypeOpen(true);
+                                }}
+                              >
+                                <Edit className="w-4 h-4 mr-2" />
+                                Editar
+                              </Button>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </TabsContent>
 
           <TabsContent value="reportes">
@@ -712,19 +974,41 @@ export default function AdminDashboard() {
                 <CardDescription>Estadísticas y reportes del sistema</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-slate-600">Funcionalidad en desarrollo...</p>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="configuracion">
-            <Card>
-              <CardHeader>
-                <CardTitle>Configuración del Sistema</CardTitle>
-                <CardDescription>Ajustes generales y configuración</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-slate-600">Funcionalidad en desarrollo...</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <Card>
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-sm text-slate-600">Ciudadanos Registrados</p>
+                          <p className="text-2xl font-bold text-slate-800">{citizens.length}</p>
+                        </div>
+                        <Users className="w-8 h-8 text-blue-600" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                  <Card>
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-sm text-slate-600">Personal Activo</p>
+                          <p className="text-2xl font-bold text-slate-800">{staff.filter(s => s.status === "activo").length}</p>
+                        </div>
+                        <UserPlus className="w-8 h-8 text-green-600" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                  <Card>
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-sm text-slate-600">Tipos Configurados</p>
+                          <p className="text-2xl font-bold text-slate-800">{audienceTypes.filter(t => t.active).length}</p>
+                        </div>
+                        <Settings className="w-8 h-8 text-purple-600" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
               </CardContent>
             </Card>
           </TabsContent>
