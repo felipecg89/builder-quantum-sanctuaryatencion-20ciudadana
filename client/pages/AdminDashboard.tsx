@@ -389,7 +389,82 @@ export default function AdminDashboard() {
     // Inicializar fechas de audiencias públicas
     const upcomingDates = getUpcomingPublicAudienceDates();
     setPublicAudienceDates(upcomingDates);
+
+    // Inicializar monitor de turnos para hoy si es viernes
+    initializeTurnMonitor();
   }, [navigate]);
+
+  const initializeTurnMonitor = () => {
+    const today = new Date();
+    const isTodayFriday = today.getDay() === 5; // 5 = Friday
+
+    if (isTodayFriday) {
+      // Cargar turnos del día actual
+      loadTodayTurns();
+    }
+  };
+
+  const loadTodayTurns = () => {
+    const today = new Date();
+    const dateKey = format(today, 'yyyy-MM-dd');
+    const savedTurnos = localStorage.getItem('publicAudienceTurnos');
+    const allTurnos = savedTurnos ? JSON.parse(savedTurnos) : {};
+    const todayTurnos = allTurnos[dateKey] || {};
+
+    // Convertir a array y ordenar por hora
+    const turnsArray = Object.entries(todayTurnos).map(([slotId, turnData]: [string, any]) => ({
+      slotId,
+      time: slotId.replace('slot-', '').replace(/(\d{2})(\d{2})/, '$1:$2'),
+      ...turnData,
+      status: 'pendiente' // pendiente, activo, completado
+    })).sort((a, b) => a.time.localeCompare(b.time));
+
+    setTurnQueue(turnsArray);
+    setMonitorDate(today);
+
+    // Establecer el primer turno pendiente como siguiente
+    const nextPending = turnsArray.find(turn => turn.status === 'pendiente');
+    if (nextPending) {
+      setNextTurns([nextPending, ...turnsArray.filter(t => t !== nextPending && t.status === 'pendiente').slice(0, 2)]);
+    }
+  };
+
+  const callNextTurn = () => {
+    if (nextTurns.length === 0) return;
+
+    const nextTurn = nextTurns[0];
+    setCurrentTurnActive(nextTurn);
+
+    // Actualizar estado en la cola
+    const updatedQueue = turnQueue.map(turn =>
+      turn.slotId === nextTurn.slotId
+        ? { ...turn, status: 'activo' }
+        : turn
+    );
+    setTurnQueue(updatedQueue);
+
+    // Actualizar lista de próximos turnos
+    const remainingTurns = updatedQueue.filter(t => t.status === 'pendiente');
+    setNextTurns(remainingTurns.slice(0, 3));
+  };
+
+  const completeTurn = () => {
+    if (!currentTurnActive) return;
+
+    // Actualizar estado en la cola
+    const updatedQueue = turnQueue.map(turn =>
+      turn.slotId === currentTurnActive.slotId
+        ? { ...turn, status: 'completado' }
+        : turn
+    );
+    setTurnQueue(updatedQueue);
+
+    setCurrentTurnActive(null);
+
+    // Actualizar lista de próximos turnos
+    const remainingTurns = updatedQueue.filter(t => t.status === 'pendiente');
+    setNextTurns(remainingTurns.slice(0, 3));
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("adminUser");
