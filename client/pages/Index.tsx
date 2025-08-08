@@ -420,7 +420,7 @@ export default function Index() {
                   <li>• Uniformes escolares</li>
                   <li>• Mochilas y zapatos escolares</li>
                   <li>• Libros y material didáctico</li>
-                  <li>• Equipos de cómputo básicos</li>
+                  <li>• Equipos de c��mputo básicos</li>
                   <li>• Material para manualidades</li>
                 </ul>
               </div>
@@ -509,42 +509,6 @@ export default function Index() {
 
             {/* Services Categories */}
             <div className="grid md:grid-cols-2 gap-6">
-              {/* Servicios Médicos */}
-              <div className="border border-slate-200 rounded-lg p-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <Stethoscope className="w-5 h-5 text-red-500" />
-                  <h4 className="font-semibold text-slate-800">Servicios Médicos</h4>
-                </div>
-                <ul className="space-y-1 text-sm text-slate-600">
-                  <li>• Consultas médicas generales</li>
-                  <li>• Atención pediátrica básica</li>
-                  <li>• Control de enfermedades crónicas</li>
-                  <li>• Servicios de enfermería</li>
-                  <li>• Primeros auxilios y emergencias</li>
-                  <li>• Campañas de vacunación</li>
-                  <li>• Terapias de rehabilitación</li>
-                  <li>• Apoyo psicológico</li>
-                </ul>
-              </div>
-
-              {/* Servicios Legales */}
-              <div className="border border-slate-200 rounded-lg p-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <Scale className="w-5 h-5 text-blue-600" />
-                  <h4 className="font-semibold text-slate-800">Servicios Legales</h4>
-                </div>
-                <ul className="space-y-1 text-sm text-slate-600">
-                  <li>• Asesoría jurídica gratuita</li>
-                  <li>• Mediación familiar</li>
-                  <li>• Trámites de registro civil</li>
-                  <li>• Asuntos de derecho familiar</li>
-                  <li>• Orientación en violencia doméstica</li>
-                  <li>• Defensoría pública</li>
-                  <li>• Tramitación de documentos</li>
-                  <li>• Contratos y convenios básicos</li>
-                </ul>
-              </div>
-
               {/* Servicios Sociales */}
               <div className="border border-slate-200 rounded-lg p-4">
                 <div className="flex items-center gap-2 mb-3">
@@ -560,24 +524,6 @@ export default function Index() {
                   <li>• Programas de desarrollo comunitario</li>
                   <li>• Gestión de becas educativas</li>
                   <li>• Vinculación con programas federales</li>
-                </ul>
-              </div>
-
-              {/* Servicios Técnicos */}
-              <div className="border border-slate-200 rounded-lg p-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <Wrench className="w-5 h-5 text-gray-600" />
-                  <h4 className="font-semibold text-slate-800">Servicios Técnicos</h4>
-                </div>
-                <ul className="space-y-1 text-sm text-slate-600">
-                  <li>• Servicios de plomería básica</li>
-                  <li>• Reparaciones eléctricas menores</li>
-                  <li>• Mantenimiento de viviendas</li>
-                  <li>• Instalación de sistemas básicos</li>
-                  <li>• Reparación de electrodomésticos</li>
-                  <li>• Servicios de albañilería</li>
-                  <li>• Asesoría en construcción</li>
-                  <li>• Servicios de jardinería</li>
                 </ul>
               </div>
 
