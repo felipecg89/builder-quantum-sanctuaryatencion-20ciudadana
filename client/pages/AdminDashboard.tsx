@@ -2733,6 +2733,225 @@ export default function AdminDashboard() {
           )}
         </DialogContent>
       </Dialog>
+
+      {/* Monitor de Turnos en Tiempo Real */}
+      <Dialog open={showTurnMonitor} onOpenChange={setShowTurnMonitor}>
+        <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-xl">
+              <Activity className="w-6 h-6 text-blue-600" />
+              Monitor de Turnos - Audiencias Públicas
+            </DialogTitle>
+            <DialogDescription className="text-base">
+              Gestión en tiempo real de los turnos de audiencias públicas - {format(monitorDate, "EEEE, dd 'de' MMMM 'de' yyyy", { locale: es })}
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-6">
+            {/* Status General */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <Card className="bg-blue-50 border-blue-200">
+                <CardContent className="p-4 text-center">
+                  <div className="text-2xl font-bold text-blue-600">{turnQueue.length}</div>
+                  <div className="text-sm text-blue-700">Total Turnos</div>
+                </CardContent>
+              </Card>
+              <Card className="bg-green-50 border-green-200">
+                <CardContent className="p-4 text-center">
+                  <div className="text-2xl font-bold text-green-600">
+                    {turnQueue.filter(t => t.status === 'completado').length}
+                  </div>
+                  <div className="text-sm text-green-700">Completados</div>
+                </CardContent>
+              </Card>
+              <Card className="bg-yellow-50 border-yellow-200">
+                <CardContent className="p-4 text-center">
+                  <div className="text-2xl font-bold text-yellow-600">
+                    {turnQueue.filter(t => t.status === 'pendiente').length}
+                  </div>
+                  <div className="text-sm text-yellow-700">Pendientes</div>
+                </CardContent>
+              </Card>
+              <Card className="bg-red-50 border-red-200">
+                <CardContent className="p-4 text-center">
+                  <div className="text-2xl font-bold text-red-600">
+                    {currentTurnActive ? '1' : '0'}
+                  </div>
+                  <div className="text-sm text-red-700">En Atención</div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Turno Actual */}
+            <Card className="bg-gradient-to-r from-red-50 to-red-100 border-red-300">
+              <CardHeader>
+                <CardTitle className="text-red-800 flex items-center gap-2">
+                  <Users className="w-5 h-5" />
+                  Turno en Atención
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                {currentTurnActive ? (
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="bg-white rounded-lg p-4 border border-red-200">
+                        <p className="text-sm text-slate-600">Número de Turno</p>
+                        <p className="text-xl font-bold text-red-600">{currentTurnActive.turnNumber}</p>
+                      </div>
+                      <div className="bg-white rounded-lg p-4 border border-red-200">
+                        <p className="text-sm text-slate-600">Ciudadano</p>
+                        <p className="font-semibold text-slate-800">{currentTurnActive.citizenName}</p>
+                        <p className="text-sm text-slate-600">{currentTurnActive.citizenPhone}</p>
+                      </div>
+                      <div className="bg-white rounded-lg p-4 border border-red-200">
+                        <p className="text-sm text-slate-600">Hora Programada</p>
+                        <p className="text-lg font-bold text-slate-800">{currentTurnActive.time}</p>
+                      </div>
+                    </div>
+                    <div className="bg-white rounded-lg p-4 border border-red-200">
+                      <p className="text-sm text-slate-600">Tema de Consulta</p>
+                      <p className="text-slate-800">{currentTurnActive.tema}</p>
+                    </div>
+                    <div className="flex gap-3">
+                      <Button
+                        onClick={completeTurn}
+                        className="bg-green-600 hover:bg-green-700"
+                      >
+                        <CheckCircle className="w-4 h-4 mr-2" />
+                        Finalizar Turno
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="text-center py-8">
+                    <Clock className="w-12 h-12 text-slate-300 mx-auto mb-4" />
+                    <p className="text-slate-500">No hay turno en atención actualmente</p>
+                    <p className="text-sm text-slate-400">Presiona "Llamar Siguiente" para iniciar</p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* Próximos Turnos */}
+            <Card className="bg-gradient-to-r from-yellow-50 to-yellow-100 border-yellow-300">
+              <CardHeader>
+                <div className="flex justify-between items-center">
+                  <CardTitle className="text-yellow-800 flex items-center gap-2">
+                    <Clock className="w-5 h-5" />
+                    Próximos Turnos
+                  </CardTitle>
+                  <Button
+                    onClick={callNextTurn}
+                    disabled={nextTurns.length === 0 || currentTurnActive !== null}
+                    className="bg-blue-600 hover:bg-blue-700 disabled:bg-slate-400"
+                  >
+                    <MessageSquare className="w-4 h-4 mr-2" />
+                    Llamar Siguiente
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                {nextTurns.length > 0 ? (
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {nextTurns.slice(0, 3).map((turn, index) => (
+                      <Card key={turn.slotId} className={`${index === 0 ? 'border-yellow-400 bg-yellow-50' : 'border-slate-200'}`}>
+                        <CardContent className="p-4">
+                          <div className="space-y-2">
+                            <div className="flex justify-between items-center">
+                              <p className="font-bold text-slate-800">{turn.turnNumber}</p>
+                              <Badge className={index === 0 ? "bg-yellow-200 text-yellow-800" : "bg-slate-200 text-slate-700"}>
+                                {index === 0 ? 'Siguiente' : `En ${index + 1}`}
+                              </Badge>
+                            </div>
+                            <p className="text-sm font-medium text-slate-700">{turn.citizenName}</p>
+                            <p className="text-xs text-slate-600">{turn.time}</p>
+                            <p className="text-xs text-slate-500 truncate">{turn.tema}</p>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-8">
+                    <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
+                    <p className="text-slate-500">No hay más turnos pendientes</p>
+                    <p className="text-sm text-slate-400">Todos los turnos han sido atendidos</p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* Lista Completa de Turnos */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-slate-800">Lista Completa de Turnos del Día</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2">
+                  {turnQueue.map((turn, index) => (
+                    <div
+                      key={turn.slotId}
+                      className={`flex items-center justify-between p-3 rounded-lg border ${
+                        turn.status === 'activo' ? 'bg-red-50 border-red-200' :
+                        turn.status === 'completado' ? 'bg-green-50 border-green-200' :
+                        'bg-slate-50 border-slate-200'
+                      }`}
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className="text-center">
+                          <p className="text-sm font-bold">{turn.time}</p>
+                          <p className="text-xs text-slate-500">#{index + 1}</p>
+                        </div>
+                        <div>
+                          <p className="font-semibold">{turn.turnNumber}</p>
+                          <p className="text-sm text-slate-600">{turn.citizenName}</p>
+                          <p className="text-xs text-slate-500">{turn.citizenPhone}</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <Badge className={
+                          turn.status === 'activo' ? "bg-red-100 text-red-800" :
+                          turn.status === 'completado' ? "bg-green-100 text-green-800" :
+                          "bg-yellow-100 text-yellow-800"
+                        }>
+                          {turn.status === 'activo' ? 'En Atención' :
+                           turn.status === 'completado' ? 'Completado' :
+                           'Pendiente'}
+                        </Badge>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {turnQueue.length === 0 && (
+                  <div className="text-center py-8">
+                    <Calendar className="w-12 h-12 text-slate-300 mx-auto mb-4" />
+                    <p className="text-slate-500">No hay turnos programados para hoy</p>
+                    <p className="text-sm text-slate-400">Los turnos aparecerán aquí cuando los ciudadanos los reserven</p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Botones de acción */}
+          <div className="flex justify-between pt-4 border-t">
+            <Button
+              variant="outline"
+              onClick={() => loadTodayTurns()}
+            >
+              <ArrowDown className="w-4 h-4 mr-2" />
+              Actualizar Lista
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => setShowTurnMonitor(false)}
+            >
+              Cerrar Monitor
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
