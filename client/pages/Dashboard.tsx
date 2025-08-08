@@ -57,6 +57,14 @@ import {
 } from "lucide-react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
+import {
+  getUpcomingPublicAudienceDates,
+  formatPublicAudienceDate,
+  generateTimeSlots,
+  generateTurnNumber,
+  PublicAudienceDate,
+  TimeSlot
+} from "@/lib/friday-utils";
 
 const CATEGORIES = {
   especie: "Ayuda en Especie",
