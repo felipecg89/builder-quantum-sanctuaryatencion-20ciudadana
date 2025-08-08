@@ -905,15 +905,31 @@ export default function AdminDashboard() {
 
           {/* Configuración */}
           <TabsContent value="configuracion">
+            {activeTab === 'configuracion' && (
+              <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4 mb-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
+                    <Wrench className="w-5 h-5 text-emerald-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-emerald-800">Panel de Configuración del Sistema</h3>
+                    <p className="text-sm text-emerald-700">
+                      Administra todos los aspectos configurables del sistema de audiencias municipales
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
             <div className="space-y-6">
-              <Card>
-                <CardHeader>
+              <Card className="border-emerald-200">
+                <CardHeader className="bg-emerald-50">
                   <div className="flex justify-between items-center">
                     <div>
-                      <CardTitle>Tipos de Audiencias</CardTitle>
+                      <CardTitle className="text-emerald-800">Tipos de Audiencias</CardTitle>
                       <CardDescription>Configura las categorías y tipos de audiencias disponibles</CardDescription>
                     </div>
-                    <Button>
+                    <Button className="bg-emerald-600 hover:bg-emerald-700">
                       <Plus className="w-4 h-4 mr-2" />
                       Nuevo Tipo
                     </Button>
