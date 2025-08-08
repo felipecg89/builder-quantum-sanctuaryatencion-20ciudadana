@@ -60,6 +60,13 @@ import {
 } from "lucide-react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
+import {
+  getUpcomingPublicAudienceDates,
+  formatPublicAudienceDate,
+  generateTimeSlots,
+  PublicAudienceDate,
+  TimeSlot
+} from "@/lib/friday-utils";
 
 // Mock data - En producción vendría de la API compartida
 const mockAdminData = {
@@ -1190,7 +1197,7 @@ export default function AdminDashboard() {
 
           {selectedAudience && (
             <div className="space-y-6">
-              {/* Información Resumida */}
+              {/* Informaci��n Resumida */}
               <div className="bg-slate-50 rounded-lg p-4">
                 <div className="flex items-start justify-between">
                   <div>
