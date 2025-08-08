@@ -274,15 +274,34 @@ export default function Index() {
               </CardContent>
             </Card>
 
-            <Card className="border-slate-200 hover:border-blue-300 transition-colors">
-              <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg mx-auto flex items-center justify-center mb-4">
+            <Card className="border-slate-200 hover:border-blue-300 transition-colors cursor-pointer group">
+              <CardContent className="p-6 text-center relative">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsTramitesModalOpen(true)}
+                  className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity p-1 h-8 w-8"
+                >
+                  <Info className="w-4 h-4 text-purple-600" />
+                </Button>
+                <div
+                  className="w-12 h-12 bg-purple-100 rounded-lg mx-auto flex items-center justify-center mb-4 cursor-pointer"
+                  onClick={() => setIsTramitesModalOpen(true)}
+                >
                   <FileText className="w-6 h-6 text-purple-600" />
                 </div>
                 <h4 className="font-semibold text-slate-800 mb-2">Trámites</h4>
-                <p className="text-sm text-slate-600">
+                <p className="text-sm text-slate-600 mb-3">
                   Licencias, permisos, certificados y registros
                 </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setIsTramitesModalOpen(true)}
+                  className="text-xs hover:bg-purple-50 hover:border-purple-300"
+                >
+                  Ver detalles
+                </Button>
               </CardContent>
             </Card>
           </div>
@@ -716,7 +735,7 @@ export default function Index() {
                 <ul className="space-y-1 text-sm text-slate-600">
                   <li>• Asambleas ciudadanas informativas</li>
                   <li>• Consultas públicas sobre proyectos</li>
-                  <li>• Reuniones de colonos y vecinos</li>
+                  <li>�� Reuniones de colonos y vecinos</li>
                   <li>• Sesiones de cabildo abierto</li>
                   <li>• Foros de participación ciudadana</li>
                   <li>• Presentación de informes municipales</li>
