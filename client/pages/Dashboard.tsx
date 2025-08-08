@@ -1409,13 +1409,13 @@ export default function Dashboard() {
                         <div className="flex items-center space-x-2">
                           <RadioGroupItem value="presencial" id="presencial" />
                           <Label htmlFor="presencial" className="font-medium">
-                            Presencial - En las oficinas municipales
+                            Presencial - Cita en oficinas municipales
                           </Label>
                         </div>
                         <div className="flex items-center space-x-2">
                           <RadioGroupItem value="online" id="online" />
                           <Label htmlFor="online" className="font-medium">
-                            En Línea - Lo contactaremos vía telefónica
+                            Virtual - Atención telefónica o por videollamada
                           </Label>
                         </div>
                       </RadioGroup>
