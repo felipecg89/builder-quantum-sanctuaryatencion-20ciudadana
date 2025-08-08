@@ -52,8 +52,7 @@ import {
   Stamp,
   FileCheck,
   ArrowDown,
-  CheckCircle2,
-  Shield
+  CheckCircle2
 } from "lucide-react";
 
 export default function Index() {
