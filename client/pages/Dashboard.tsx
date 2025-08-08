@@ -1656,7 +1656,7 @@ export default function Dashboard() {
             <div className="bg-green-50 border border-green-200 rounded-lg p-4">
               <h3 className="font-semibold text-green-800 mb-2 flex items-center gap-2">
                 <Users className="w-5 h-5" />
-                ¿Qué son las Audiencias Públicas de los Viernes?
+                Audiencias Públicas con el Presidente Municipal
               </h3>
               <div className="space-y-2 text-sm text-green-700">
                 <p>
