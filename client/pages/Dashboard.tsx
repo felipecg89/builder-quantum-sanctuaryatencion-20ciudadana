@@ -323,6 +323,9 @@ export default function Dashboard() {
       userTurnos.push(newUserTurno);
       localStorage.setItem('userPublicAudienceTurnos', JSON.stringify(userTurnos));
 
+      // Actualizar estado local de turnos del usuario
+      setUserTurnos([...userTurnos.filter((t: any) => t.userId === user.id), newUserTurno]);
+
       // Actualizar slot como ocupado en el estado local
       const updatedSlots = availableSlots.map((slot) =>
         slot.id === selectedTimeSlot.id
@@ -1232,7 +1235,7 @@ export default function Dashboard() {
                                     ? `🔴 Grabando... (${Math.floor(recordingTime / 60)}:${(recordingTime % 60).toString().padStart(2, "0")})`
                                     : audioBlob
                                       ? "✅ Audio grabado correctamente"
-                                      : "🎙���� Presiona para grabar tu descripción"}
+                                      : "🎙����� Presiona para grabar tu descripción"}
                                 </p>
                                 <p className="text-xs text-slate-500">
                                   {isRecording
