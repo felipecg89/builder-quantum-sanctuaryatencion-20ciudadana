@@ -1362,6 +1362,183 @@ export default function Dashboard() {
           </Card>
         )}
       </div>
+
+      {/* Modal de Turnos para Audiencias Públicas */}
+      <Dialog open={isTurnosModalOpen} onOpenChange={setIsTurnosModalOpen}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-xl">
+              <Clock className="w-6 h-6 text-green-600" />
+              Turnos para Audiencias Públicas de los Viernes
+            </DialogTitle>
+            <DialogDescription className="text-base">
+              Solicita tu turno para participar en las audiencias públicas que se realizan todos los viernes de cada mes
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-6">
+            {/* Información importante */}
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <h3 className="font-semibold text-green-800 mb-2 flex items-center gap-2">
+                <Users className="w-5 h-5" />
+                ¿Qué son las Audiencias Públicas de los Viernes?
+              </h3>
+              <div className="space-y-2 text-sm text-green-700">
+                <p>
+                  <strong>• Propósito:</strong> Espacio abierto para consultas ciudadanas directas con el Presidente Municipal
+                </p>
+                <p>
+                  <strong>• Modalidad:</strong> Presencial únicamente, en las instalaciones municipales
+                </p>
+                <p>
+                  <strong>• Horario:</strong> Viernes de 9:00 AM a 12:00 PM (turnos de 15 minutos)
+                </p>
+                <p>
+                  <strong>• Importante:</strong> Este es un espacio para consultas y diálogo, no para solicitar ayuda específica
+                </p>
+              </div>
+            </div>
+
+            {/* Selección de fecha */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-slate-800">
+                1. Selecciona la fecha del viernes
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {availableDates.map((dateOption, index) => (
+                  <Card
+                    key={index}
+                    className={`cursor-pointer transition-all duration-200 hover:shadow-md ${
+                      selectedAudienceDate?.date.getTime() === dateOption.date.getTime()
+                        ? 'border-green-500 bg-green-50'
+                        : 'border-slate-200 hover:border-green-300'
+                    }`}
+                    onClick={() => handleSelectAudienceDate(dateOption)}
+                  >
+                    <CardContent className="p-4">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <p className="font-medium text-slate-800">
+                            {formatPublicAudienceDate(dateOption.date)}
+                          </p>
+                          <p className="text-sm text-slate-600">
+                            Viernes #{dateOption.weekNumber} del mes
+                          </p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-sm font-medium text-green-600">
+                            {dateOption.slotsAvailable} turnos disponibles
+                          </p>
+                          <p className="text-xs text-slate-500">
+                            de {dateOption.totalSlots} total
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Selección de horario */}
+            {selectedAudienceDate && (
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-slate-800">
+                  2. Selecciona tu horario preferido
+                </h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                  {availableSlots.map((slot) => (
+                    <Button
+                      key={slot.id}
+                      variant={selectedTimeSlot?.id === slot.id ? "default" : "outline"}
+                      className={`h-12 ${
+                        !slot.available
+                          ? 'opacity-50 cursor-not-allowed'
+                          : selectedTimeSlot?.id === slot.id
+                            ? 'bg-green-600 hover:bg-green-700'
+                            : 'hover:border-green-300 hover:text-green-700'
+                      }`}
+                      onClick={() => slot.available && setSelectedTimeSlot(slot)}
+                      disabled={!slot.available}
+                    >
+                      <div className="text-center">
+                        <p className="font-medium">{slot.time}</p>
+                        <p className="text-xs">
+                          {slot.available ? 'Disponible' : 'Ocupado'}
+                        </p>
+                      </div>
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Tema de consulta */}
+            {selectedTimeSlot && (
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-slate-800">
+                  3. Describe el tema de tu consulta
+                </h3>
+                <Textarea
+                  placeholder="Describe brevemente el tema que quieres consultar en la audiencia pública..."
+                  value={turnosConsultaTema}
+                  onChange={(e) => setTurnosConsultaTema(e.target.value)}
+                  rows={4}
+                  maxLength={200}
+                  className="resize-none"
+                />
+                <div className="flex justify-between text-sm text-slate-500">
+                  <span>Máximo 200 caracteres</span>
+                  <span>{turnosConsultaTema.length}/200</span>
+                </div>
+              </div>
+            )}
+
+            {/* Instrucciones finales */}
+            {selectedTimeSlot && turnosConsultaTema.trim() && (
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <h4 className="font-semibold text-blue-800 mb-2">Instrucciones importantes:</h4>
+                <ul className="space-y-1 text-sm text-blue-700">
+                  <li>• Llega 15 minutos antes de tu turno asignado</li>
+                  <li>• Trae una identificación oficial</li>
+                  <li>• La duración máxima por turno es de 15 minutos</li>
+                  <li>• Si no puedes asistir, cancela tu turno con anticipación</li>
+                  <li>• Solo se permite un turno por persona por mes</li>
+                </ul>
+              </div>
+            )}
+
+            {/* Botones de acción */}
+            <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t">
+              <Button
+                onClick={handleBookTurno}
+                disabled={!selectedAudienceDate || !selectedTimeSlot || !turnosConsultaTema.trim() || isBookingTurno}
+                className="flex-1 bg-green-600 hover:bg-green-700"
+              >
+                {isBookingTurno ? (
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    Reservando turno...
+                  </div>
+                ) : (
+                  <>
+                    <CheckCircle className="w-4 h-4 mr-2" />
+                    Reservar Turno
+                  </>
+                )}
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => setIsTurnosModalOpen(false)}
+                className="flex-1"
+                disabled={isBookingTurno}
+              >
+                Cancelar
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
