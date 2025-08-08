@@ -541,7 +541,11 @@ export default function AdminDashboard() {
                               <Eye className="w-4 h-4 mr-2" />
                               Ver Detalles
                             </Button>
-                            <Button size="sm" className="w-full">
+                            <Button
+                              size="sm"
+                              className="w-full"
+                              onClick={() => handleManage(audience)}
+                            >
                               <Edit className="w-4 h-4 mr-2" />
                               Gestionar
                             </Button>
