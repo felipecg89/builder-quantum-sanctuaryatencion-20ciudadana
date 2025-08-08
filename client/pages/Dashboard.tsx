@@ -48,6 +48,8 @@ import {
   X,
   ArrowLeft,
   Package,
+  Clock,
+  Users,
   Settings,
   Users,
   FileText,
