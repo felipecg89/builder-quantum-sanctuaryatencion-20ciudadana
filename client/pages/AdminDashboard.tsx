@@ -602,7 +602,9 @@ export default function AdminDashboard() {
             >
               <div className="relative">
                 <Wrench className="w-5 h-5 transition-transform group-hover:scale-110 group-hover:rotate-12" />
-                <div className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-400 rounded-full data-[state=active]:bg-white animate-pulse"></div>
+                <span className="absolute -top-2 -right-2 bg-emerald-100 text-emerald-600 text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                  {audienceTypes.filter(t => t.active).length}
+                </span>
               </div>
               <span className="text-xs font-semibold tracking-wide">Configuración</span>
             </TabsTrigger>
@@ -612,7 +614,9 @@ export default function AdminDashboard() {
             >
               <div className="relative">
                 <BarChart3 className="w-5 h-5 transition-transform group-hover:scale-110" />
-                <div className="absolute -top-1 -right-1 w-2 h-2 bg-rose-400 rounded-full data-[state=active]:bg-white animate-pulse"></div>
+                <div className="absolute -top-2 -right-2 bg-rose-100 text-rose-600 text-xs rounded-full w-6 h-5 flex items-center justify-center font-bold">
+                  ✓
+                </div>
               </div>
               <span className="text-xs font-semibold tracking-wide">Reportes</span>
             </TabsTrigger>
@@ -910,7 +914,7 @@ export default function AdminDashboard() {
                 <div className="flex justify-between items-center">
                   <div>
                     <CardTitle>Personal de Apoyo</CardTitle>
-                    <CardDescription>Gestiona el personal para asignaci��n de audiencias</CardDescription>
+                    <CardDescription>Gestiona el personal para asignación de audiencias</CardDescription>
                   </div>
                   <Button>
                     <Plus className="w-4 h-4 mr-2" />
