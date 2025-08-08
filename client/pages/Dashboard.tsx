@@ -1512,6 +1512,47 @@ export default function Dashboard() {
           </DialogHeader>
 
           <div className="space-y-6">
+            {/* Mis turnos reservados */}
+            {userTurnos.length > 0 && (
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="flex justify-between items-center mb-3">
+                  <h3 className="font-semibold text-blue-800 flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5" />
+                    Mis Turnos Reservados ({userTurnos.length})
+                  </h3>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => setShowUserTurnos(!showUserTurnos)}
+                    className="border-blue-300 text-blue-700 hover:bg-blue-100"
+                  >
+                    {showUserTurnos ? "Ocultar" : "Ver"}
+                  </Button>
+                </div>
+
+                {showUserTurnos && (
+                  <div className="space-y-2">
+                    {userTurnos.map((turno, index) => (
+                      <div key={index} className="bg-white rounded p-3 border border-blue-200">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <p className="font-medium text-blue-900">Turno #{turno.turnNumber}</p>
+                            <p className="text-sm text-blue-700">
+                              {format(new Date(turno.date), "EEEE, dd 'de' MMMM", { locale: es })} - {turno.time}
+                            </p>
+                            <p className="text-xs text-blue-600">Tema: {turno.tema}</p>
+                          </div>
+                          <Badge className="bg-green-100 text-green-800">
+                            {turno.status === 'confirmado' ? 'Confirmado' : turno.status}
+                          </Badge>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Información importante */}
             <div className="bg-green-50 border border-green-200 rounded-lg p-4">
               <h3 className="font-semibold text-green-800 mb-2 flex items-center gap-2">
