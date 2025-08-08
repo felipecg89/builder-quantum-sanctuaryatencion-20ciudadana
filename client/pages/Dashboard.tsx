@@ -763,7 +763,7 @@ export default function Dashboard() {
               <Button
                 size="sm"
                 variant="outline"
-                onClick={() => navigate('/')}
+                onClick={() => navigate("/")}
                 className="border-blue-200 text-blue-700 hover:bg-blue-50"
               >
                 <ArrowLeft className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />

@@ -624,7 +624,7 @@ export default function AdminDashboard() {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => navigate('/')}
+              onClick={() => navigate("/")}
               className="border-blue-200 text-blue-700 hover:bg-blue-50"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
