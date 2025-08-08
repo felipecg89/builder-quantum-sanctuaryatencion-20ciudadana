@@ -431,6 +431,35 @@ export default function Dashboard() {
     }
   };
 
+  const handleTurnTicketScreenshot = async () => {
+    try {
+      const { default: html2canvas } = await import("html2canvas");
+
+      // Obtener el elemento del ticket de turno
+      const turnTicketCard = document.querySelector(
+        ".turn-ticket-card",
+      ) as HTMLElement;
+
+      if (turnTicketCard) {
+        const canvas = await html2canvas(turnTicketCard, {
+          backgroundColor: "#ffffff",
+          scale: 2,
+          useCORS: true,
+          allowTaint: true,
+        });
+
+        // Crear enlace de descarga
+        const link = document.createElement("a");
+        link.download = `turno-${currentTurnTicket?.turnNumber || 'audiencia-publica'}.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      }
+    } catch (error) {
+      console.error("Error al capturar ticket:", error);
+      alert("No se pudo capturar el ticket. Intenta tomar una captura manual.");
+    }
+  };
+
   const handleCategoryChange = (category: string) => {
     setFormData((prev) => ({ ...prev, category, type: "" }));
   };
