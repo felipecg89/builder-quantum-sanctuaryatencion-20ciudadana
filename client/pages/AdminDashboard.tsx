@@ -545,15 +545,49 @@ export default function AdminDashboard() {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-6">
-            <TabsTrigger value="audiencias">Audiencias</TabsTrigger>
-            <TabsTrigger value="ciudadanos">Ciudadanos</TabsTrigger>
-            <TabsTrigger value="expedientes">Expedientes</TabsTrigger>
-            <TabsTrigger value="personal">Personal</TabsTrigger>
-            <TabsTrigger value="configuracion" className="bg-emerald-50 text-emerald-700 data-[state=active]:bg-emerald-100">
-              Configuración
+          <TabsList className="grid w-full grid-cols-6 h-16 p-2 bg-gradient-to-r from-slate-50 to-slate-100 border shadow-sm">
+            <TabsTrigger
+              value="audiencias"
+              className="flex flex-col items-center gap-1 h-12 data-[state=active]:bg-gradient-to-br data-[state=active]:from-blue-50 data-[state=active]:to-blue-100 data-[state=active]:text-blue-700 data-[state=active]:border-blue-200 data-[state=active]:shadow-md hover:bg-blue-50/50 transition-all duration-200"
+            >
+              <MessageSquare className="w-4 h-4" />
+              <span className="text-xs font-medium">Audiencias</span>
             </TabsTrigger>
-            <TabsTrigger value="reportes">Reportes</TabsTrigger>
+            <TabsTrigger
+              value="ciudadanos"
+              className="flex flex-col items-center gap-1 h-12 data-[state=active]:bg-gradient-to-br data-[state=active]:from-purple-50 data-[state=active]:to-purple-100 data-[state=active]:text-purple-700 data-[state=active]:border-purple-200 data-[state=active]:shadow-md hover:bg-purple-50/50 transition-all duration-200"
+            >
+              <Users className="w-4 h-4" />
+              <span className="text-xs font-medium">Ciudadanos</span>
+            </TabsTrigger>
+            <TabsTrigger
+              value="expedientes"
+              className="flex flex-col items-center gap-1 h-12 data-[state=active]:bg-gradient-to-br data-[state=active]:from-amber-50 data-[state=active]:to-amber-100 data-[state=active]:text-amber-700 data-[state=active]:border-amber-200 data-[state=active]:shadow-md hover:bg-amber-50/50 transition-all duration-200"
+            >
+              <FileText className="w-4 h-4" />
+              <span className="text-xs font-medium">Expedientes</span>
+            </TabsTrigger>
+            <TabsTrigger
+              value="personal"
+              className="flex flex-col items-center gap-1 h-12 data-[state=active]:bg-gradient-to-br data-[state=active]:from-indigo-50 data-[state=active]:to-indigo-100 data-[state=active]:text-indigo-700 data-[state=active]:border-indigo-200 data-[state=active]:shadow-md hover:bg-indigo-50/50 transition-all duration-200"
+            >
+              <UserPlus className="w-4 h-4" />
+              <span className="text-xs font-medium">Personal</span>
+            </TabsTrigger>
+            <TabsTrigger
+              value="configuracion"
+              className="flex flex-col items-center gap-1 h-12 data-[state=active]:bg-gradient-to-br data-[state=active]:from-emerald-50 data-[state=active]:to-emerald-100 data-[state=active]:text-emerald-700 data-[state=active]:border-emerald-200 data-[state=active]:shadow-md hover:bg-emerald-50/50 transition-all duration-200 bg-emerald-50/30 border-emerald-100"
+            >
+              <Wrench className="w-4 h-4" />
+              <span className="text-xs font-medium">Configuración</span>
+            </TabsTrigger>
+            <TabsTrigger
+              value="reportes"
+              className="flex flex-col items-center gap-1 h-12 data-[state=active]:bg-gradient-to-br data-[state=active]:from-rose-50 data-[state=active]:to-rose-100 data-[state=active]:text-rose-700 data-[state=active]:border-rose-200 data-[state=active]:shadow-md hover:bg-rose-50/50 transition-all duration-200"
+            >
+              <BarChart3 className="w-4 h-4" />
+              <span className="text-xs font-medium">Reportes</span>
+            </TabsTrigger>
           </TabsList>
 
           {/* Gestión de Audiencias */}
