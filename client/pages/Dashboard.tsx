@@ -919,17 +919,17 @@ export default function Dashboard() {
               <CardHeader className="px-3 sm:px-6 py-3 sm:py-6">
                 <CardTitle className="text-base sm:text-xl leading-tight">
                   {currentStep === 1 &&
-                    "Paso 1: Selecciona la Categoría de Ayuda"}
-                  {currentStep === 2 && "Paso 2: Selecciona el Tipo de Ayuda"}
-                  {currentStep === 3 && "Describe tu solicitud"}
+                    "Paso 1: Categoría de tu Solicitud Ciudadana"}
+                  {currentStep === 2 && "Paso 2: Tipo de Solicitud"}
+                  {currentStep === 3 && "Paso 3: Describe tu Solicitud"}
                   {currentStep === 4 &&
-                    "Paso 4: Formato y Fecha de la Audiencia"}
+                    "Paso 4: Modalidad de Atención"}
                 </CardTitle>
                 <CardDescription className="text-xs sm:text-base leading-tight">
                   {currentStep === 1 &&
-                    "Elige la categoría que mejor describa tu solicitud"}
+                    "Selecciona la categoría que mejor describa tu necesidad"}
                   {currentStep === 2 &&
-                    "Especifica el tipo de ayuda que necesitas"}
+                    "Especifica el tipo de ayuda, servicio o trámite que requieres"}
                   {currentStep === 4 &&
                     "Selecciona el formato de audiencia y fecha si es presencial"}
                 </CardDescription>
