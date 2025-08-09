@@ -86,8 +86,8 @@ export const getUpcomingPublicAudienceDates = (): PublicAudienceDate[] => {
           date: friday,
           weekNumber: index + 1,
           isAvailable: true,
-          slotsAvailable: 12, // 3 horas * 4 slots por hora = 12 slots
-          totalSlots: 12,
+          slotsAvailable: 16, // 8 horas * 2 slots por hora = 16 slots
+          totalSlots: 16,
         });
       }
     });
