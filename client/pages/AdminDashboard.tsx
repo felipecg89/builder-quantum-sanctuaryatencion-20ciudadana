@@ -56,7 +56,6 @@ import {
   Activity,
   UserPlus,
   CalendarDays,
-  Send,
   Wrench,
 } from "lucide-react";
 import { format } from "date-fns";
