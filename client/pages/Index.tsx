@@ -52,7 +52,7 @@ import {
   Stamp,
   FileCheck,
   ArrowDown,
-  CheckCircle2
+  CheckCircle2,
 } from "lucide-react";
 
 export default function IndexNew() {
@@ -97,7 +97,7 @@ export default function IndexNew() {
                 </p>
               </div>
             </div>
-            
+
             {/* User Info & Logout */}
             {user && (
               <div className="flex items-center gap-4">
@@ -126,7 +126,9 @@ export default function IndexNew() {
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
             {user ? (
-              <>¡Hola, <span className="text-blue-600">{user.name}!</span></>
+              <>
+                ¡Hola, <span className="text-blue-600">{user.name}!</span>
+              </>
             ) : (
               <>
                 Solicita tu Audiencia con el{" "}
@@ -135,13 +137,11 @@ export default function IndexNew() {
             )}
           </h2>
           <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
-            {user ? (
-              "¿Qué necesitas hacer hoy? Puedes solicitar una nueva audiencia o revisar el estado de tus solicitudes anteriores."
-            ) : (
-              "Sistema digital para solicitar audiencias ciudadanas de manera fácil, rápida y transparente. Tu voz es importante para nuestra comunidad."
-            )}
+            {user
+              ? "¿Qué necesitas hacer hoy? Puedes solicitar una nueva audiencia o revisar el estado de tus solicitudes anteriores."
+              : "Sistema digital para solicitar audiencias ciudadanas de manera fácil, rápida y transparente. Tu voz es importante para nuestra comunidad."}
           </p>
-          
+
           {user ? (
             // Usuario Logueado - Mostrar opciones
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
@@ -201,7 +201,9 @@ export default function IndexNew() {
             <div className="inline-flex items-center space-x-2 text-blue-600 font-medium animate-bounce">
               <span className="w-2 h-2 bg-blue-600 rounded-full animate-ping"></span>
               <span className="text-sm">
-                {user ? "¡Tu audiencia te espera!" : "¡Comienza tu solicitud ahora!"}
+                {user
+                  ? "¡Tu audiencia te espera!"
+                  : "¡Comienza tu solicitud ahora!"}
               </span>
               <span className="w-2 h-2 bg-blue-600 rounded-full animate-ping"></span>
             </div>
@@ -224,7 +226,9 @@ export default function IndexNew() {
                 1. Registra tu solicitud
               </h4>
               <p className="text-slate-600">
-                {user ? "Completa el formulario con los detalles de tu solicitud" : "Regístrate e inicia sesión para comenzar"}
+                {user
+                  ? "Completa el formulario con los detalles de tu solicitud"
+                  : "Regístrate e inicia sesión para comenzar"}
               </p>
             </div>
             <div className="text-center">
@@ -262,11 +266,18 @@ export default function IndexNew() {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* Ayuda en Especie */}
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => setIsEspecieModalOpen(true)}>
+              <Card
+                className="hover:shadow-lg transition-shadow cursor-pointer"
+                onClick={() => setIsEspecieModalOpen(true)}
+              >
                 <CardContent className="p-6 text-center">
                   <Package className="w-12 h-12 mx-auto mb-4 text-orange-600" />
-                  <h4 className="text-lg font-semibold mb-2">Ayuda en Especie</h4>
-                  <p className="text-sm text-slate-600">Alimentos, medicamentos, ropa y más</p>
+                  <h4 className="text-lg font-semibold mb-2">
+                    Ayuda en Especie
+                  </h4>
+                  <p className="text-sm text-slate-600">
+                    Alimentos, medicamentos, ropa y más
+                  </p>
                   <Button variant="ghost" size="sm" className="mt-4">
                     <Info className="w-4 h-4 mr-2" />
                     Más información
@@ -275,11 +286,16 @@ export default function IndexNew() {
               </Card>
 
               {/* Servicios */}
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => setIsServiciosModalOpen(true)}>
+              <Card
+                className="hover:shadow-lg transition-shadow cursor-pointer"
+                onClick={() => setIsServiciosModalOpen(true)}
+              >
                 <CardContent className="p-6 text-center">
                   <Stethoscope className="w-12 h-12 mx-auto mb-4 text-blue-600" />
                   <h4 className="text-lg font-semibold mb-2">Servicios</h4>
-                  <p className="text-sm text-slate-600">Médicos, legales, sociales y técnicos</p>
+                  <p className="text-sm text-slate-600">
+                    Médicos, legales, sociales y técnicos
+                  </p>
                   <Button variant="ghost" size="sm" className="mt-4">
                     <Info className="w-4 h-4 mr-2" />
                     Más información
@@ -288,11 +304,16 @@ export default function IndexNew() {
               </Card>
 
               {/* Invitaciones */}
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => setIsInvitacionesModalOpen(true)}>
+              <Card
+                className="hover:shadow-lg transition-shadow cursor-pointer"
+                onClick={() => setIsInvitacionesModalOpen(true)}
+              >
                 <CardContent className="p-6 text-center">
                   <PartyPopper className="w-12 h-12 mx-auto mb-4 text-green-600" />
                   <h4 className="text-lg font-semibold mb-2">Invitaciones</h4>
-                  <p className="text-sm text-slate-600">Eventos públicos y ceremonias</p>
+                  <p className="text-sm text-slate-600">
+                    Eventos públicos y ceremonias
+                  </p>
                   <Button variant="ghost" size="sm" className="mt-4">
                     <Info className="w-4 h-4 mr-2" />
                     Más información
@@ -301,11 +322,16 @@ export default function IndexNew() {
               </Card>
 
               {/* Trámites */}
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => setIsTramitesModalOpen(true)}>
+              <Card
+                className="hover:shadow-lg transition-shadow cursor-pointer"
+                onClick={() => setIsTramitesModalOpen(true)}
+              >
                 <CardContent className="p-6 text-center">
                   <ClipboardCheck className="w-12 h-12 mx-auto mb-4 text-purple-600" />
                   <h4 className="text-lg font-semibold mb-2">Trámites</h4>
-                  <p className="text-sm text-slate-600">Licencias, permisos y certificados</p>
+                  <p className="text-sm text-slate-600">
+                    Licencias, permisos y certificados
+                  </p>
                   <Button variant="ghost" size="sm" className="mt-4">
                     <Info className="w-4 h-4 mr-2" />
                     Más información
@@ -320,7 +346,9 @@ export default function IndexNew() {
       {/* Contact Information */}
       <section className="py-16 px-4 bg-slate-800 text-white">
         <div className="max-w-6xl mx-auto text-center">
-          <h3 className="text-3xl font-bold mb-8">¿Necesitas más información?</h3>
+          <h3 className="text-3xl font-bold mb-8">
+            ¿Necesitas más información?
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex items-center justify-center space-x-3">
               <Phone className="w-6 h-6 text-blue-400" />

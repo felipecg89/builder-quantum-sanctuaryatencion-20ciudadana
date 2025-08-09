@@ -256,7 +256,9 @@ export default function AudienceHistory() {
   };
 
   // Filtrar audiencias por usuario actual
-  const userAudiences = mockAudiences.filter((audience) => audience.userId === user?.phone);
+  const userAudiences = mockAudiences.filter(
+    (audience) => audience.userId === user?.phone,
+  );
 
   const filteredAudiences = userAudiences.filter((audience) => {
     const matchesSearch =

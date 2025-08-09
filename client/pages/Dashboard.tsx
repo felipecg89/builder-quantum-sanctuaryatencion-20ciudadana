@@ -1828,7 +1828,9 @@ export default function Dashboard() {
                   <li>
                     • Si no puedes asistir, cancela tu turno con anticipación
                   </li>
-                  <li>• Puedes reservar múltiples turnos según disponibilidad</li>
+                  <li>
+                    • Puedes reservar múltiples turnos según disponibilidad
+                  </li>
                 </ul>
               </div>
             )}
