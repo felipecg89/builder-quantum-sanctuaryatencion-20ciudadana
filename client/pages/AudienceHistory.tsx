@@ -139,6 +139,7 @@ const mockAudiences = [
   },
   {
     id: "AUD-345678",
+    userId: "55 9876 5432", // Different user
     category: "tramites",
     type: "Licencias",
     description: "Permiso para construcción de rampa de acceso",
@@ -150,6 +151,7 @@ const mockAudiences = [
   },
   {
     id: "AUD-901234",
+    userId: "55 1234 5678", // Same user for demo
     category: "invitacion",
     type: "Evento público",
     description: "Invitación para ceremonia de reconocimiento a voluntarios",
