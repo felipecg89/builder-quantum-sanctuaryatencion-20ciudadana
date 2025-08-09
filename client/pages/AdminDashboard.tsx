@@ -1505,11 +1505,11 @@ export default function AdminDashboard() {
                       </div>
                       <div>
                         <p className="font-medium">Horario:</p>
-                        <p>9:00 AM - 12:00 PM</p>
+                        <p>9:00 AM - 5:00 PM</p>
                       </div>
                       <div>
-                        <p className="font-medium">Duración por turno:</p>
-                        <p>15 minutos</p>
+                        <p className="font-medium">Sistema de turnos:</p>
+                        <p>Dinámico (siguiente disponible)</p>
                       </div>
                     </div>
                   </div>
