@@ -759,23 +759,6 @@ export default function Dashboard() {
                 <span className="hidden sm:inline">Inicio</span>
               </Button>
             )}
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() => setIsTurnosModalOpen(true)}
-              className="hidden sm:flex items-center gap-2 border-green-200 text-green-700 hover:bg-green-50"
-            >
-              <Clock className="w-4 h-4" />
-              Turnos Viernes
-            </Button>
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() => setIsTurnosModalOpen(true)}
-              className="sm:hidden p-2 border-green-200 text-green-700 hover:bg-green-50"
-            >
-              <Clock className="w-4 h-4" />
-            </Button>
             <span className="text-xs sm:text-sm text-slate-600 truncate max-w-24 sm:max-w-none">
               Bienvenido, {user.name}
             </span>
