@@ -605,6 +605,20 @@ export default function AudienceHistory() {
             <div className="flex items-center space-x-2 sm:space-x-3 w-full sm:w-auto">
               <Button
                 asChild
+                variant="outline"
+                className="border-blue-200 text-blue-700 hover:bg-blue-50 text-xs sm:text-sm px-3 sm:px-4 py-2 flex-1 sm:flex-none"
+              >
+                <Link
+                  to="/"
+                  className="flex items-center justify-center gap-1 sm:gap-2"
+                >
+                  <ArrowLeft className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <span className="truncate">Volver al Inicio</span>
+                </Link>
+              </Button>
+
+              <Button
+                asChild
                 className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-xs sm:text-sm px-3 sm:px-4 py-2 flex-1 sm:flex-none"
               >
                 <Link
