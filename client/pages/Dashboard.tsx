@@ -796,6 +796,18 @@ export default function Dashboard() {
           /* Selector Principal de Servicio */
           <Card className="mx-0 sm:mx-0">
             <CardHeader className="px-3 sm:px-6 py-3 sm:py-6">
+              <div className="flex items-center justify-between mb-4">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => navigate("/")}
+                  className="border-blue-200 text-blue-700 hover:bg-blue-50"
+                >
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Volver al Inicio
+                </Button>
+                <div className="flex-1"></div>
+              </div>
               <CardTitle className="text-base sm:text-xl leading-tight text-center">
                 ¿Qué necesitas hoy?
               </CardTitle>
