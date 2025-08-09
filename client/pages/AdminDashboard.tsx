@@ -630,6 +630,15 @@ export default function AdminDashboard() {
               <ArrowLeft className="w-4 h-4 mr-2" />
               Volver al Inicio
             </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setActiveTab("configuracion")}
+              className="border-emerald-200 text-emerald-700 hover:bg-emerald-50"
+            >
+              <Wrench className="w-4 h-4 mr-2" />
+              Configuración
+            </Button>
             <Button variant="outline" onClick={handleLogout}>
               <LogOut className="w-4 h-4 mr-2" />
               Cerrar Sesión
