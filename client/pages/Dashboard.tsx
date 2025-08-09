@@ -265,22 +265,10 @@ export default function Dashboard() {
       return;
     }
 
-    // Verificar si el usuario ya tiene un turno para este mes
+    // Obtener turnos guardados del usuario
     const savedTurnos =
       localStorage.getItem("userPublicAudienceTurnos") || "[]";
     const userTurnos = JSON.parse(savedTurnos);
-    const currentMonth = format(selectedAudienceDate.date, "yyyy-MM");
-    const hasCurrentMonthTurno = userTurnos.some(
-      (turno: any) =>
-        turno.userId === user.id && turno.date.startsWith(currentMonth),
-    );
-
-    if (hasCurrentMonthTurno) {
-      alert(
-        "Ya tienes un turno reservado para este mes. Solo se permite un turno por persona por mes.",
-      );
-      return;
-    }
 
     setIsBookingTurno(true);
 
@@ -1845,7 +1833,7 @@ export default function Dashboard() {
                   <li>
                     • Si no puedes asistir, cancela tu turno con anticipación
                   </li>
-                  <li>• Solo se permite un turno por persona por mes</li>
+                  <li>• Puedes reservar múltiples turnos según disponibilidad</li>
                 </ul>
               </div>
             )}
