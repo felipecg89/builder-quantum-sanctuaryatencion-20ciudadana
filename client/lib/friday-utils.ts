@@ -24,13 +24,13 @@ export interface TimeSlot {
   citizenName?: string;
 }
 
-// Horarios disponibles para audiencias públicas (9:00 AM a 12:00 PM, cada 15 minutos)
+// Horarios disponibles para audiencias públicas (9:00 AM a 5:00 PM, turnos dinámicos)
 export const generateTimeSlots = (): TimeSlot[] => {
   const slots: TimeSlot[] = [];
   let hour = 9;
   let minute = 0;
 
-  while (hour < 12 || (hour === 12 && minute === 0)) {
+  while (hour < 17) {
     const timeString = `${hour.toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")}`;
     slots.push({
       id: `slot-${timeString.replace(":", "")}`,
@@ -38,7 +38,7 @@ export const generateTimeSlots = (): TimeSlot[] => {
       available: true,
     });
 
-    minute += 15;
+    minute += 30;
     if (minute >= 60) {
       minute = 0;
       hour++;
