@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -940,7 +940,7 @@ export default function Index() {
                 <ul className="space-y-1 text-sm text-slate-600">
                   <li>• Jornadas de salud comunitaria</li>
                   <li>• Campañas de donación de sangre</li>
-                  <li>• Brigadas de limpieza comunitaria</li>
+                  <li>�� Brigadas de limpieza comunitaria</li>
                   <li>• Programas de reforestación</li>
                   <li>• Actividades del adulto mayor</li>
                   <li>• Eventos para personas con discapacidad</li>
