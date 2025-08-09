@@ -255,7 +255,10 @@ export default function AudienceHistory() {
     setIsDetailsOpen(true);
   };
 
-  const filteredAudiences = mockAudiences.filter((audience) => {
+  // Filtrar audiencias por usuario actual
+  const userAudiences = mockAudiences.filter((audience) => audience.userId === user?.phone);
+
+  const filteredAudiences = userAudiences.filter((audience) => {
     const matchesSearch =
       audience.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
       audience.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
