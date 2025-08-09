@@ -105,6 +105,7 @@ const mockAudiences = [
   },
   {
     id: "AUD-789012",
+    userId: "55 1234 5678", // Same user for demo
     category: "servicio",
     type: "Servicios médicos",
     description: "Solicitud de apoyo para cirugía de emergencia",
