@@ -374,17 +374,6 @@ export default function IndexNew() {
                   Acceso Administrativo
                 </Link>
               </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="sm"
-                className="border-emerald-600 text-emerald-400 hover:text-white hover:border-emerald-500 hover:bg-emerald-600"
-              >
-                <Link to="/admin/dashboard?tab=configuracion" className="flex items-center gap-2">
-                  <Wrench className="w-4 h-4" />
-                  Panel de Configuración
-                </Link>
-              </Button>
             </div>
             <p className="text-xs text-slate-500 mt-3">
               Paneles exclusivos para funcionarios municipales
