@@ -1718,7 +1718,7 @@ export default function Dashboard() {
                 </p>
                 <p>
                   <strong>• Horario:</strong> Todos los viernes de 9:00 AM a
-                  12:00 PM (turnos de 15 minutos)
+                  5:00 PM (turnos dinámicos)
                 </p>
                 <p>
                   <strong>• Diferencia:</strong> Para solicitudes específicas de
