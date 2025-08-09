@@ -60,6 +60,23 @@ export default function Index() {
   const [isServiciosModalOpen, setIsServiciosModalOpen] = useState(false);
   const [isInvitacionesModalOpen, setIsInvitacionesModalOpen] = useState(false);
   const [isTramitesModalOpen, setIsTramitesModalOpen] = useState(false);
+  const [user, setUser] = useState<any>(null);
+
+  // Verificar si el usuario está logueado
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      const parsedUser = JSON.parse(userData);
+      if (parsedUser.authenticated) {
+        setUser(parsedUser);
+      }
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-50">
       {/* Header */}
@@ -940,7 +957,7 @@ export default function Index() {
                 <ul className="space-y-1 text-sm text-slate-600">
                   <li>• Jornadas de salud comunitaria</li>
                   <li>• Campañas de donación de sangre</li>
-                  <li>�� Brigadas de limpieza comunitaria</li>
+                  <li>• Brigadas de limpieza comunitaria</li>
                   <li>• Programas de reforestación</li>
                   <li>• Actividades del adulto mayor</li>
                   <li>• Eventos para personas con discapacidad</li>
