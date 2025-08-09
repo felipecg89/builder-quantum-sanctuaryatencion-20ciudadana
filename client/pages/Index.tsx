@@ -124,8 +124,14 @@ export default function Index() {
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
-            Solicita tu Audiencia con el{" "}
-            <span className="text-blue-600">Presidente Municipal</span>
+            {user ? (
+              <>¡Hola, <span className="text-blue-600">{user.name}!</span></>
+            ) : (
+              <>
+                Solicita tu Audiencia con el{" "}
+                <span className="text-blue-600">Presidente Municipal</span>
+              </>
+            )}
           </h2>
           <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
             Sistema digital para solicitar audiencias ciudadanas de manera
