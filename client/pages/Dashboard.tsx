@@ -2031,14 +2031,19 @@ export default function Dashboard() {
               className="flex-1 bg-blue-600 hover:bg-blue-700"
             >
               <Camera className="w-4 h-4 mr-2" />
-              Capturar Pantalla
+              Capturar Ticket
             </Button>
             <Button
               variant="outline"
-              onClick={() => setShowTurnTicket(false)}
+              onClick={() => {
+                setShowTurnTicket(false);
+                setCurrentStep(0);
+                setIsTurnosModalOpen(false);
+              }}
               className="flex-1"
             >
-              Cerrar
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Volver al Inicio
             </Button>
           </div>
         </DialogContent>
