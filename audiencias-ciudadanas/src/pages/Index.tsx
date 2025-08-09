@@ -68,7 +68,9 @@ export default function IndexNew() {
                 <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">
                   Presidencia Municipal
                 </h1>
-                <p className="text-slate-600">Sistema de Audiencias Ciudadanas</p>
+                <p className="text-slate-600">
+                  Sistema de Audiencias Ciudadanas
+                </p>
               </div>
             </div>
 
@@ -147,7 +149,10 @@ export default function IndexNew() {
                   size="lg"
                   className="border-blue-200 text-blue-600 hover:bg-blue-50 px-8 py-3"
                 >
-                  <a href="/audience-history" className="flex items-center gap-2">
+                  <a
+                    href="/audience-history"
+                    className="flex items-center gap-2"
+                  >
                     <Clock className="w-5 h-5" />
                     Mis Audiencias
                   </a>
@@ -215,7 +220,8 @@ export default function IndexNew() {
                   : "¡Comienza tu solicitud ahora!"}
               </h4>
               <p className="text-slate-600">
-                Describe tu situación y selecciona el tipo de apoyo que necesitas
+                Describe tu situación y selecciona el tipo de apoyo que
+                necesitas
               </p>
             </div>
 
@@ -249,9 +255,7 @@ export default function IndexNew() {
             >
               <CardContent className="p-6 text-center">
                 <Package className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-                <h4 className="text-lg font-semibold mb-2">
-                  Ayuda en Especie
-                </h4>
+                <h4 className="text-lg font-semibold mb-2">Ayuda en Especie</h4>
                 <p className="text-sm text-slate-600">
                   Alimentos, medicamentos, ropa y más
                 </p>
@@ -356,7 +360,10 @@ export default function IndexNew() {
         </DialogContent>
       </Dialog>
 
-      <Dialog open={isServiciosModalOpen} onOpenChange={setIsServiciosModalOpen}>
+      <Dialog
+        open={isServiciosModalOpen}
+        onOpenChange={setIsServiciosModalOpen}
+      >
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Servicios</DialogTitle>
@@ -377,7 +384,10 @@ export default function IndexNew() {
         </DialogContent>
       </Dialog>
 
-      <Dialog open={isInvitacionesModalOpen} onOpenChange={setIsInvitacionesModalOpen}>
+      <Dialog
+        open={isInvitacionesModalOpen}
+        onOpenChange={setIsInvitacionesModalOpen}
+      >
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Invitaciones</DialogTitle>

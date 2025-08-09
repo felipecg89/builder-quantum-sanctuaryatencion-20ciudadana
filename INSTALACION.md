@@ -8,7 +8,7 @@ El proyecto se ha separado en dos aplicaciones independientes:
 📂 audiencias-ciudadanas/     (App para Ciudadanos)
 ├── src/
 │   ├── pages/               # Index, Login, Register, Dashboard, AudienceHistory
-│   ├── components/ui/       # Componentes UI completos  
+│   ├── components/ui/       # Componentes UI completos
 │   ├── lib/                 # Utilidades y funciones
 │   └── hooks/               # Hooks personalizados
 ├── package.json
@@ -19,7 +19,7 @@ El proyecto se ha separado en dos aplicaciones independientes:
 ├── src/
 │   ├── pages/               # AdminLogin, AdminDashboard
 │   ├── components/ui/       # Componentes UI completos
-│   ├── lib/                 # Utilidades y funciones  
+│   ├── lib/                 # Utilidades y funciones
 │   └── hooks/               # Hooks personalizados
 ├── package.json
 ├── vite.config.ts
@@ -29,13 +29,15 @@ El proyecto se ha separado en dos aplicaciones independientes:
 ## 🛠️ Instalación
 
 ### **App Ciudadana** (Puerto 3001)
+
 ```bash
 cd audiencias-ciudadanas
 npm install
 npm run dev
 ```
 
-### **App Administrativa** (Puerto 3002)  
+### **App Administrativa** (Puerto 3002)
+
 ```bash
 cd audiencias-admin
 npm install
@@ -50,6 +52,7 @@ npm run dev
 ## 📋 Funcionalidades Separadas
 
 ### **🏠 App Ciudadana** (`audiencias-ciudadanas/`)
+
 - ✅ Página principal con información
 - ✅ Registro e inicio de sesión
 - ✅ Dashboard para solicitar audiencias
@@ -59,6 +62,7 @@ npm run dev
 - ✅ Gestión de datos personales
 
 ### **🏛️ App Administrativa** (`audiencias-admin/`)
+
 - ✅ Login administrativo
 - ✅ Panel de administración completo
 - ✅ Gestión de audiencias ciudadanas
@@ -71,31 +75,37 @@ npm run dev
 ## 🔐 Credenciales de Acceso
 
 ### **Ciudadanos**
+
 - Registro libre con número de teléfono
 - Login con teléfono + contraseña
 
 ### **Administradores**
+
 - Email: `admin@municipio.gob.mx`
 - Contraseña: `admin123`
 
 ## 🛡️ Beneficios de la Separación
 
 ### **✅ Seguridad**
+
 - Código administrativo completamente aislado
 - Sin exposición de funciones admin en app ciudadana
 - Diferentes puertos y dominios
 
 ### **✅ Escalabilidad**
+
 - Apps independientes pueden escalar por separado
 - Despliegue independiente
 - Diferentes equipos de desarrollo
 
 ### **✅ Mantenimiento**
+
 - Actualizaciones sin afectar la otra app
 - Debugging más fácil
 - Código más limpio y organizado
 
 ### **✅ Performance**
+
 - Bundle más pequeño para cada app
 - Menos dependencias por aplicación
 - Mejor tiempo de carga
@@ -103,17 +113,19 @@ npm run dev
 ## 🚀 Despliegue
 
 ### **Producción**
+
 ```bash
 # App Ciudadana
 cd audiencias-ciudadanas
 npm run build
 
-# App Administrativa  
+# App Administrativa
 cd audiencias-admin
 npm run build
 ```
 
 ### **Sugerencias de URLs**
+
 - **Ciudadana**: `https://audiencias.municipio.gob.mx`
 - **Administrativa**: `https://admin-audiencias.municipio.gob.mx`
 

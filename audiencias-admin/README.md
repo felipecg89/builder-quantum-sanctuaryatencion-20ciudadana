@@ -1,7 +1,9 @@
 # Panel Administrativo - Audiencias Municipales
 
 ## Descripción
+
 Panel administrativo para funcionarios municipales:
+
 - Gestión de audiencias ciudadanas
 - Monitor de turnos en tiempo real
 - Administración de usuarios
@@ -10,6 +12,7 @@ Panel administrativo para funcionarios municipales:
 - Reportes y estadísticas
 
 ## Tecnologías
+
 - React 18 + TypeScript
 - Vite
 - TailwindCSS
@@ -18,12 +21,14 @@ Panel administrativo para funcionarios municipales:
 - Date-fns
 
 ## Instalación
+
 ```bash
 npm install
 npm run dev
 ```
 
 ## Estructura
+
 ```
 src/
 ├── pages/          # Páginas administrativas
@@ -33,5 +38,6 @@ src/
 ```
 
 ## Acceso
+
 - URL: `/admin/login`
 - Credenciales demo: admin@municipio.gob.mx / admin123

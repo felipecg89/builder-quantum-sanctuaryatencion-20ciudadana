@@ -21,7 +21,7 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/audience-history" element={<AudienceHistory />} />
-          
+
           {/* Catch-all route */}
           <Route path="*" element={<NotFound />} />
         </Routes>

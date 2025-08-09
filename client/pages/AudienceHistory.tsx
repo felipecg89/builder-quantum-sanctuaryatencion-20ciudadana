@@ -250,7 +250,6 @@ export default function AudienceHistory() {
     setLoginData({ phone: "", password: "" });
   };
 
-
   // Filtrar audiencias por usuario actual
   const userAudiences = mockAudiences.filter(
     (audience) => audience.userId === user?.phone,
