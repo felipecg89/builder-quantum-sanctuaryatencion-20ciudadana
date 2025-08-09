@@ -56,6 +56,7 @@ import { es } from "date-fns/locale";
 const mockAudiences = [
   {
     id: "AUD-123456",
+    userId: "55 1234 5678", // Phone number as userId
     category: "especie",
     type: "Alimentos",
     description: "Solicitud de apoyo alimentario para familia de 5 personas",
