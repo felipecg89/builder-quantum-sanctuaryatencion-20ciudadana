@@ -96,6 +96,26 @@ export default function Index() {
                 </p>
               </div>
             </div>
+
+            {/* User Info & Logout */}
+            {user && (
+              <div className="flex items-center gap-4">
+                <div className="text-right">
+                  <p className="text-sm font-medium text-slate-800">
+                    Bienvenido, {user.name}
+                  </p>
+                  <p className="text-xs text-slate-600">{user.phone}</p>
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleLogout}
+                  className="border-red-200 text-red-700 hover:bg-red-50"
+                >
+                  Cerrar Sesión
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </header>
@@ -1121,7 +1141,7 @@ export default function Index() {
                   <li>• Certificado de no adeudo predial</li>
                   <li>• Constancia de ingresos</li>
                   <li>• Certificado de soltería</li>
-                  <li>• Constancia de dependencia económica</li>
+                  <li>• Constancia de dependencia econ��mica</li>
                   <li>• Certificado médico básico</li>
                   <li>• Constancia de estudios</li>
                   <li>• Carta de recomendación municipal</li>
