@@ -134,9 +134,11 @@ export default function Index() {
             )}
           </h2>
           <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
-            Sistema digital para solicitar audiencias ciudadanas de manera
-            fácil, rápida y transparente. Tu voz es importante para nuestra
-            comunidad.
+            {user ? (
+              "¿Qué necesitas hacer hoy? Puedes solicitar una nueva audiencia o revisar el estado de tus solicitudes anteriores."
+            ) : (
+              "Sistema digital para solicitar audiencias ciudadanas de manera fácil, rápida y transparente. Tu voz es importante para nuestra comunidad."
+            )}
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             {/* Primary CTA Button - Solicitar Audiencia */}
