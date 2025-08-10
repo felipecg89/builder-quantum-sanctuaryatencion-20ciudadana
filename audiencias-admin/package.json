@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "description": "Panel Administrativo - Audiencias Municipales",
   "scripts": {
-    "dev": "vite --port 3002",
+    "dev": "vite --port 3002 --host",
     "build": "vite build",
     "preview": "vite preview",
     "typecheck": "tsc"
