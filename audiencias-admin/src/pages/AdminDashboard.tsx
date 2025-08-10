@@ -1523,8 +1523,8 @@ export default function AdminDashboard() {
                         <Card
                           key={index}
                           className={`cursor-pointer transition-all duration-200 hover:shadow-md ${
-                            selectedManageDate?.date.getTime() ===
-                            dateOption.date.getTime()
+                            selectedManageDate?.date && dateOption.date &&
+                            selectedManageDate.date.getTime() === dateOption.date.getTime()
                               ? "border-green-500 bg-green-50"
                               : "border-slate-200 hover:border-green-300"
                           }`}
