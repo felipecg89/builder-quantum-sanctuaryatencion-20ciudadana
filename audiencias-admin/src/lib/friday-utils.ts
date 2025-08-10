@@ -4,7 +4,7 @@ import { es } from "date-fns/locale";
 export function getUpcomingPublicAudienceDates(count: number = 10): Date[] {
   const dates: Date[] = [];
   let currentDate = new Date();
-  
+
   while (dates.length < count) {
     // Solo viernes (día 5)
     if (currentDate.getDay() === 5) {
@@ -12,7 +12,7 @@ export function getUpcomingPublicAudienceDates(count: number = 10): Date[] {
     }
     currentDate = addDays(currentDate, 1);
   }
-  
+
   return dates;
 }
 
@@ -22,7 +22,7 @@ export function formatPublicAudienceDate(date: Date): string {
 
 export function generateTimeSlots(): string[] {
   const slots: string[] = [];
-  
+
   // Generar slots de 9:00 AM a 5:00 PM cada 30 minutos
   for (let hour = 9; hour < 17; hour++) {
     for (let minute = 0; minute < 60; minute += 30) {
@@ -30,7 +30,7 @@ export function generateTimeSlots(): string[] {
       slots.push(format(time, "HH:mm"));
     }
   }
-  
+
   return slots;
 }
 
