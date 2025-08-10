@@ -1,14 +1,31 @@
 import { addDays, format, setHours, setMinutes } from "date-fns";
 import { es } from "date-fns/locale";
 
-export function getUpcomingPublicAudienceDates(count: number = 10): Date[] {
-  const dates: Date[] = [];
+export interface PublicAudienceDate {
+  date: Date;
+  slots: TimeSlot[];
+}
+
+export interface TimeSlot {
+  time: string;
+  isAvailable: boolean;
+  assignedTo?: string;
+}
+
+export function getUpcomingPublicAudienceDates(count: number = 10): PublicAudienceDate[] {
+  const dates: PublicAudienceDate[] = [];
   let currentDate = new Date();
 
   while (dates.length < count) {
     // Solo viernes (día 5)
     if (currentDate.getDay() === 5) {
-      dates.push(new Date(currentDate));
+      dates.push({
+        date: new Date(currentDate),
+        slots: generateTimeSlots().map(time => ({
+          time,
+          isAvailable: true
+        }))
+      });
     }
     currentDate = addDays(currentDate, 1);
   }
