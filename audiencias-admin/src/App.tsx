@@ -21,8 +21,11 @@ export default function App() {
           <Route path="/" element={<AdminLogin />} />
           <Route path="/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/AdminLogin" element={<AdminLogin />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/AdminDashboard" element={<AdminDashboard />} />
 
           {/* Catch-all route */}
           <Route path="*" element={<NotFound />} />
