@@ -61,6 +61,23 @@ export function generateTimeSlots(): string[] {
   return slots;
 }
 
+export function generateTimeSlotsWithAvailability(): TimeSlot[] {
+  const slots: TimeSlot[] = [];
+
+  // Generar slots de 9:00 AM a 5:00 PM cada 30 minutos
+  for (let hour = 9; hour < 17; hour++) {
+    for (let minute = 0; minute < 60; minute += 30) {
+      const time = setMinutes(setHours(new Date(), hour), minute);
+      slots.push({
+        time: format(time, "HH:mm"),
+        isAvailable: true
+      });
+    }
+  }
+
+  return slots;
+}
+
 export function isDateInFuture(date: Date): boolean {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
