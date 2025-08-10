@@ -17,7 +17,17 @@ export function getUpcomingPublicAudienceDates(count: number = 10): Date[] {
 }
 
 export function formatPublicAudienceDate(date: Date): string {
-  return format(date, "EEEE d 'de' MMMM 'de' yyyy", { locale: es });
+  // Validar que la fecha sea válida
+  if (!date || isNaN(date.getTime())) {
+    return "Fecha inválida";
+  }
+
+  try {
+    return format(date, "EEEE d 'de' MMMM 'de' yyyy", { locale: es });
+  } catch (error) {
+    console.error("Error al formatear fecha:", error);
+    return "Fecha inválida";
+  }
 }
 
 export function generateTimeSlots(): string[] {
