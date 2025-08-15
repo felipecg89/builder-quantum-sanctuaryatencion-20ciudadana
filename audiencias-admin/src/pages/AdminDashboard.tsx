@@ -736,22 +736,24 @@ export default function AdminDashboard() {
           onValueChange={setActiveTab}
           className="space-y-8"
         >
-          <TabsList className="admin-tabs-list grid w-full grid-cols-7 h-20 p-3 rounded-xl">
+          <TabsList className="admin-tabs-list grid w-full grid-cols-4 lg:grid-cols-7 gap-2 h-auto p-4 bg-gradient-to-r from-slate-50 to-slate-100 rounded-2xl border-2 border-slate-200/50 shadow-lg">
             <TabsTrigger
               value="audiencias"
-              className="admin-tab-trigger flex flex-col items-center gap-1.5 h-14 data-[state=active]:bg-gradient-to-br data-[state=active]:from-blue-500 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:border-blue-300 data-[state=active]:shadow-lg hover:bg-blue-50/70 transition-all duration-300 group"
+              className="admin-tab-trigger flex flex-col items-center gap-3 h-20 px-4 py-3 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-blue-500 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:border-blue-300 data-[state=active]:shadow-xl data-[state=active]:scale-105 hover:bg-blue-50/80 hover:border-blue-200 hover:shadow-md hover:scale-102 transition-all duration-300 group"
             >
               <div className="relative">
-                <MessageSquare className="w-5 h-5 transition-transform group-hover:scale-110" />
+                <div className="w-12 h-12 rounded-full bg-blue-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
+                  <MessageSquare className="w-6 h-6 text-blue-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
+                </div>
                 {audiences.filter((a) => a.status === "pendiente").length >
                   0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold shadow-lg border-2 border-white">
                     {audiences.filter((a) => a.status === "pendiente").length}
                   </span>
                 )}
               </div>
-              <span className="text-xs font-semibold tracking-wide">
-                Audiencias
+              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
+                📋 Audiencias
               </span>
             </TabsTrigger>
             <TabsTrigger
