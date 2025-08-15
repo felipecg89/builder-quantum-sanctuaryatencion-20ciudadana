@@ -1627,7 +1627,7 @@ export default function AdminDashboard() {
                                         Ciudadano:
                                       </p>
                                       <p className="text-xs font-medium text-slate-800">
-                                        {slot.citizenName}
+                                        {slot.assignedTo}
                                       </p>
                                     </div>
                                   )}
