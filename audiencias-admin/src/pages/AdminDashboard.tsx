@@ -810,30 +810,34 @@ export default function AdminDashboard() {
             </TabsTrigger>
             <TabsTrigger
               value="configuracion"
-              className="admin-tab-trigger flex flex-col items-center gap-1.5 h-14 data-[state=active]:bg-gradient-to-br data-[state=active]:from-emerald-500 data-[state=active]:to-emerald-600 data-[state=active]:text-white data-[state=active]:border-emerald-300 data-[state=active]:shadow-lg hover:bg-emerald-50/70 transition-all duration-300 group bg-emerald-50/50 border-emerald-200 ring-2 ring-emerald-100"
+              className="admin-tab-trigger flex flex-col items-center gap-3 h-20 px-4 py-3 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-emerald-500 data-[state=active]:to-emerald-600 data-[state=active]:text-white data-[state=active]:border-emerald-300 data-[state=active]:shadow-xl data-[state=active]:scale-105 hover:bg-emerald-50/80 hover:border-emerald-200 hover:shadow-md hover:scale-102 transition-all duration-300 group bg-emerald-50/50 border-emerald-200 ring-2 ring-emerald-100"
             >
               <div className="relative">
-                <Wrench className="w-5 h-5 transition-transform group-hover:scale-110 group-hover:rotate-12" />
-                <span className="absolute -top-2 -right-2 bg-emerald-100 text-emerald-600 text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                <div className="w-12 h-12 rounded-full bg-emerald-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
+                  <Wrench className="w-6 h-6 text-emerald-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110 group-hover:rotate-12" />
+                </div>
+                <span className="absolute -top-1 -right-1 bg-emerald-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold shadow-lg border-2 border-white">
                   {audienceTypes.filter((t) => t.active).length}
                 </span>
               </div>
-              <span className="text-xs font-semibold tracking-wide">
-                Configuración
+              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
+                ⚙️ Configuración
               </span>
             </TabsTrigger>
             <TabsTrigger
               value="turnos"
-              className="admin-tab-trigger flex flex-col items-center gap-1.5 h-14 data-[state=active]:bg-gradient-to-br data-[state=active]:from-green-500 data-[state=active]:to-green-600 data-[state=active]:text-white data-[state=active]:border-green-300 data-[state=active]:shadow-lg hover:bg-green-50/70 transition-all duration-300 group"
+              className="admin-tab-trigger flex flex-col items-center gap-3 h-20 px-4 py-3 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-green-500 data-[state=active]:to-green-600 data-[state=active]:text-white data-[state=active]:border-green-300 data-[state=active]:shadow-xl data-[state=active]:scale-105 hover:bg-green-50/80 hover:border-green-200 hover:shadow-md hover:scale-102 transition-all duration-300 group"
             >
               <div className="relative">
-                <Clock className="w-5 h-5 transition-transform group-hover:scale-110" />
-                <span className="absolute -top-2 -right-2 bg-green-100 text-green-600 text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                <div className="w-12 h-12 rounded-full bg-green-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
+                  <Clock className="w-6 h-6 text-green-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
+                </div>
+                <span className="absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold shadow-lg border-2 border-white">
                   {publicAudienceDates.length}
                 </span>
               </div>
-              <span className="text-xs font-semibold tracking-wide">
-                Turnos
+              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
+                🕐 Turnos
               </span>
             </TabsTrigger>
             <TabsTrigger
