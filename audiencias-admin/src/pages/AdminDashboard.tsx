@@ -670,60 +670,60 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="border-0 shadow-lg bg-gradient-to-br from-yellow-50 to-orange-100 hover:shadow-xl transition-all duration-300">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-slate-600">Pendientes</p>
-                  <p className="text-2xl font-bold text-yellow-600">
+                  <p className="text-sm font-medium text-orange-600">⏰ Pendientes</p>
+                  <p className="text-3xl font-bold text-orange-800">
                     {mockAdminData.stats.pendingAudiences}
                   </p>
                 </div>
-                <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                  <Clock className="w-6 h-6 text-yellow-600" />
+                <div className="w-14 h-14 bg-orange-600 rounded-2xl flex items-center justify-center shadow-lg">
+                  <Clock className="w-7 h-7 text-white" />
                 </div>
               </div>
-              <div className="mt-2 flex items-center text-sm text-red-600">
+              <div className="mt-3 flex items-center text-sm text-red-600 font-medium">
                 <ArrowUp className="w-4 h-4 mr-1" />
                 +3 desde ayer
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="border-0 shadow-lg bg-gradient-to-br from-purple-50 to-indigo-100 hover:shadow-xl transition-all duration-300">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-slate-600">Hoy</p>
-                  <p className="text-2xl font-bold text-blue-600">
+                  <p className="text-sm font-medium text-purple-600">📅 Hoy</p>
+                  <p className="text-3xl font-bold text-purple-800">
                     {mockAdminData.stats.todayAudiences}
                   </p>
                 </div>
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                  <Calendar className="w-6 h-6 text-blue-600" />
+                <div className="w-14 h-14 bg-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
+                  <Calendar className="w-7 h-7 text-white" />
                 </div>
               </div>
-              <div className="mt-2 flex items-center text-sm text-blue-600">
+              <div className="mt-3 flex items-center text-sm text-purple-600 font-medium">
                 <Activity className="w-4 h-4 mr-1" />
                 Programadas
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="border-0 shadow-lg bg-gradient-to-br from-green-50 to-emerald-100 hover:shadow-xl transition-all duration-300">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-slate-600">Completadas</p>
-                  <p className="text-2xl font-bold text-green-600">
+                  <p className="text-sm font-medium text-green-600">✅ Completadas</p>
+                  <p className="text-3xl font-bold text-green-800">
                     {mockAdminData.stats.completedThisMonth}
                   </p>
                 </div>
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <CheckCircle className="w-6 h-6 text-green-600" />
+                <div className="w-14 h-14 bg-green-600 rounded-2xl flex items-center justify-center shadow-lg">
+                  <CheckCircle className="w-7 h-7 text-white" />
                 </div>
               </div>
-              <div className="mt-2 flex items-center text-sm text-green-600">
+              <div className="mt-3 flex items-center text-sm text-green-600 font-medium">
                 <TrendingUp className="w-4 h-4 mr-1" />
                 Este mes
               </div>
