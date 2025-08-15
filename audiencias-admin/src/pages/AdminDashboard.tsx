@@ -322,7 +322,7 @@ export default function AdminDashboard() {
     return urlParams.get("tab") || "audiencias";
   });
 
-  // Estados para gestión de datos administrativos
+  // Estados para gesti��n de datos administrativos
   const [citizens, setCitizens] = useState(mockAdminData.citizens);
   const [staff, setStaff] = useState(mockAdminData.staff);
   const [audienceTypes, setAudienceTypes] = useState(
@@ -1648,8 +1648,8 @@ export default function AdminDashboard() {
                                                 s.id === slot.id
                                                   ? {
                                                       ...s,
-                                                      available: false,
-                                                      citizenName,
+                                                      isAvailable: false,
+                                                      assignedTo: citizenName,
                                                     }
                                                   : s,
                                               );
