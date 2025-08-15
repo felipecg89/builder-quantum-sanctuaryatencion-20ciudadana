@@ -650,20 +650,20 @@ export default function AdminDashboard() {
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card>
+          <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 to-blue-100 hover:shadow-xl transition-all duration-300">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-slate-600">Total Audiencias</p>
-                  <p className="text-2xl font-bold text-slate-800">
+                  <p className="text-sm font-medium text-blue-600">📋 Total Audiencias</p>
+                  <p className="text-3xl font-bold text-blue-800">
                     {mockAdminData.stats.totalAudiences}
                   </p>
                 </div>
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                  <FileText className="w-6 h-6 text-blue-600" />
+                <div className="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
+                  <FileText className="w-7 h-7 text-white" />
                 </div>
               </div>
-              <div className="mt-2 flex items-center text-sm text-green-600">
+              <div className="mt-3 flex items-center text-sm text-green-600 font-medium">
                 <ArrowUp className="w-4 h-4 mr-1" />
                 +12% este mes
               </div>
