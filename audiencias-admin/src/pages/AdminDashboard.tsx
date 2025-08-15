@@ -1531,7 +1531,12 @@ export default function AdminDashboard() {
                           }`}
                           onClick={() => {
                             setSelectedManageDate(dateOption);
-                            const slots = generateTimeSlots();
+                            const slots = generateTimeSlots().map((time, index) => ({
+                              id: `slot-${index}`,
+                              time,
+                              available: true,
+                              assignedTo: undefined,
+                            }));
                             setManageDateSlots(slots);
                           }}
                         >
@@ -2286,7 +2291,7 @@ export default function AdminDashboard() {
                                     setSelectedCitizen(updatedCitizen);
                                   }}
                                   rows={2}
-                                  placeholder="Resultado de la gestión..."
+                                  placeholder="Resultado de la gesti��n..."
                                 />
                               </div>
                             </div>
