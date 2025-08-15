@@ -1621,7 +1621,7 @@ export default function AdminDashboard() {
                                   >
                                     {slot.isAvailable ? "Disponible" : "Ocupado"}
                                   </Badge>
-                                  {!slot.available && slot.citizenName && (
+                                  {!slot.isAvailable && slot.assignedTo && (
                                     <div className="space-y-1">
                                       <p className="text-xs text-slate-600">
                                         Ciudadano:
