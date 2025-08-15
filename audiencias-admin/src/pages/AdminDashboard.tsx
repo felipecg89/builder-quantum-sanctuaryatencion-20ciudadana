@@ -1602,7 +1602,7 @@ export default function AdminDashboard() {
                             <Card
                               key={slot.id}
                               className={`${
-                                slot.available
+                                slot.isAvailable
                                   ? "border-green-200 bg-green-50"
                                   : "border-orange-200 bg-orange-50"
                               }`}
@@ -2291,7 +2291,7 @@ export default function AdminDashboard() {
                                     setSelectedCitizen(updatedCitizen);
                                   }}
                                   rows={2}
-                                  placeholder="Resultado de la gesti����n..."
+                                  placeholder="Resultado de la gesti��n..."
                                 />
                               </div>
                             </div>
