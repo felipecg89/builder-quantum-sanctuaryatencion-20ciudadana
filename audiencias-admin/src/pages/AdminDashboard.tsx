@@ -322,7 +322,7 @@ export default function AdminDashboard() {
     return urlParams.get("tab") || "audiencias";
   });
 
-  // Estados para gesti��n de datos administrativos
+  // Estados para gestión de datos administrativos
   const [citizens, setCitizens] = useState(mockAdminData.citizens);
   const [staff, setStaff] = useState(mockAdminData.staff);
   const [audienceTypes, setAudienceTypes] = useState(
@@ -1534,7 +1534,7 @@ export default function AdminDashboard() {
                             const slots = generateTimeSlots().map((time, index) => ({
                               id: `slot-${index}`,
                               time,
-                              available: true,
+                              isAvailable: true,
                               assignedTo: undefined,
                             }));
                             setManageDateSlots(slots);
@@ -2291,7 +2291,7 @@ export default function AdminDashboard() {
                                     setSelectedCitizen(updatedCitizen);
                                   }}
                                   rows={2}
-                                  placeholder="Resultado de la gesti��n..."
+                                  placeholder="Resultado de la gesti����n..."
                                 />
                               </div>
                             </div>
