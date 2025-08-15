@@ -842,16 +842,18 @@ export default function AdminDashboard() {
             </TabsTrigger>
             <TabsTrigger
               value="reportes"
-              className="admin-tab-trigger flex flex-col items-center gap-1.5 h-14 data-[state=active]:bg-gradient-to-br data-[state=active]:from-rose-500 data-[state=active]:to-rose-600 data-[state=active]:text-white data-[state=active]:border-rose-300 data-[state=active]:shadow-lg hover:bg-rose-50/70 transition-all duration-300 group"
+              className="admin-tab-trigger flex flex-col items-center gap-3 h-20 px-4 py-3 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-rose-500 data-[state=active]:to-rose-600 data-[state=active]:text-white data-[state=active]:border-rose-300 data-[state=active]:shadow-xl data-[state=active]:scale-105 hover:bg-rose-50/80 hover:border-rose-200 hover:shadow-md hover:scale-102 transition-all duration-300 group"
             >
               <div className="relative">
-                <BarChart3 className="w-5 h-5 transition-transform group-hover:scale-110" />
-                <div className="absolute -top-2 -right-2 bg-rose-100 text-rose-600 text-xs rounded-full w-6 h-5 flex items-center justify-center font-bold">
+                <div className="w-12 h-12 rounded-full bg-rose-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
+                  <BarChart3 className="w-6 h-6 text-rose-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
+                </div>
+                <div className="absolute -top-1 -right-1 bg-rose-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold shadow-lg border-2 border-white">
                   ✓
                 </div>
               </div>
-              <span className="text-xs font-semibold tracking-wide">
-                Reportes
+              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
+                📊 Reportes
               </span>
             </TabsTrigger>
           </TabsList>
