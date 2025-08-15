@@ -1619,7 +1619,7 @@ export default function AdminDashboard() {
                                         : "bg-orange-100 text-orange-800"
                                     }
                                   >
-                                    {slot.available ? "Disponible" : "Ocupado"}
+                                    {slot.isAvailable ? "Disponible" : "Ocupado"}
                                   </Badge>
                                   {!slot.available && slot.citizenName && (
                                     <div className="space-y-1">
