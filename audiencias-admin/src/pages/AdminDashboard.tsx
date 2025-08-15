@@ -601,18 +601,19 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Header */}
-      <header className="bg-white border-b border-slate-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-3">
-            <div className="flex items-center justify-center w-10 h-10 bg-blue-600 rounded-full">
-              <Building2 className="w-6 h-6 text-white" />
+      <header className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 border-b border-blue-900 shadow-xl">
+        <div className="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center justify-center w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl border border-white/30 shadow-lg">
+              <Building2 className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-semibold text-slate-800">
-                Panel Administrativo
+              <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+                🏛️ Panel Administrativo
               </h1>
-              <p className="text-sm text-slate-600">
-                Sistema de Audiencias Municipales
+              <p className="text-sm text-blue-100 flex items-center gap-2">
+                <Settings className="w-4 h-4" />
+                Sistema de Audiencias Municipales • Control Total
               </p>
             </div>
           </div>
