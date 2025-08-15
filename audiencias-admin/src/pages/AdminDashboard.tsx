@@ -1671,8 +1671,8 @@ export default function AdminDashboard() {
                                                 s.id === slot.id
                                                   ? {
                                                       ...s,
-                                                      available: true,
-                                                      citizenName: undefined,
+                                                      isAvailable: true,
+                                                      assignedTo: undefined,
                                                     }
                                                   : s,
                                               );
