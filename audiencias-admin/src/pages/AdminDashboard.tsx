@@ -774,11 +774,13 @@ export default function AdminDashboard() {
             </TabsTrigger>
             <TabsTrigger
               value="expedientes"
-              className="admin-tab-trigger flex flex-col items-center gap-1.5 h-14 data-[state=active]:bg-gradient-to-br data-[state=active]:from-amber-500 data-[state=active]:to-amber-600 data-[state=active]:text-white data-[state=active]:border-amber-300 data-[state=active]:shadow-lg hover:bg-amber-50/70 transition-all duration-300 group"
+              className="admin-tab-trigger flex flex-col items-center gap-3 h-20 px-4 py-3 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-amber-500 data-[state=active]:to-amber-600 data-[state=active]:text-white data-[state=active]:border-amber-300 data-[state=active]:shadow-xl data-[state=active]:scale-105 hover:bg-amber-50/80 hover:border-amber-200 hover:shadow-md hover:scale-102 transition-all duration-300 group"
             >
               <div className="relative">
-                <FileText className="w-5 h-5 transition-transform group-hover:scale-110" />
-                <span className="absolute -top-2 -right-2 bg-amber-100 text-amber-600 text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                <div className="w-12 h-12 rounded-full bg-amber-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
+                  <FileText className="w-6 h-6 text-amber-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
+                </div>
+                <span className="absolute -top-1 -right-1 bg-amber-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold shadow-lg border-2 border-white">
                   {citizens.reduce(
                     (total, citizen) =>
                       total + citizen.expediente.requests.length,
@@ -786,22 +788,24 @@ export default function AdminDashboard() {
                   )}
                 </span>
               </div>
-              <span className="text-xs font-semibold tracking-wide">
-                Expedientes
+              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
+                📁 Expedientes
               </span>
             </TabsTrigger>
             <TabsTrigger
               value="personal"
-              className="admin-tab-trigger flex flex-col items-center gap-1.5 h-14 data-[state=active]:bg-gradient-to-br data-[state=active]:from-indigo-500 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:border-indigo-300 data-[state=active]:shadow-lg hover:bg-indigo-50/70 transition-all duration-300 group"
+              className="admin-tab-trigger flex flex-col items-center gap-3 h-20 px-4 py-3 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-indigo-500 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:border-indigo-300 data-[state=active]:shadow-xl data-[state=active]:scale-105 hover:bg-indigo-50/80 hover:border-indigo-200 hover:shadow-md hover:scale-102 transition-all duration-300 group"
             >
               <div className="relative">
-                <UserPlus className="w-5 h-5 transition-transform group-hover:scale-110" />
-                <span className="absolute -top-2 -right-2 bg-indigo-100 text-indigo-600 text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                <div className="w-12 h-12 rounded-full bg-indigo-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
+                  <UserPlus className="w-6 h-6 text-indigo-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
+                </div>
+                <span className="absolute -top-1 -right-1 bg-indigo-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold shadow-lg border-2 border-white">
                   {staff.filter((s) => s.status === "activo").length}
                 </span>
               </div>
-              <span className="text-xs font-semibold tracking-wide">
-                Personal
+              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
+                👨‍💼 Personal
               </span>
             </TabsTrigger>
             <TabsTrigger
