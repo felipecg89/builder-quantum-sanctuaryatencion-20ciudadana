@@ -654,7 +654,9 @@ export default function AdminDashboard() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-blue-600">📋 Total Audiencias</p>
+                  <p className="text-sm font-medium text-blue-600">
+                    📋 Total Audiencias
+                  </p>
                   <p className="text-3xl font-bold text-blue-800">
                     {mockAdminData.stats.totalAudiences}
                   </p>
@@ -674,7 +676,9 @@ export default function AdminDashboard() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-orange-600">⏰ Pendientes</p>
+                  <p className="text-sm font-medium text-orange-600">
+                    ⏰ Pendientes
+                  </p>
                   <p className="text-3xl font-bold text-orange-800">
                     {mockAdminData.stats.pendingAudiences}
                   </p>
@@ -714,7 +718,9 @@ export default function AdminDashboard() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-green-600">✅ Completadas</p>
+                  <p className="text-sm font-medium text-green-600">
+                    ✅ Completadas
+                  </p>
                   <p className="text-3xl font-bold text-green-800">
                     {mockAdminData.stats.completedThisMonth}
                   </p>
@@ -1538,19 +1544,23 @@ export default function AdminDashboard() {
                         <Card
                           key={index}
                           className={`cursor-pointer transition-all duration-200 hover:shadow-md ${
-                            selectedManageDate?.date && dateOption.date &&
-                            selectedManageDate.date.getTime() === dateOption.date.getTime()
+                            selectedManageDate?.date &&
+                            dateOption.date &&
+                            selectedManageDate.date.getTime() ===
+                              dateOption.date.getTime()
                               ? "border-green-500 bg-green-50"
                               : "border-slate-200 hover:border-green-300"
                           }`}
                           onClick={() => {
                             setSelectedManageDate(dateOption);
-                            const slots = generateTimeSlots().map((time, index) => ({
-                              id: `slot-${index}`,
-                              time,
-                              isAvailable: true,
-                              assignedTo: undefined,
-                            }));
+                            const slots = generateTimeSlots().map(
+                              (time, index) => ({
+                                id: `slot-${index}`,
+                                time,
+                                isAvailable: true,
+                                assignedTo: undefined,
+                              }),
+                            );
                             setManageDateSlots(slots);
                           }}
                         >
@@ -1633,7 +1643,9 @@ export default function AdminDashboard() {
                                         : "bg-orange-100 text-orange-800"
                                     }
                                   >
-                                    {slot.isAvailable ? "Disponible" : "Ocupado"}
+                                    {slot.isAvailable
+                                      ? "Disponible"
+                                      : "Ocupado"}
                                   </Badge>
                                   {!slot.isAvailable && slot.assignedTo && (
                                     <div className="space-y-1">
