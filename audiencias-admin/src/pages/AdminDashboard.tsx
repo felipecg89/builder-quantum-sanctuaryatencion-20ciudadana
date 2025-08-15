@@ -1614,7 +1614,7 @@ export default function AdminDashboard() {
                                   </p>
                                   <Badge
                                     className={
-                                      slot.available
+                                      slot.isAvailable
                                         ? "bg-green-100 text-green-800"
                                         : "bg-orange-100 text-orange-800"
                                     }
