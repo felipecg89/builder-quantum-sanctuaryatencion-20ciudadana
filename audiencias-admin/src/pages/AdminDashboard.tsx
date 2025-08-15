@@ -758,7 +758,7 @@ export default function AdminDashboard() {
             </TabsTrigger>
             <TabsTrigger
               value="ciudadanos"
-              className="admin-tab-trigger flex flex-col items-center gap-3 h-20 px-4 py-3 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-purple-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:border-purple-300 data-[state=active]:shadow-xl hover:bg-purple-50/80 hover:border-purple-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+              className="admin-tab-trigger flex flex-col items-center gap-3 h-20 px-4 py-3 mx-1 my-2 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-purple-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:border-purple-300 data-[state=active]:shadow-xl hover:bg-purple-50/80 hover:border-purple-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
             >
               <div className="relative">
                 <div className="w-12 h-12 rounded-full bg-purple-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
@@ -774,7 +774,7 @@ export default function AdminDashboard() {
             </TabsTrigger>
             <TabsTrigger
               value="expedientes"
-              className="admin-tab-trigger flex flex-col items-center gap-3 h-20 px-4 py-3 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-amber-500 data-[state=active]:to-amber-600 data-[state=active]:text-white data-[state=active]:border-amber-300 data-[state=active]:shadow-xl hover:bg-amber-50/80 hover:border-amber-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+              className="admin-tab-trigger flex flex-col items-center gap-3 h-20 px-4 py-3 mx-1 my-2 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-amber-500 data-[state=active]:to-amber-600 data-[state=active]:text-white data-[state=active]:border-amber-300 data-[state=active]:shadow-xl hover:bg-amber-50/80 hover:border-amber-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
             >
               <div className="relative">
                 <div className="w-12 h-12 rounded-full bg-amber-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
@@ -794,7 +794,7 @@ export default function AdminDashboard() {
             </TabsTrigger>
             <TabsTrigger
               value="personal"
-              className="admin-tab-trigger flex flex-col items-center gap-3 h-20 px-4 py-3 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-indigo-500 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:border-indigo-300 data-[state=active]:shadow-xl hover:bg-indigo-50/80 hover:border-indigo-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+              className="admin-tab-trigger flex flex-col items-center gap-3 h-20 px-4 py-3 mx-1 my-2 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-indigo-500 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:border-indigo-300 data-[state=active]:shadow-xl hover:bg-indigo-50/80 hover:border-indigo-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
             >
               <div className="relative">
                 <div className="w-12 h-12 rounded-full bg-indigo-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
@@ -810,7 +810,7 @@ export default function AdminDashboard() {
             </TabsTrigger>
             <TabsTrigger
               value="configuracion"
-              className="admin-tab-trigger flex flex-col items-center gap-3 h-20 px-4 py-3 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-emerald-500 data-[state=active]:to-emerald-600 data-[state=active]:text-white data-[state=active]:border-emerald-300 data-[state=active]:shadow-xl hover:bg-emerald-50/80 hover:border-emerald-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group bg-emerald-50/50 border-emerald-200 ring-2 ring-emerald-100"
+              className="admin-tab-trigger flex flex-col items-center gap-3 h-20 px-4 py-3 mx-1 my-2 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-emerald-500 data-[state=active]:to-emerald-600 data-[state=active]:text-white data-[state=active]:border-emerald-300 data-[state=active]:shadow-xl hover:bg-emerald-50/80 hover:border-emerald-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group bg-emerald-50/50 border-emerald-200 ring-2 ring-emerald-100"
             >
               <div className="relative">
                 <div className="w-12 h-12 rounded-full bg-emerald-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
@@ -826,7 +826,7 @@ export default function AdminDashboard() {
             </TabsTrigger>
             <TabsTrigger
               value="turnos"
-              className="admin-tab-trigger flex flex-col items-center gap-3 h-20 px-4 py-3 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-green-500 data-[state=active]:to-green-600 data-[state=active]:text-white data-[state=active]:border-green-300 data-[state=active]:shadow-xl hover:bg-green-50/80 hover:border-green-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+              className="admin-tab-trigger flex flex-col items-center gap-3 h-20 px-4 py-3 mx-1 my-2 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-green-500 data-[state=active]:to-green-600 data-[state=active]:text-white data-[state=active]:border-green-300 data-[state=active]:shadow-xl hover:bg-green-50/80 hover:border-green-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
             >
               <div className="relative">
                 <div className="w-12 h-12 rounded-full bg-green-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
@@ -842,7 +842,7 @@ export default function AdminDashboard() {
             </TabsTrigger>
             <TabsTrigger
               value="reportes"
-              className="admin-tab-trigger flex flex-col items-center gap-3 h-20 px-4 py-3 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-rose-500 data-[state=active]:to-rose-600 data-[state=active]:text-white data-[state=active]:border-rose-300 data-[state=active]:shadow-xl hover:bg-rose-50/80 hover:border-rose-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+              className="admin-tab-trigger flex flex-col items-center gap-3 h-20 px-4 py-3 mx-1 my-2 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-rose-500 data-[state=active]:to-rose-600 data-[state=active]:text-white data-[state=active]:border-rose-300 data-[state=active]:shadow-xl hover:bg-rose-50/80 hover:border-rose-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
             >
               <div className="relative">
                 <div className="w-12 h-12 rounded-full bg-rose-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
