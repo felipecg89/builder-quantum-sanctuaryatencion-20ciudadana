@@ -57,6 +57,7 @@ import {
   UserPlus,
   CalendarDays,
   Wrench,
+  Send,
 } from "lucide-react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
@@ -260,7 +261,7 @@ const mockAdminData = {
       phone: "55 3333 9999",
       category: "invitacion",
       type: "Evento público",
-      description: "Invitación para ceremonia de reconocimiento",
+      description: "Invitaci��n para ceremonia de reconocimiento",
       status: "pendiente",
       priority: "baja",
       requestDate: new Date("2024-01-24"),
