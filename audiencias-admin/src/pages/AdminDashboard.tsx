@@ -1632,7 +1632,7 @@ export default function AdminDashboard() {
                                     </div>
                                   )}
                                   <div className="flex gap-1">
-                                    {slot.available ? (
+                                    {slot.isAvailable ? (
                                       <Button
                                         size="sm"
                                         variant="outline"
