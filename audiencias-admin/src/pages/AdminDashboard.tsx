@@ -747,7 +747,7 @@ export default function AdminDashboard() {
                 </div>
                 {audiences.filter((a) => a.status === "pendiente").length >
                   0 && (
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                  <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold shadow-lg border-2 border-white">
                     {audiences.filter((a) => a.status === "pendiente").length}
                   </span>
                 )}
@@ -764,7 +764,7 @@ export default function AdminDashboard() {
                 <div className="w-12 h-12 rounded-full bg-purple-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
                   <Users className="w-6 h-6 text-purple-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
                 </div>
-                <span className="absolute -top-1 -right-1 bg-purple-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                <span className="absolute top-0 right-0 bg-purple-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold shadow-lg border-2 border-white">
                   {citizens.length}
                 </span>
               </div>
@@ -780,7 +780,7 @@ export default function AdminDashboard() {
                 <div className="w-12 h-12 rounded-full bg-amber-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
                   <FileText className="w-6 h-6 text-amber-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
                 </div>
-                <span className="absolute -top-1 -right-1 bg-amber-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                <span className="absolute top-0 right-0 bg-amber-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold shadow-lg border-2 border-white">
                   {citizens.reduce(
                     (total, citizen) =>
                       total + citizen.expediente.requests.length,
@@ -800,7 +800,7 @@ export default function AdminDashboard() {
                 <div className="w-12 h-12 rounded-full bg-indigo-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
                   <UserPlus className="w-6 h-6 text-indigo-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
                 </div>
-                <span className="absolute -top-1 -right-1 bg-indigo-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                <span className="absolute top-0 right-0 bg-indigo-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold shadow-lg border-2 border-white">
                   {staff.filter((s) => s.status === "activo").length}
                 </span>
               </div>
@@ -816,7 +816,7 @@ export default function AdminDashboard() {
                 <div className="w-12 h-12 rounded-full bg-emerald-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
                   <Wrench className="w-6 h-6 text-emerald-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110 group-hover:rotate-12" />
                 </div>
-                <span className="absolute -top-1 -right-1 bg-emerald-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                <span className="absolute top-0 right-0 bg-emerald-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold shadow-lg border-2 border-white">
                   {audienceTypes.filter((t) => t.active).length}
                 </span>
               </div>
@@ -832,7 +832,7 @@ export default function AdminDashboard() {
                 <div className="w-12 h-12 rounded-full bg-green-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
                   <Clock className="w-6 h-6 text-green-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
                 </div>
-                <span className="absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                <span className="absolute top-0 right-0 bg-green-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold shadow-lg border-2 border-white">
                   {publicAudienceDates.length}
                 </span>
               </div>
@@ -848,7 +848,7 @@ export default function AdminDashboard() {
                 <div className="w-12 h-12 rounded-full bg-rose-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
                   <BarChart3 className="w-6 h-6 text-rose-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
                 </div>
-                <div className="absolute -top-1 -right-1 bg-rose-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                <div className="absolute top-0 right-0 bg-rose-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold shadow-lg border-2 border-white">
                   ✓
                 </div>
               </div>
