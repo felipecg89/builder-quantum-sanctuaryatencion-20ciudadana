@@ -113,22 +113,38 @@ export default function IndexNew() {
         </header>
 
         {/* Hero Section */}
-        <section className="text-center py-12 sm:py-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-slate-800 mb-6 leading-tight">
-            {user ? (
-              <>
-                ¡Hola, <span className="text-blue-600">{user.name}!</span>
-              </>
-            ) : (
-              "Tu Voz Importa"
-            )}
-          </h2>
+        <section className="relative text-center py-16 sm:py-24 px-4 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 overflow-hidden">
+          {/* Background decorative elements */}
+          <div className="absolute inset-0 opacity-30">
+            <div className="absolute top-10 left-10 w-72 h-72 bg-blue-400/20 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-10 right-10 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-indigo-400/20 rounded-full blur-3xl animate-pulse delay-500"></div>
+          </div>
 
-          <p className="text-lg sm:text-xl text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-            {user
-              ? "¿Qué necesitas hacer hoy? Puedes solicitar una nueva audiencia o revisar el estado de tus solicitudes anteriores."
-              : "Sistema digital para solicitar audiencias ciudadanas de manera fácil, rápida y transparente. Tu voz es importante para nuestra comunidad."}
-          </p>
+          <div className="relative z-10">
+            <div className="mb-8">
+              <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg border border-white/50 mb-6">
+                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="text-sm font-medium text-slate-700">🏛️ Sistema en línea • Atención 24/7</span>
+              </div>
+            </div>
+
+            <h2 className="text-5xl sm:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 mb-8 leading-tight tracking-tight">
+              {user ? (
+                <>
+                  ¡Hola, <span className="text-blue-600">{user.name}!</span>
+                </>
+              ) : (
+                "Tu Voz Importa"
+              )}
+            </h2>
+
+            <p className="text-xl sm:text-2xl text-slate-700 mb-12 max-w-4xl mx-auto leading-relaxed font-medium">
+              {user
+                ? "¿Qué necesitas hacer hoy? Puedes solicitar una nueva audiencia o revisar el estado de tus solicitudes anteriores."
+                : "✨ Sistema digital para solicitar audiencias ciudadanas de manera fácil, rápida y transparente. Tu voz es importante para nuestra comunidad."}
+            </p>
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
             {user ? (
