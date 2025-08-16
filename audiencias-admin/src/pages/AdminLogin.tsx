@@ -10,7 +10,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Building2, User, Lock, Eye, EyeOff, Shield, ArrowLeft } from "lucide-react";
+import {
+  Building2,
+  User,
+  Lock,
+  Eye,
+  EyeOff,
+  Shield,
+  ArrowLeft,
+} from "lucide-react";
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("admin@municipio.gob.mx");
@@ -27,7 +35,7 @@ export default function AdminLogin() {
       email: "admin@municipio.gob.mx",
       role: "admin",
       authenticated: true,
-      permissions: ["read", "write", "delete", "manage_users"]
+      permissions: ["read", "write", "delete", "manage_users"],
     };
 
     localStorage.setItem("adminUser", JSON.stringify(adminData));
@@ -49,9 +57,9 @@ export default function AdminLogin() {
           email: email,
           role: "admin",
           authenticated: true,
-          permissions: ["read", "write", "delete", "manage_users"]
+          permissions: ["read", "write", "delete", "manage_users"],
         };
-        
+
         localStorage.setItem("adminUser", JSON.stringify(adminData));
         navigate("/admin/dashboard");
       } else {
@@ -84,7 +92,9 @@ export default function AdminLogin() {
           <h1 className="text-3xl font-bold text-white mb-2">
             Panel Administrativo
           </h1>
-          <p className="text-white/70 text-lg">Sistema de Audiencias Municipales</p>
+          <p className="text-white/70 text-lg">
+            Sistema de Audiencias Municipales
+          </p>
         </div>
 
         <Card className="border-white/20 bg-white/10 backdrop-blur-sm">
@@ -99,7 +109,9 @@ export default function AdminLogin() {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-white">Email Administrativo</Label>
+                <Label htmlFor="email" className="text-white">
+                  Email Administrativo
+                </Label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/50 w-4 h-4" />
                   <Input
@@ -115,7 +127,9 @@ export default function AdminLogin() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password" className="text-white">Contraseña</Label>
+                <Label htmlFor="password" className="text-white">
+                  Contraseña
+                </Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/50 w-4 h-4" />
                   <Input
@@ -169,8 +183,12 @@ export default function AdminLogin() {
                 Credenciales de Demostración
               </h4>
               <div className="space-y-1 text-sm text-white/70">
-                <p><strong>Email:</strong> admin@municipio.gob.mx</p>
-                <p><strong>Contraseña:</strong> admin123</p>
+                <p>
+                  <strong>Email:</strong> admin@municipio.gob.mx
+                </p>
+                <p>
+                  <strong>Contraseña:</strong> admin123
+                </p>
                 <p className="text-xs text-blue-200 mt-2">
                   * En producción se usaría autenticación segura con 2FA
                 </p>

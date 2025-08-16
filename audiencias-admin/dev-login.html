@@ -1,24 +1,24 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
+  <head>
     <title>Dev Login - Admin Dashboard</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        // Simular login de administrador
-        const adminData = {
-            id: "admin_001",
-            name: "Administrador Municipal",
-            email: "admin@municipio.gob.mx", 
-            role: "admin",
-            authenticated: true,
-            permissions: ["read", "write", "delete", "manage_users"]
-        };
-        
-        localStorage.setItem("adminUser", JSON.stringify(adminData));
-        
-        // Redirigir al dashboard
-        window.location.href = "/admin/dashboard";
+      // Simular login de administrador
+      const adminData = {
+        id: "admin_001",
+        name: "Administrador Municipal",
+        email: "admin@municipio.gob.mx",
+        role: "admin",
+        authenticated: true,
+        permissions: ["read", "write", "delete", "manage_users"],
+      };
+
+      localStorage.setItem("adminUser", JSON.stringify(adminData));
+
+      // Redirigir al dashboard
+      window.location.href = "/admin/dashboard";
     </script>
-</body>
+  </body>
 </html>
