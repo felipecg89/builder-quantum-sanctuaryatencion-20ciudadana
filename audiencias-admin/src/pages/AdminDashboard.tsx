@@ -253,7 +253,9 @@ const mockAdminData = {
       status: "completada",
       priority: "media",
       requestDate: new Date("2024-01-20"),
-      assignedTo: "Ing. López",
+      assignedTo: "Ing. López - Obras Públicas",
+      completedBy: "Ing. López - Obras Públicas",
+      completedDate: new Date("2024-01-27"),
       daysWaiting: 0,
     },
     {
@@ -2449,7 +2451,7 @@ export default function AdminDashboard() {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="edit-phone">Teléfono</Label>
+                  <Label htmlFor="edit-phone">Tel��fono</Label>
                   <Input
                     id="edit-phone"
                     value={selectedCitizen.phone}
