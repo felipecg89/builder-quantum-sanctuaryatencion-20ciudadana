@@ -747,7 +747,7 @@ export default function AdminDashboard() {
           onValueChange={setActiveTab}
           className="space-y-8"
         >
-          <TabsList className="admin-tabs-list grid w-full grid-cols-4 lg:grid-cols-7 gap-3 min-h-[120px] pt-8 pb-6 px-6 bg-gradient-to-r from-slate-50 to-slate-100 rounded-2xl border-2 border-slate-200/50 shadow-lg overflow-visible">
+          <TabsList className="admin-tabs-list grid w-full grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5 min-h-[140px] p-8 bg-gradient-to-br from-white via-slate-50 to-slate-100 rounded-3xl border border-slate-200/70 shadow-xl overflow-visible backdrop-blur-sm">
             <TabsTrigger
               value="audiencias"
               className="admin-tab-trigger flex flex-col items-center gap-2 h-18 px-3 py-2 mx-1 my-1 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-blue-500 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:border-blue-300 data-[state=active]:shadow-xl hover:bg-blue-50/80 hover:border-blue-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
@@ -3110,7 +3110,7 @@ export default function AdminDashboard() {
                   <div className="text-center py-8">
                     <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
                     <p className="text-slate-500">
-                      No hay más turnos pendientes
+                      No hay m��s turnos pendientes
                     </p>
                     <p className="text-sm text-slate-400">
                       Todos los turnos han sido atendidos
