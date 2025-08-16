@@ -212,52 +212,69 @@ export default function IndexNew() {
         </section>
 
         {/* Steps Section */}
-        <section className="py-16">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-slate-800 mb-4">
+        <section className="py-20 bg-gradient-to-b from-white to-slate-50">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full px-6 py-2 mb-6">
+              <span className="text-sm font-semibold text-blue-700">📋 Proceso Simple</span>
+            </div>
+            <h3 className="text-4xl sm:text-5xl font-black text-slate-800 mb-6">
               ¿Cómo funciona?
             </h3>
-            <p className="text-slate-600 text-lg">
-              Proceso simple en 3 pasos para solicitar tu audiencia
+            <p className="text-slate-600 text-xl max-w-2xl mx-auto">
+              Proceso simple en 3 pasos para solicitar tu audiencia ciudadana
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-blue-600">1</span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
+            <div className="text-center group">
+              <div className="relative mb-8">
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl shadow-2xl flex items-center justify-center mx-auto transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                  <span className="text-3xl font-black text-white">1</span>
+                </div>
+                <div className="absolute -inset-2 bg-gradient-to-br from-blue-400/30 to-blue-600/30 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              <h4 className="text-xl font-semibold mb-2">Regístrate</h4>
-              <p className="text-slate-600">
-                {user
-                  ? "Completa el formulario con los detalles de tu solicitud"
-                  : "Regístrate e inicia sesión para comenzar"}
-              </p>
+              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-100">
+                <h4 className="text-2xl font-bold mb-3 text-slate-800">🚀 Regístrate</h4>
+                <p className="text-slate-600 leading-relaxed">
+                  {user
+                    ? "Completa el formulario con los detalles de tu solicitud"
+                    : "Regístrate e inicia sesión para comenzar el proceso"}
+                </p>
+              </div>
             </div>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-blue-600">2</span>
+            <div className="text-center group">
+              <div className="relative mb-8">
+                <div className="w-24 h-24 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl shadow-2xl flex items-center justify-center mx-auto transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                  <span className="text-3xl font-black text-white">2</span>
+                </div>
+                <div className="absolute -inset-2 bg-gradient-to-br from-purple-400/30 to-purple-600/30 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              <h4 className="text-xl font-semibold mb-2">
-                {user
-                  ? "¡Tu audiencia te espera!"
-                  : "¡Comienza tu solicitud ahora!"}
-              </h4>
-              <p className="text-slate-600">
-                Describe tu situación y selecciona el tipo de apoyo que
-                necesitas
-              </p>
+              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100">
+                <h4 className="text-2xl font-bold mb-3 text-slate-800">
+                  {user
+                    ? "📋 ¡Tu audiencia te espera!"
+                    : "📝 ¡Comienza tu solicitud!"}
+                </h4>
+                <p className="text-slate-600 leading-relaxed">
+                  Describe tu situación y selecciona el tipo de apoyo que necesitas
+                </p>
+              </div>
             </div>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-blue-600">3</span>
+            <div className="text-center group">
+              <div className="relative mb-8">
+                <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl shadow-2xl flex items-center justify-center mx-auto transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                  <span className="text-3xl font-black text-white">3</span>
+                </div>
+                <div className="absolute -inset-2 bg-gradient-to-br from-green-400/30 to-green-600/30 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              <h4 className="text-xl font-semibold mb-2">Seguimiento</h4>
-              <p className="text-slate-600">
-                Recibe actualizaciones sobre el estado de tu solicitud
-              </p>
+              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-green-100">
+                <h4 className="text-2xl font-bold mb-3 text-slate-800">📱 Seguimiento</h4>
+                <p className="text-slate-600 leading-relaxed">
+                  Recibe actualizaciones en tiempo real sobre el estado de tu solicitud
+                </p>
+              </div>
             </div>
           </div>
         </section>
