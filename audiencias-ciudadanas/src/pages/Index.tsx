@@ -146,28 +146,31 @@ export default function IndexNew() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center max-w-2xl mx-auto">
             {user ? (
               <>
                 <Button
                   asChild
                   size="lg"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
+                  className="relative bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:from-blue-700 hover:via-blue-800 hover:to-blue-900 text-white px-10 py-4 text-lg font-semibold shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 rounded-xl border-0"
                 >
-                  <a href="/dashboard" className="flex items-center gap-2">
-                    <Package className="w-5 h-5" />
+                  <a href="/dashboard" className="flex items-center gap-3">
+                    <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
+                      <Package className="w-4 h-4" />
+                    </div>
                     Nueva Solicitud
+                    <ArrowRight className="w-5 h-5 ml-2" />
                   </a>
                 </Button>
                 <Button
                   asChild
                   variant="outline"
                   size="lg"
-                  className="border-blue-200 text-blue-600 hover:bg-blue-50 px-8 py-3"
+                  className="border-2 border-blue-300 text-blue-700 hover:bg-blue-50 hover:border-blue-400 px-10 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 rounded-xl bg-white/70 backdrop-blur-sm"
                 >
                   <a
                     href="/audience-history"
-                    className="flex items-center gap-2"
+                    className="flex items-center gap-3"
                   >
                     <Clock className="w-5 h-5" />
                     Mis Audiencias
@@ -179,22 +182,28 @@ export default function IndexNew() {
                 <Button
                   asChild
                   size="lg"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
+                  className="relative bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:from-blue-700 hover:via-blue-800 hover:to-blue-900 text-white px-10 py-4 text-lg font-semibold shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 rounded-xl border-0 overflow-hidden group"
                 >
-                  <a href="/register" className="flex items-center gap-2">
-                    <ArrowRight className="w-5 h-5" />
-                    Solicitar Audiencia
+                  <a href="/register" className="flex items-center gap-3 relative z-10">
+                    <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                    🚀 Solicitar Audiencia
+                    <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
                   </a>
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                 </Button>
                 <Button
                   asChild
                   variant="outline"
                   size="lg"
-                  className="border-blue-200 text-blue-600 hover:bg-blue-50 px-8 py-3"
+                  className="border-2 border-blue-300 text-blue-700 hover:bg-blue-50 hover:border-blue-400 px-10 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 rounded-xl bg-white/70 backdrop-blur-sm"
                 >
-                  <a href="/login" className="flex items-center gap-2">
-                    <Clock className="w-5 h-5" />
-                    Iniciar Sesión
+                  <a href="/login" className="flex items-center gap-3">
+                    <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+                      <Clock className="w-4 h-4 text-blue-600" />
+                    </div>
+                    🔐 Iniciar Sesión
                   </a>
                 </Button>
               </>
