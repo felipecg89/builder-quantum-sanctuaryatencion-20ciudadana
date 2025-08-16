@@ -190,8 +190,8 @@ export default function IndexNew() {
                     </div>
                     🚀 Solicitar Audiencia
                     <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300 -z-10"></div>
                   </a>
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                 </Button>
                 <Button
                   asChild
