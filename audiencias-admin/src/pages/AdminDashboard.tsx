@@ -239,7 +239,8 @@ const mockAdminData = {
       status: "en_proceso",
       priority: "urgente",
       requestDate: new Date("2024-01-23"),
-      assignedTo: "Dr. Martínez",
+      assignedTo: "Dr. Martínez - Servicios Médicos",
+      assignedDate: new Date("2024-01-24"),
       daysWaiting: 4,
     },
     {
