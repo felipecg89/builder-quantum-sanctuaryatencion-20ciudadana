@@ -125,7 +125,9 @@ export default function IndexNew() {
             <div className="mb-8">
               <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg border border-white/50 mb-6">
                 <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-sm font-medium text-slate-700">🏛️ Sistema en línea • Atención 24/7</span>
+                <span className="text-sm font-medium text-slate-700">
+                  🏛️ Sistema en línea • Atención 24/7
+                </span>
               </div>
             </div>
 
@@ -184,7 +186,10 @@ export default function IndexNew() {
                   size="lg"
                   className="relative bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:from-blue-700 hover:via-blue-800 hover:to-blue-900 text-white px-10 py-4 text-lg font-semibold shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 rounded-xl border-0 overflow-hidden group"
                 >
-                  <a href="/register" className="flex items-center gap-3 relative z-10">
+                  <a
+                    href="/register"
+                    className="flex items-center gap-3 relative z-10"
+                  >
                     <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
                       <ArrowRight className="w-4 h-4" />
                     </div>
@@ -215,7 +220,9 @@ export default function IndexNew() {
         <section className="py-20 bg-gradient-to-b from-white to-slate-50">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full px-6 py-2 mb-6">
-              <span className="text-sm font-semibold text-blue-700">📋 Proceso Simple</span>
+              <span className="text-sm font-semibold text-blue-700">
+                📋 Proceso Simple
+              </span>
             </div>
             <h3 className="text-4xl sm:text-5xl font-black text-slate-800 mb-6">
               ¿Cómo funciona?
@@ -234,7 +241,9 @@ export default function IndexNew() {
                 <div className="absolute -inset-2 bg-gradient-to-br from-blue-400/30 to-blue-600/30 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-100">
-                <h4 className="text-2xl font-bold mb-3 text-slate-800">🚀 Regístrate</h4>
+                <h4 className="text-2xl font-bold mb-3 text-slate-800">
+                  🚀 Regístrate
+                </h4>
                 <p className="text-slate-600 leading-relaxed">
                   {user
                     ? "Completa el formulario con los detalles de tu solicitud"
@@ -257,7 +266,8 @@ export default function IndexNew() {
                     : "📝 ¡Comienza tu solicitud!"}
                 </h4>
                 <p className="text-slate-600 leading-relaxed">
-                  Describe tu situación y selecciona el tipo de apoyo que necesitas
+                  Describe tu situación y selecciona el tipo de apoyo que
+                  necesitas
                 </p>
               </div>
             </div>
@@ -270,9 +280,12 @@ export default function IndexNew() {
                 <div className="absolute -inset-2 bg-gradient-to-br from-green-400/30 to-green-600/30 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-green-100">
-                <h4 className="text-2xl font-bold mb-3 text-slate-800">📱 Seguimiento</h4>
+                <h4 className="text-2xl font-bold mb-3 text-slate-800">
+                  📱 Seguimiento
+                </h4>
                 <p className="text-slate-600 leading-relaxed">
-                  Recibe actualizaciones en tiempo real sobre el estado de tu solicitud
+                  Recibe actualizaciones en tiempo real sobre el estado de tu
+                  solicitud
                 </p>
               </div>
             </div>
@@ -290,13 +303,16 @@ export default function IndexNew() {
           <div className="relative z-10 max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
               <div className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-100 to-blue-100 rounded-full px-6 py-2 mb-6">
-                <span className="text-sm font-semibold text-indigo-700">🏢 Servicios Municipales</span>
+                <span className="text-sm font-semibold text-indigo-700">
+                  🏢 Servicios Municipales
+                </span>
               </div>
               <h3 className="text-4xl sm:text-5xl font-black text-slate-800 mb-6">
                 Tipos de Audiencias
               </h3>
               <p className="text-slate-600 text-xl max-w-3xl mx-auto">
-                Conoce los diferentes tipos de apoyo y servicios disponibles para ti
+                Conoce los diferentes tipos de apoyo y servicios disponibles
+                para ti
               </p>
             </div>
 
@@ -309,7 +325,9 @@ export default function IndexNew() {
                   <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                     <Package className="w-8 h-8 text-white" />
                   </div>
-                  <h4 className="text-xl font-bold mb-3 text-slate-800">📦 Ayuda en Especie</h4>
+                  <h4 className="text-xl font-bold mb-3 text-slate-800">
+                    📦 Ayuda en Especie
+                  </h4>
                   <p className="text-slate-600 leading-relaxed">
                     Alimentos, medicamentos, ropa y apoyo material
                   </p>
@@ -324,7 +342,9 @@ export default function IndexNew() {
                   <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                     <Stethoscope className="w-8 h-8 text-white" />
                   </div>
-                  <h4 className="text-xl font-bold mb-3 text-slate-800">🩺 Servicios</h4>
+                  <h4 className="text-xl font-bold mb-3 text-slate-800">
+                    🩺 Servicios
+                  </h4>
                   <p className="text-slate-600 leading-relaxed">
                     Médicos, legales, sociales y técnicos especializados
                   </p>
@@ -339,7 +359,9 @@ export default function IndexNew() {
                   <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                     <PartyPopper className="w-8 h-8 text-white" />
                   </div>
-                  <h4 className="text-xl font-bold mb-3 text-slate-800">🎉 Invitaciones</h4>
+                  <h4 className="text-xl font-bold mb-3 text-slate-800">
+                    🎉 Invitaciones
+                  </h4>
                   <p className="text-slate-600 leading-relaxed">
                     Eventos públicos, ceremonias y reconocimientos
                   </p>
@@ -354,7 +376,9 @@ export default function IndexNew() {
                   <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-700 rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                     <ClipboardCheck className="w-8 h-8 text-white" />
                   </div>
-                  <h4 className="text-xl font-bold mb-3 text-slate-800">📋 Trámites</h4>
+                  <h4 className="text-xl font-bold mb-3 text-slate-800">
+                    📋 Trámites
+                  </h4>
                   <p className="text-slate-600 leading-relaxed">
                     Licencias, permisos y certificaciones oficiales
                   </p>
@@ -391,8 +415,12 @@ export default function IndexNew() {
                   <Phone className="w-8 h-8 text-white" />
                 </div>
                 <h4 className="text-2xl font-bold mb-2">📞 Teléfono</h4>
-                <p className="text-xl text-blue-100 font-medium">(555) 123-4567</p>
-                <p className="text-blue-200 mt-2">Lunes a Viernes 8:00 AM - 6:00 PM</p>
+                <p className="text-xl text-blue-100 font-medium">
+                  (555) 123-4567
+                </p>
+                <p className="text-blue-200 mt-2">
+                  Lunes a Viernes 8:00 AM - 6:00 PM
+                </p>
               </div>
 
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300">
@@ -400,7 +428,9 @@ export default function IndexNew() {
                   <Mail className="w-8 h-8 text-white" />
                 </div>
                 <h4 className="text-2xl font-bold mb-2">📧 Email</h4>
-                <p className="text-xl text-blue-100 font-medium">contacto@municipio.gob.mx</p>
+                <p className="text-xl text-blue-100 font-medium">
+                  contacto@municipio.gob.mx
+                </p>
                 <p className="text-blue-200 mt-2">Respuesta en 24 horas</p>
               </div>
             </div>
@@ -417,7 +447,9 @@ export default function IndexNew() {
                 </div>
                 <div>
                   <h4 className="text-xl font-bold">Presidencia Municipal</h4>
-                  <p className="text-slate-400 text-sm">Sistema de Audiencias Ciudadanas</p>
+                  <p className="text-slate-400 text-sm">
+                    Sistema de Audiencias Ciudadanas
+                  </p>
                 </div>
               </div>
               <div className="border-t border-slate-700 pt-6">
@@ -425,7 +457,8 @@ export default function IndexNew() {
                   © 2024 Presidencia Municipal. Todos los derechos reservados.
                 </p>
                 <p className="text-slate-500 text-sm mt-2">
-                  🏛️ Gobierno Transparente • 🤝 Atención Ciudadana • ✨ Innovación Digital
+                  🏛️ Gobierno Transparente • 🤝 Atención Ciudadana • ✨
+                  Innovación Digital
                 </p>
               </div>
             </div>
