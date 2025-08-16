@@ -830,7 +830,7 @@ export default function Dashboard() {
                 {/* Turnos de Audiencias Públicas */}
                 <Card
                   className="cursor-pointer hover:shadow-lg transition-all duration-200 border-2 hover:border-green-300 bg-green-50"
-                  onClick={() => setIsTurnosModalOpen(true)}
+                  onClick={() => navigate("/turnos")}
                 >
                   <CardContent className="p-6 text-center space-y-4">
                     <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
