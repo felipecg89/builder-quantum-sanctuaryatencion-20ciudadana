@@ -175,6 +175,15 @@ export default function AdminLogin() {
                   * En producción se usaría autenticación segura con 2FA
                 </p>
               </div>
+
+              {/* Botón de acceso rápido para desarrollo */}
+              <Button
+                type="button"
+                onClick={handleDevLogin}
+                className="w-full mt-4 bg-green-600 hover:bg-green-700 text-white font-semibold py-2"
+              >
+                🚀 Acceso Rápido - Desarrollo
+              </Button>
             </div>
           </CardContent>
         </Card>
