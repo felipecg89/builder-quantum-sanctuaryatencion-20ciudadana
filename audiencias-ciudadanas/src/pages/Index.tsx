@@ -280,68 +280,87 @@ export default function IndexNew() {
         </section>
 
         {/* Services Section */}
-        <section className="py-16 bg-white rounded-2xl shadow-sm">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-slate-800 mb-4">
-              Tipos de Audiencias
-            </h3>
-            <p className="text-slate-600 text-lg">
-              Conoce los diferentes tipos de apoyo disponibles
-            </p>
+        <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+          {/* Background decorative elements */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-0 left-0 w-64 h-64 bg-blue-400/20 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-0 right-0 w-80 h-80 bg-purple-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card
-              className="hover:shadow-lg transition-shadow cursor-pointer"
-              onClick={() => setIsEspecieModalOpen(true)}
-            >
-              <CardContent className="p-6 text-center">
-                <Package className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-                <h4 className="text-lg font-semibold mb-2">Ayuda en Especie</h4>
-                <p className="text-sm text-slate-600">
-                  Alimentos, medicamentos, ropa y más
-                </p>
-              </CardContent>
-            </Card>
+          <div className="relative z-10 max-w-7xl mx-auto px-4">
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-100 to-blue-100 rounded-full px-6 py-2 mb-6">
+                <span className="text-sm font-semibold text-indigo-700">🏢 Servicios Municipales</span>
+              </div>
+              <h3 className="text-4xl sm:text-5xl font-black text-slate-800 mb-6">
+                Tipos de Audiencias
+              </h3>
+              <p className="text-slate-600 text-xl max-w-3xl mx-auto">
+                Conoce los diferentes tipos de apoyo y servicios disponibles para ti
+              </p>
+            </div>
 
-            <Card
-              className="hover:shadow-lg transition-shadow cursor-pointer"
-              onClick={() => setIsServiciosModalOpen(true)}
-            >
-              <CardContent className="p-6 text-center">
-                <Stethoscope className="w-12 h-12 text-green-600 mx-auto mb-4" />
-                <h4 className="text-lg font-semibold mb-2">Servicios</h4>
-                <p className="text-sm text-slate-600">
-                  Médicos, legales, sociales y técnicos
-                </p>
-              </CardContent>
-            </Card>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <Card
+                className="group hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:scale-105 bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-200 hover:border-blue-300"
+                onClick={() => setIsEspecieModalOpen(true)}
+              >
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Package className="w-8 h-8 text-white" />
+                  </div>
+                  <h4 className="text-xl font-bold mb-3 text-slate-800">📦 Ayuda en Especie</h4>
+                  <p className="text-slate-600 leading-relaxed">
+                    Alimentos, medicamentos, ropa y apoyo material
+                  </p>
+                </CardContent>
+              </Card>
 
-            <Card
-              className="hover:shadow-lg transition-shadow cursor-pointer"
-              onClick={() => setIsInvitacionesModalOpen(true)}
-            >
-              <CardContent className="p-6 text-center">
-                <PartyPopper className="w-12 h-12 text-purple-600 mx-auto mb-4" />
-                <h4 className="text-lg font-semibold mb-2">Invitaciones</h4>
-                <p className="text-sm text-slate-600">
-                  Eventos públicos y ceremonias
-                </p>
-              </CardContent>
-            </Card>
+              <Card
+                className="group hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:scale-105 bg-gradient-to-br from-green-50 to-green-100 border-2 border-green-200 hover:border-green-300"
+                onClick={() => setIsServiciosModalOpen(true)}
+              >
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Stethoscope className="w-8 h-8 text-white" />
+                  </div>
+                  <h4 className="text-xl font-bold mb-3 text-slate-800">🩺 Servicios</h4>
+                  <p className="text-slate-600 leading-relaxed">
+                    Médicos, legales, sociales y técnicos especializados
+                  </p>
+                </CardContent>
+              </Card>
 
-            <Card
-              className="hover:shadow-lg transition-shadow cursor-pointer"
-              onClick={() => setIsTramitesModalOpen(true)}
-            >
-              <CardContent className="p-6 text-center">
-                <ClipboardCheck className="w-12 h-12 text-orange-600 mx-auto mb-4" />
-                <h4 className="text-lg font-semibold mb-2">Trámites</h4>
-                <p className="text-sm text-slate-600">
-                  Licencias, permisos y certificados
-                </p>
-              </CardContent>
-            </Card>
+              <Card
+                className="group hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:scale-105 bg-gradient-to-br from-purple-50 to-purple-100 border-2 border-purple-200 hover:border-purple-300"
+                onClick={() => setIsInvitacionesModalOpen(true)}
+              >
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <PartyPopper className="w-8 h-8 text-white" />
+                  </div>
+                  <h4 className="text-xl font-bold mb-3 text-slate-800">🎉 Invitaciones</h4>
+                  <p className="text-slate-600 leading-relaxed">
+                    Eventos públicos, ceremonias y reconocimientos
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card
+                className="group hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:scale-105 bg-gradient-to-br from-orange-50 to-orange-100 border-2 border-orange-200 hover:border-orange-300"
+                onClick={() => setIsTramitesModalOpen(true)}
+              >
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-700 rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <ClipboardCheck className="w-8 h-8 text-white" />
+                  </div>
+                  <h4 className="text-xl font-bold mb-3 text-slate-800">📋 Trámites</h4>
+                  <p className="text-slate-600 leading-relaxed">
+                    Licencias, permisos y certificaciones oficiales
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </section>
 
