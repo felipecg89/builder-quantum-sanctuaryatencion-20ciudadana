@@ -889,17 +889,17 @@ export default function AdminDashboard() {
               <CardContent>
                 {/* Resumen de Gestión - Mejorado con mejor espaciado */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-                  <Card className="border-orange-200 bg-orange-50">
-                    <CardContent className="p-4">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
-                          <Clock className="w-5 h-5 text-white" />
+                  <Card className="border-orange-200/50 bg-gradient-to-br from-orange-50 to-orange-100/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-orange-500 rounded-2xl flex items-center justify-center shadow-lg">
+                          <Clock className="w-6 h-6 text-white" />
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-orange-700">
+                          <p className="text-sm font-semibold text-orange-700 mb-1">
                             Pendientes
                           </p>
-                          <p className="text-2xl font-bold text-orange-800">
+                          <p className="text-3xl font-bold text-orange-800">
                             {
                               audiences.filter((a) => a.status === "pendiente")
                                 .length
