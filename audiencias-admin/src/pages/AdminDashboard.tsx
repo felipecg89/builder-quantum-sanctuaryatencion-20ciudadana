@@ -218,7 +218,7 @@ const mockAdminData = {
   recentAudiences: [
     {
       id: "AUD-123456",
-      citizen: "María Gonz��lez",
+      citizen: "María González",
       phone: "55 1234 5678",
       category: "especie",
       type: "Alimentos",
@@ -750,11 +750,11 @@ export default function AdminDashboard() {
           <TabsList className="admin-tabs-list grid w-full grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-5 min-h-[140px] p-8 bg-gradient-to-br from-white via-slate-50 to-slate-100 rounded-3xl border border-slate-200/70 shadow-xl overflow-visible backdrop-blur-sm">
             <TabsTrigger
               value="audiencias"
-              className="admin-tab-trigger flex flex-col items-center gap-2 h-18 px-3 py-2 mx-1 my-1 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-blue-500 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:border-blue-300 data-[state=active]:shadow-xl hover:bg-blue-50/80 hover:border-blue-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+              className="admin-tab-trigger flex flex-col items-center gap-3 min-h-[100px] px-4 py-4 mx-1 my-1 rounded-2xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-blue-500 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:border-blue-300 data-[state=active]:shadow-2xl hover:bg-blue-50/80 hover:border-blue-200 hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group backdrop-blur-sm"
             >
               <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-blue-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
-                  <MessageSquare className="w-5 h-5 text-blue-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
+                <div className="w-12 h-12 rounded-full bg-blue-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300 shadow-lg group-hover:shadow-xl group-hover:scale-110">
+                  <MessageSquare className="w-6 h-6 text-blue-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
                 </div>
                 {audiences.filter((a) => a.status === "pendiente").length >
                   0 && (
