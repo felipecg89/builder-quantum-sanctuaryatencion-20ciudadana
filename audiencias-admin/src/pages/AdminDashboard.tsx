@@ -931,17 +931,17 @@ export default function AdminDashboard() {
                     </CardContent>
                   </Card>
 
-                  <Card className="border-green-200 bg-green-50">
-                    <CardContent className="p-4">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
-                          <CheckCircle className="w-5 h-5 text-white" />
+                  <Card className="border-green-200/50 bg-gradient-to-br from-green-50 to-green-100/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-green-500 rounded-2xl flex items-center justify-center shadow-lg">
+                          <CheckCircle className="w-6 h-6 text-white" />
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-green-700">
+                          <p className="text-sm font-semibold text-green-700 mb-1">
                             Completadas
                           </p>
-                          <p className="text-2xl font-bold text-green-800">
+                          <p className="text-3xl font-bold text-green-800">
                             {
                               audiences.filter((a) => a.status === "completada")
                                 .length
