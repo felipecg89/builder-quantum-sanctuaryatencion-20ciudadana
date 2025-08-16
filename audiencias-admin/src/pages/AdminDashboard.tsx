@@ -828,7 +828,7 @@ export default function AdminDashboard() {
                 </span>
               </div>
               <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
-                ⚙️ Configuración
+                ⚙️ Configuraci��n
               </span>
             </TabsTrigger>
             <TabsTrigger
@@ -992,20 +992,65 @@ export default function AdminDashboard() {
                           {/* Estado y Fechas */}
                           <div className="lg:col-span-3">
                             <div className="space-y-2">
-                              <div className="flex items-center gap-2">
-                                <Badge
-                                  className={
-                                    STATUS_CONFIG[
-                                      audience.status as keyof typeof STATUS_CONFIG
-                                    ].color
-                                  }
-                                >
-                                  {
-                                    STATUS_CONFIG[
-                                      audience.status as keyof typeof STATUS_CONFIG
-                                    ].name
-                                  }
-                                </Badge>
+                              <div className="space-y-2">
+                                <div className="flex items-center gap-2">
+                                  <Badge
+                                    className={
+                                      STATUS_CONFIG[
+                                        audience.status as keyof typeof STATUS_CONFIG
+                                      ].color
+                                    }
+                                  >
+                                    {
+                                      STATUS_CONFIG[
+                                        audience.status as keyof typeof STATUS_CONFIG
+                                      ].name
+                                    }
+                                  </Badge>
+                                </div>
+
+                                {/* Información del responsable */}
+                                {audience.status === "en_proceso" && audience.assignedTo && (
+                                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                                    <div className="flex items-center gap-2">
+                                      <UserPlus className="w-4 h-4 text-blue-600" />
+                                      <div>
+                                        <p className="text-sm font-medium text-blue-800">
+                                          👨‍💼 Gestionado por:
+                                        </p>
+                                        <p className="text-xs text-blue-600">
+                                          {audience.assignedTo}
+                                        </p>
+                                        {audience.assignedDate && (
+                                          <p className="text-xs text-blue-500">
+                                            Asignado: {format(audience.assignedDate, "dd/MM/yyyy", { locale: es })}
+                                          </p>
+                                        )}
+                                      </div>
+                                    </div>
+                                  </div>
+                                )}
+
+                                {audience.status === "completada" && audience.completedBy && (
+                                  <div className="bg-green-50 border border-green-200 rounded-lg p-3">
+                                    <div className="flex items-center gap-2">
+                                      <CheckCircle className="w-4 h-4 text-green-600" />
+                                      <div>
+                                        <p className="text-sm font-medium text-green-800">
+                                          ✅ Completado por:
+                                        </p>
+                                        <p className="text-xs text-green-600">
+                                          {audience.completedBy}
+                                        </p>
+                                        {audience.completedDate && (
+                                          <p className="text-xs text-green-500">
+                                            Finalizado: {format(audience.completedDate, "dd/MM/yyyy", { locale: es })}
+                                          </p>
+                                        )}
+                                      </div>
+                                    </div>
+                                  </div>
+                                )}
                               </div>
                               <p className="text-xs text-slate-500">
                                 Solicitado:{" "}
