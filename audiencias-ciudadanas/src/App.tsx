@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import AudienceHistory from "./pages/AudienceHistory";
+import Turnos from "./pages/Turnos";
 import NotFound from "./pages/NotFound";
 
 export default function App() {
