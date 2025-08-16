@@ -769,11 +769,11 @@ export default function AdminDashboard() {
             </TabsTrigger>
             <TabsTrigger
               value="ciudadanos"
-              className="admin-tab-trigger flex flex-col items-center gap-2 h-18 px-3 py-2 mx-1 my-1 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-purple-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:border-purple-300 data-[state=active]:shadow-xl hover:bg-purple-50/80 hover:border-purple-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+              className="admin-tab-trigger flex flex-col items-center gap-3 min-h-[100px] px-4 py-4 mx-1 my-1 rounded-2xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-purple-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:border-purple-300 data-[state=active]:shadow-2xl hover:bg-purple-50/80 hover:border-purple-200 hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group backdrop-blur-sm"
             >
               <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-purple-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
-                  <Users className="w-5 h-5 text-purple-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
+                <div className="w-12 h-12 rounded-full bg-purple-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300 shadow-lg group-hover:shadow-xl group-hover:scale-110">
+                  <Users className="w-6 h-6 text-purple-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
                 </div>
                 <span className="absolute top-0 right-0 bg-purple-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-lg border-2 border-white">
                   {citizens.length}
@@ -2996,7 +2996,7 @@ export default function AdminDashboard() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="bg-white rounded-lg p-4 border border-red-200">
                         <p className="text-sm text-slate-600">
-                          Número de Turno
+                          N��mero de Turno
                         </p>
                         <p className="text-xl font-bold text-red-600">
                           {currentTurnActive.turnNumber}
