@@ -365,36 +365,70 @@ export default function IndexNew() {
         </section>
 
         {/* Contact Section */}
-        <section className="py-16">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold mb-8">
-              ¿Necesitas más información?
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
-              <div className="flex items-center justify-center space-x-3">
-                <Phone className="w-6 h-6 text-blue-600" />
-                <div>
-                  <p className="font-semibold">Teléfono</p>
-                  <p className="text-slate-600">(555) 123-4567</p>
-                </div>
+        <section className="py-20 bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 text-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-black/20"></div>
+          <div className="absolute inset-0 opacity-30">
+            <div className="absolute top-10 left-10 w-40 h-40 bg-white/10 rounded-full blur-2xl animate-pulse"></div>
+            <div className="absolute bottom-10 right-10 w-56 h-56 bg-white/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
+          </div>
+
+          <div className="relative z-10 text-center px-4">
+            <div className="mb-8">
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+                <span className="text-sm font-semibold">📞 Contáctanos</span>
               </div>
-              <div className="flex items-center justify-center space-x-3">
-                <Mail className="w-6 h-6 text-blue-600" />
-                <div>
-                  <p className="font-semibold">Email</p>
-                  <p className="text-slate-600">contacto@municipio.gob.mx</p>
+              <h3 className="text-4xl sm:text-5xl font-black mb-6">
+                ¿Necesitas más información?
+              </h3>
+              <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-12">
+                Nuestro equipo está disponible para ayudarte en todo momento
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300">
+                <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Phone className="w-8 h-8 text-white" />
                 </div>
+                <h4 className="text-2xl font-bold mb-2">📞 Teléfono</h4>
+                <p className="text-xl text-blue-100 font-medium">(555) 123-4567</p>
+                <p className="text-blue-200 mt-2">Lunes a Viernes 8:00 AM - 6:00 PM</p>
+              </div>
+
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300">
+                <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Mail className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="text-2xl font-bold mb-2">📧 Email</h4>
+                <p className="text-xl text-blue-100 font-medium">contacto@municipio.gob.mx</p>
+                <p className="text-blue-200 mt-2">Respuesta en 24 horas</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* Footer */}
-        <footer className="py-8 border-t border-slate-200">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-slate-500 text-sm">
-              © 2024 Presidencia Municipal. Todos los derechos reservados.
-            </p>
+        <footer className="py-12 bg-slate-900 text-white">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center">
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
+                  <Building2 className="w-7 h-7 text-white" />
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold">Presidencia Municipal</h4>
+                  <p className="text-slate-400 text-sm">Sistema de Audiencias Ciudadanas</p>
+                </div>
+              </div>
+              <div className="border-t border-slate-700 pt-6">
+                <p className="text-slate-400">
+                  © 2024 Presidencia Municipal. Todos los derechos reservados.
+                </p>
+                <p className="text-slate-500 text-sm mt-2">
+                  🏛️ Gobierno Transparente • 🤝 Atención Ciudadana • ✨ Innovación Digital
+                </p>
+              </div>
+            </div>
           </div>
         </footer>
       </div>
