@@ -218,7 +218,7 @@ const mockAdminData = {
   recentAudiences: [
     {
       id: "AUD-123456",
-      citizen: "María González",
+      citizen: "María Gonz��lez",
       phone: "55 1234 5678",
       category: "especie",
       type: "Alimentos",
@@ -974,8 +974,8 @@ export default function AdminDashboard() {
                   </Card>
                 </div>
 
-                {/* Filtros */}
-                <div className="flex flex-col md:flex-row gap-4 mb-6">
+                {/* Filtros - Mejorado con mejor espaciado */}
+                <div className="flex flex-col md:flex-row gap-4 mb-8 p-4 bg-slate-50/50 rounded-xl border border-slate-200/50">
                   <div className="flex-1">
                     <div className="relative">
                       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
