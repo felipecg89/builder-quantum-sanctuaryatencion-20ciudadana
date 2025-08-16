@@ -887,8 +887,8 @@ export default function AdminDashboard() {
                 </div>
               </CardHeader>
               <CardContent>
-                {/* Resumen de Gestión */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                {/* Resumen de Gestión - Mejorado con mejor espaciado */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
                   <Card className="border-orange-200 bg-orange-50">
                     <CardContent className="p-4">
                       <div className="flex items-center gap-3">
@@ -3110,7 +3110,7 @@ export default function AdminDashboard() {
                   <div className="text-center py-8">
                     <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
                     <p className="text-slate-500">
-                      No hay m��s turnos pendientes
+                      No hay más turnos pendientes
                     </p>
                     <p className="text-sm text-slate-400">
                       Todos los turnos han sido atendidos
