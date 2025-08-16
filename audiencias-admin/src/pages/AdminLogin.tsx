@@ -13,11 +13,26 @@ import {
 import { Building2, User, Lock, Eye, EyeOff, Shield, ArrowLeft } from "lucide-react";
 
 export default function AdminLogin() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("admin@municipio.gob.mx");
+  const [password, setPassword] = useState("admin123");
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+
+  // Auto-login para desarrollo
+  const handleDevLogin = () => {
+    const adminData = {
+      id: "admin_001",
+      name: "Administrador Municipal",
+      email: "admin@municipio.gob.mx",
+      role: "admin",
+      authenticated: true,
+      permissions: ["read", "write", "delete", "manage_users"]
+    };
+
+    localStorage.setItem("adminUser", JSON.stringify(adminData));
+    navigate("/admin/dashboard");
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
