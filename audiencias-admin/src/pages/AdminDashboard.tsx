@@ -896,9 +896,14 @@ export default function AdminDashboard() {
                           <Clock className="w-5 h-5 text-white" />
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-orange-700">Pendientes</p>
+                          <p className="text-sm font-medium text-orange-700">
+                            Pendientes
+                          </p>
                           <p className="text-2xl font-bold text-orange-800">
-                            {audiences.filter(a => a.status === "pendiente").length}
+                            {
+                              audiences.filter((a) => a.status === "pendiente")
+                                .length
+                            }
                           </p>
                         </div>
                       </div>
@@ -912,9 +917,14 @@ export default function AdminDashboard() {
                           <UserPlus className="w-5 h-5 text-white" />
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-blue-700">En Gestión</p>
+                          <p className="text-sm font-medium text-blue-700">
+                            En Gestión
+                          </p>
                           <p className="text-2xl font-bold text-blue-800">
-                            {audiences.filter(a => a.status === "en_proceso").length}
+                            {
+                              audiences.filter((a) => a.status === "en_proceso")
+                                .length
+                            }
                           </p>
                         </div>
                       </div>
@@ -928,9 +938,14 @@ export default function AdminDashboard() {
                           <CheckCircle className="w-5 h-5 text-white" />
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-green-700">Completadas</p>
+                          <p className="text-sm font-medium text-green-700">
+                            Completadas
+                          </p>
                           <p className="text-2xl font-bold text-green-800">
-                            {audiences.filter(a => a.status === "completada").length}
+                            {
+                              audiences.filter((a) => a.status === "completada")
+                                .length
+                            }
                           </p>
                         </div>
                       </div>
@@ -944,9 +959,14 @@ export default function AdminDashboard() {
                           <XCircle className="w-5 h-5 text-white" />
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-red-700">Rechazadas</p>
+                          <p className="text-sm font-medium text-red-700">
+                            Rechazadas
+                          </p>
                           <p className="text-2xl font-bold text-red-800">
-                            {audiences.filter(a => a.status === "rechazada").length}
+                            {
+                              audiences.filter((a) => a.status === "rechazada")
+                                .length
+                            }
                           </p>
                         </div>
                       </div>
@@ -1081,47 +1101,59 @@ export default function AdminDashboard() {
                                 </div>
 
                                 {/* Información del responsable */}
-                                {audience.status === "en_proceso" && audience.assignedTo && (
-                                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                                    <div className="flex items-center gap-2">
-                                      <UserPlus className="w-4 h-4 text-blue-600" />
-                                      <div>
-                                        <p className="text-sm font-medium text-blue-800">
-                                          👨‍💼 Gestionado por:
-                                        </p>
-                                        <p className="text-xs text-blue-600">
-                                          {audience.assignedTo}
-                                        </p>
-                                        {audience.assignedDate && (
-                                          <p className="text-xs text-blue-500">
-                                            Asignado: {format(audience.assignedDate, "dd/MM/yyyy", { locale: es })}
+                                {audience.status === "en_proceso" &&
+                                  audience.assignedTo && (
+                                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                                      <div className="flex items-center gap-2">
+                                        <UserPlus className="w-4 h-4 text-blue-600" />
+                                        <div>
+                                          <p className="text-sm font-medium text-blue-800">
+                                            👨‍💼 Gestionado por:
                                           </p>
-                                        )}
+                                          <p className="text-xs text-blue-600">
+                                            {audience.assignedTo}
+                                          </p>
+                                          {audience.assignedDate && (
+                                            <p className="text-xs text-blue-500">
+                                              Asignado:{" "}
+                                              {format(
+                                                audience.assignedDate,
+                                                "dd/MM/yyyy",
+                                                { locale: es },
+                                              )}
+                                            </p>
+                                          )}
+                                        </div>
                                       </div>
                                     </div>
-                                  </div>
-                                )}
+                                  )}
 
-                                {audience.status === "completada" && audience.completedBy && (
-                                  <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-                                    <div className="flex items-center gap-2">
-                                      <CheckCircle className="w-4 h-4 text-green-600" />
-                                      <div>
-                                        <p className="text-sm font-medium text-green-800">
-                                          ✅ Completado por:
-                                        </p>
-                                        <p className="text-xs text-green-600">
-                                          {audience.completedBy}
-                                        </p>
-                                        {audience.completedDate && (
-                                          <p className="text-xs text-green-500">
-                                            Finalizado: {format(audience.completedDate, "dd/MM/yyyy", { locale: es })}
+                                {audience.status === "completada" &&
+                                  audience.completedBy && (
+                                    <div className="bg-green-50 border border-green-200 rounded-lg p-3">
+                                      <div className="flex items-center gap-2">
+                                        <CheckCircle className="w-4 h-4 text-green-600" />
+                                        <div>
+                                          <p className="text-sm font-medium text-green-800">
+                                            ✅ Completado por:
                                           </p>
-                                        )}
+                                          <p className="text-xs text-green-600">
+                                            {audience.completedBy}
+                                          </p>
+                                          {audience.completedDate && (
+                                            <p className="text-xs text-green-500">
+                                              Finalizado:{" "}
+                                              {format(
+                                                audience.completedDate,
+                                                "dd/MM/yyyy",
+                                                { locale: es },
+                                              )}
+                                            </p>
+                                          )}
+                                        </div>
                                       </div>
                                     </div>
-                                  </div>
-                                )}
+                                  )}
                               </div>
                               <p className="text-xs text-slate-500">
                                 Solicitado:{" "}
