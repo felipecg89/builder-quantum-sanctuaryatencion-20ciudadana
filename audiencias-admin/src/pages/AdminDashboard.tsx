@@ -662,7 +662,9 @@ export default function AdminDashboard() {
                 <FileText className="w-6 h-6 text-[#0052CC]" />
               </div>
               <p className="text-white font-bold text-sm">TOTAL</p>
-              <p className="text-white font-black text-2xl">{mockAdminData.stats.totalAudiences}</p>
+              <p className="text-white font-black text-2xl">
+                {mockAdminData.stats.totalAudiences}
+              </p>
               <p className="text-white/90 font-medium text-xs">Audiencias</p>
             </div>
             {/* Contenido blanco */}
@@ -681,7 +683,9 @@ export default function AdminDashboard() {
                 <Clock className="w-6 h-6 text-[#0052CC]" />
               </div>
               <p className="text-white font-bold text-sm">PENDIENTES</p>
-              <p className="text-white font-black text-2xl">{mockAdminData.stats.pendingAudiences}</p>
+              <p className="text-white font-black text-2xl">
+                {mockAdminData.stats.pendingAudiences}
+              </p>
               <p className="text-white/90 font-medium text-xs">Audiencias</p>
             </div>
             {/* Sección roja para alerta */}
@@ -700,7 +704,9 @@ export default function AdminDashboard() {
                 <Calendar className="w-6 h-6 text-[#0052CC]" />
               </div>
               <p className="text-white font-bold text-sm">HOY</p>
-              <p className="text-white font-black text-2xl">{mockAdminData.stats.todayAudiences}</p>
+              <p className="text-white font-black text-2xl">
+                {mockAdminData.stats.todayAudiences}
+              </p>
               <p className="text-white/90 font-medium text-xs">Audiencias</p>
             </div>
             {/* Contenido blanco */}
@@ -719,7 +725,9 @@ export default function AdminDashboard() {
                 <CheckCircle className="w-6 h-6 text-[#0052CC]" />
               </div>
               <p className="text-white font-bold text-sm">COMPLETADAS</p>
-              <p className="text-white font-black text-2xl">{mockAdminData.stats.completedThisMonth}</p>
+              <p className="text-white font-black text-2xl">
+                {mockAdminData.stats.completedThisMonth}
+              </p>
               <p className="text-white/90 font-medium text-xs">Este mes</p>
             </div>
             {/* Contenido blanco */}
@@ -893,7 +901,9 @@ export default function AdminDashboard() {
                       </p>
                     </div>
                     <div className="bg-[#DC2626] p-2 text-center">
-                      <p className="text-white font-bold text-xs">REQUIEREN ATENCIÓN</p>
+                      <p className="text-white font-bold text-xs">
+                        REQUIEREN ATENCIÓN
+                      </p>
                     </div>
                   </Card>
 
@@ -911,7 +921,9 @@ export default function AdminDashboard() {
                       </p>
                     </div>
                     <CardContent className="p-2 text-center">
-                      <p className="text-gray-600 font-bold text-xs">EN PROCESO</p>
+                      <p className="text-gray-600 font-bold text-xs">
+                        EN PROCESO
+                      </p>
                     </CardContent>
                   </Card>
 
@@ -920,7 +932,9 @@ export default function AdminDashboard() {
                       <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center mx-auto mb-1">
                         <CheckCircle className="w-5 h-5 text-[#0052CC]" />
                       </div>
-                      <p className="text-white font-bold text-xs">COMPLETADAS</p>
+                      <p className="text-white font-bold text-xs">
+                        COMPLETADAS
+                      </p>
                       <p className="text-white font-black text-xl">
                         {
                           audiences.filter((a) => a.status === "completada")
@@ -929,7 +943,9 @@ export default function AdminDashboard() {
                       </p>
                     </div>
                     <CardContent className="p-2 text-center">
-                      <p className="text-green-600 font-bold text-xs">✓ EXITOSAS</p>
+                      <p className="text-green-600 font-bold text-xs">
+                        ✓ EXITOSAS
+                      </p>
                     </CardContent>
                   </Card>
 
@@ -947,7 +963,9 @@ export default function AdminDashboard() {
                       </p>
                     </div>
                     <div className="bg-[#DC2626] p-2 text-center">
-                      <p className="text-white font-bold text-xs">NO APROBADAS</p>
+                      <p className="text-white font-bold text-xs">
+                        NO APROBADAS
+                      </p>
                     </div>
                   </Card>
                 </div>

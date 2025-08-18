@@ -27,8 +27,12 @@ import {
 } from "@/lib/friday-utils";
 
 export default function Turnos() {
-  const [publicAudienceDates, setPublicAudienceDates] = useState<PublicAudienceDate[]>([]);
-  const [selectedDate, setSelectedDate] = useState<PublicAudienceDate | null>(null);
+  const [publicAudienceDates, setPublicAudienceDates] = useState<
+    PublicAudienceDate[]
+  >([]);
+  const [selectedDate, setSelectedDate] = useState<PublicAudienceDate | null>(
+    null,
+  );
   const [timeSlots, setTimeSlots] = useState<TimeSlot[]>([]);
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
   const [userData, setUserData] = useState<any>(null);
@@ -42,7 +46,7 @@ export default function Turnos() {
       navigate("/login");
       return;
     }
-    
+
     const user = JSON.parse(storedUser);
     setUserData(user);
 
@@ -54,23 +58,23 @@ export default function Turnos() {
   const handleDateSelect = (date: PublicAudienceDate) => {
     setSelectedDate(date);
     setSelectedSlot(null);
-    
+
     // Generar slots de tiempo para la fecha seleccionada
     const slots = generateTimeSlots();
-    
+
     // Cargar turnos ya reservados para esta fecha
     const dateKey = format(date.date, "yyyy-MM-dd");
     const savedTurnos = localStorage.getItem("publicAudienceTurnos");
     const existingTurnos = savedTurnos ? JSON.parse(savedTurnos) : {};
     const dayTurnos = existingTurnos[dateKey] || {};
-    
+
     // Marcar slots como ocupados si ya están reservados
-    const updatedSlots = slots.map(slot => ({
+    const updatedSlots = slots.map((slot) => ({
       ...slot,
       isAvailable: !dayTurnos[slot.id],
       citizenName: dayTurnos[slot.id]?.citizenName || null,
     }));
-    
+
     setTimeSlots(updatedSlots);
   };
 
@@ -88,11 +92,11 @@ export default function Turnos() {
       const dateKey = format(selectedDate.date, "yyyy-MM-dd");
       const savedTurnos = localStorage.getItem("publicAudienceTurnos");
       const existingTurnos = savedTurnos ? JSON.parse(savedTurnos) : {};
-      
+
       if (!existingTurnos[dateKey]) {
         existingTurnos[dateKey] = {};
       }
-      
+
       existingTurnos[dateKey][selectedSlot] = {
         citizenName: userData.name,
         citizenEmail: userData.email,
@@ -100,16 +104,19 @@ export default function Turnos() {
         reservationDate: new Date().toISOString(),
         status: "confirmed",
       };
-      
-      localStorage.setItem("publicAudienceTurnos", JSON.stringify(existingTurnos));
-      
+
+      localStorage.setItem(
+        "publicAudienceTurnos",
+        JSON.stringify(existingTurnos),
+      );
+
       toast({
         title: "¡Turno Reservado Exitosamente!",
-        description: `Tu cita ha sido confirmada para el ${formatPublicAudienceDate(selectedDate.date)} a las ${timeSlots.find(s => s.id === selectedSlot)?.time}`,
+        description: `Tu cita ha sido confirmada para el ${formatPublicAudienceDate(selectedDate.date)} a las ${timeSlots.find((s) => s.id === selectedSlot)?.time}`,
       });
 
       setIsLoading(false);
-      
+
       // Actualizar la vista
       handleDateSelect(selectedDate);
       setSelectedSlot(null);
@@ -167,7 +174,8 @@ export default function Turnos() {
                   <div className="space-y-2">
                     <p className="flex items-center gap-2">
                       <Clock className="w-4 h-4" />
-                      <strong>Horario:</strong> Solo viernes de 9:00 AM a 12:00 PM
+                      <strong>Horario:</strong> Solo viernes de 9:00 AM a 12:00
+                      PM
                     </p>
                     <p className="flex items-center gap-2">
                       <User className="w-4 h-4" />
@@ -217,7 +225,9 @@ export default function Turnos() {
                           {formatPublicAudienceDate(date.date)}
                         </h4>
                         <p className="text-sm text-slate-600">
-                          {format(date.date, "EEEE, d MMMM yyyy", { locale: es })}
+                          {format(date.date, "EEEE, d MMMM yyyy", {
+                            locale: es,
+                          })}
                         </p>
                       </div>
                       <div className="text-right">
@@ -228,10 +238,9 @@ export default function Turnos() {
                               : "bg-red-100 text-red-800"
                           }
                         >
-                          {date.available > 0 
+                          {date.available > 0
                             ? `${date.available} disponibles`
-                            : "Sin cupos"
-                          }
+                            : "Sin cupos"}
                         </Badge>
                       </div>
                     </div>
@@ -270,17 +279,19 @@ export default function Turnos() {
                           selectedSlot === slot.id
                             ? "default"
                             : slot.isAvailable
-                            ? "outline"
-                            : "ghost"
+                              ? "outline"
+                              : "ghost"
                         }
                         className={`h-12 ${
                           !slot.isAvailable
                             ? "opacity-50 cursor-not-allowed"
                             : selectedSlot === slot.id
-                            ? "bg-blue-600 hover:bg-blue-700"
-                            : "hover:bg-blue-50 hover:border-blue-300"
+                              ? "bg-blue-600 hover:bg-blue-700"
+                              : "hover:bg-blue-50 hover:border-blue-300"
                         }`}
-                        onClick={() => slot.isAvailable && handleSlotSelect(slot.id)}
+                        onClick={() =>
+                          slot.isAvailable && handleSlotSelect(slot.id)
+                        }
                         disabled={!slot.isAvailable}
                       >
                         <div className="text-center">
@@ -309,10 +320,12 @@ export default function Turnos() {
                       </h4>
                       <div className="space-y-2 text-sm text-blue-700">
                         <p>
-                          <strong>Fecha:</strong> {formatPublicAudienceDate(selectedDate.date)}
+                          <strong>Fecha:</strong>{" "}
+                          {formatPublicAudienceDate(selectedDate.date)}
                         </p>
                         <p>
-                          <strong>Hora:</strong> {timeSlots.find(s => s.id === selectedSlot)?.time}
+                          <strong>Hora:</strong>{" "}
+                          {timeSlots.find((s) => s.id === selectedSlot)?.time}
                         </p>
                         <p>
                           <strong>Ciudadano:</strong> {userData.name}

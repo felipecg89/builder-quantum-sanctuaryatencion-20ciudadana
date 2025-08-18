@@ -42,7 +42,7 @@ export default function Login() {
         JSON.stringify({
           phone,
           name: "María González",
-          authenticated: true
+          authenticated: true,
         }),
       );
       navigate("/dashboard");
@@ -61,7 +61,7 @@ export default function Login() {
         JSON.stringify({
           phone,
           name: "María González",
-          authenticated: true
+          authenticated: true,
         }),
       );
       navigate("/turnos");
@@ -124,12 +124,14 @@ export default function Login() {
             <div className="mt-4 space-y-3">
               <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
                 <p className="text-blue-800 text-sm text-center">
-                  🎯 <strong>Solicitudes generales:</strong> Login → Dashboard → Solicitar
+                  🎯 <strong>Solicitudes generales:</strong> Login → Dashboard →
+                  Solicitar
                 </p>
               </div>
               <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
                 <p className="text-red-800 text-sm text-center">
-                  🏛️ <strong>Audiencias con Presidente:</strong> Solo viernes 9:00-12:00 PM
+                  🏛️ <strong>Audiencias con Presidente:</strong> Solo viernes
+                  9:00-12:00 PM
                 </p>
               </div>
             </div>
@@ -193,7 +195,9 @@ export default function Login() {
                   className="w-full bg-[#DC2626] hover:bg-red-700 text-white font-bold"
                   disabled={isLoading}
                 >
-                  {isLoading ? "Accediendo..." : "🏛️ IR A AUDIENCIAS PÚBLICAS DE VIERNES"}
+                  {isLoading
+                    ? "Accediendo..."
+                    : "🏛️ IR A AUDIENCIAS PÚBLICAS DE VIERNES"}
                 </Button>
               </div>
             </form>

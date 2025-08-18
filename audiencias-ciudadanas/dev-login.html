@@ -1,23 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
+  <head>
     <title>Dev Login - Ciudadano</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        // Simular login de ciudadano
-        const userData = {
-            name: "María González",
-            phone: "55 1234 5678",
-            email: "maria.gonzalez@email.com",
-            address: "Calle Principal 123",
-            authenticated: true
-        };
-        
-        localStorage.setItem("user", JSON.stringify(userData));
-        
-        // Redirigir al dashboard
-        window.location.href = "/dashboard";
+      // Simular login de ciudadano
+      const userData = {
+        name: "María González",
+        phone: "55 1234 5678",
+        email: "maria.gonzalez@email.com",
+        address: "Calle Principal 123",
+        authenticated: true,
+      };
+
+      localStorage.setItem("user", JSON.stringify(userData));
+
+      // Redirigir al dashboard
+      window.location.href = "/dashboard";
     </script>
-</body>
+  </body>
 </html>

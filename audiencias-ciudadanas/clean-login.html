@@ -1,26 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
+  <head>
     <title>Clean Login - Ciudadano</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        // Limpiar localStorage
-        localStorage.clear();
-        
-        // Simular login de ciudadano con datos completos
-        const userData = {
-            name: "María González",
-            phone: "55 1234 5678",
-            email: "maria.gonzalez@email.com",
-            address: "Calle Principal 123",
-            authenticated: true
-        };
-        
-        localStorage.setItem("user", JSON.stringify(userData));
-        
-        // Redirigir al historial de audiencias
-        window.location.href = "/audience-history";
+      // Limpiar localStorage
+      localStorage.clear();
+
+      // Simular login de ciudadano con datos completos
+      const userData = {
+        name: "María González",
+        phone: "55 1234 5678",
+        email: "maria.gonzalez@email.com",
+        address: "Calle Principal 123",
+        authenticated: true,
+      };
+
+      localStorage.setItem("user", JSON.stringify(userData));
+
+      // Redirigir al historial de audiencias
+      window.location.href = "/audience-history";
     </script>
-</body>
+  </body>
 </html>

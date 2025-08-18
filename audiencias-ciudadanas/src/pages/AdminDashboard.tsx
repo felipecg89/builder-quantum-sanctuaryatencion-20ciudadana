@@ -662,7 +662,9 @@ export default function AdminDashboard() {
                 <FileText className="w-6 h-6 text-[#0052CC]" />
               </div>
               <p className="text-white font-bold text-sm">TOTAL</p>
-              <p className="text-white font-black text-2xl">{mockAdminData.stats.totalAudiences}</p>
+              <p className="text-white font-black text-2xl">
+                {mockAdminData.stats.totalAudiences}
+              </p>
               <p className="text-white/90 font-medium text-xs">Audiencias</p>
             </div>
             {/* Contenido blanco */}
@@ -681,7 +683,9 @@ export default function AdminDashboard() {
                 <Clock className="w-6 h-6 text-[#0052CC]" />
               </div>
               <p className="text-white font-bold text-sm">PENDIENTES</p>
-              <p className="text-white font-black text-2xl">{mockAdminData.stats.pendingAudiences}</p>
+              <p className="text-white font-black text-2xl">
+                {mockAdminData.stats.pendingAudiences}
+              </p>
               <p className="text-white/90 font-medium text-xs">Audiencias</p>
             </div>
             {/* Sección roja para alerta */}
@@ -700,7 +704,9 @@ export default function AdminDashboard() {
                 <Calendar className="w-6 h-6 text-[#0052CC]" />
               </div>
               <p className="text-white font-bold text-sm">HOY</p>
-              <p className="text-white font-black text-2xl">{mockAdminData.stats.todayAudiences}</p>
+              <p className="text-white font-black text-2xl">
+                {mockAdminData.stats.todayAudiences}
+              </p>
               <p className="text-white/90 font-medium text-xs">Audiencias</p>
             </div>
             {/* Contenido blanco */}
@@ -719,7 +725,9 @@ export default function AdminDashboard() {
                 <CheckCircle className="w-6 h-6 text-[#0052CC]" />
               </div>
               <p className="text-white font-bold text-sm">COMPLETADAS</p>
-              <p className="text-white font-black text-2xl">{mockAdminData.stats.completedThisMonth}</p>
+              <p className="text-white font-black text-2xl">
+                {mockAdminData.stats.completedThisMonth}
+              </p>
               <p className="text-white/90 font-medium text-xs">Este mes</p>
             </div>
             {/* Contenido blanco */}
@@ -751,7 +759,8 @@ export default function AdminDashboard() {
                 Panel Administrativo Funcionando
               </h3>
               <p className="text-gray-600 mb-6">
-                El sistema de administración está operativo y listo para gestionar las audiencias municipales.
+                El sistema de administración está operativo y listo para
+                gestionar las audiencias municipales.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="bg-gray-50 p-4 rounded-lg">
@@ -767,7 +776,9 @@ export default function AdminDashboard() {
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <BarChart3 className="w-8 h-8 text-[#0052CC] mx-auto mb-2" />
                   <h4 className="font-semibold">Reportes</h4>
-                  <p className="text-sm text-gray-600">Estadísticas detalladas</p>
+                  <p className="text-sm text-gray-600">
+                    Estadísticas detalladas
+                  </p>
                 </div>
               </div>
             </div>

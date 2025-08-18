@@ -189,7 +189,11 @@ const STATUS_CONFIG = {
 };
 
 // Helper function para formatear fechas de manera segura
-const safeFormatDate = (date: any, formatStr: string = "dd/MM/yyyy", options: any = { locale: es }) => {
+const safeFormatDate = (
+  date: any,
+  formatStr: string = "dd/MM/yyyy",
+  options: any = { locale: es },
+) => {
   try {
     if (!date) return "Fecha no disponible";
     const dateObj = date instanceof Date ? date : new Date(date);
@@ -264,17 +268,24 @@ export default function AudienceHistory() {
   };
 
   // Filtrar audiencias por usuario actual (incluye mock + creadas por usuario)
-  const rawSavedAudiences = JSON.parse(localStorage.getItem("userAudiences") || "[]");
+  const rawSavedAudiences = JSON.parse(
+    localStorage.getItem("userAudiences") || "[]",
+  );
 
   // Convertir strings de fecha de vuelta a objetos Date
   const savedUserAudiences = rawSavedAudiences.map((audience: any) => ({
     ...audience,
-    requestDate: audience.requestDate ? new Date(audience.requestDate) : new Date(),
-    audienceDate: audience.audienceDate ? new Date(audience.audienceDate) : null,
-    responses: audience.responses?.map((response: any) => ({
-      ...response,
-      date: response.date ? new Date(response.date) : new Date(),
-    })) || [],
+    requestDate: audience.requestDate
+      ? new Date(audience.requestDate)
+      : new Date(),
+    audienceDate: audience.audienceDate
+      ? new Date(audience.audienceDate)
+      : null,
+    responses:
+      audience.responses?.map((response: any) => ({
+        ...response,
+        date: response.date ? new Date(response.date) : new Date(),
+      })) || [],
   }));
 
   const mockUserAudiences = mockAudiences.filter(
@@ -289,7 +300,8 @@ export default function AudienceHistory() {
         userId: user.phone,
         category: "especie",
         type: "Alimentos",
-        description: "Solicitud de apoyo alimentario para familia de 5 personas",
+        description:
+          "Solicitud de apoyo alimentario para familia de 5 personas",
         status: "en_proceso",
         requestDate: new Date(),
         audienceDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // Una semana después
@@ -302,7 +314,7 @@ export default function AudienceHistory() {
             message: "Su solicitud ha sido recibida y está siendo procesada.",
           },
         ],
-      }
+      },
     ];
     localStorage.setItem("userAudiences", JSON.stringify(exampleAudiences));
     savedUserAudiences.push(...exampleAudiences);
@@ -872,14 +884,20 @@ export default function AudienceHistory() {
                             <Calendar className="w-4 h-4" />
                             <span>
                               Solicitada:{" "}
-                              {safeFormatDate(audience.requestDate, "dd/MM/yyyy")}
+                              {safeFormatDate(
+                                audience.requestDate,
+                                "dd/MM/yyyy",
+                              )}
                             </span>
                           </div>
                           <div className="flex items-center gap-2 text-slate-600">
                             <Clock className="w-4 h-4" />
                             <span>
                               Audiencia:{" "}
-                              {safeFormatDate(audience.audienceDate, "dd/MM/yyyy")}
+                              {safeFormatDate(
+                                audience.audienceDate,
+                                "dd/MM/yyyy",
+                              )}
                             </span>
                           </div>
                           <div className="flex items-center gap-2 text-slate-600">

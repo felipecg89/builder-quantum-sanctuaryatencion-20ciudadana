@@ -684,13 +684,16 @@ export default function Dashboard() {
         {
           date: new Date(),
           author: "Sistema Automatico",
-          message: "Su solicitud ha sido recibida y está siendo procesada. Le contactaremos pronto.",
+          message:
+            "Su solicitud ha sido recibida y está siendo procesada. Le contactaremos pronto.",
         },
       ],
     };
 
     // Save to localStorage
-    const existingAudiences = JSON.parse(localStorage.getItem("userAudiences") || "[]");
+    const existingAudiences = JSON.parse(
+      localStorage.getItem("userAudiences") || "[]",
+    );
     existingAudiences.push(newAudience);
     localStorage.setItem("userAudiences", JSON.stringify(existingAudiences));
 
@@ -787,7 +790,9 @@ export default function Dashboard() {
             )}
             <div className="text-right">
               <p className="text-xs text-white/90 font-medium">Bienvenido</p>
-              <p className="text-xs sm:text-sm font-bold text-white truncate max-w-24 sm:max-w-none">{user.name}</p>
+              <p className="text-xs sm:text-sm font-bold text-white truncate max-w-24 sm:max-w-none">
+                {user.name}
+              </p>
             </div>
           </div>
         </div>
@@ -869,13 +874,15 @@ export default function Dashboard() {
                       AUDIENCIAS PÚBLICAS DE VIERNES
                     </h3>
                     <p className="text-white/90 text-sm font-medium leading-relaxed">
-                      Reserva tu turno para consulta directa y presencial con
-                      el Presidente Municipal.
+                      Reserva tu turno para consulta directa y presencial con el
+                      Presidente Municipal.
                     </p>
                   </div>
                   {/* Sección roja destacada */}
                   <div className="bg-[#DC2626] p-3 text-center">
-                    <p className="text-white font-bold text-sm">🏛️ ACCESO DIRECTO AL PRESIDENTE</p>
+                    <p className="text-white font-bold text-sm">
+                      🏛️ ACCESO DIRECTO AL PRESIDENTE
+                    </p>
                   </div>
                   <CardContent className="p-6">
                     <div className="space-y-2 text-sm text-gray-700 font-medium">
