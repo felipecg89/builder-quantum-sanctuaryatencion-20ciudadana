@@ -81,13 +81,13 @@ export default function Login() {
 
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-full mb-4">
-            <Building2 className="w-8 h-8 text-white" />
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-xl shadow-xl border-4 border-[#DC2626] mb-4">
+            <Building2 className="w-10 h-10 text-[#0052CC]" />
           </div>
-          <h1 className="text-2xl font-bold text-slate-800">
-            Presidencia Municipal
+          <h1 className="text-3xl font-black text-white">
+            PRESIDENCIA MUNICIPAL
           </h1>
-          <p className="text-slate-600 mt-1">Sistema de Audiencias</p>
+          <p className="text-white/90 mt-1 font-bold">SISTEMA DE AUDIENCIAS</p>
         </div>
 
         <Card className="border-slate-200 shadow-lg">
