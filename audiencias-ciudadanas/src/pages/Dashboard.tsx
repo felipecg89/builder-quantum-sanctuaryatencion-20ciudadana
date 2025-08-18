@@ -655,7 +655,7 @@ export default function Dashboard() {
   };
 
   const deleteAudioRecording = () => {
-    if (window.confirm("¿Estás seguro de eliminar la grabaci���n de audio?")) {
+    if (window.confirm("¿Estás seguro de eliminar la grabaci��n de audio?")) {
       setAudioBlob(null);
       setAudioDescription("");
       setRecordingTime(0);
@@ -820,11 +820,11 @@ export default function Dashboard() {
                     </p>
                   </div>
                   <CardContent className="p-6">
-                    <div className="space-y-2 text-xs text-slate-500">
-                      <p>• Ayuda en especie (alimentos, medicamentos)</p>
-                      <p>• Servicios (médicos, legales, sociales)</p>
-                      <p>• Trámites y permisos</p>
-                      <p>• Invitaciones a eventos</p>
+                    <div className="space-y-2 text-sm text-gray-700 font-medium">
+                      <p>✓ Ayuda en especie (alimentos, medicamentos)</p>
+                      <p>✓ Servicios (médicos, legales, sociales)</p>
+                      <p>✓ Trámites y permisos</p>
+                      <p>✓ Invitaciones a eventos</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -1349,7 +1349,7 @@ export default function Dashboard() {
                                     ? `🔴 Grabando... (${Math.floor(recordingTime / 60)}:${(recordingTime % 60).toString().padStart(2, "0")})`
                                     : audioBlob
                                       ? "✅ Audio grabado correctamente"
-                                      : "🎙���� Presiona para grabar tu descripción"}
+                                      : "🎙������ Presiona para grabar tu descripción"}
                                 </p>
                                 <p className="text-xs text-slate-500">
                                   {isRecording
