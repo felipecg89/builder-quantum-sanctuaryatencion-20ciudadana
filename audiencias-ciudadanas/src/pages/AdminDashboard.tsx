@@ -827,17 +827,17 @@ export default function AdminDashboard() {
 
             <TabsTrigger
               value="configuracion"
-              className="flex flex-col items-center gap-1 min-h-[60px] px-3 py-2 mx-0 rounded-lg border border-transparent data-[state=active]:bg-emerald-500 data-[state=active]:text-white data-[state=active]:border-emerald-300 data-[state=active]:shadow-lg hover:bg-emerald-50 hover:border-emerald-200 transition-all duration-300 group"
+              className="flex flex-col items-center gap-2 min-h-[80px] px-4 py-3 rounded-xl border-2 border-gray-200 data-[state=active]:bg-emerald-500 data-[state=active]:text-white data-[state=active]:border-emerald-300 data-[state=active]:shadow-xl hover:bg-emerald-50 hover:border-emerald-200 hover:scale-105 transition-all duration-300 group bg-white shadow-sm"
             >
               <div className="relative">
-                <div className="w-8 h-8 rounded-full bg-emerald-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
-                  <Wrench className="w-4 h-4 text-emerald-600 group-data-[state=active]:text-white transition-all" />
+                <div className="w-10 h-10 rounded-full bg-emerald-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300 shadow-sm">
+                  <Wrench className="w-5 h-5 text-emerald-600 group-data-[state=active]:text-white transition-all" />
                 </div>
                 <span className="absolute -top-1 -right-1 bg-emerald-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
                   {audienceTypes.filter((t) => t.active).length}
                 </span>
               </div>
-              <span className="text-xs font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
+              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700 text-center">
                 ⚙️ Configuración
               </span>
             </TabsTrigger>
