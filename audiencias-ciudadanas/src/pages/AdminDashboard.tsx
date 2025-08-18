@@ -343,7 +343,7 @@ export default function AdminDashboard() {
   const [selectedStaff, setSelectedStaff] = useState<any>(null);
   const [selectedType, setSelectedType] = useState<any>(null);
 
-  // B��squedas específicas
+  // Búsquedas específicas
   const [citizenSearch, setCitizenSearch] = useState("");
   const [staffSearch, setStaffSearch] = useState("");
   const [typeSearch, setTypeSearch] = useState("");
@@ -1860,31 +1860,79 @@ export default function AdminDashboard() {
                       </div>
 
                       {/* Cola de Turnos */}
-                      <div className="max-h-64 overflow-y-auto">
-                        <h4 className="font-bold text-slate-800 mb-3">📅 TODOS LOS TURNOS DEL DÍA</h4>
+                      <div className="max-h-80 overflow-y-auto">
+                        <div className="flex items-center justify-between mb-3">
+                          <h4 className="font-bold text-slate-800">📅 TODOS LOS TURNOS DEL DÍA</h4>
+                          <div className="flex gap-1">
+                            <div className="flex items-center gap-1 text-xs">
+                              <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                              <span>Pendiente</span>
+                            </div>
+                            <div className="flex items-center gap-1 text-xs">
+                              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                              <span>Activo</span>
+                            </div>
+                            <div className="flex items-center gap-1 text-xs">
+                              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                              <span>Completado</span>
+                            </div>
+                          </div>
+                        </div>
                         {turnQueue.length > 0 ? (
-                          <div className="space-y-1">
-                            {turnQueue.map((turn) => (
-                              <div key={turn.slotId} className={`p-2 rounded text-sm ${
-                                turn.status === "completado" ? "bg-green-50 border border-green-200" :
-                                turn.status === "activo" ? "bg-blue-50 border border-blue-200" :
-                                "bg-gray-50 border border-gray-200"
+                          <div className="space-y-2">
+                            {turnQueue.map((turn, index) => (
+                              <div key={turn.slotId} className={`p-3 rounded-lg border-2 transition-all duration-200 ${
+                                turn.status === "completado" ? "bg-green-50 border-green-200" :
+                                turn.status === "activo" ? "bg-blue-50 border-blue-300 shadow-md" :
+                                "bg-gray-50 border-gray-200 hover:border-gray-300"
                               }`}>
-                                <div className="flex justify-between items-center">
-                                  <span>{turn.time} - {turn.ciudadano}</span>
-                                  <Badge className={
-                                    turn.status === "completado" ? "bg-green-100 text-green-800" :
-                                    turn.status === "activo" ? "bg-blue-100 text-blue-800" :
-                                    "bg-gray-100 text-gray-800"
-                                  }>
-                                    {turn.status}
-                                  </Badge>
+                                <div className="flex justify-between items-start">
+                                  <div className="flex items-center gap-3">
+                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm ${
+                                      turn.status === "completado" ? "bg-green-500" :
+                                      turn.status === "activo" ? "bg-blue-500" :
+                                      "bg-gray-400"
+                                    }`}>
+                                      {index + 1}
+                                    </div>
+                                    <div>
+                                      <div className="flex items-center gap-2">
+                                        <span className="font-bold">{turn.time}</span>
+                                        <span className="text-slate-700">{turn.ciudadano}</span>
+                                      </div>
+                                      <p className="text-sm text-slate-600">📞 {turn.telefono}</p>
+                                      <p className="text-xs text-slate-500">{turn.motivo}</p>
+                                    </div>
+                                  </div>
+                                  <div className="text-right">
+                                    <Badge className={
+                                      turn.status === "completado" ? "bg-green-100 text-green-800" :
+                                      turn.status === "activo" ? "bg-blue-100 text-blue-800" :
+                                      "bg-gray-100 text-gray-800"
+                                    }>
+                                      {turn.status === "completado" ? "✅ Completado" :
+                                       turn.status === "activo" ? "🔔 En Atención" :
+                                       "⏳ Pendiente"}
+                                    </Badge>
+                                    {turn.status === "completado" && turn.completedAt && (
+                                      <p className="text-xs text-slate-400 mt-1">
+                                        {format(new Date(turn.completedAt), "HH:mm", { locale: es })}
+                                      </p>
+                                    )}
+                                  </div>
                                 </div>
                               </div>
                             ))}
                           </div>
                         ) : (
-                          <p className="text-slate-500 text-sm">No hay turnos programados para hoy</p>
+                          <div className="text-center py-8">
+                            <Calendar className="w-12 h-12 text-slate-300 mx-auto mb-3" />
+                            <p className="text-slate-500 text-sm">No hay turnos programados para hoy</p>
+                            <Button size="sm" className="mt-3" onClick={refreshTurnMonitor}>
+                              <Plus className="w-4 h-4 mr-2" />
+                              Cargar Turnos de Prueba
+                            </Button>
+                          </div>
                         )}
                       </div>
                     </CardContent>
