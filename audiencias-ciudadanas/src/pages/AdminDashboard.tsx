@@ -231,7 +231,7 @@ const mockAdminData = {
     },
     {
       id: "AUD-789012",
-      citizen: "Carlos Rodr��guez",
+      citizen: "Carlos Rodríguez",
       phone: "55 9876 5432",
       category: "servicio",
       type: "Servicios sociales",
@@ -757,11 +757,11 @@ export default function AdminDashboard() {
             <TabsList className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 h-auto p-4 bg-gray-50 rounded-xl border border-gray-200 shadow-inner">
             <TabsTrigger
               value="audiencias"
-              className="flex flex-col items-center gap-1 min-h-[60px] px-3 py-2 mx-0 rounded-lg border border-gray-200 data-[state=active]:bg-[#0052CC] data-[state=active]:text-white data-[state=active]:border-[#0052CC] data-[state=active]:shadow-lg hover:bg-gray-50 hover:border-[#0052CC] transition-all duration-300 group"
+              className="flex flex-col items-center gap-2 min-h-[80px] px-4 py-3 rounded-xl border-2 border-gray-200 data-[state=active]:bg-[#0052CC] data-[state=active]:text-white data-[state=active]:border-[#0052CC] data-[state=active]:shadow-xl hover:bg-gray-50 hover:border-[#0052CC] hover:scale-105 transition-all duration-300 group bg-white shadow-sm"
             >
               <div className="relative">
-                <div className="w-8 h-8 rounded-full bg-gray-100 group-data-[state=active]:bg-white flex items-center justify-center transition-all duration-300">
-                  <MessageSquare className="w-4 h-4 text-[#0052CC] group-data-[state=active]:text-[#0052CC] transition-all" />
+                <div className="w-10 h-10 rounded-full bg-gray-100 group-data-[state=active]:bg-white flex items-center justify-center transition-all duration-300 shadow-sm">
+                  <MessageSquare className="w-5 h-5 text-[#0052CC] group-data-[state=active]:text-[#0052CC] transition-all" />
                 </div>
                 {audiences.filter((a) => a.status === "pendiente").length > 0 && (
                   <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
@@ -769,7 +769,7 @@ export default function AdminDashboard() {
                   </span>
                 )}
               </div>
-              <span className="text-xs font-bold tracking-wide group-data-[state=active]:text-white text-gray-700 text-center">
+              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-gray-700 text-center">
                 AUDIENCIAS
               </span>
             </TabsTrigger>
