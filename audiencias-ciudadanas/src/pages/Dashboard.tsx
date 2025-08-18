@@ -739,11 +739,11 @@ export default function Dashboard() {
               <Building2 className="w-5 h-5 sm:w-7 sm:h-7 text-[#0052CC]" />
             </div>
             <div>
-              <h1 className="text-sm sm:text-lg font-semibold text-slate-800">
-                Presidencia Municipal
+              <h1 className="text-sm sm:text-xl font-black text-white">
+                PRESIDENCIA MUNICIPAL
               </h1>
-              <p className="text-xs sm:text-sm text-slate-600">
-                Sistema de Audiencias
+              <p className="text-xs sm:text-sm text-white/90 font-bold">
+                SISTEMA DE AUDIENCIAS
               </p>
             </div>
           </div>
