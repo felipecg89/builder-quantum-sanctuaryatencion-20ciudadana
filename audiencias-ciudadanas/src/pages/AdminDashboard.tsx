@@ -1296,26 +1296,138 @@ export default function AdminDashboard() {
               <CardHeader>
                 <div className="flex justify-between items-center">
                   <div>
-                    <CardTitle>Personal de Apoyo</CardTitle>
+                    <CardTitle className="text-2xl font-bold text-[#0052CC]">
+                      👨‍💼 Personal de Apoyo
+                    </CardTitle>
                     <CardDescription>
                       Gestiona el personal para asignación de audiencias
                     </CardDescription>
                   </div>
-                  <Button>
+                  <Button className="bg-[#DC2626] hover:bg-red-700 text-white">
                     <Plus className="w-4 h-4 mr-2" />
                     Agregar Personal
                   </Button>
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-center py-12">
-                  <UserPlus className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-slate-600 mb-2">
-                    Gestión de Personal
-                  </h3>
-                  <p className="text-slate-500">
-                    Administra el personal disponible para atender las audiencias ciudadanas.
-                  </p>
+                {/* Estadísticas de Personal */}
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                  <Card className="bg-gradient-to-r from-indigo-50 to-indigo-100 border-indigo-200">
+                    <CardContent className="p-4 text-center">
+                      <UserPlus className="w-8 h-8 text-indigo-600 mx-auto mb-2" />
+                      <h3 className="font-bold text-indigo-800 text-xl">{staff.length}</h3>
+                      <p className="text-sm text-indigo-700">Total Personal</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-gradient-to-r from-green-50 to-green-100 border-green-200">
+                    <CardContent className="p-4 text-center">
+                      <CheckCircle className="w-8 h-8 text-green-600 mx-auto mb-2" />
+                      <h3 className="font-bold text-green-800 text-xl">
+                        {staff.filter(s => s.status === "activo").length}
+                      </h3>
+                      <p className="text-sm text-green-700">Activos</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-gradient-to-r from-blue-50 to-blue-100 border-blue-200">
+                    <CardContent className="p-4 text-center">
+                      <Activity className="w-8 h-8 text-blue-600 mx-auto mb-2" />
+                      <h3 className="font-bold text-blue-800 text-xl">
+                        {staff.reduce((total, member) => total + member.activeAssignments, 0)}
+                      </h3>
+                      <p className="text-sm text-blue-700">Asignaciones Activas</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-gradient-to-r from-purple-50 to-purple-100 border-purple-200">
+                    <CardContent className="p-4 text-center">
+                      <Building2 className="w-8 h-8 text-purple-600 mx-auto mb-2" />
+                      <h3 className="font-bold text-purple-800 text-xl">
+                        {new Set(staff.map(s => s.department)).size}
+                      </h3>
+                      <p className="text-sm text-purple-700">Departamentos</p>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Búsqueda */}
+                <div className="mb-6">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                    <Input
+                      placeholder="Buscar por nombre, rol o departamento..."
+                      value={staffSearch}
+                      onChange={(e) => setStaffSearch(e.target.value)}
+                      className="pl-10"
+                    />
+                  </div>
+                </div>
+
+                {/* Lista de Personal */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {staff
+                    .filter(
+                      (member) =>
+                        member.name.toLowerCase().includes(staffSearch.toLowerCase()) ||
+                        member.role.toLowerCase().includes(staffSearch.toLowerCase()) ||
+                        member.department.toLowerCase().includes(staffSearch.toLowerCase()),
+                    )
+                    .map((member) => (
+                      <Card key={member.id} className="hover:shadow-md transition-shadow">
+                        <CardContent className="p-4">
+                          <div className="flex items-start justify-between mb-3">
+                            <div className="flex items-center gap-3">
+                              <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center">
+                                <UserPlus className="w-6 h-6 text-indigo-600" />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold text-slate-800">{member.name}</h4>
+                                <p className="text-sm text-slate-600">{member.role}</p>
+                                <p className="text-xs text-slate-500">{member.department}</p>
+                              </div>
+                            </div>
+                            <Badge className={member.status === "activo" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}>
+                              {member.status}
+                            </Badge>
+                          </div>
+
+                          <div className="space-y-2 mb-4">
+                            <div className="flex items-center gap-2 text-sm text-slate-600">
+                              <Mail className="w-4 h-4" />
+                              <span>{member.email}</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm text-slate-600">
+                              <Phone className="w-4 h-4" />
+                              <span>{member.phone}</span>
+                            </div>
+                          </div>
+
+                          <div className="bg-gray-50 p-3 rounded-lg mb-3">
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm font-medium text-slate-700">
+                                Asignaciones Activas
+                              </span>
+                              <Badge className="bg-blue-100 text-blue-800">
+                                {member.activeAssignments}
+                              </Badge>
+                            </div>
+                          </div>
+
+                          <Button
+                            size="sm"
+                            className="w-full bg-[#0052CC] hover:bg-blue-700"
+                            onClick={() => {
+                              setSelectedStaff(member);
+                              setIsEditStaffOpen(true);
+                            }}
+                          >
+                            <Edit className="w-4 h-4 mr-2" />
+                            Editar Personal
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    ))}
                 </div>
               </CardContent>
             </Card>
