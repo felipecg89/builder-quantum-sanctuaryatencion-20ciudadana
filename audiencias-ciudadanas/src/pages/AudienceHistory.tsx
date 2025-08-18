@@ -1059,7 +1059,7 @@ export default function AudienceHistory() {
                             {response.author}
                           </p>
                           <p className="text-sm text-slate-500">
-                            {safeFormatDate(response.date, "PPP", { locale: es })}
+                            {safeFormatDate(response.date, "PPP")}
                           </p>
                         </div>
                         <p className="text-slate-700">{response.message}</p>
@@ -1098,7 +1098,7 @@ export default function AudienceHistory() {
                             </p>
                           </div>
                           <p className="text-sm text-slate-500">
-                            {safeFormatDate(followUp.date, "PPP", { locale: es })}
+                            {safeFormatDate(followUp.date, "PPP")}
                           </p>
                         </div>
                         <p className="text-slate-700">{followUp.details}</p>
