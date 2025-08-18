@@ -71,7 +71,7 @@ export default function Login() {
   const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!forgotPasswordPhone.trim()) {
-      alert("Por favor ingresa tu número de teléfono");
+      alert("Por favor ingresa tu número de tel��fono");
       return;
     }
 
@@ -175,9 +175,21 @@ export default function Login() {
                 </div>
               </div>
 
-              <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? "Iniciando sesión..." : "Iniciar Sesión"}
-              </Button>
+              <div className="space-y-3">
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                  {isLoading ? "Iniciando sesión..." : "Iniciar Sesión"}
+                </Button>
+
+                {/* Botón directo para Audiencias Públicas de Viernes */}
+                <Button
+                  type="button"
+                  onClick={handleDirectToTurnos}
+                  className="w-full bg-[#DC2626] hover:bg-red-700 text-white font-bold"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Accediendo..." : "🏛️ IR A AUDIENCIAS PÚBLICAS DE VIERNES"}
+                </Button>
+              </div>
             </form>
 
             {/* Forgot Password Link */}
