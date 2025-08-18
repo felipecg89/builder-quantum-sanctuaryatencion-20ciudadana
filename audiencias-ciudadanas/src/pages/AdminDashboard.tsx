@@ -793,7 +793,7 @@ export default function AdminDashboard() {
 
             <TabsTrigger
               value="expedientes"
-              className="flex flex-col items-center gap-1 min-h-[60px] px-3 py-2 mx-0 rounded-lg border border-transparent data-[state=active]:bg-amber-500 data-[state=active]:text-white data-[state=active]:border-amber-300 data-[state=active]:shadow-lg hover:bg-amber-50 hover:border-amber-200 transition-all duration-300 group"
+              className="flex flex-col items-center gap-2 min-h-[80px] px-4 py-3 rounded-xl border-2 border-gray-200 data-[state=active]:bg-amber-500 data-[state=active]:text-white data-[state=active]:border-amber-300 data-[state=active]:shadow-xl hover:bg-amber-50 hover:border-amber-200 hover:scale-105 transition-all duration-300 group bg-white shadow-sm"
             >
               <div className="relative">
                 <div className="w-8 h-8 rounded-full bg-amber-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
