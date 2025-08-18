@@ -401,12 +401,40 @@ export default function AdminDashboard() {
 
   const initializeTurnMonitor = () => {
     const today = new Date();
-    const isTodayFriday = today.getDay() === 5; // 5 = Friday
+    // Siempre cargar turnos para demostración
+    loadTodayTurns();
+  };
 
-    if (isTodayFriday) {
-      // Cargar turnos del día actual
-      loadTodayTurns();
+  const refreshTurnMonitor = () => {
+    loadTodayTurns();
+    toast({
+      title: "✅ Monitor actualizado",
+      description: "Los turnos han sido recargados correctamente",
+    });
+  };
+
+  const resetDayTurns = () => {
+    const today = new Date();
+    const dateKey = format(today, "yyyy-MM-dd");
+    const savedTurnos = localStorage.getItem("publicAudienceTurnos");
+    const allTurnos = savedTurnos ? JSON.parse(savedTurnos) : {};
+
+    // Resetear todos los turnos a pendiente
+    if (allTurnos[dateKey]) {
+      Object.keys(allTurnos[dateKey]).forEach(slotId => {
+        allTurnos[dateKey][slotId].status = "pendiente";
+        delete allTurnos[dateKey][slotId].completedAt;
+      });
+      localStorage.setItem("publicAudienceTurnos", JSON.stringify(allTurnos));
     }
+
+    setCurrentTurnActive(null);
+    loadTodayTurns();
+
+    toast({
+      title: "🔄 Turnos reiniciados",
+      description: "Todos los turnos han sido reiniciados a estado pendiente",
+    });
   };
 
   const loadTodayTurns = () => {
