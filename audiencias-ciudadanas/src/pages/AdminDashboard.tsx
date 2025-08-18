@@ -343,7 +343,7 @@ export default function AdminDashboard() {
   const [selectedStaff, setSelectedStaff] = useState<any>(null);
   const [selectedType, setSelectedType] = useState<any>(null);
 
-  // Búsquedas específicas
+  // B��squedas específicas
   const [citizenSearch, setCitizenSearch] = useState("");
   const [staffSearch, setStaffSearch] = useState("");
   const [typeSearch, setTypeSearch] = useState("");
@@ -1809,31 +1809,52 @@ export default function AdminDashboard() {
 
                       {/* Próximos Turnos */}
                       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
-                        <h4 className="font-bold text-blue-800 mb-3">📋 PRÓXIMOS TURNOS</h4>
+                        <div className="flex items-center justify-between mb-3">
+                          <h4 className="font-bold text-blue-800">📋 PRÓXIMOS TURNOS</h4>
+                          <Badge className="bg-blue-100 text-blue-800">
+                            {nextTurns.length} pendientes
+                          </Badge>
+                        </div>
                         {nextTurns.length > 0 ? (
                           <div className="space-y-2">
                             {nextTurns.slice(0, 3).map((turn, idx) => (
-                              <div key={turn.slotId} className="bg-white p-2 rounded border">
-                                <div className="flex justify-between items-center">
-                                  <div>
-                                    <span className="font-medium">{turn.time}</span>
-                                    <p className="text-sm text-slate-600">{turn.ciudadano}</p>
+                              <div key={turn.slotId} className={`bg-white p-3 rounded border-2 ${
+                                idx === 0 ? 'border-blue-300 shadow-md' : 'border-gray-200'
+                              }`}>
+                                <div className="flex justify-between items-start">
+                                  <div className="flex-1">
+                                    <div className="flex items-center gap-2 mb-1">
+                                      <span className="font-bold text-lg">{turn.time}</span>
+                                      {idx === 0 && (
+                                        <Badge className="bg-blue-500 text-white animate-pulse">
+                                          ← SIGUIENTE
+                                        </Badge>
+                                      )}
+                                    </div>
+                                    <p className="font-medium text-slate-800">{turn.ciudadano}</p>
+                                    <p className="text-sm text-slate-600">📞 {turn.telefono}</p>
+                                    <p className="text-xs text-slate-500 mt-1">{turn.motivo}</p>
                                   </div>
-                                  {idx === 0 && (
-                                    <Badge className="bg-blue-500 text-white">Siguiente</Badge>
-                                  )}
+                                  <div className="text-right">
+                                    <span className="text-xs text-slate-400">
+                                      #{idx + 1} en cola
+                                    </span>
+                                  </div>
                                 </div>
                               </div>
                             ))}
                           </div>
                         ) : (
-                          <p className="text-slate-500 text-sm">No hay turnos pendientes</p>
+                          <div className="text-center py-4">
+                            <Clock className="w-8 h-8 text-slate-300 mx-auto mb-2" />
+                            <p className="text-slate-500 text-sm">No hay turnos pendientes</p>
+                          </div>
                         )}
 
                         {nextTurns.length > 0 && (
-                          <Button size="sm" className="mt-3 w-full bg-blue-600 hover:bg-blue-700" onClick={callNextTurn}>
+                          <Button size="sm" className="mt-4 w-full bg-blue-600 hover:bg-blue-700 shadow-lg" onClick={callNextTurn}>
                             <ArrowRight className="w-4 h-4 mr-2" />
-                            Llamar Siguiente Turno
+                            🔔 Llamar Siguiente Turno
                           </Button>
                         )}
                       </div>
