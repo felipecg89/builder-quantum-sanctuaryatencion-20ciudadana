@@ -668,6 +668,32 @@ export default function Dashboard() {
     setCaseNumber(caseNum);
     setCurrentStep(5);
 
+    // Create audience object
+    const newAudience = {
+      id: caseNum,
+      userId: user.phone,
+      category: formData.category,
+      type: formData.type,
+      description: textDescription || audioDescription,
+      status: "pendiente",
+      requestDate: new Date(),
+      audienceDate: formData.selectedDate,
+      meetingFormat: formData.meetingFormat,
+      result: null,
+      responses: [
+        {
+          date: new Date(),
+          author: "Sistema Automatico",
+          message: "Su solicitud ha sido recibida y está siendo procesada. Le contactaremos pronto.",
+        },
+      ],
+    };
+
+    // Save to localStorage
+    const existingAudiences = JSON.parse(localStorage.getItem("userAudiences") || "[]");
+    existingAudiences.push(newAudience);
+    localStorage.setItem("userAudiences", JSON.stringify(existingAudiences));
+
     // In a real app, send data to backend and send email/SMS
     console.log("Audience request submitted:", {
       ...formData,
