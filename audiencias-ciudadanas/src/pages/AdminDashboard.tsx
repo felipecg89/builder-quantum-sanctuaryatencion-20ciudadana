@@ -784,85 +784,85 @@ export default function AdminDashboard() {
 
             <TabsTrigger
               value="expedientes"
-              className="flex flex-col items-center gap-2 h-18 px-3 py-2 mx-1 my-1 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-amber-500 data-[state=active]:to-amber-600 data-[state=active]:text-white data-[state=active]:border-amber-300 data-[state=active]:shadow-xl hover:bg-amber-50/80 hover:border-amber-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+              className="flex flex-col items-center gap-1 min-h-[60px] px-2 py-2 mx-1 rounded-lg border border-transparent data-[state=active]:bg-amber-500 data-[state=active]:text-white data-[state=active]:border-amber-300 data-[state=active]:shadow-lg hover:bg-amber-50 hover:border-amber-200 transition-all duration-300 group"
             >
               <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-amber-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
-                  <FileText className="w-5 h-5 text-amber-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
+                <div className="w-8 h-8 rounded-full bg-amber-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
+                  <FileText className="w-4 h-4 text-amber-600 group-data-[state=active]:text-white transition-all" />
                 </div>
-                <span className="absolute top-0 right-0 bg-amber-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                <span className="absolute -top-1 -right-1 bg-amber-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
                   {citizens.reduce((total, citizen) => total + citizen.expediente.requests.length, 0)}
                 </span>
               </div>
-              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
+              <span className="text-xs font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
                 📁 Expedientes
               </span>
             </TabsTrigger>
 
             <TabsTrigger
               value="personal"
-              className="flex flex-col items-center gap-2 h-18 px-3 py-2 mx-1 my-1 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-indigo-500 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:border-indigo-300 data-[state=active]:shadow-xl hover:bg-indigo-50/80 hover:border-indigo-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+              className="flex flex-col items-center gap-1 min-h-[60px] px-2 py-2 mx-1 rounded-lg border border-transparent data-[state=active]:bg-indigo-500 data-[state=active]:text-white data-[state=active]:border-indigo-300 data-[state=active]:shadow-lg hover:bg-indigo-50 hover:border-indigo-200 transition-all duration-300 group"
             >
               <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-indigo-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
-                  <UserPlus className="w-5 h-5 text-indigo-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
+                <div className="w-8 h-8 rounded-full bg-indigo-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
+                  <UserPlus className="w-4 h-4 text-indigo-600 group-data-[state=active]:text-white transition-all" />
                 </div>
-                <span className="absolute top-0 right-0 bg-indigo-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                <span className="absolute -top-1 -right-1 bg-indigo-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
                   {staff.filter((s) => s.status === "activo").length}
                 </span>
               </div>
-              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
+              <span className="text-xs font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
                 👨‍💼 Personal
               </span>
             </TabsTrigger>
 
             <TabsTrigger
               value="configuracion"
-              className="flex flex-col items-center gap-2 h-18 px-3 py-2 mx-1 my-1 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-emerald-500 data-[state=active]:to-emerald-600 data-[state=active]:text-white data-[state=active]:border-emerald-300 data-[state=active]:shadow-xl hover:bg-emerald-50/80 hover:border-emerald-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+              className="flex flex-col items-center gap-1 min-h-[60px] px-2 py-2 mx-1 rounded-lg border border-transparent data-[state=active]:bg-emerald-500 data-[state=active]:text-white data-[state=active]:border-emerald-300 data-[state=active]:shadow-lg hover:bg-emerald-50 hover:border-emerald-200 transition-all duration-300 group"
             >
               <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-emerald-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
-                  <Wrench className="w-5 h-5 text-emerald-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
+                <div className="w-8 h-8 rounded-full bg-emerald-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
+                  <Wrench className="w-4 h-4 text-emerald-600 group-data-[state=active]:text-white transition-all" />
                 </div>
-                <span className="absolute top-0 right-0 bg-emerald-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                <span className="absolute -top-1 -right-1 bg-emerald-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
                   {audienceTypes.filter((t) => t.active).length}
                 </span>
               </div>
-              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
+              <span className="text-xs font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
                 ⚙️ Configuración
               </span>
             </TabsTrigger>
 
             <TabsTrigger
               value="turnos"
-              className="flex flex-col items-center gap-2 h-18 px-3 py-2 mx-1 my-1 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-green-500 data-[state=active]:to-green-600 data-[state=active]:text-white data-[state=active]:border-green-300 data-[state=active]:shadow-xl hover:bg-green-50/80 hover:border-green-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+              className="flex flex-col items-center gap-1 min-h-[60px] px-2 py-2 mx-1 rounded-lg border border-transparent data-[state=active]:bg-green-500 data-[state=active]:text-white data-[state=active]:border-green-300 data-[state=active]:shadow-lg hover:bg-green-50 hover:border-green-200 transition-all duration-300 group"
             >
               <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-green-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
-                  <Clock className="w-5 h-5 text-green-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
+                <div className="w-8 h-8 rounded-full bg-green-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
+                  <Clock className="w-4 h-4 text-green-600 group-data-[state=active]:text-white transition-all" />
                 </div>
-                <span className="absolute top-0 right-0 bg-green-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                <span className="absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
                   {publicAudienceDates.length}
                 </span>
               </div>
-              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
+              <span className="text-xs font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
                 🕐 Turnos
               </span>
             </TabsTrigger>
 
             <TabsTrigger
               value="reportes"
-              className="flex flex-col items-center gap-2 h-18 px-3 py-2 mx-1 my-1 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-rose-500 data-[state=active]:to-rose-600 data-[state=active]:text-white data-[state=active]:border-rose-300 data-[state=active]:shadow-xl hover:bg-rose-50/80 hover:border-rose-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+              className="flex flex-col items-center gap-1 min-h-[60px] px-2 py-2 mx-1 rounded-lg border border-transparent data-[state=active]:bg-rose-500 data-[state=active]:text-white data-[state=active]:border-rose-300 data-[state=active]:shadow-lg hover:bg-rose-50 hover:border-rose-200 transition-all duration-300 group"
             >
               <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-rose-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
-                  <BarChart3 className="w-5 h-5 text-rose-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
+                <div className="w-8 h-8 rounded-full bg-rose-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
+                  <BarChart3 className="w-4 h-4 text-rose-600 group-data-[state=active]:text-white transition-all" />
                 </div>
-                <div className="absolute top-0 right-0 bg-rose-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                <div className="absolute -top-1 -right-1 bg-rose-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
                   ✓
                 </div>
               </div>
-              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
+              <span className="text-xs font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
                 📊 Reportes
               </span>
             </TabsTrigger>
