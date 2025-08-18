@@ -831,22 +831,27 @@ export default function Dashboard() {
 
                 {/* Turnos de Audiencias Públicas */}
                 <Card
-                  className="cursor-pointer hover:shadow-lg transition-all duration-200 border-2 hover:border-green-300 bg-green-50"
+                  className="cursor-pointer hover:shadow-2xl transition-all duration-300 border-0 bg-white rounded-xl shadow-xl overflow-hidden"
                   onClick={() => navigate("/turnos")}
                 >
-                  <CardContent className="p-6 text-center space-y-4">
-                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                      <Clock className="w-8 h-8 text-green-600" />
+                  {/* Header azul estilo Telmex */}
+                  <div className="bg-[#0052CC] p-6 text-center">
+                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-3">
+                      <Clock className="w-8 h-8 text-[#0052CC]" />
                     </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-green-800 mb-2">
-                        Audiencias Públicas de Viernes
-                      </h3>
-                      <p className="text-sm text-green-700 leading-relaxed">
-                        Reserva tu turno para consulta directa y presencial con
-                        el Presidente Municipal.
-                      </p>
-                    </div>
+                    <h3 className="text-xl font-black text-white mb-2">
+                      AUDIENCIAS PÚBLICAS DE VIERNES
+                    </h3>
+                    <p className="text-white/90 text-sm font-medium leading-relaxed">
+                      Reserva tu turno para consulta directa y presencial con
+                      el Presidente Municipal.
+                    </p>
+                  </div>
+                  {/* Sección roja destacada */}
+                  <div className="bg-[#DC2626] p-3 text-center">
+                    <p className="text-white font-bold text-sm">🏛️ ACCESO DIRECTO AL PRESIDENTE</p>
+                  </div>
+                  <CardContent className="p-6">
                     <div className="space-y-2 text-xs text-green-600">
                       <p>• Solo viernes de 9:00 AM a 12:00 PM</p>
                       <p>• Consulta directa con el Presidente</p>
@@ -1349,7 +1354,7 @@ export default function Dashboard() {
                                     ? `🔴 Grabando... (${Math.floor(recordingTime / 60)}:${(recordingTime % 60).toString().padStart(2, "0")})`
                                     : audioBlob
                                       ? "✅ Audio grabado correctamente"
-                                      : "🎙������ Presiona para grabar tu descripción"}
+                                      : "🎙���� Presiona para grabar tu descripción"}
                                 </p>
                                 <p className="text-xs text-slate-500">
                                   {isRecording
