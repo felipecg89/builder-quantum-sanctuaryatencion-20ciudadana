@@ -1437,20 +1437,126 @@ export default function AdminDashboard() {
           <TabsContent value="configuracion">
             <Card>
               <CardHeader>
-                <CardTitle>Configuración del Sistema</CardTitle>
+                <CardTitle className="text-2xl font-bold text-[#0052CC]">
+                  ⚙️ Configuración del Sistema
+                </CardTitle>
                 <CardDescription>
                   Administra las configuraciones y tipos de audiencia
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-center py-12">
-                  <Wrench className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-slate-600 mb-2">
-                    Panel de Configuración
-                  </h3>
-                  <p className="text-slate-500">
-                    Configura tipos de audiencia, categorías y parámetros del sistema.
-                  </p>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Tipos de Audiencia */}
+                  <Card className="border-2 border-emerald-200">
+                    <CardHeader className="bg-emerald-50">
+                      <CardTitle className="text-lg font-bold text-emerald-800 flex items-center gap-2">
+                        <FileText className="w-5 h-5" />
+                        Tipos de Audiencia
+                      </CardTitle>
+                      <CardDescription>
+                        Gestiona las categorías disponibles para solicitudes
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="p-4">
+                      <div className="space-y-3">
+                        {audienceTypes.map((type) => (
+                          <div key={type.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <div className="flex items-center gap-3">
+                              <div className={`w-3 h-3 rounded-full ${type.active ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                              <div>
+                                <h4 className="font-semibold text-slate-800">{type.name}</h4>
+                                <p className="text-sm text-slate-600">{type.description}</p>
+                                <Badge className={CATEGORY_CONFIG[type.category as keyof typeof CATEGORY_CONFIG].color}>
+                                  {CATEGORY_CONFIG[type.category as keyof typeof CATEGORY_CONFIG].name}
+                                </Badge>
+                              </div>
+                            </div>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => {
+                                setSelectedType(type);
+                                setIsEditTypeOpen(true);
+                              }}
+                            >
+                              <Edit className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        ))}
+                      </div>
+                      <Button className="w-full mt-4 bg-emerald-600 hover:bg-emerald-700">
+                        <Plus className="w-4 h-4 mr-2" />
+                        Agregar Tipo de Audiencia
+                      </Button>
+                    </CardContent>
+                  </Card>
+
+                  {/* Configuraciones del Sistema */}
+                  <Card className="border-2 border-blue-200">
+                    <CardHeader className="bg-blue-50">
+                      <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
+                        <Settings className="w-5 h-5" />
+                        Configuraciones Generales
+                      </CardTitle>
+                      <CardDescription>
+                        Parámetros generales del sistema
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="p-4">
+                      <div className="space-y-4">
+                        <div className="p-4 bg-gray-50 rounded-lg">
+                          <h4 className="font-semibold text-slate-800 mb-2">Estadísticas del Sistema</h4>
+                          <div className="grid grid-cols-2 gap-4 text-sm">
+                            <div>
+                              <span className="text-slate-600">Tiempo promedio de respuesta:</span>
+                              <p className="font-bold text-blue-600">{mockAdminData.stats.avgResponseTime}</p>
+                            </div>
+                            <div>
+                              <span className="text-slate-600">Índice de satisfacción:</span>
+                              <p className="font-bold text-green-600">{mockAdminData.stats.satisfactionRate}</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="p-4 bg-gray-50 rounded-lg">
+                          <h4 className="font-semibold text-slate-800 mb-2">Horarios de Atención</h4>
+                          <div className="space-y-2 text-sm">
+                            <div className="flex justify-between">
+                              <span>Audiencias Públicas (Viernes):</span>
+                              <span className="font-bold">09:00 - 17:00</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span>Atención General:</span>
+                              <span className="font-bold">Lun - Vie, 08:00 - 18:00</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="p-4 bg-gray-50 rounded-lg">
+                          <h4 className="font-semibold text-slate-800 mb-2">Límites y Parámetros</h4>
+                          <div className="space-y-2 text-sm">
+                            <div className="flex justify-between">
+                              <span>Máximo audiencias por día:</span>
+                              <span className="font-bold">50</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span>Tiempo máximo de espera:</span>
+                              <span className="font-bold">30 días</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span>Audiencias activas:</span>
+                              <span className="font-bold text-green-600">{audienceTypes.filter(t => t.active).length} tipos</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <Button className="w-full mt-4 bg-[#0052CC] hover:bg-blue-700">
+                        <Wrench className="w-4 h-4 mr-2" />
+                        Configurar Parámetros
+                      </Button>
+                    </CardContent>
+                  </Card>
                 </div>
               </CardContent>
             </Card>
