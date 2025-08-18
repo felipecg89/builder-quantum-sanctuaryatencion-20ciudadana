@@ -323,7 +323,7 @@ export default function AdminDashboard() {
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [audiences, setAudiences] = useState(mockAdminData.recentAudiences);
   const [activeTab, setActiveTab] = useState(() => {
-    // Verificar si se especifica una pestaña en la URL
+    // Verificar si se especifica una pesta��a en la URL
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get("tab") || "audiencias";
   });
@@ -2201,7 +2201,7 @@ export default function AdminDashboard() {
                                       {turn.ciudadano}
                                     </p>
                                     <p className="text-sm text-slate-600">
-                                      ��� {turn.telefono}
+                                      📞 {turn.telefono}
                                     </p>
                                     <p className="text-xs text-slate-500 mt-1">
                                       {turn.motivo}
@@ -2471,7 +2471,10 @@ export default function AdminDashboard() {
                         </div>
                       </div>
 
-                      <Button className="w-full bg-[#0052CC] hover:bg-blue-700 font-bold shadow-lg">
+                      <Button
+                        className="w-full bg-[#0052CC] hover:bg-blue-700 font-bold shadow-lg"
+                        onClick={handleAddNewDate}
+                      >
                         <Plus className="w-4 h-4 mr-2" />
                         📅 PROGRAMAR NUEVA FECHA
                       </Button>
