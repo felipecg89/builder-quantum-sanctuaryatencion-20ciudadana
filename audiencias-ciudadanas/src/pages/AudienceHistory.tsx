@@ -250,10 +250,12 @@ export default function AudienceHistory() {
     setLoginData({ phone: "", password: "" });
   };
 
-  // Filtrar audiencias por usuario actual
-  const userAudiences = mockAudiences.filter(
+  // Filtrar audiencias por usuario actual (incluye mock + creadas por usuario)
+  const savedUserAudiences = JSON.parse(localStorage.getItem("userAudiences") || "[]");
+  const mockUserAudiences = mockAudiences.filter(
     (audience) => audience.userId === user?.phone,
   );
+  const userAudiences = [...mockUserAudiences, ...savedUserAudiences];
 
   const filteredAudiences = userAudiences.filter((audience) => {
     const matchesSearch =
