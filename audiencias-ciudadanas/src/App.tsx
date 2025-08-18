@@ -29,6 +29,8 @@ export default function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/audience-history" element={<AudienceHistory />} />
           <Route path="/turnos" element={<Turnos />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/AdminDashboard" element={<AdminDashboard />} />
 
           {/* Catch-all route */}
           <Route path="*" element={<NotFound />} />
