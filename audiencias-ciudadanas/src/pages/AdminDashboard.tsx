@@ -1965,7 +1965,7 @@ export default function AdminDashboard() {
                               <span className="font-bold">50</span>
                             </div>
                             <div className="flex justify-between">
-                              <span>Tiempo máximo de espera:</span>
+                              <span>Tiempo m��ximo de espera:</span>
                               <span className="font-bold">30 días</span>
                             </div>
                             <div className="flex justify-between">
@@ -2391,6 +2391,23 @@ export default function AdminDashboard() {
                             const dayOfWeek = format(dateInfo.date, "EEEE", { locale: es });
                             const dayNumber = format(dateInfo.date, "d");
                             const monthYear = format(dateInfo.date, "MMM yyyy", { locale: es });
+
+                            // Obtener estado de turnos para esta fecha
+                            const dateKey = format(dateInfo.date, "yyyy-MM-dd");
+                            const savedTurnos = localStorage.getItem("publicAudienceTurnos");
+                            const allTurnos = savedTurnos ? JSON.parse(savedTurnos) : {};
+                            const dateTurnos = allTurnos[dateKey] || {};
+                            const totalTurnos = Object.keys(dateTurnos).length;
+                            const completedTurnos = Object.values(dateTurnos).filter((turn: any) => turn.status === "completado").length;
+                            const pendingTurnos = Object.values(dateTurnos).filter((turn: any) => turn.status === "pendiente").length;
+
+                            // Determinar color del borde según el estado
+                            const getBorderColor = () => {
+                              if (totalTurnos === 0) return "border-green-200";
+                              if (completedTurnos === totalTurnos) return "border-blue-400";
+                              if (completedTurnos > 0) return "border-yellow-400";
+                              return "border-green-300";
+                            };
 
                             return (
                               <div
