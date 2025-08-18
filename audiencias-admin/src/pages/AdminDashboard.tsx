@@ -740,11 +740,11 @@ export default function AdminDashboard() {
           <TabsList className="admin-tabs-list grid w-full grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 min-h-[120px] p-6 bg-white rounded-2xl border-4 border-[#0052CC] shadow-2xl overflow-visible">
             <TabsTrigger
               value="audiencias"
-              className="admin-tab-trigger flex flex-col items-center gap-3 min-h-[100px] px-4 py-4 mx-1 my-1 rounded-2xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-blue-500 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:border-blue-300 data-[state=active]:shadow-2xl hover:bg-blue-50/80 hover:border-blue-200 hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group backdrop-blur-sm"
+              className="admin-tab-trigger flex flex-col items-center gap-2 min-h-[90px] px-3 py-3 mx-1 my-1 rounded-xl border-2 border-gray-200 data-[state=active]:bg-[#0052CC] data-[state=active]:text-white data-[state=active]:border-[#0052CC] data-[state=active]:shadow-xl hover:bg-gray-50 hover:border-[#0052CC] transition-all duration-300 group"
             >
               <div className="relative">
-                <div className="w-12 h-12 rounded-full bg-blue-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300 shadow-lg group-hover:shadow-xl group-hover:scale-110">
-                  <MessageSquare className="w-6 h-6 text-blue-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
+                <div className="w-10 h-10 rounded-full bg-gray-100 group-data-[state=active]:bg-white flex items-center justify-center transition-all duration-300">
+                  <MessageSquare className="w-5 h-5 text-[#0052CC] group-data-[state=active]:text-[#0052CC] transition-all" />
                 </div>
                 {audiences.filter((a) => a.status === "pendiente").length >
                   0 && (
