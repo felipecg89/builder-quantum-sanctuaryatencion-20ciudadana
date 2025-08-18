@@ -840,7 +840,7 @@ export default function AdminDashboard() {
             </div>
             <div>
               <h1 className="text-3xl font-black text-white flex items-center gap-3">
-                ���️ PANEL ADMINISTRATIVO
+                🏛️ PANEL ADMINISTRATIVO
               </h1>
               <p className="text-sm text-white/90 flex items-center gap-2 font-medium">
                 <Settings className="w-4 h-4" />
@@ -2396,7 +2396,7 @@ export default function AdminDashboard() {
                               <div
                                 key={idx}
                                 className="bg-gradient-to-br from-green-50 to-green-100 border-2 border-green-200 rounded-xl p-4 hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105"
-                                onClick={() => setSelectedManageDate(dateInfo)}
+                                onClick={() => handleViewDateTurns(dateInfo)}
                               >
                                 {/* Encabezado del día */}
                                 <div className="text-center mb-3">
