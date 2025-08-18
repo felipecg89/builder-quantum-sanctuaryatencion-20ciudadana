@@ -472,7 +472,7 @@ export default function AdminDashboard() {
           status: "pendiente"
         },
         "slot-1100": {
-          ciudadano: "Laura Martínez",
+          ciudadano: "Laura Mart��nez",
           telefono: "55 1111 2222",
           motivo: "Consulta de trámites",
           status: "pendiente"
@@ -1735,13 +1735,27 @@ export default function AdminDashboard() {
                   {/* Monitor de Turnos del Día */}
                   <Card className="border-2 border-blue-200">
                     <CardHeader className="bg-blue-50">
-                      <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
-                        <Activity className="w-5 h-5" />
-                        Monitor de Turnos - {format(monitorDate, "dd/MM/yyyy", { locale: es })}
-                      </CardTitle>
-                      <CardDescription>
-                        Control en tiempo real de los turnos del día
-                      </CardDescription>
+                      <div className="flex justify-between items-center">
+                        <div>
+                          <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
+                            <Activity className="w-5 h-5" />
+                            Monitor de Turnos - {format(monitorDate, "dd/MM/yyyy", { locale: es })}
+                          </CardTitle>
+                          <CardDescription>
+                            Control en tiempo real de los turnos del día
+                          </CardDescription>
+                        </div>
+                        <div className="flex gap-2">
+                          <Button size="sm" variant="outline" onClick={refreshTurnMonitor}>
+                            <ArrowLeft className="w-4 h-4 mr-1" />
+                            Actualizar
+                          </Button>
+                          <Button size="sm" variant="outline" onClick={resetDayTurns} className="text-orange-600 hover:text-orange-700">
+                            <ArrowLeft className="w-4 h-4 mr-1" />
+                            Reiniciar
+                          </Button>
+                        </div>
+                      </div>
                     </CardHeader>
                     <CardContent className="p-4">
                       {/* Turno Actual */}
