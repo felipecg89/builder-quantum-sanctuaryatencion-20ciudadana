@@ -1965,7 +1965,7 @@ export default function AdminDashboard() {
                               <span className="font-bold">50</span>
                             </div>
                             <div className="flex justify-between">
-                              <span>Tiempo m��ximo de espera:</span>
+                              <span>Tiempo máximo de espera:</span>
                               <span className="font-bold">30 días</span>
                             </div>
                             <div className="flex justify-between">
@@ -2412,9 +2412,27 @@ export default function AdminDashboard() {
                             return (
                               <div
                                 key={idx}
-                                className="bg-gradient-to-br from-green-50 to-green-100 border-2 border-green-200 rounded-xl p-4 hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105"
+                                className={`bg-gradient-to-br from-green-50 to-green-100 border-2 ${getBorderColor()} rounded-xl p-4 hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105 relative`}
                                 onClick={() => handleViewDateTurns(dateInfo)}
                               >
+                                {/* Indicador de estado */}
+                                {totalTurnos > 0 && (
+                                  <div className="absolute top-2 right-2">
+                                    {completedTurnos === totalTurnos ? (
+                                      <span className="bg-blue-500 text-white text-xs px-2 py-1 rounded-full font-bold">
+                                        ✅ COMPLETO
+                                      </span>
+                                    ) : completedTurnos > 0 ? (
+                                      <span className="bg-yellow-500 text-white text-xs px-2 py-1 rounded-full font-bold">
+                                        ⏳ EN PROGRESO
+                                      </span>
+                                    ) : (
+                                      <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-bold">
+                                        📋 PROGRAMADO
+                                      </span>
+                                    )}
+                                  </div>
+                                )}
                                 {/* Encabezado del día */}
                                 <div className="text-center mb-3">
                                   <div className="bg-green-600 text-white rounded-lg px-2 py-1 mb-2">
