@@ -239,7 +239,7 @@ const mockAdminData = {
       status: "en_proceso",
       priority: "urgente",
       requestDate: new Date("2024-01-23"),
-      assignedTo: "Dr. Mart��nez - Servicios Médicos",
+      assignedTo: "Dr. Martínez - Servicios Médicos",
       assignedDate: new Date("2024-01-24"),
       daysWaiting: 4,
     },
@@ -475,7 +475,14 @@ export default function AdminDashboard() {
   };
 
   const callNextTurn = () => {
-    if (nextTurns.length === 0) return;
+    if (nextTurns.length === 0) {
+      toast({
+        title: "No hay turnos pendientes",
+        description: "No hay más turnos por llamar en este momento",
+        variant: "destructive",
+      });
+      return;
+    }
 
     const nextTurn = nextTurns[0];
     setCurrentTurnActive(nextTurn);
@@ -486,13 +493,36 @@ export default function AdminDashboard() {
     );
     setTurnQueue(updatedQueue);
 
+    // Actualizar en localStorage
+    const today = new Date();
+    const dateKey = format(today, "yyyy-MM-dd");
+    const savedTurnos = localStorage.getItem("publicAudienceTurnos");
+    const allTurnos = savedTurnos ? JSON.parse(savedTurnos) : {};
+
+    if (allTurnos[dateKey] && allTurnos[dateKey][nextTurn.slotId]) {
+      allTurnos[dateKey][nextTurn.slotId].status = "activo";
+      localStorage.setItem("publicAudienceTurnos", JSON.stringify(allTurnos));
+    }
+
     // Actualizar lista de próximos turnos
     const remainingTurns = updatedQueue.filter((t) => t.status === "pendiente");
     setNextTurns(remainingTurns.slice(0, 3));
+
+    toast({
+      title: "🔔 Turno llamado",
+      description: `Turno ${nextTurn.time} - ${nextTurn.ciudadano} está siendo atendido`,
+    });
   };
 
   const completeTurn = () => {
-    if (!currentTurnActive) return;
+    if (!currentTurnActive) {
+      toast({
+        title: "No hay turno activo",
+        description: "No hay ningún turno en atención para completar",
+        variant: "destructive",
+      });
+      return;
+    }
 
     // Actualizar estado en la cola
     const updatedQueue = turnQueue.map((turn) =>
@@ -501,6 +531,23 @@ export default function AdminDashboard() {
         : turn,
     );
     setTurnQueue(updatedQueue);
+
+    // Actualizar en localStorage
+    const today = new Date();
+    const dateKey = format(today, "yyyy-MM-dd");
+    const savedTurnos = localStorage.getItem("publicAudienceTurnos");
+    const allTurnos = savedTurnos ? JSON.parse(savedTurnos) : {};
+
+    if (allTurnos[dateKey] && allTurnos[dateKey][currentTurnActive.slotId]) {
+      allTurnos[dateKey][currentTurnActive.slotId].status = "completado";
+      allTurnos[dateKey][currentTurnActive.slotId].completedAt = new Date().toISOString();
+      localStorage.setItem("publicAudienceTurnos", JSON.stringify(allTurnos));
+    }
+
+    toast({
+      title: "✅ Turno completado",
+      description: `Turno ${currentTurnActive.time} - ${currentTurnActive.ciudadano} ha sido completado`,
+    });
 
     setCurrentTurnActive(null);
 
