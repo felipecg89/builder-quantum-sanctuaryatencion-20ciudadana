@@ -610,9 +610,9 @@ export default function AudienceHistory() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      {/* Header */}
-      <header className="bg-white border-b border-slate-200 shadow-sm">
+    <div className="min-h-screen bg-white">
+      {/* Header - Estilo Telmex */}
+      <header className="bg-[#0052CC] border-b-4 border-[#DC2626] shadow-xl">
         <div className="max-w-7xl mx-auto px-2 sm:px-4 py-4 sm:py-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="flex items-center space-x-3 sm:space-x-4">
