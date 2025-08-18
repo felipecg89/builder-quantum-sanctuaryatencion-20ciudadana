@@ -472,7 +472,7 @@ export default function AdminDashboard() {
           status: "pendiente"
         },
         "slot-1100": {
-          ciudadano: "Laura Mart��nez",
+          ciudadano: "Laura Martínez",
           telefono: "55 1111 2222",
           motivo: "Consulta de trámites",
           status: "pendiente"
@@ -1759,24 +1759,51 @@ export default function AdminDashboard() {
                     </CardHeader>
                     <CardContent className="p-4">
                       {/* Turno Actual */}
-                      {currentTurnActive && (
-                        <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4 mb-4">
-                          <h4 className="font-bold text-green-800 mb-2">🔔 TURNO ACTIVO</h4>
-                          <div className="space-y-1">
-                            <p className="text-sm">
-                              <strong>Hora:</strong> {currentTurnActive.time}
-                            </p>
-                            <p className="text-sm">
-                              <strong>Ciudadano:</strong> {currentTurnActive.ciudadano}
-                            </p>
-                            <p className="text-sm">
-                              <strong>Teléfono:</strong> {currentTurnActive.telefono}
-                            </p>
+                      {currentTurnActive ? (
+                        <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4 mb-4 animate-pulse">
+                          <div className="flex items-center justify-between mb-2">
+                            <h4 className="font-bold text-green-800 flex items-center gap-2">
+                              🔔 TURNO ACTIVO
+                              <span className="w-3 h-3 bg-green-500 rounded-full animate-ping"></span>
+                            </h4>
+                            <Badge className="bg-green-500 text-white font-bold">
+                              EN ATENCIÓN
+                            </Badge>
                           </div>
-                          <Button size="sm" className="mt-3 bg-green-600 hover:bg-green-700" onClick={completeTurn}>
-                            <CheckCircle className="w-4 h-4 mr-2" />
-                            Completar Turno
-                          </Button>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                            <div>
+                              <p className="text-sm">
+                                <strong>🕐 Hora:</strong> {currentTurnActive.time}
+                              </p>
+                              <p className="text-sm">
+                                <strong>👤 Ciudadano:</strong> {currentTurnActive.ciudadano}
+                              </p>
+                            </div>
+                            <div>
+                              <p className="text-sm">
+                                <strong>📞 Teléfono:</strong> {currentTurnActive.telefono}
+                              </p>
+                              <p className="text-sm">
+                                <strong>📋 Motivo:</strong> {currentTurnActive.motivo}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="flex gap-2">
+                            <Button size="sm" className="flex-1 bg-green-600 hover:bg-green-700" onClick={completeTurn}>
+                              <CheckCircle className="w-4 h-4 mr-2" />
+                              Completar Turno
+                            </Button>
+                            <Button size="sm" variant="outline" className="text-blue-600 hover:text-blue-700">
+                              <Phone className="w-4 h-4 mr-2" />
+                              Llamar
+                            </Button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 mb-4 text-center">
+                          <Clock className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                          <h4 className="font-bold text-gray-600">No hay turno activo</h4>
+                          <p className="text-sm text-gray-500">Haz clic en "Llamar Siguiente Turno" para comenzar</p>
                         </div>
                       )}
 
