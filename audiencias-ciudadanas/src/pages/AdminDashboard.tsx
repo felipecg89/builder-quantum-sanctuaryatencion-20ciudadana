@@ -813,8 +813,8 @@ export default function AdminDashboard() {
               className="flex flex-col items-center gap-2 min-h-[80px] px-4 py-3 rounded-xl border-2 border-gray-200 data-[state=active]:bg-indigo-500 data-[state=active]:text-white data-[state=active]:border-indigo-300 data-[state=active]:shadow-xl hover:bg-indigo-50 hover:border-indigo-200 hover:scale-105 transition-all duration-300 group bg-white shadow-sm"
             >
               <div className="relative">
-                <div className="w-8 h-8 rounded-full bg-indigo-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
-                  <UserPlus className="w-4 h-4 text-indigo-600 group-data-[state=active]:text-white transition-all" />
+                <div className="w-10 h-10 rounded-full bg-indigo-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300 shadow-sm">
+                  <UserPlus className="w-5 h-5 text-indigo-600 group-data-[state=active]:text-white transition-all" />
                 </div>
                 <span className="absolute -top-1 -right-1 bg-indigo-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
                   {staff.filter((s) => s.status === "activo").length}
