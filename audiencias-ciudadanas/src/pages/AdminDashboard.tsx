@@ -740,50 +740,319 @@ export default function AdminDashboard() {
           </Card>
         </div>
 
-        {/* Panel principal simplificado para la demo */}
-        <Card className="bg-white rounded-xl shadow-xl border-0">
-          <CardHeader className="bg-[#0052CC] text-white">
-            <CardTitle className="text-xl font-bold">
-              🏛️ Panel Administrativo Municipal
-            </CardTitle>
-            <CardDescription className="text-white/90">
-              Sistema de gestión y control de audiencias ciudadanas
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="p-8">
-            <div className="text-center">
-              <div className="w-20 h-20 bg-[#0052CC] rounded-full flex items-center justify-center mx-auto mb-4">
-                <Settings className="w-10 h-10 text-white" />
+        <Tabs
+          value={activeTab}
+          onValueChange={setActiveTab}
+          className="space-y-8"
+        >
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 min-h-[120px] p-6 bg-white rounded-2xl border-4 border-[#0052CC] shadow-2xl">
+            <TabsTrigger
+              value="audiencias"
+              className="flex flex-col items-center gap-2 min-h-[90px] px-3 py-3 mx-1 my-1 rounded-xl border-2 border-gray-200 data-[state=active]:bg-[#0052CC] data-[state=active]:text-white data-[state=active]:border-[#0052CC] data-[state=active]:shadow-xl hover:bg-gray-50 hover:border-[#0052CC] transition-all duration-300 group"
+            >
+              <div className="relative">
+                <div className="w-10 h-10 rounded-full bg-gray-100 group-data-[state=active]:bg-white flex items-center justify-center transition-all duration-300">
+                  <MessageSquare className="w-5 h-5 text-[#0052CC] group-data-[state=active]:text-[#0052CC] transition-all" />
+                </div>
+                {audiences.filter((a) => a.status === "pendiente").length > 0 && (
+                  <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                    {audiences.filter((a) => a.status === "pendiente").length}
+                  </span>
+                )}
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">
-                Panel Administrativo Funcionando
-              </h3>
-              <p className="text-gray-600 mb-6">
-                El sistema de administración está operativo y listo para
-                gestionar las audiencias municipales.
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <MessageSquare className="w-8 h-8 text-[#0052CC] mx-auto mb-2" />
-                  <h4 className="font-semibold">Audiencias</h4>
-                  <p className="text-sm text-gray-600">Gestión completa</p>
+              <span className="text-xs font-black tracking-wide group-data-[state=active]:text-white text-gray-700 text-center">
+                AUDIENCIAS
+              </span>
+            </TabsTrigger>
+
+            <TabsTrigger
+              value="ciudadanos"
+              className="flex flex-col items-center gap-3 min-h-[100px] px-4 py-4 mx-1 my-1 rounded-2xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-purple-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:border-purple-300 data-[state=active]:shadow-2xl hover:bg-purple-50/80 hover:border-purple-200 hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group backdrop-blur-sm"
+            >
+              <div className="relative">
+                <div className="w-12 h-12 rounded-full bg-purple-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300 shadow-lg group-hover:shadow-xl group-hover:scale-110">
+                  <Users className="w-6 h-6 text-purple-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
                 </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <Users className="w-8 h-8 text-[#0052CC] mx-auto mb-2" />
-                  <h4 className="font-semibold">Ciudadanos</h4>
-                  <p className="text-sm text-gray-600">Control de usuarios</p>
+                <span className="absolute top-0 right-0 bg-purple-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                  {citizens.length}
+                </span>
+              </div>
+              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
+                👥 Ciudadanos
+              </span>
+            </TabsTrigger>
+
+            <TabsTrigger
+              value="expedientes"
+              className="flex flex-col items-center gap-2 h-18 px-3 py-2 mx-1 my-1 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-amber-500 data-[state=active]:to-amber-600 data-[state=active]:text-white data-[state=active]:border-amber-300 data-[state=active]:shadow-xl hover:bg-amber-50/80 hover:border-amber-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+            >
+              <div className="relative">
+                <div className="w-10 h-10 rounded-full bg-amber-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
+                  <FileText className="w-5 h-5 text-amber-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
                 </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <BarChart3 className="w-8 h-8 text-[#0052CC] mx-auto mb-2" />
-                  <h4 className="font-semibold">Reportes</h4>
-                  <p className="text-sm text-gray-600">
-                    Estadísticas detalladas
+                <span className="absolute top-0 right-0 bg-amber-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                  {citizens.reduce((total, citizen) => total + citizen.expediente.requests.length, 0)}
+                </span>
+              </div>
+              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
+                📁 Expedientes
+              </span>
+            </TabsTrigger>
+
+            <TabsTrigger
+              value="personal"
+              className="flex flex-col items-center gap-2 h-18 px-3 py-2 mx-1 my-1 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-indigo-500 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:border-indigo-300 data-[state=active]:shadow-xl hover:bg-indigo-50/80 hover:border-indigo-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+            >
+              <div className="relative">
+                <div className="w-10 h-10 rounded-full bg-indigo-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
+                  <UserPlus className="w-5 h-5 text-indigo-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
+                </div>
+                <span className="absolute top-0 right-0 bg-indigo-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                  {staff.filter((s) => s.status === "activo").length}
+                </span>
+              </div>
+              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
+                👨‍💼 Personal
+              </span>
+            </TabsTrigger>
+
+            <TabsTrigger
+              value="configuracion"
+              className="flex flex-col items-center gap-2 h-18 px-3 py-2 mx-1 my-1 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-emerald-500 data-[state=active]:to-emerald-600 data-[state=active]:text-white data-[state=active]:border-emerald-300 data-[state=active]:shadow-xl hover:bg-emerald-50/80 hover:border-emerald-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+            >
+              <div className="relative">
+                <div className="w-10 h-10 rounded-full bg-emerald-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
+                  <Wrench className="w-5 h-5 text-emerald-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
+                </div>
+                <span className="absolute top-0 right-0 bg-emerald-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                  {audienceTypes.filter((t) => t.active).length}
+                </span>
+              </div>
+              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
+                ⚙️ Configuración
+              </span>
+            </TabsTrigger>
+
+            <TabsTrigger
+              value="turnos"
+              className="flex flex-col items-center gap-2 h-18 px-3 py-2 mx-1 my-1 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-green-500 data-[state=active]:to-green-600 data-[state=active]:text-white data-[state=active]:border-green-300 data-[state=active]:shadow-xl hover:bg-green-50/80 hover:border-green-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+            >
+              <div className="relative">
+                <div className="w-10 h-10 rounded-full bg-green-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
+                  <Clock className="w-5 h-5 text-green-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
+                </div>
+                <span className="absolute top-0 right-0 bg-green-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                  {publicAudienceDates.length}
+                </span>
+              </div>
+              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
+                🕐 Turnos
+              </span>
+            </TabsTrigger>
+
+            <TabsTrigger
+              value="reportes"
+              className="flex flex-col items-center gap-2 h-18 px-3 py-2 mx-1 my-1 rounded-xl border-2 border-transparent data-[state=active]:bg-gradient-to-br data-[state=active]:from-rose-500 data-[state=active]:to-rose-600 data-[state=active]:text-white data-[state=active]:border-rose-300 data-[state=active]:shadow-xl hover:bg-rose-50/80 hover:border-rose-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+            >
+              <div className="relative">
+                <div className="w-10 h-10 rounded-full bg-rose-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
+                  <BarChart3 className="w-5 h-5 text-rose-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
+                </div>
+                <div className="absolute top-0 right-0 bg-rose-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                  ✓
+                </div>
+              </div>
+              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
+                📊 Reportes
+              </span>
+            </TabsTrigger>
+          </TabsList>
+
+          {/* Gestión de Audiencias */}
+          <TabsContent value="audiencias">
+            <Card>
+              <CardHeader>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <CardTitle>Gestión de Audiencias</CardTitle>
+                    <CardDescription>
+                      Administra las solicitudes de audiencia de los ciudadanos
+                    </CardDescription>
+                  </div>
+                  <Button>
+                    <Plus className="w-4 h-4 mr-2" />
+                    Nueva Audiencia
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-12">
+                  <MessageSquare className="w-12 h-12 text-slate-300 mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold text-slate-600 mb-2">
+                    Sistema de Gestión de Audiencias
+                  </h3>
+                  <p className="text-slate-500">
+                    Aquí puedes gestionar todas las solicitudes de audiencia, asignar responsables y dar seguimiento.
                   </p>
                 </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Gestión de Ciudadanos */}
+          <TabsContent value="ciudadanos">
+            <Card>
+              <CardHeader>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <CardTitle>Gestión de Ciudadanos</CardTitle>
+                    <CardDescription>
+                      Administra los usuarios ciudadanos del sistema
+                    </CardDescription>
+                  </div>
+                  <Button>
+                    <Plus className="w-4 h-4 mr-2" />
+                    Nuevo Ciudadano
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-12">
+                  <Users className="w-12 h-12 text-slate-300 mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold text-slate-600 mb-2">
+                    Base de Datos de Ciudadanos
+                  </h3>
+                  <p className="text-slate-500">
+                    Gestiona la información de los ciudadanos registrados y sus expedientes.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Expedientes */}
+          <TabsContent value="expedientes">
+            <Card>
+              <CardHeader>
+                <CardTitle>Expedientes de Ciudadanos</CardTitle>
+                <CardDescription>
+                  Historial completo de solicitudes y resultados por ciudadano
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-12">
+                  <FileText className="w-12 h-12 text-slate-300 mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold text-slate-600 mb-2">
+                    Archivo de Expedientes
+                  </h3>
+                  <p className="text-slate-500">
+                    Consulta el historial completo de cada ciudadano y sus solicitudes.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Personal */}
+          <TabsContent value="personal">
+            <Card>
+              <CardHeader>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <CardTitle>Personal de Apoyo</CardTitle>
+                    <CardDescription>
+                      Gestiona el personal para asignación de audiencias
+                    </CardDescription>
+                  </div>
+                  <Button>
+                    <Plus className="w-4 h-4 mr-2" />
+                    Agregar Personal
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-12">
+                  <UserPlus className="w-12 h-12 text-slate-300 mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold text-slate-600 mb-2">
+                    Gestión de Personal
+                  </h3>
+                  <p className="text-slate-500">
+                    Administra el personal disponible para atender las audiencias ciudadanas.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Configuración */}
+          <TabsContent value="configuracion">
+            <Card>
+              <CardHeader>
+                <CardTitle>Configuración del Sistema</CardTitle>
+                <CardDescription>
+                  Administra las configuraciones y tipos de audiencia
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-12">
+                  <Wrench className="w-12 h-12 text-slate-300 mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold text-slate-600 mb-2">
+                    Panel de Configuración
+                  </h3>
+                  <p className="text-slate-500">
+                    Configura tipos de audiencia, categorías y parámetros del sistema.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Turnos */}
+          <TabsContent value="turnos">
+            <Card>
+              <CardHeader>
+                <CardTitle>Gestión de Turnos - Viernes</CardTitle>
+                <CardDescription>
+                  Administra los turnos para audiencias públicas de los viernes
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-12">
+                  <Clock className="w-12 h-12 text-slate-300 mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold text-slate-600 mb-2">
+                    Sistema de Turnos
+                  </h3>
+                  <p className="text-slate-500">
+                    Gestiona las citas y turnos para las audiencias públicas de los viernes.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Reportes */}
+          <TabsContent value="reportes">
+            <Card>
+              <CardHeader>
+                <CardTitle>Reportes y Estadísticas</CardTitle>
+                <CardDescription>
+                  Analiza el rendimiento y estadísticas del sistema
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-12">
+                  <BarChart3 className="w-12 h-12 text-slate-300 mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold text-slate-600 mb-2">
+                    Centro de Reportes
+                  </h3>
+                  <p className="text-slate-500">
+                    Genera reportes detallados y estadísticas del sistema de audiencias.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
