@@ -39,9 +39,32 @@ export default function Login() {
       // Store user session (in a real app, this would be handled by proper auth)
       localStorage.setItem(
         "user",
-        JSON.stringify({ phone, authenticated: true }),
+        JSON.stringify({
+          phone,
+          name: "María González",
+          authenticated: true
+        }),
       );
       navigate("/dashboard");
+    }, 1000);
+  };
+
+  const handleDirectToTurnos = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    // Simulate authentication for direct access to turnos
+    setTimeout(() => {
+      // Store user session
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          phone,
+          name: "María González",
+          authenticated: true
+        }),
+      );
+      navigate("/turnos");
     }, 1000);
   };
 
