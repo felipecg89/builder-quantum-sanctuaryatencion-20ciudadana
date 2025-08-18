@@ -796,8 +796,8 @@ export default function AdminDashboard() {
               className="flex flex-col items-center gap-2 min-h-[80px] px-4 py-3 rounded-xl border-2 border-gray-200 data-[state=active]:bg-amber-500 data-[state=active]:text-white data-[state=active]:border-amber-300 data-[state=active]:shadow-xl hover:bg-amber-50 hover:border-amber-200 hover:scale-105 transition-all duration-300 group bg-white shadow-sm"
             >
               <div className="relative">
-                <div className="w-8 h-8 rounded-full bg-amber-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
-                  <FileText className="w-4 h-4 text-amber-600 group-data-[state=active]:text-white transition-all" />
+                <div className="w-10 h-10 rounded-full bg-amber-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300 shadow-sm">
+                  <FileText className="w-5 h-5 text-amber-600 group-data-[state=active]:text-white transition-all" />
                 </div>
                 <span className="absolute -top-1 -right-1 bg-amber-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
                   {citizens.reduce((total, citizen) => total + citizen.expediente.requests.length, 0)}
@@ -810,7 +810,7 @@ export default function AdminDashboard() {
 
             <TabsTrigger
               value="personal"
-              className="flex flex-col items-center gap-1 min-h-[60px] px-3 py-2 mx-0 rounded-lg border border-transparent data-[state=active]:bg-indigo-500 data-[state=active]:text-white data-[state=active]:border-indigo-300 data-[state=active]:shadow-lg hover:bg-indigo-50 hover:border-indigo-200 transition-all duration-300 group"
+              className="flex flex-col items-center gap-2 min-h-[80px] px-4 py-3 rounded-xl border-2 border-gray-200 data-[state=active]:bg-indigo-500 data-[state=active]:text-white data-[state=active]:border-indigo-300 data-[state=active]:shadow-xl hover:bg-indigo-50 hover:border-indigo-200 hover:scale-105 transition-all duration-300 group bg-white shadow-sm"
             >
               <div className="relative">
                 <div className="w-8 h-8 rounded-full bg-indigo-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
