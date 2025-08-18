@@ -614,7 +614,7 @@ export default function AdminDashboard() {
             </div>
             <div>
               <h1 className="text-3xl font-black text-white flex items-center gap-3">
-                🏛️ PANEL ADMINISTRATIVO
+                🏛�� PANEL ADMINISTRATIVO
               </h1>
               <p className="text-sm text-white/90 flex items-center gap-2 font-medium">
                 <Settings className="w-4 h-4" />
@@ -884,27 +884,148 @@ export default function AdminDashboard() {
               <CardHeader>
                 <div className="flex justify-between items-center">
                   <div>
-                    <CardTitle>Gestión de Audiencias</CardTitle>
+                    <CardTitle className="text-2xl font-bold text-[#0052CC]">
+                      📋 Gestión de Audiencias
+                    </CardTitle>
                     <CardDescription>
                       Administra las solicitudes de audiencia de los ciudadanos
                     </CardDescription>
                   </div>
-                  <Button>
+                  <Button className="bg-[#DC2626] hover:bg-red-700 text-white">
                     <Plus className="w-4 h-4 mr-2" />
                     Nueva Audiencia
                   </Button>
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-center py-12">
-                  <MessageSquare className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-slate-600 mb-2">
-                    Sistema de Gestión de Audiencias
-                  </h3>
-                  <p className="text-slate-500">
-                    Aquí puedes gestionar todas las solicitudes de audiencia, asignar responsables y dar seguimiento.
-                  </p>
+                {/* Resumen de Gestión */}
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                  <Card className="bg-gradient-to-r from-yellow-50 to-yellow-100 border-yellow-200">
+                    <CardContent className="p-4 text-center">
+                      <Clock className="w-8 h-8 text-yellow-600 mx-auto mb-2" />
+                      <h3 className="font-bold text-yellow-800">
+                        {audiences.filter((a) => a.status === "pendiente").length}
+                      </h3>
+                      <p className="text-sm text-yellow-700">Pendientes</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-gradient-to-r from-blue-50 to-blue-100 border-blue-200">
+                    <CardContent className="p-4 text-center">
+                      <AlertCircle className="w-8 h-8 text-blue-600 mx-auto mb-2" />
+                      <h3 className="font-bold text-blue-800">
+                        {audiences.filter((a) => a.status === "en_proceso").length}
+                      </h3>
+                      <p className="text-sm text-blue-700">En Proceso</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-gradient-to-r from-green-50 to-green-100 border-green-200">
+                    <CardContent className="p-4 text-center">
+                      <CheckCircle className="w-8 h-8 text-green-600 mx-auto mb-2" />
+                      <h3 className="font-bold text-green-800">
+                        {audiences.filter((a) => a.status === "completada").length}
+                      </h3>
+                      <p className="text-sm text-green-700">Completadas</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-gradient-to-r from-red-50 to-red-100 border-red-200">
+                    <CardContent className="p-4 text-center">
+                      <XCircle className="w-8 h-8 text-red-600 mx-auto mb-2" />
+                      <h3 className="font-bold text-red-800">
+                        {audiences.filter((a) => a.status === "rechazada").length}
+                      </h3>
+                      <p className="text-sm text-red-700">Rechazadas</p>
+                    </CardContent>
+                  </Card>
                 </div>
+
+                {/* Filtros */}
+                <div className="flex flex-col md:flex-row gap-4 mb-6 p-4 bg-gray-50 rounded-lg">
+                  <div className="flex-1">
+                    <div className="relative">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                      <Input
+                        placeholder="Buscar por ciudadano, ID o descripción..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="pl-10"
+                      />
+                    </div>
+                  </div>
+                  <Select value={statusFilter} onValueChange={setStatusFilter}>
+                    <SelectTrigger className="w-full md:w-48">
+                      <SelectValue placeholder="Filtrar por estado" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">Todos los estados</SelectItem>
+                      <SelectItem value="pendiente">Pendientes</SelectItem>
+                      <SelectItem value="en_proceso">En Proceso</SelectItem>
+                      <SelectItem value="completada">Completadas</SelectItem>
+                      <SelectItem value="rechazada">Rechazadas</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Lista de Audiencias */}
+                <div className="space-y-4">
+                  {filteredAudiences.slice(0, 5).map((audience) => (
+                    <Card key={audience.id} className="hover:shadow-md transition-shadow">
+                      <CardContent className="p-4">
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+                          <div className="lg:col-span-6">
+                            <div className="flex items-center gap-3 mb-2">
+                              <Badge className="bg-[#0052CC] text-white font-bold">
+                                {audience.id}
+                              </Badge>
+                              <Badge className={PRIORITY_CONFIG[audience.priority as keyof typeof PRIORITY_CONFIG].color}>
+                                {PRIORITY_CONFIG[audience.priority as keyof typeof PRIORITY_CONFIG].name}
+                              </Badge>
+                            </div>
+                            <h4 className="font-semibold text-lg text-slate-800">
+                              {audience.citizen}
+                            </h4>
+                            <p className="text-sm text-slate-600">{audience.phone}</p>
+                            <p className="text-sm text-slate-700 mt-2">{audience.description}</p>
+                          </div>
+
+                          <div className="lg:col-span-3">
+                            <Badge className={STATUS_CONFIG[audience.status as keyof typeof STATUS_CONFIG].color}>
+                              {STATUS_CONFIG[audience.status as keyof typeof STATUS_CONFIG].name}
+                            </Badge>
+                            <p className="text-xs text-slate-500 mt-1">
+                              {format(audience.requestDate, "dd/MM/yyyy", { locale: es })}
+                            </p>
+                          </div>
+
+                          <div className="lg:col-span-3 flex gap-2">
+                            <Button size="sm" variant="outline" onClick={() => handleViewDetails(audience)}>
+                              <Eye className="w-4 h-4 mr-1" />
+                              Ver
+                            </Button>
+                            <Button size="sm" className="bg-[#0052CC] hover:bg-blue-700" onClick={() => handleManage(audience)}>
+                              <Edit className="w-4 h-4 mr-1" />
+                              Gestionar
+                            </Button>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+
+                {filteredAudiences.length === 0 && (
+                  <div className="text-center py-12">
+                    <Search className="w-12 h-12 text-slate-300 mx-auto mb-4" />
+                    <h3 className="text-lg font-semibold text-slate-600 mb-2">
+                      No se encontraron audiencias
+                    </h3>
+                    <p className="text-slate-500">
+                      Ajusta los filtros para ver más resultados
+                    </p>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </TabsContent>
