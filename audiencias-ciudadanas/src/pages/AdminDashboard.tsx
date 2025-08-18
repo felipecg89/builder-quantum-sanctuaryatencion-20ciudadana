@@ -767,7 +767,7 @@ export default function AdminDashboard() {
 
             <TabsTrigger
               value="ciudadanos"
-              className="flex flex-col items-center gap-1 min-h-[60px] px-2 py-2 mx-1 rounded-lg border border-transparent data-[state=active]:bg-purple-500 data-[state=active]:text-white data-[state=active]:border-purple-300 data-[state=active]:shadow-lg hover:bg-purple-50 hover:border-purple-200 transition-all duration-300 group"
+              className="flex flex-col items-center gap-1 min-h-[60px] px-3 py-2 mx-0 rounded-lg border border-transparent data-[state=active]:bg-purple-500 data-[state=active]:text-white data-[state=active]:border-purple-300 data-[state=active]:shadow-lg hover:bg-purple-50 hover:border-purple-200 transition-all duration-300 group"
             >
               <div className="relative">
                 <div className="w-8 h-8 rounded-full bg-purple-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
