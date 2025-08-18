@@ -1780,21 +1780,208 @@ export default function AdminDashboard() {
           <TabsContent value="reportes">
             <Card>
               <CardHeader>
-                <CardTitle>Reportes y Estadísticas</CardTitle>
-                <CardDescription>
-                  Analiza el rendimiento y estadísticas del sistema
-                </CardDescription>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <CardTitle className="text-2xl font-bold text-[#0052CC]">
+                      📊 Reportes y Estadísticas
+                    </CardTitle>
+                    <CardDescription>
+                      Analiza el rendimiento y estadísticas del sistema
+                    </CardDescription>
+                  </div>
+                  <Button className="bg-[#DC2626] hover:bg-red-700 text-white">
+                    <Send className="w-4 h-4 mr-2" />
+                    Generar Reporte
+                  </Button>
+                </div>
               </CardHeader>
               <CardContent>
-                <div className="text-center py-12">
-                  <BarChart3 className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-slate-600 mb-2">
-                    Centro de Reportes
-                  </h3>
-                  <p className="text-slate-500">
-                    Genera reportes detallados y estadísticas del sistema de audiencias.
-                  </p>
+                {/* Métricas Principales */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                  <Card className="bg-gradient-to-r from-rose-50 to-rose-100 border-rose-200">
+                    <CardContent className="p-4 text-center">
+                      <BarChart3 className="w-8 h-8 text-rose-600 mx-auto mb-2" />
+                      <h3 className="font-bold text-rose-800 text-xl">{mockAdminData.stats.totalAudiences}</h3>
+                      <p className="text-sm text-rose-700">Total Audiencias</p>
+                      <p className="text-xs text-rose-600 mt-1">+12% este mes</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-gradient-to-r from-blue-50 to-blue-100 border-blue-200">
+                    <CardContent className="p-4 text-center">
+                      <TrendingUp className="w-8 h-8 text-blue-600 mx-auto mb-2" />
+                      <h3 className="font-bold text-blue-800 text-xl">{mockAdminData.stats.avgResponseTime}</h3>
+                      <p className="text-sm text-blue-700">Tiempo Promedio</p>
+                      <p className="text-xs text-blue-600 mt-1">de respuesta</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-gradient-to-r from-green-50 to-green-100 border-green-200">
+                    <CardContent className="p-4 text-center">
+                      <CheckCircle className="w-8 h-8 text-green-600 mx-auto mb-2" />
+                      <h3 className="font-bold text-green-800 text-xl">{mockAdminData.stats.satisfactionRate}</h3>
+                      <p className="text-sm text-green-700">Satisfacción</p>
+                      <p className="text-xs text-green-600 mt-1">ciudadana</p>
+                    </CardContent>
+                  </Card>
                 </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Distribución por Categorías */}
+                  <Card className="border-2 border-purple-200">
+                    <CardHeader className="bg-purple-50">
+                      <CardTitle className="text-lg font-bold text-purple-800 flex items-center gap-2">
+                        <BarChart3 className="w-5 h-5" />
+                        Distribución por Categorías
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-4">
+                      <div className="space-y-4">
+                        {Object.entries(CATEGORY_CONFIG).map(([key, config]) => {
+                          const count = audiences.filter(a => a.category === key).length;
+                          const percentage = audiences.length > 0 ? Math.round((count / audiences.length) * 100) : 0;
+                          return (
+                            <div key={key}>
+                              <div className="flex justify-between items-center mb-2">
+                                <span className="text-sm font-medium">{config.name}</span>
+                                <span className="text-sm font-bold">{count} ({percentage}%)</span>
+                              </div>
+                              <div className="w-full bg-gray-200 rounded-full h-2">
+                                <div
+                                  className="bg-purple-600 h-2 rounded-full transition-all duration-300"
+                                  style={{ width: `${percentage}%` }}
+                                ></div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Estados de Audiencias */}
+                  <Card className="border-2 border-blue-200">
+                    <CardHeader className="bg-blue-50">
+                      <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
+                        <Activity className="w-5 h-5" />
+                        Estados de Audiencias
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-4">
+                      <div className="space-y-4">
+                        {Object.entries(STATUS_CONFIG).map(([key, config]) => {
+                          const count = audiences.filter(a => a.status === key).length;
+                          const percentage = audiences.length > 0 ? Math.round((count / audiences.length) * 100) : 0;
+                          return (
+                            <div key={key} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                              <div className="flex items-center gap-3">
+                                <config.icon className="w-5 h-5 text-slate-600" />
+                                <span className="font-medium">{config.name}</span>
+                              </div>
+                              <div className="text-right">
+                                <span className="font-bold text-lg">{count}</span>
+                                <p className="text-xs text-slate-500">{percentage}%</p>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Rendimiento del Personal */}
+                  <Card className="border-2 border-indigo-200">
+                    <CardHeader className="bg-indigo-50">
+                      <CardTitle className="text-lg font-bold text-indigo-800 flex items-center gap-2">
+                        <Users className="w-5 h-5" />
+                        Rendimiento del Personal
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-4">
+                      <div className="space-y-3">
+                        {staff.slice(0, 4).map((member) => (
+                          <div key={member.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <div>
+                              <h4 className="font-semibold text-slate-800">{member.name}</h4>
+                              <p className="text-sm text-slate-600">{member.department}</p>
+                            </div>
+                            <div className="text-right">
+                              <span className="font-bold text-indigo-600">{member.activeAssignments}</span>
+                              <p className="text-xs text-slate-500">asignaciones</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Resumen Mensual */}
+                  <Card className="border-2 border-green-200">
+                    <CardHeader className="bg-green-50">
+                      <CardTitle className="text-lg font-bold text-green-800 flex items-center gap-2">
+                        <Calendar className="w-5 h-5" />
+                        Resumen del Mes
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-4">
+                      <div className="space-y-4">
+                        <div className="bg-white border border-gray-200 rounded-lg p-3">
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm font-medium">Audiencias completadas</span>
+                            <span className="font-bold text-green-600">{mockAdminData.stats.completedThisMonth}</span>
+                          </div>
+                        </div>
+
+                        <div className="bg-white border border-gray-200 rounded-lg p-3">
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm font-medium">Ciudadanos atendidos</span>
+                            <span className="font-bold text-blue-600">{citizens.length}</span>
+                          </div>
+                        </div>
+
+                        <div className="bg-white border border-gray-200 rounded-lg p-3">
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm font-medium">Audiencias de viernes</span>
+                            <span className="font-bold text-purple-600">{publicAudienceDates.length}</span>
+                          </div>
+                        </div>
+
+                        <div className="bg-white border border-gray-200 rounded-lg p-3">
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm font-medium">Personal activo</span>
+                            <span className="font-bold text-indigo-600">{staff.filter(s => s.status === "activo").length}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Acciones de Reportes */}
+                <Card className="mt-6 border-2 border-gray-200">
+                  <CardHeader className="bg-gray-50">
+                    <CardTitle className="text-lg font-bold text-gray-800 flex items-center gap-2">
+                      <Send className="w-5 h-5" />
+                      Generar Reportes
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                        <BarChart3 className="w-4 h-4 mr-2" />
+                        Reporte Mensual
+                      </Button>
+                      <Button className="bg-green-600 hover:bg-green-700 text-white">
+                        <FileText className="w-4 h-4 mr-2" />
+                        Export CSV
+                      </Button>
+                      <Button className="bg-purple-600 hover:bg-purple-700 text-white">
+                        <Send className="w-4 h-4 mr-2" />
+                        Enviar por Email
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
               </CardContent>
             </Card>
           </TabsContent>
