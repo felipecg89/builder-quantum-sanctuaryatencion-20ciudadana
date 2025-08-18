@@ -755,7 +755,7 @@ export default function AdminDashboard() {
                   <MessageSquare className="w-4 h-4 text-[#0052CC] group-data-[state=active]:text-[#0052CC] transition-all" />
                 </div>
                 {audiences.filter((a) => a.status === "pendiente").length > 0 && (
-                  <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
                     {audiences.filter((a) => a.status === "pendiente").length}
                   </span>
                 )}
