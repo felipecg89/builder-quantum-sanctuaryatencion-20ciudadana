@@ -751,8 +751,8 @@ export default function AdminDashboard() {
               className="flex flex-col items-center gap-1 min-h-[60px] px-2 py-2 mx-1 rounded-lg border border-gray-200 data-[state=active]:bg-[#0052CC] data-[state=active]:text-white data-[state=active]:border-[#0052CC] data-[state=active]:shadow-lg hover:bg-gray-50 hover:border-[#0052CC] transition-all duration-300 group"
             >
               <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-gray-100 group-data-[state=active]:bg-white flex items-center justify-center transition-all duration-300">
-                  <MessageSquare className="w-5 h-5 text-[#0052CC] group-data-[state=active]:text-[#0052CC] transition-all" />
+                <div className="w-8 h-8 rounded-full bg-gray-100 group-data-[state=active]:bg-white flex items-center justify-center transition-all duration-300">
+                  <MessageSquare className="w-4 h-4 text-[#0052CC] group-data-[state=active]:text-[#0052CC] transition-all" />
                 </div>
                 {audiences.filter((a) => a.status === "pendiente").length > 0 && (
                   <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-lg border-2 border-white">
