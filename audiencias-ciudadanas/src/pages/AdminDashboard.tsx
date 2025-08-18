@@ -777,7 +777,7 @@ export default function AdminDashboard() {
                   {citizens.length}
                 </span>
               </div>
-              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
+              <span className="text-xs font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
                 👥 Ciudadanos
               </span>
             </TabsTrigger>
