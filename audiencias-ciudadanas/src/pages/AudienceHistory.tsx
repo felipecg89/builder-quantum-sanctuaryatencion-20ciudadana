@@ -188,6 +188,19 @@ const STATUS_CONFIG = {
   },
 };
 
+// Helper function para formatear fechas de manera segura
+const safeFormatDate = (date: any, formatStr: string = "dd/MM/yyyy", options: any = { locale: es }) => {
+  try {
+    if (!date) return "Fecha no disponible";
+    const dateObj = date instanceof Date ? date : new Date(date);
+    if (isNaN(dateObj.getTime())) return "Fecha inválida";
+    return format(dateObj, formatStr, options);
+  } catch (error) {
+    console.warn("Error formatting date:", error);
+    return "Fecha inválida";
+  }
+};
+
 export default function AudienceHistory() {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
