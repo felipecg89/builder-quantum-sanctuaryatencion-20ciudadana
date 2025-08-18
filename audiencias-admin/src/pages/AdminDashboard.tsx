@@ -653,90 +653,80 @@ export default function AdminDashboard() {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 py-8">
-        {/* Stats Cards - Mejorado con mejor espaciado */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 to-blue-100 hover:shadow-xl transition-all duration-300">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-blue-600">
-                    📋 Total Audiencias
-                  </p>
-                  <p className="text-3xl font-bold text-blue-800">
-                    {mockAdminData.stats.totalAudiences}
-                  </p>
-                </div>
-                <div className="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
-                  <FileText className="w-7 h-7 text-white" />
-                </div>
+        {/* Stats Cards - Estilo Telmex */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+          <Card className="bg-white rounded-xl shadow-xl border-0 overflow-hidden hover:shadow-2xl transition-all duration-300">
+            {/* Header azul estilo Telmex */}
+            <div className="bg-[#0052CC] p-4 text-center">
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-2">
+                <FileText className="w-6 h-6 text-[#0052CC]" />
               </div>
-              <div className="mt-3 flex items-center text-sm text-green-600 font-medium">
+              <p className="text-white font-bold text-sm">TOTAL</p>
+              <p className="text-white font-black text-2xl">{mockAdminData.stats.totalAudiences}</p>
+              <p className="text-white/90 font-medium text-xs">Audiencias</p>
+            </div>
+            {/* Contenido blanco */}
+            <CardContent className="p-4 text-center">
+              <div className="flex items-center justify-center text-sm text-green-600 font-bold">
                 <ArrowUp className="w-4 h-4 mr-1" />
                 +12% este mes
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-lg bg-gradient-to-br from-yellow-50 to-orange-100 hover:shadow-xl transition-all duration-300">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-orange-600">
-                    ⏰ Pendientes
-                  </p>
-                  <p className="text-3xl font-bold text-orange-800">
-                    {mockAdminData.stats.pendingAudiences}
-                  </p>
-                </div>
-                <div className="w-14 h-14 bg-orange-600 rounded-2xl flex items-center justify-center shadow-lg">
-                  <Clock className="w-7 h-7 text-white" />
-                </div>
+          <Card className="bg-white rounded-xl shadow-xl border-0 overflow-hidden hover:shadow-2xl transition-all duration-300">
+            {/* Header azul estilo Telmex */}
+            <div className="bg-[#0052CC] p-4 text-center">
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-2">
+                <Clock className="w-6 h-6 text-[#0052CC]" />
               </div>
-              <div className="mt-3 flex items-center text-sm text-red-600 font-medium">
+              <p className="text-white font-bold text-sm">PENDIENTES</p>
+              <p className="text-white font-black text-2xl">{mockAdminData.stats.pendingAudiences}</p>
+              <p className="text-white/90 font-medium text-xs">Audiencias</p>
+            </div>
+            {/* Sección roja para alerta */}
+            <div className="bg-[#DC2626] p-2 text-center">
+              <p className="text-white font-bold text-sm flex items-center justify-center">
                 <ArrowUp className="w-4 h-4 mr-1" />
                 +3 desde ayer
-              </div>
-            </CardContent>
+              </p>
+            </div>
           </Card>
 
-          <Card className="border-0 shadow-lg bg-gradient-to-br from-purple-50 to-indigo-100 hover:shadow-xl transition-all duration-300">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-purple-600">📅 Hoy</p>
-                  <p className="text-3xl font-bold text-purple-800">
-                    {mockAdminData.stats.todayAudiences}
-                  </p>
-                </div>
-                <div className="w-14 h-14 bg-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
-                  <Calendar className="w-7 h-7 text-white" />
-                </div>
+          <Card className="bg-white rounded-xl shadow-xl border-0 overflow-hidden hover:shadow-2xl transition-all duration-300">
+            {/* Header azul estilo Telmex */}
+            <div className="bg-[#0052CC] p-4 text-center">
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-2">
+                <Calendar className="w-6 h-6 text-[#0052CC]" />
               </div>
-              <div className="mt-3 flex items-center text-sm text-purple-600 font-medium">
+              <p className="text-white font-bold text-sm">HOY</p>
+              <p className="text-white font-black text-2xl">{mockAdminData.stats.todayAudiences}</p>
+              <p className="text-white/90 font-medium text-xs">Audiencias</p>
+            </div>
+            {/* Contenido blanco */}
+            <CardContent className="p-4 text-center">
+              <div className="flex items-center justify-center text-sm text-gray-600 font-bold">
                 <Activity className="w-4 h-4 mr-1" />
                 Programadas
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-lg bg-gradient-to-br from-green-50 to-emerald-100 hover:shadow-xl transition-all duration-300">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-green-600">
-                    ✅ Completadas
-                  </p>
-                  <p className="text-3xl font-bold text-green-800">
-                    {mockAdminData.stats.completedThisMonth}
-                  </p>
-                </div>
-                <div className="w-14 h-14 bg-green-600 rounded-2xl flex items-center justify-center shadow-lg">
-                  <CheckCircle className="w-7 h-7 text-white" />
-                </div>
+          <Card className="bg-white rounded-xl shadow-xl border-0 overflow-hidden hover:shadow-2xl transition-all duration-300">
+            {/* Header azul estilo Telmex */}
+            <div className="bg-[#0052CC] p-4 text-center">
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-2">
+                <CheckCircle className="w-6 h-6 text-[#0052CC]" />
               </div>
-              <div className="mt-3 flex items-center text-sm text-green-600 font-medium">
+              <p className="text-white font-bold text-sm">COMPLETADAS</p>
+              <p className="text-white font-black text-2xl">{mockAdminData.stats.completedThisMonth}</p>
+              <p className="text-white/90 font-medium text-xs">Este mes</p>
+            </div>
+            {/* Contenido blanco */}
+            <CardContent className="p-4 text-center">
+              <div className="flex items-center justify-center text-sm text-green-600 font-bold">
                 <TrendingUp className="w-4 h-4 mr-1" />
-                Este mes
+                Crecimiento
               </div>
             </CardContent>
           </Card>
