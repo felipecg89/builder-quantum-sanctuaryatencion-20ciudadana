@@ -852,11 +852,11 @@ export default function Dashboard() {
                     <p className="text-white font-bold text-sm">🏛️ ACCESO DIRECTO AL PRESIDENTE</p>
                   </div>
                   <CardContent className="p-6">
-                    <div className="space-y-2 text-xs text-green-600">
-                      <p>• Solo viernes de 9:00 AM a 12:00 PM</p>
-                      <p>• Consulta directa con el Presidente</p>
-                      <p>• Modalidad únicamente presencial</p>
-                      <p>• Duración: 15 minutos máximo</p>
+                    <div className="space-y-2 text-sm text-gray-700 font-medium">
+                      <p>⏰ Solo viernes de 9:00 AM a 12:00 PM</p>
+                      <p>👤 Consulta directa con el Presidente</p>
+                      <p>🏢 Modalidad únicamente presencial</p>
+                      <p>⏱️ Duración: 15 minutos máximo</p>
                     </div>
                   </CardContent>
                 </Card>
