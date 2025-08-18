@@ -93,18 +93,15 @@ export default function IndexNew() {
                 <>
                   <Button
                     asChild
-                    variant="outline"
-                    size="sm"
-                    className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                    className="bg-white text-[#0052CC] hover:bg-gray-100 font-bold px-6 py-2 rounded-lg shadow-lg border-2 border-[#0052CC]"
                   >
-                    <a href="/login">Iniciar Sesión</a>
+                    <a href="/login">INICIAR SESIÓN</a>
                   </Button>
                   <Button
                     asChild
-                    size="sm"
-                    className="bg-blue-600 hover:bg-blue-700"
+                    className="bg-[#DC2626] text-white hover:bg-red-700 font-bold px-6 py-2 rounded-lg shadow-lg"
                   >
-                    <a href="/register">Registrarse</a>
+                    <a href="/register">REGISTRARSE</a>
                   </Button>
                 </>
               )}
@@ -225,7 +222,7 @@ export default function IndexNew() {
               </span>
             </div>
             <h3 className="text-4xl sm:text-5xl font-black text-slate-800 mb-6">
-              ¿Cómo funciona?
+              ¿C��mo funciona?
             </h3>
             <p className="text-slate-600 text-xl max-w-2xl mx-auto">
               Proceso simple en 3 pasos para solicitar tu audiencia ciudadana
