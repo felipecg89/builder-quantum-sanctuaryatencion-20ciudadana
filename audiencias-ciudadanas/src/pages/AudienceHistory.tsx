@@ -421,18 +421,14 @@ export default function AudienceHistory() {
                         <Calendar className="w-4 h-4" />
                         <span>
                           Solicitada:{" "}
-                          {safeFormatDate(audience.requestDate, "dd/MM/yyyy", {
-                            locale: es,
-                          })}
+                          {safeFormatDate(audience.requestDate, "dd/MM/yyyy")}
                         </span>
                       </div>
                       <div className="flex items-center gap-2 text-slate-600">
                         <Clock className="w-4 h-4" />
                         <span>
                           Audiencia:{" "}
-                          {safeFormatDate(audience.audienceDate, "dd/MM/yyyy", {
-                            locale: es,
-                          })}
+                          {safeFormatDate(audience.audienceDate, "dd/MM/yyyy")}
                         </span>
                       </div>
                       <div className="flex items-center gap-2 text-slate-600">
@@ -876,18 +872,14 @@ export default function AudienceHistory() {
                             <Calendar className="w-4 h-4" />
                             <span>
                               Solicitada:{" "}
-                              {safeFormatDate(audience.requestDate, "dd/MM/yyyy", {
-                                locale: es,
-                              })}
+                              {safeFormatDate(audience.requestDate, "dd/MM/yyyy")}
                             </span>
                           </div>
                           <div className="flex items-center gap-2 text-slate-600">
                             <Clock className="w-4 h-4" />
                             <span>
                               Audiencia:{" "}
-                              {safeFormatDate(audience.audienceDate, "dd/MM/yyyy", {
-                                locale: es,
-                              })}
+                              {safeFormatDate(audience.audienceDate, "dd/MM/yyyy")}
                             </span>
                           </div>
                           <div className="flex items-center gap-2 text-slate-600">
@@ -1023,9 +1015,7 @@ export default function AudienceHistory() {
                   <div>
                     <p className="text-sm text-slate-600">Fecha de Solicitud</p>
                     <p className="font-medium">
-                      {safeFormatDate(selectedAudience.requestDate, "PPP", {
-                        locale: es,
-                      })}
+                      {safeFormatDate(selectedAudience.requestDate, "PPP")}
                     </p>
                   </div>
                   <div>
