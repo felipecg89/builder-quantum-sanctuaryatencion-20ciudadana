@@ -71,7 +71,7 @@ export default function Login() {
   const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!forgotPasswordPhone.trim()) {
-      alert("Por favor ingresa tu número de tel��fono");
+      alert("Por favor ingresa tu número de teléfono");
       return;
     }
 
@@ -121,11 +121,17 @@ export default function Login() {
             <CardDescription className="text-center">
               Inicia sesión para comenzar tu solicitud de audiencia
             </CardDescription>
-            <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-              <p className="text-blue-800 text-sm text-center">
-                🎯 <strong>Proceso rápido:</strong> Login → Solicitud →
-                Confirmación
-              </p>
+            <div className="mt-4 space-y-3">
+              <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                <p className="text-blue-800 text-sm text-center">
+                  🎯 <strong>Solicitudes generales:</strong> Login → Dashboard → Solicitar
+                </p>
+              </div>
+              <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+                <p className="text-red-800 text-sm text-center">
+                  🏛️ <strong>Audiencias con Presidente:</strong> Solo viernes 9:00-12:00 PM
+                </p>
+              </div>
             </div>
           </CardHeader>
           <CardContent>
