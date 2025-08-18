@@ -90,7 +90,7 @@ export default function Login() {
           <p className="text-white/90 mt-1 font-bold">SISTEMA DE AUDIENCIAS</p>
         </div>
 
-        <Card className="border-slate-200 shadow-lg">
+        <Card className="bg-white rounded-xl shadow-2xl border-0 overflow-hidden">
           <CardHeader className="space-y-1">
             <CardTitle className="text-xl text-center">
               Solicitar Audiencia
