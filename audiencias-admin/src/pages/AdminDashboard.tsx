@@ -605,48 +605,48 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Header */}
-      <header className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 border-b border-blue-900 shadow-xl">
+      {/* Header - Estilo Telmex */}
+      <header className="bg-[#0052CC] border-b-4 border-[#DC2626] shadow-2xl">
         <div className="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
           <div className="flex items-center space-x-4">
-            <div className="flex items-center justify-center w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl border border-white/30 shadow-lg">
-              <Building2 className="w-8 h-8 text-white" />
+            <div className="flex items-center justify-center w-16 h-16 bg-white rounded-xl shadow-xl">
+              <Building2 className="w-8 h-8 text-[#0052CC]" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-white flex items-center gap-2">
-                🏛️ Panel Administrativo
+              <h1 className="text-3xl font-black text-white flex items-center gap-3">
+                🏛️ PANEL ADMINISTRATIVO
               </h1>
-              <p className="text-sm text-blue-100 flex items-center gap-2">
+              <p className="text-sm text-white/90 flex items-center gap-2 font-medium">
                 <Settings className="w-4 h-4" />
-                Sistema de Audiencias Municipales • Control Total
+                SISTEMA DE AUDIENCIAS MUNICIPALES • CONTROL TOTAL
               </p>
             </div>
           </div>
           <div className="flex items-center space-x-4">
-            <span className="text-sm text-slate-600">
-              Bienvenido, {user.name}
-            </span>
+            <div className="text-right">
+              <p className="text-sm text-white/90 font-medium">Bienvenido</p>
+              <p className="text-lg font-bold text-white">{user.name}</p>
+            </div>
             <Button
-              variant="outline"
-              size="sm"
               onClick={() => navigate("/")}
-              className="border-blue-200 text-blue-700 hover:bg-blue-50"
+              className="bg-white text-[#0052CC] hover:bg-gray-100 font-bold px-6 py-2 rounded-lg shadow-lg border-2 border-white"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Volver al Inicio
+              VOLVER AL INICIO
             </Button>
             <Button
-              variant="outline"
-              size="sm"
               onClick={() => setActiveTab("configuracion")}
-              className="border-emerald-200 text-emerald-700 hover:bg-emerald-50"
+              className="bg-[#DC2626] text-white hover:bg-red-700 font-bold px-6 py-2 rounded-lg shadow-lg"
             >
               <Wrench className="w-4 h-4 mr-2" />
-              Configuración
+              CONFIGURACIÓN
             </Button>
-            <Button variant="outline" onClick={handleLogout}>
+            <Button
+              onClick={handleLogout}
+              className="bg-white text-[#DC2626] hover:bg-gray-100 font-bold px-6 py-2 rounded-lg shadow-lg border-2 border-white"
+            >
               <LogOut className="w-4 h-4 mr-2" />
-              Cerrar Sesión
+              CERRAR SESIÓN
             </Button>
           </div>
         </div>
@@ -2996,7 +2996,7 @@ export default function AdminDashboard() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="bg-white rounded-lg p-4 border border-red-200">
                         <p className="text-sm text-slate-600">
-                          N��mero de Turno
+                          Número de Turno
                         </p>
                         <p className="text-xl font-bold text-red-600">
                           {currentTurnActive.turnNumber}
