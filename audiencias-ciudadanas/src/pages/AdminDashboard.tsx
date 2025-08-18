@@ -344,7 +344,7 @@ export default function AdminDashboard() {
   const [selectedStaff, setSelectedStaff] = useState<any>(null);
   const [selectedType, setSelectedType] = useState<any>(null);
 
-  // Búsquedas específicas
+  // Búsquedas espec��ficas
   const [citizenSearch, setCitizenSearch] = useState("");
   const [staffSearch, setStaffSearch] = useState("");
   const [typeSearch, setTypeSearch] = useState("");
@@ -577,7 +577,7 @@ export default function AdminDashboard() {
     }
 
     toast({
-      title: "✅ Turno completado",
+      title: "��� Turno completado",
       description: `Turno ${currentTurnActive.time} - ${currentTurnActive.ciudadano} ha sido completado`,
     });
 
@@ -2054,7 +2054,7 @@ export default function AdminDashboard() {
                       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
                         <div className="flex items-center justify-between mb-3">
                           <h4 className="font-bold text-blue-800">
-                            📋 PRÓXIMOS TURNOS
+                            ��� PRÓXIMOS TURNOS
                           </h4>
                           <Badge className="bg-blue-100 text-blue-800">
                             {nextTurns.length} pendientes
@@ -2238,63 +2238,124 @@ export default function AdminDashboard() {
                     </CardContent>
                   </Card>
 
-                  {/* Gestión de Fechas */}
+                  {/* Calendario de Audiencias */}
                   <Card className="border-2 border-green-200">
                     <CardHeader className="bg-green-50">
                       <CardTitle className="text-lg font-bold text-green-800 flex items-center gap-2">
                         <Calendar className="w-5 h-5" />
-                        Fechas de Audiencias Públicas
+                        📅 Calendario de Audiencias Públicas
                       </CardTitle>
                       <CardDescription>
-                        Próximos viernes programados para audiencias
+                        Viernes programados para audiencias municipales
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="p-4">
-                      <div className="space-y-3">
-                        {publicAudienceDates
-                          .slice(0, 6)
-                          .map((dateInfo, idx) => (
-                            <div
-                              key={idx}
-                              className="bg-white border border-gray-200 rounded-lg p-3"
-                            >
-                              <div className="flex justify-between items-center">
-                                <div>
-                                  <h4 className="font-semibold text-slate-800">
-                                    {formatPublicAudienceDate(dateInfo.date)}
-                                  </h4>
-                                  <p className="text-sm text-slate-600">
-                                    {format(
-                                      dateInfo.date,
-                                      "EEEE, dd 'de' MMMM",
-                                      { locale: es },
-                                    )}
-                                  </p>
-                                </div>
-                                <div className="text-right">
-                                  <Badge className="bg-green-100 text-green-800">
-                                    {dateInfo.availableSlots} slots
-                                  </Badge>
-                                  <p className="text-xs text-slate-500 mt-1">
-                                    09:00 - 17:00
-                                  </p>
-                                </div>
-                              </div>
-                              <Button
-                                size="sm"
-                                className="w-full mt-2 bg-green-600 hover:bg-green-700"
-                                onClick={() => setSelectedManageDate(dateInfo)}
-                              >
-                                <Settings className="w-4 h-4 mr-2" />
-                                Gestionar Turnos
-                              </Button>
+                      {/* Vista Calendario */}
+                      <div className="bg-white border-2 border-green-300 rounded-xl p-4 mb-4">
+                        <div className="text-center mb-4">
+                          <h3 className="text-lg font-bold text-green-800 mb-2">
+                            {format(new Date(), "MMMM yyyy", { locale: es }).toUpperCase()}
+                          </h3>
+                          <p className="text-sm text-green-600">
+                            Haz clic en una fecha para gestionar turnos
+                          </p>
+                        </div>
+
+                        {/* Grid de Calendario */}
+                        <div className="grid grid-cols-7 gap-2 mb-4">
+                          {/* Encabezados de días */}
+                          {['DOM', 'LUN', 'MAR', 'MIÉ', 'JUE', 'VIE', 'SÁB'].map((day) => (
+                            <div key={day} className="text-center text-xs font-bold text-gray-600 p-2">
+                              {day}
                             </div>
                           ))}
+                        </div>
+
+                        {/* Fechas de audiencias como calendario */}
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                          {publicAudienceDates.slice(0, 6).map((dateInfo, idx) => {
+                            const dayOfWeek = format(dateInfo.date, "EEEE", { locale: es });
+                            const dayNumber = format(dateInfo.date, "d");
+                            const monthYear = format(dateInfo.date, "MMM yyyy", { locale: es });
+
+                            return (
+                              <div
+                                key={idx}
+                                className="bg-gradient-to-br from-green-50 to-green-100 border-2 border-green-200 rounded-xl p-4 hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105"
+                                onClick={() => setSelectedManageDate(dateInfo)}
+                              >
+                                {/* Encabezado del día */}
+                                <div className="text-center mb-3">
+                                  <div className="bg-green-600 text-white rounded-lg px-2 py-1 mb-2">
+                                    <p className="text-xs font-bold uppercase">{dayOfWeek}</p>
+                                  </div>
+                                  <div className="text-center">
+                                    <span className="text-3xl font-black text-green-800">{dayNumber}</span>
+                                    <p className="text-xs text-green-600 font-semibold">{monthYear}</p>
+                                  </div>
+                                </div>
+
+                                {/* Información de la audiencia */}
+                                <div className="space-y-2">
+                                  <div className="bg-white rounded-lg p-2 border border-green-200">
+                                    <div className="flex items-center justify-between">
+                                      <span className="text-xs font-semibold text-green-700">
+                                        🕘 HORARIO
+                                      </span>
+                                      <span className="text-xs font-bold text-green-800">
+                                        09:00 - 17:00
+                                      </span>
+                                    </div>
+                                  </div>
+
+                                  <div className="bg-white rounded-lg p-2 border border-green-200">
+                                    <div className="flex items-center justify-between">
+                                      <span className="text-xs font-semibold text-green-700">
+                                        📋 TURNOS
+                                      </span>
+                                      <Badge className="bg-green-500 text-white text-xs">
+                                        {dateInfo.availableSlots} disponibles
+                                      </Badge>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {/* Botón de acción */}
+                                <Button
+                                  size="sm"
+                                  className="w-full mt-3 bg-green-600 hover:bg-green-700 text-white font-bold shadow-md"
+                                >
+                                  <Settings className="w-4 h-4 mr-2" />
+                                  GESTIONAR
+                                </Button>
+                              </div>
+                            );
+                          })}
+                        </div>
                       </div>
 
-                      <Button className="w-full mt-4 bg-[#0052CC] hover:bg-blue-700">
+                      {/* Vista en Lista Compacta */}
+                      <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-4">
+                        <h4 className="font-bold text-gray-800 mb-2 flex items-center gap-2">
+                          📋 Vista Rápida
+                        </h4>
+                        <div className="space-y-2">
+                          {publicAudienceDates.slice(0, 3).map((dateInfo, idx) => (
+                            <div key={idx} className="flex items-center justify-between text-sm">
+                              <span className="font-medium">
+                                {format(dateInfo.date, "dd/MM/yyyy")} - {format(dateInfo.date, "EEEE", { locale: es })}
+                              </span>
+                              <Badge className="bg-green-100 text-green-800">
+                                {dateInfo.availableSlots} turnos
+                              </Badge>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <Button className="w-full bg-[#0052CC] hover:bg-blue-700 font-bold shadow-lg">
                         <Plus className="w-4 h-4 mr-2" />
-                        Programar Nueva Fecha
+                        📅 PROGRAMAR NUEVA FECHA
                       </Button>
                     </CardContent>
                   </Card>
