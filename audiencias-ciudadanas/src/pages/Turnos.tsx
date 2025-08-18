@@ -37,7 +37,7 @@ export default function Turnos() {
 
   useEffect(() => {
     // Verificar autenticación
-    const storedUser = localStorage.getItem("currentUser");
+    const storedUser = localStorage.getItem("user");
     if (!storedUser) {
       navigate("/login");
       return;
