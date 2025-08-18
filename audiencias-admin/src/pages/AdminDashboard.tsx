@@ -753,8 +753,8 @@ export default function AdminDashboard() {
                   </span>
                 )}
               </div>
-              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
-                📋 Audiencias
+              <span className="text-xs font-black tracking-wide group-data-[state=active]:text-white text-gray-700 text-center">
+                AUDIENCIAS
               </span>
             </TabsTrigger>
             <TabsTrigger
