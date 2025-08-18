@@ -61,8 +61,8 @@ export default function IndexNew() {
         <header className="py-8 sm:py-12">
           <div className="flex flex-col sm:flex-row items-center justify-between">
             <div className="flex items-center space-x-4 mb-6 sm:mb-0">
-              <div className="flex items-center justify-center w-16 h-16 bg-blue-600 rounded-full shadow-lg">
-                <Building2 className="w-8 h-8 text-white" />
+              <div className="flex items-center justify-center w-20 h-20 bg-[#0052CC] rounded-xl shadow-xl border-4 border-[#DC2626]">
+                <Building2 className="w-10 h-10 text-white" />
               </div>
               <div className="text-center sm:text-left">
                 <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">
