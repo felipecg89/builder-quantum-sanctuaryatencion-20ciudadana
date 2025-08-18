@@ -194,7 +194,7 @@ const safeFormatDate = (date: any, formatStr: string = "dd/MM/yyyy", options: an
     if (!date) return "Fecha no disponible";
     const dateObj = date instanceof Date ? date : new Date(date);
     if (isNaN(dateObj.getTime())) return "Fecha inválida";
-    return format(dateObj, formatStr, options);
+    return safeFormatDate(dateObj, formatStr, options);
   } catch (error) {
     console.warn("Error formatting date:", error);
     return "Fecha inválida";
@@ -421,7 +421,7 @@ export default function AudienceHistory() {
                         <Calendar className="w-4 h-4" />
                         <span>
                           Solicitada:{" "}
-                          {format(audience.requestDate, "dd/MM/yyyy", {
+                          {safeFormatDate(audience.requestDate, "dd/MM/yyyy", {
                             locale: es,
                           })}
                         </span>
@@ -430,7 +430,7 @@ export default function AudienceHistory() {
                         <Clock className="w-4 h-4" />
                         <span>
                           Audiencia:{" "}
-                          {format(audience.audienceDate, "dd/MM/yyyy", {
+                          {safeFormatDate(audience.audienceDate, "dd/MM/yyyy", {
                             locale: es,
                           })}
                         </span>
@@ -876,7 +876,7 @@ export default function AudienceHistory() {
                             <Calendar className="w-4 h-4" />
                             <span>
                               Solicitada:{" "}
-                              {format(audience.requestDate, "dd/MM/yyyy", {
+                              {safeFormatDate(audience.requestDate, "dd/MM/yyyy", {
                                 locale: es,
                               })}
                             </span>
@@ -885,7 +885,7 @@ export default function AudienceHistory() {
                             <Clock className="w-4 h-4" />
                             <span>
                               Audiencia:{" "}
-                              {format(audience.audienceDate, "dd/MM/yyyy", {
+                              {safeFormatDate(audience.audienceDate, "dd/MM/yyyy", {
                                 locale: es,
                               })}
                             </span>
@@ -1023,7 +1023,7 @@ export default function AudienceHistory() {
                   <div>
                     <p className="text-sm text-slate-600">Fecha de Solicitud</p>
                     <p className="font-medium">
-                      {format(selectedAudience.requestDate, "PPP", {
+                      {safeFormatDate(selectedAudience.requestDate, "PPP", {
                         locale: es,
                       })}
                     </p>
@@ -1069,7 +1069,7 @@ export default function AudienceHistory() {
                             {response.author}
                           </p>
                           <p className="text-sm text-slate-500">
-                            {format(response.date, "PPP", { locale: es })}
+                            {safeFormatDate(response.date, "PPP", { locale: es })}
                           </p>
                         </div>
                         <p className="text-slate-700">{response.message}</p>
@@ -1108,7 +1108,7 @@ export default function AudienceHistory() {
                             </p>
                           </div>
                           <p className="text-sm text-slate-500">
-                            {format(followUp.date, "PPP", { locale: es })}
+                            {safeFormatDate(followUp.date, "PPP", { locale: es })}
                           </p>
                         </div>
                         <p className="text-slate-700">{followUp.details}</p>
