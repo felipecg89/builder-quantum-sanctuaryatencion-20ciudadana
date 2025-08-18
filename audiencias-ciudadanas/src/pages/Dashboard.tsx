@@ -730,9 +730,9 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      {/* Header */}
-      <header className="bg-white border-b border-slate-200 shadow-sm">
+    <div className="min-h-screen bg-white">
+      {/* Header - Estilo Telmex */}
+      <header className="bg-[#0052CC] border-b-4 border-[#DC2626] shadow-xl">
         <div className="max-w-4xl mx-auto px-2 sm:px-4 py-3 sm:py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2 sm:space-x-3">
             <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 rounded-full">
@@ -1335,7 +1335,7 @@ export default function Dashboard() {
                                     size="sm"
                                     className="text-red-600 hover:text-red-800 hover:bg-red-50"
                                   >
-                                    🗑️
+                                    ����️
                                   </Button>
                                 )}
                               </div>
