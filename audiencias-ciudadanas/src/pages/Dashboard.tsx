@@ -735,8 +735,8 @@ export default function Dashboard() {
       <header className="bg-[#0052CC] border-b-4 border-[#DC2626] shadow-xl">
         <div className="max-w-4xl mx-auto px-2 sm:px-4 py-3 sm:py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2 sm:space-x-3">
-            <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 rounded-full">
-              <Building2 className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
+            <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-xl shadow-lg border-2 border-[#DC2626]">
+              <Building2 className="w-5 h-5 sm:w-7 sm:h-7 text-[#0052CC]" />
             </div>
             <div>
               <h1 className="text-sm sm:text-lg font-semibold text-slate-800">
@@ -1335,7 +1335,7 @@ export default function Dashboard() {
                                     size="sm"
                                     className="text-red-600 hover:text-red-800 hover:bg-red-50"
                                   >
-                                    ����️
+                                    🗑️
                                   </Button>
                                 )}
                               </div>
