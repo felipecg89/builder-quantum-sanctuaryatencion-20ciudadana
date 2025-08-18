@@ -655,7 +655,7 @@ export default function Dashboard() {
   };
 
   const deleteAudioRecording = () => {
-    if (window.confirm("¿Estás seguro de eliminar la grabaci��n de audio?")) {
+    if (window.confirm("¿Estás seguro de eliminar la grabaci���n de audio?")) {
       setAudioBlob(null);
       setAudioDescription("");
       setRecordingTime(0);
@@ -803,22 +803,23 @@ export default function Dashboard() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Solicitudes Ciudadanas */}
                 <Card
-                  className="cursor-pointer hover:shadow-lg transition-all duration-200 border-2 hover:border-blue-300"
+                  className="cursor-pointer hover:shadow-2xl transition-all duration-300 border-0 bg-white rounded-xl shadow-xl overflow-hidden"
                   onClick={() => setCurrentStep(1)}
                 >
-                  <CardContent className="p-6 text-center space-y-4">
-                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
-                      <Package className="w-8 h-8 text-blue-600" />
+                  {/* Header azul estilo Telmex */}
+                  <div className="bg-[#0052CC] p-6 text-center">
+                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-3">
+                      <Package className="w-8 h-8 text-[#0052CC]" />
                     </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-slate-800 mb-2">
-                        Solicitudes Ciudadanas
-                      </h3>
-                      <p className="text-sm text-slate-600 leading-relaxed">
-                        Solicita ayuda en especie, servicios, trámites e
-                        invitaciones. Modalidad virtual o presencial.
-                      </p>
-                    </div>
+                    <h3 className="text-xl font-black text-white mb-2">
+                      SOLICITUDES CIUDADANAS
+                    </h3>
+                    <p className="text-white/90 text-sm font-medium leading-relaxed">
+                      Solicita ayuda en especie, servicios, trámites e
+                      invitaciones. Modalidad virtual o presencial.
+                    </p>
+                  </div>
+                  <CardContent className="p-6">
                     <div className="space-y-2 text-xs text-slate-500">
                       <p>• Ayuda en especie (alimentos, medicamentos)</p>
                       <p>• Servicios (médicos, legales, sociales)</p>
