@@ -255,6 +255,34 @@ export default function AudienceHistory() {
   const mockUserAudiences = mockAudiences.filter(
     (audience) => audience.userId === user?.phone,
   );
+
+  // Si no hay audiencias guardadas y es el usuario de prueba, agregar algunas de ejemplo
+  if (savedUserAudiences.length === 0 && user?.phone === "55 1234 5678") {
+    const exampleAudiences = [
+      {
+        id: "AUD-" + Date.now().toString().slice(-6),
+        userId: user.phone,
+        category: "especie",
+        type: "Alimentos",
+        description: "Solicitud de apoyo alimentario para familia de 5 personas",
+        status: "en_proceso",
+        requestDate: new Date(),
+        audienceDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // Una semana después
+        meetingFormat: "presencial",
+        result: null,
+        responses: [
+          {
+            date: new Date(),
+            author: "Sistema Automatico",
+            message: "Su solicitud ha sido recibida y está siendo procesada.",
+          },
+        ],
+      }
+    ];
+    localStorage.setItem("userAudiences", JSON.stringify(exampleAudiences));
+    savedUserAudiences.push(...exampleAudiences);
+  }
+
   const userAudiences = [...mockUserAudiences, ...savedUserAudiences];
 
   const filteredAudiences = userAudiences.filter((audience) => {
