@@ -770,10 +770,10 @@ export default function AdminDashboard() {
               className="flex flex-col items-center gap-1 min-h-[60px] px-2 py-2 mx-1 rounded-lg border border-transparent data-[state=active]:bg-purple-500 data-[state=active]:text-white data-[state=active]:border-purple-300 data-[state=active]:shadow-lg hover:bg-purple-50 hover:border-purple-200 transition-all duration-300 group"
             >
               <div className="relative">
-                <div className="w-12 h-12 rounded-full bg-purple-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300 shadow-lg group-hover:shadow-xl group-hover:scale-110">
-                  <Users className="w-6 h-6 text-purple-600 group-data-[state=active]:text-white transition-transform group-hover:scale-110" />
+                <div className="w-8 h-8 rounded-full bg-purple-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300">
+                  <Users className="w-4 h-4 text-purple-600 group-data-[state=active]:text-white transition-all" />
                 </div>
-                <span className="absolute top-0 right-0 bg-purple-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                <span className="absolute -top-1 -right-1 bg-purple-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
                   {citizens.length}
                 </span>
               </div>
