@@ -120,10 +120,10 @@ export default function IndexNew() {
 
           <div className="relative z-10">
             <div className="mb-8">
-              <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg border border-white/50 mb-6">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-sm font-medium text-slate-700">
-                  🏛️ Sistema en línea • Atención 24/7
+              <div className="inline-flex items-center gap-3 bg-[#0052CC] rounded-xl px-6 py-3 shadow-xl border-2 border-[#DC2626] mb-6">
+                <div className="w-3 h-3 bg-white rounded-full animate-pulse"></div>
+                <span className="text-sm font-bold text-white">
+                  🏛️ SISTEMA EN LÍNEA • ATENCIÓN 24/7
                 </span>
               </div>
             </div>
