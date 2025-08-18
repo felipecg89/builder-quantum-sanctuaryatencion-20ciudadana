@@ -65,11 +65,11 @@ export default function IndexNew() {
                 <Building2 className="w-10 h-10 text-white" />
               </div>
               <div className="text-center sm:text-left">
-                <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">
-                  Presidencia Municipal
+                <h1 className="text-3xl sm:text-4xl font-black text-[#0052CC]">
+                  PRESIDENCIA MUNICIPAL
                 </h1>
-                <p className="text-slate-600">
-                  Sistema de Audiencias Ciudadanas
+                <p className="text-gray-700 font-bold">
+                  SISTEMA DE AUDIENCIAS CIUDADANAS
                 </p>
               </div>
             </div>
@@ -208,7 +208,7 @@ export default function IndexNew() {
                     <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
                       <Clock className="w-4 h-4 text-blue-600" />
                     </div>
-                    🔐 Iniciar Sesión
+                    ��� Iniciar Sesión
                   </a>
                 </Button>
               </>
