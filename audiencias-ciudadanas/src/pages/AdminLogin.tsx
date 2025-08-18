@@ -104,7 +104,8 @@ export default function AdminLogin() {
               Acceso de Administrador
             </CardTitle>
             <CardDescription className="text-center text-white/90">
-              Ingresa tus credenciales administrativas para acceder al panel de control
+              Ingresa tus credenciales administrativas para acceder al panel de
+              control
             </CardDescription>
           </CardHeader>
           <CardContent className="p-6">
@@ -128,7 +129,10 @@ export default function AdminLogin() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password" className="text-[#0052CC] font-semibold">
+                <Label
+                  htmlFor="password"
+                  className="text-[#0052CC] font-semibold"
+                >
                   Contraseña
                 </Label>
                 <div className="relative">

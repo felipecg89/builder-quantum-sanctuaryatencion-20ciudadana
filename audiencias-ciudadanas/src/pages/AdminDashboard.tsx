@@ -422,7 +422,7 @@ export default function AdminDashboard() {
 
     // Resetear todos los turnos a pendiente
     if (allTurnos[dateKey]) {
-      Object.keys(allTurnos[dateKey]).forEach(slotId => {
+      Object.keys(allTurnos[dateKey]).forEach((slotId) => {
         allTurnos[dateKey][slotId].status = "pendiente";
         delete allTurnos[dateKey][slotId].completedAt;
       });
@@ -452,32 +452,32 @@ export default function AdminDashboard() {
           ciudadano: "María González",
           telefono: "55 1234 5678",
           motivo: "Solicitud de apoyo alimentario",
-          status: "pendiente"
+          status: "pendiente",
         },
         "slot-0930": {
           ciudadano: "Carlos Rodríguez",
           telefono: "55 9876 5432",
           motivo: "Apoyo médico urgente",
-          status: "pendiente"
+          status: "pendiente",
         },
         "slot-1000": {
           ciudadano: "Ana Jiménez",
           telefono: "55 5555 7777",
           motivo: "Permiso de construcción",
-          status: "pendiente"
+          status: "pendiente",
         },
         "slot-1030": {
           ciudadano: "Roberto Morales",
           telefono: "55 3333 9999",
           motivo: "Invitación a ceremonia",
-          status: "pendiente"
+          status: "pendiente",
         },
         "slot-1100": {
           ciudadano: "Laura Martínez",
           telefono: "55 1111 2222",
           motivo: "Consulta de trámites",
-          status: "pendiente"
-        }
+          status: "pendiente",
+        },
       };
 
       // Guardar los datos de ejemplo
@@ -499,7 +499,9 @@ export default function AdminDashboard() {
     setMonitorDate(today);
 
     // Establecer próximos turnos pendientes
-    const pendingTurns = turnsArray.filter((turn) => turn.status === "pendiente");
+    const pendingTurns = turnsArray.filter(
+      (turn) => turn.status === "pendiente",
+    );
     setNextTurns(pendingTurns.slice(0, 3));
   };
 
@@ -569,7 +571,8 @@ export default function AdminDashboard() {
 
     if (allTurnos[dateKey] && allTurnos[dateKey][currentTurnActive.slotId]) {
       allTurnos[dateKey][currentTurnActive.slotId].status = "completado";
-      allTurnos[dateKey][currentTurnActive.slotId].completedAt = new Date().toISOString();
+      allTurnos[dateKey][currentTurnActive.slotId].completedAt =
+        new Date().toISOString();
       localStorage.setItem("publicAudienceTurnos", JSON.stringify(allTurnos));
     }
 
@@ -864,127 +867,132 @@ export default function AdminDashboard() {
               </p>
             </div>
             <TabsList className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 h-auto p-4 bg-gray-50 rounded-xl border border-gray-200 shadow-inner">
-            <TabsTrigger
-              value="audiencias"
-              className="flex flex-col items-center gap-2 min-h-[80px] px-4 py-3 rounded-xl border-2 border-gray-200 data-[state=active]:bg-[#0052CC] data-[state=active]:text-white data-[state=active]:border-[#0052CC] data-[state=active]:shadow-xl hover:bg-gray-50 hover:border-[#0052CC] hover:scale-105 transition-all duration-300 group bg-white shadow-sm"
-            >
-              <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-gray-100 group-data-[state=active]:bg-white flex items-center justify-center transition-all duration-300 shadow-sm">
-                  <MessageSquare className="w-5 h-5 text-[#0052CC] group-data-[state=active]:text-[#0052CC] transition-all" />
+              <TabsTrigger
+                value="audiencias"
+                className="flex flex-col items-center gap-2 min-h-[80px] px-4 py-3 rounded-xl border-2 border-gray-200 data-[state=active]:bg-[#0052CC] data-[state=active]:text-white data-[state=active]:border-[#0052CC] data-[state=active]:shadow-xl hover:bg-gray-50 hover:border-[#0052CC] hover:scale-105 transition-all duration-300 group bg-white shadow-sm"
+              >
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-gray-100 group-data-[state=active]:bg-white flex items-center justify-center transition-all duration-300 shadow-sm">
+                    <MessageSquare className="w-5 h-5 text-[#0052CC] group-data-[state=active]:text-[#0052CC] transition-all" />
+                  </div>
+                  {audiences.filter((a) => a.status === "pendiente").length >
+                    0 && (
+                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
+                      {audiences.filter((a) => a.status === "pendiente").length}
+                    </span>
+                  )}
                 </div>
-                {audiences.filter((a) => a.status === "pendiente").length > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
-                    {audiences.filter((a) => a.status === "pendiente").length}
+                <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-gray-700 text-center">
+                  AUDIENCIAS
+                </span>
+              </TabsTrigger>
+
+              <TabsTrigger
+                value="ciudadanos"
+                className="flex flex-col items-center gap-2 min-h-[80px] px-4 py-3 rounded-xl border-2 border-gray-200 data-[state=active]:bg-purple-500 data-[state=active]:text-white data-[state=active]:border-purple-300 data-[state=active]:shadow-xl hover:bg-purple-50 hover:border-purple-200 hover:scale-105 transition-all duration-300 group bg-white shadow-sm"
+              >
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-purple-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300 shadow-sm">
+                    <Users className="w-5 h-5 text-purple-600 group-data-[state=active]:text-white transition-all" />
+                  </div>
+                  <span className="absolute -top-1 -right-1 bg-purple-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
+                    {citizens.length}
                   </span>
-                )}
-              </div>
-              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-gray-700 text-center">
-                AUDIENCIAS
-              </span>
-            </TabsTrigger>
-
-            <TabsTrigger
-              value="ciudadanos"
-              className="flex flex-col items-center gap-2 min-h-[80px] px-4 py-3 rounded-xl border-2 border-gray-200 data-[state=active]:bg-purple-500 data-[state=active]:text-white data-[state=active]:border-purple-300 data-[state=active]:shadow-xl hover:bg-purple-50 hover:border-purple-200 hover:scale-105 transition-all duration-300 group bg-white shadow-sm"
-            >
-              <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-purple-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300 shadow-sm">
-                  <Users className="w-5 h-5 text-purple-600 group-data-[state=active]:text-white transition-all" />
                 </div>
-                <span className="absolute -top-1 -right-1 bg-purple-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
-                  {citizens.length}
+                <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700 text-center">
+                  👥 Ciudadanos
                 </span>
-              </div>
-              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700 text-center">
-                👥 Ciudadanos
-              </span>
-            </TabsTrigger>
+              </TabsTrigger>
 
-            <TabsTrigger
-              value="expedientes"
-              className="flex flex-col items-center gap-2 min-h-[80px] px-4 py-3 rounded-xl border-2 border-gray-200 data-[state=active]:bg-amber-500 data-[state=active]:text-white data-[state=active]:border-amber-300 data-[state=active]:shadow-xl hover:bg-amber-50 hover:border-amber-200 hover:scale-105 transition-all duration-300 group bg-white shadow-sm"
-            >
-              <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-amber-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300 shadow-sm">
-                  <FileText className="w-5 h-5 text-amber-600 group-data-[state=active]:text-white transition-all" />
+              <TabsTrigger
+                value="expedientes"
+                className="flex flex-col items-center gap-2 min-h-[80px] px-4 py-3 rounded-xl border-2 border-gray-200 data-[state=active]:bg-amber-500 data-[state=active]:text-white data-[state=active]:border-amber-300 data-[state=active]:shadow-xl hover:bg-amber-50 hover:border-amber-200 hover:scale-105 transition-all duration-300 group bg-white shadow-sm"
+              >
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-amber-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300 shadow-sm">
+                    <FileText className="w-5 h-5 text-amber-600 group-data-[state=active]:text-white transition-all" />
+                  </div>
+                  <span className="absolute -top-1 -right-1 bg-amber-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
+                    {citizens.reduce(
+                      (total, citizen) =>
+                        total + citizen.expediente.requests.length,
+                      0,
+                    )}
+                  </span>
                 </div>
-                <span className="absolute -top-1 -right-1 bg-amber-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
-                  {citizens.reduce((total, citizen) => total + citizen.expediente.requests.length, 0)}
+                <span className="text-xs font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
+                  📁 Expedientes
                 </span>
-              </div>
-              <span className="text-xs font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
-                📁 Expedientes
-              </span>
-            </TabsTrigger>
+              </TabsTrigger>
 
-            <TabsTrigger
-              value="personal"
-              className="flex flex-col items-center gap-2 min-h-[80px] px-4 py-3 rounded-xl border-2 border-gray-200 data-[state=active]:bg-indigo-500 data-[state=active]:text-white data-[state=active]:border-indigo-300 data-[state=active]:shadow-xl hover:bg-indigo-50 hover:border-indigo-200 hover:scale-105 transition-all duration-300 group bg-white shadow-sm"
-            >
-              <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-indigo-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300 shadow-sm">
-                  <UserPlus className="w-5 h-5 text-indigo-600 group-data-[state=active]:text-white transition-all" />
+              <TabsTrigger
+                value="personal"
+                className="flex flex-col items-center gap-2 min-h-[80px] px-4 py-3 rounded-xl border-2 border-gray-200 data-[state=active]:bg-indigo-500 data-[state=active]:text-white data-[state=active]:border-indigo-300 data-[state=active]:shadow-xl hover:bg-indigo-50 hover:border-indigo-200 hover:scale-105 transition-all duration-300 group bg-white shadow-sm"
+              >
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-indigo-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300 shadow-sm">
+                    <UserPlus className="w-5 h-5 text-indigo-600 group-data-[state=active]:text-white transition-all" />
+                  </div>
+                  <span className="absolute -top-1 -right-1 bg-indigo-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
+                    {staff.filter((s) => s.status === "activo").length}
+                  </span>
                 </div>
-                <span className="absolute -top-1 -right-1 bg-indigo-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
-                  {staff.filter((s) => s.status === "activo").length}
+                <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700 text-center">
+                  👨‍💼 Personal
                 </span>
-              </div>
-              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700 text-center">
-                👨‍💼 Personal
-              </span>
-            </TabsTrigger>
+              </TabsTrigger>
 
-            <TabsTrigger
-              value="configuracion"
-              className="flex flex-col items-center gap-2 min-h-[80px] px-4 py-3 rounded-xl border-2 border-gray-200 data-[state=active]:bg-emerald-500 data-[state=active]:text-white data-[state=active]:border-emerald-300 data-[state=active]:shadow-xl hover:bg-emerald-50 hover:border-emerald-200 hover:scale-105 transition-all duration-300 group bg-white shadow-sm"
-            >
-              <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-emerald-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300 shadow-sm">
-                  <Wrench className="w-5 h-5 text-emerald-600 group-data-[state=active]:text-white transition-all" />
+              <TabsTrigger
+                value="configuracion"
+                className="flex flex-col items-center gap-2 min-h-[80px] px-4 py-3 rounded-xl border-2 border-gray-200 data-[state=active]:bg-emerald-500 data-[state=active]:text-white data-[state=active]:border-emerald-300 data-[state=active]:shadow-xl hover:bg-emerald-50 hover:border-emerald-200 hover:scale-105 transition-all duration-300 group bg-white shadow-sm"
+              >
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-emerald-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300 shadow-sm">
+                    <Wrench className="w-5 h-5 text-emerald-600 group-data-[state=active]:text-white transition-all" />
+                  </div>
+                  <span className="absolute -top-1 -right-1 bg-emerald-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
+                    {audienceTypes.filter((t) => t.active).length}
+                  </span>
                 </div>
-                <span className="absolute -top-1 -right-1 bg-emerald-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
-                  {audienceTypes.filter((t) => t.active).length}
+                <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700 text-center">
+                  ⚙️ Configuración
                 </span>
-              </div>
-              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700 text-center">
-                ⚙️ Configuración
-              </span>
-            </TabsTrigger>
+              </TabsTrigger>
 
-            <TabsTrigger
-              value="turnos"
-              className="flex flex-col items-center gap-2 min-h-[80px] px-4 py-3 rounded-xl border-2 border-gray-200 data-[state=active]:bg-green-500 data-[state=active]:text-white data-[state=active]:border-green-300 data-[state=active]:shadow-xl hover:bg-green-50 hover:border-green-200 hover:scale-105 transition-all duration-300 group bg-white shadow-sm"
-            >
-              <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-green-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300 shadow-sm">
-                  <Clock className="w-5 h-5 text-green-600 group-data-[state=active]:text-white transition-all" />
+              <TabsTrigger
+                value="turnos"
+                className="flex flex-col items-center gap-2 min-h-[80px] px-4 py-3 rounded-xl border-2 border-gray-200 data-[state=active]:bg-green-500 data-[state=active]:text-white data-[state=active]:border-green-300 data-[state=active]:shadow-xl hover:bg-green-50 hover:border-green-200 hover:scale-105 transition-all duration-300 group bg-white shadow-sm"
+              >
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-green-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300 shadow-sm">
+                    <Clock className="w-5 h-5 text-green-600 group-data-[state=active]:text-white transition-all" />
+                  </div>
+                  <span className="absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
+                    {publicAudienceDates.length}
+                  </span>
                 </div>
-                <span className="absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
-                  {publicAudienceDates.length}
+                <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700 text-center">
+                  🕐 Turnos
                 </span>
-              </div>
-              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700 text-center">
-                🕐 Turnos
-              </span>
-            </TabsTrigger>
+              </TabsTrigger>
 
-            <TabsTrigger
-              value="reportes"
-              className="flex flex-col items-center gap-2 min-h-[80px] px-4 py-3 rounded-xl border-2 border-gray-200 data-[state=active]:bg-rose-500 data-[state=active]:text-white data-[state=active]:border-rose-300 data-[state=active]:shadow-xl hover:bg-rose-50 hover:border-rose-200 hover:scale-105 transition-all duration-300 group bg-white shadow-sm"
-            >
-              <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-rose-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300 shadow-sm">
-                  <BarChart3 className="w-5 h-5 text-rose-600 group-data-[state=active]:text-white transition-all" />
+              <TabsTrigger
+                value="reportes"
+                className="flex flex-col items-center gap-2 min-h-[80px] px-4 py-3 rounded-xl border-2 border-gray-200 data-[state=active]:bg-rose-500 data-[state=active]:text-white data-[state=active]:border-rose-300 data-[state=active]:shadow-xl hover:bg-rose-50 hover:border-rose-200 hover:scale-105 transition-all duration-300 group bg-white shadow-sm"
+              >
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-rose-100 group-data-[state=active]:bg-white/20 flex items-center justify-center transition-all duration-300 shadow-sm">
+                    <BarChart3 className="w-5 h-5 text-rose-600 group-data-[state=active]:text-white transition-all" />
+                  </div>
+                  <div className="absolute -top-1 -right-1 bg-rose-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
+                    ✓
+                  </div>
                 </div>
-                <div className="absolute -top-1 -right-1 bg-rose-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-lg border border-white">
-                  ✓
-                </div>
-              </div>
-              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700 text-center">
-                📊 Reportes
-              </span>
-            </TabsTrigger>
-          </TabsList>
+                <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700 text-center">
+                  📊 Reportes
+                </span>
+              </TabsTrigger>
+            </TabsList>
           </div>
 
           {/* Gestión de Audiencias */}
@@ -1013,7 +1021,10 @@ export default function AdminDashboard() {
                     <CardContent className="p-4 text-center">
                       <Clock className="w-8 h-8 text-yellow-600 mx-auto mb-2" />
                       <h3 className="font-bold text-yellow-800">
-                        {audiences.filter((a) => a.status === "pendiente").length}
+                        {
+                          audiences.filter((a) => a.status === "pendiente")
+                            .length
+                        }
                       </h3>
                       <p className="text-sm text-yellow-700">Pendientes</p>
                     </CardContent>
@@ -1023,7 +1034,10 @@ export default function AdminDashboard() {
                     <CardContent className="p-4 text-center">
                       <AlertCircle className="w-8 h-8 text-blue-600 mx-auto mb-2" />
                       <h3 className="font-bold text-blue-800">
-                        {audiences.filter((a) => a.status === "en_proceso").length}
+                        {
+                          audiences.filter((a) => a.status === "en_proceso")
+                            .length
+                        }
                       </h3>
                       <p className="text-sm text-blue-700">En Proceso</p>
                     </CardContent>
@@ -1033,7 +1047,10 @@ export default function AdminDashboard() {
                     <CardContent className="p-4 text-center">
                       <CheckCircle className="w-8 h-8 text-green-600 mx-auto mb-2" />
                       <h3 className="font-bold text-green-800">
-                        {audiences.filter((a) => a.status === "completada").length}
+                        {
+                          audiences.filter((a) => a.status === "completada")
+                            .length
+                        }
                       </h3>
                       <p className="text-sm text-green-700">Completadas</p>
                     </CardContent>
@@ -1043,7 +1060,10 @@ export default function AdminDashboard() {
                     <CardContent className="p-4 text-center">
                       <XCircle className="w-8 h-8 text-red-600 mx-auto mb-2" />
                       <h3 className="font-bold text-red-800">
-                        {audiences.filter((a) => a.status === "rechazada").length}
+                        {
+                          audiences.filter((a) => a.status === "rechazada")
+                            .length
+                        }
                       </h3>
                       <p className="text-sm text-red-700">Rechazadas</p>
                     </CardContent>
@@ -1080,7 +1100,10 @@ export default function AdminDashboard() {
                 {/* Lista de Audiencias */}
                 <div className="space-y-4">
                   {filteredAudiences.slice(0, 5).map((audience) => (
-                    <Card key={audience.id} className="hover:shadow-md transition-shadow">
+                    <Card
+                      key={audience.id}
+                      className="hover:shadow-md transition-shadow"
+                    >
                       <CardContent className="p-4">
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
                           <div className="lg:col-span-6">
@@ -1088,32 +1111,66 @@ export default function AdminDashboard() {
                               <Badge className="bg-[#0052CC] text-white font-bold">
                                 {audience.id}
                               </Badge>
-                              <Badge className={PRIORITY_CONFIG[audience.priority as keyof typeof PRIORITY_CONFIG].color}>
-                                {PRIORITY_CONFIG[audience.priority as keyof typeof PRIORITY_CONFIG].name}
+                              <Badge
+                                className={
+                                  PRIORITY_CONFIG[
+                                    audience.priority as keyof typeof PRIORITY_CONFIG
+                                  ].color
+                                }
+                              >
+                                {
+                                  PRIORITY_CONFIG[
+                                    audience.priority as keyof typeof PRIORITY_CONFIG
+                                  ].name
+                                }
                               </Badge>
                             </div>
                             <h4 className="font-semibold text-lg text-slate-800">
                               {audience.citizen}
                             </h4>
-                            <p className="text-sm text-slate-600">{audience.phone}</p>
-                            <p className="text-sm text-slate-700 mt-2">{audience.description}</p>
+                            <p className="text-sm text-slate-600">
+                              {audience.phone}
+                            </p>
+                            <p className="text-sm text-slate-700 mt-2">
+                              {audience.description}
+                            </p>
                           </div>
 
                           <div className="lg:col-span-3">
-                            <Badge className={STATUS_CONFIG[audience.status as keyof typeof STATUS_CONFIG].color}>
-                              {STATUS_CONFIG[audience.status as keyof typeof STATUS_CONFIG].name}
+                            <Badge
+                              className={
+                                STATUS_CONFIG[
+                                  audience.status as keyof typeof STATUS_CONFIG
+                                ].color
+                              }
+                            >
+                              {
+                                STATUS_CONFIG[
+                                  audience.status as keyof typeof STATUS_CONFIG
+                                ].name
+                              }
                             </Badge>
                             <p className="text-xs text-slate-500 mt-1">
-                              {format(audience.requestDate, "dd/MM/yyyy", { locale: es })}
+                              {format(audience.requestDate, "dd/MM/yyyy", {
+                                locale: es,
+                              })}
                             </p>
                           </div>
 
                           <div className="lg:col-span-3 flex gap-2">
-                            <Button size="sm" variant="outline" onClick={() => handleViewDetails(audience)}>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => handleViewDetails(audience)}
+                            >
                               <Eye className="w-4 h-4 mr-1" />
                               Ver
                             </Button>
-                            <Button size="sm" className="bg-[#0052CC] hover:bg-blue-700" onClick={() => handleManage(audience)}>
+                            <Button
+                              size="sm"
+                              className="bg-[#0052CC] hover:bg-blue-700"
+                              onClick={() => handleManage(audience)}
+                            >
                               <Edit className="w-4 h-4 mr-1" />
                               Gestionar
                             </Button>
@@ -1164,8 +1221,12 @@ export default function AdminDashboard() {
                   <Card className="bg-gradient-to-r from-purple-50 to-purple-100 border-purple-200">
                     <CardContent className="p-4 text-center">
                       <Users className="w-8 h-8 text-purple-600 mx-auto mb-2" />
-                      <h3 className="font-bold text-purple-800 text-xl">{citizens.length}</h3>
-                      <p className="text-sm text-purple-700">Total Ciudadanos</p>
+                      <h3 className="font-bold text-purple-800 text-xl">
+                        {citizens.length}
+                      </h3>
+                      <p className="text-sm text-purple-700">
+                        Total Ciudadanos
+                      </p>
                     </CardContent>
                   </Card>
 
@@ -1173,7 +1234,7 @@ export default function AdminDashboard() {
                     <CardContent className="p-4 text-center">
                       <UserPlus className="w-8 h-8 text-green-600 mx-auto mb-2" />
                       <h3 className="font-bold text-green-800 text-xl">
-                        {citizens.filter(c => c.status === "activo").length}
+                        {citizens.filter((c) => c.status === "activo").length}
                       </h3>
                       <p className="text-sm text-green-700">Activos</p>
                     </CardContent>
@@ -1183,7 +1244,10 @@ export default function AdminDashboard() {
                     <CardContent className="p-4 text-center">
                       <FileText className="w-8 h-8 text-blue-600 mx-auto mb-2" />
                       <h3 className="font-bold text-blue-800 text-xl">
-                        {citizens.reduce((total, citizen) => total + citizen.totalRequests, 0)}
+                        {citizens.reduce(
+                          (total, citizen) => total + citizen.totalRequests,
+                          0,
+                        )}
                       </h3>
                       <p className="text-sm text-blue-700">Total Solicitudes</p>
                     </CardContent>
@@ -1208,12 +1272,19 @@ export default function AdminDashboard() {
                   {citizens
                     .filter(
                       (citizen) =>
-                        citizen.name.toLowerCase().includes(citizenSearch.toLowerCase()) ||
+                        citizen.name
+                          .toLowerCase()
+                          .includes(citizenSearch.toLowerCase()) ||
                         citizen.phone.includes(citizenSearch) ||
-                        citizen.email.toLowerCase().includes(citizenSearch.toLowerCase()),
+                        citizen.email
+                          .toLowerCase()
+                          .includes(citizenSearch.toLowerCase()),
                     )
                     .map((citizen) => (
-                      <Card key={citizen.id} className="hover:shadow-md transition-shadow">
+                      <Card
+                        key={citizen.id}
+                        className="hover:shadow-md transition-shadow"
+                      >
                         <CardContent className="p-4">
                           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
                             <div className="lg:col-span-6">
@@ -1225,7 +1296,9 @@ export default function AdminDashboard() {
                                   <h4 className="font-semibold text-lg text-slate-800">
                                     {citizen.name}
                                   </h4>
-                                  <p className="text-sm text-slate-600">{citizen.id}</p>
+                                  <p className="text-sm text-slate-600">
+                                    {citizen.id}
+                                  </p>
                                 </div>
                               </div>
                               <div className="text-sm text-slate-600 space-y-1">
@@ -1236,11 +1309,22 @@ export default function AdminDashboard() {
                             </div>
 
                             <div className="lg:col-span-3">
-                              <Badge className={citizen.status === "activo" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}>
+                              <Badge
+                                className={
+                                  citizen.status === "activo"
+                                    ? "bg-green-100 text-green-800"
+                                    : "bg-red-100 text-red-800"
+                                }
+                              >
                                 {citizen.status}
                               </Badge>
                               <p className="text-xs text-slate-500 mt-1">
-                                Registro: {format(citizen.registrationDate, "dd/MM/yyyy", { locale: es })}
+                                Registro:{" "}
+                                {format(
+                                  citizen.registrationDate,
+                                  "dd/MM/yyyy",
+                                  { locale: es },
+                                )}
                               </p>
                               <p className="text-xs text-slate-500">
                                 Solicitudes: {citizen.totalRequests}
@@ -1298,9 +1382,15 @@ export default function AdminDashboard() {
                     <CardContent className="p-4 text-center">
                       <FileText className="w-8 h-8 text-amber-600 mx-auto mb-2" />
                       <h3 className="font-bold text-amber-800 text-xl">
-                        {citizens.reduce((total, citizen) => total + citizen.expediente.requests.length, 0)}
+                        {citizens.reduce(
+                          (total, citizen) =>
+                            total + citizen.expediente.requests.length,
+                          0,
+                        )}
                       </h3>
-                      <p className="text-sm text-amber-700">Total Expedientes</p>
+                      <p className="text-sm text-amber-700">
+                        Total Expedientes
+                      </p>
                     </CardContent>
                   </Card>
 
@@ -1308,8 +1398,14 @@ export default function AdminDashboard() {
                     <CardContent className="p-4 text-center">
                       <CheckCircle className="w-8 h-8 text-green-600 mx-auto mb-2" />
                       <h3 className="font-bold text-green-800 text-xl">
-                        {citizens.reduce((total, citizen) =>
-                          total + citizen.expediente.requests.filter(r => r.status === "completada").length, 0)}
+                        {citizens.reduce(
+                          (total, citizen) =>
+                            total +
+                            citizen.expediente.requests.filter(
+                              (r) => r.status === "completada",
+                            ).length,
+                          0,
+                        )}
                       </h3>
                       <p className="text-sm text-green-700">Completados</p>
                     </CardContent>
@@ -1319,8 +1415,14 @@ export default function AdminDashboard() {
                     <CardContent className="p-4 text-center">
                       <AlertCircle className="w-8 h-8 text-blue-600 mx-auto mb-2" />
                       <h3 className="font-bold text-blue-800 text-xl">
-                        {citizens.reduce((total, citizen) =>
-                          total + citizen.expediente.requests.filter(r => r.status === "en_proceso").length, 0)}
+                        {citizens.reduce(
+                          (total, citizen) =>
+                            total +
+                            citizen.expediente.requests.filter(
+                              (r) => r.status === "en_proceso",
+                            ).length,
+                          0,
+                        )}
                       </h3>
                       <p className="text-sm text-blue-700">En Proceso</p>
                     </CardContent>
@@ -1329,8 +1431,12 @@ export default function AdminDashboard() {
                   <Card className="bg-gradient-to-r from-purple-50 to-purple-100 border-purple-200">
                     <CardContent className="p-4 text-center">
                       <Users className="w-8 h-8 text-purple-600 mx-auto mb-2" />
-                      <h3 className="font-bold text-purple-800 text-xl">{citizens.length}</h3>
-                      <p className="text-sm text-purple-700">Ciudadanos con Expediente</p>
+                      <h3 className="font-bold text-purple-800 text-xl">
+                        {citizens.length}
+                      </h3>
+                      <p className="text-sm text-purple-700">
+                        Ciudadanos con Expediente
+                      </p>
                     </CardContent>
                   </Card>
                 </div>
@@ -1353,8 +1459,12 @@ export default function AdminDashboard() {
                               <FileText className="w-6 h-6 text-amber-600" />
                             </div>
                             <div>
-                              <h4 className="font-semibold text-slate-800">{citizen.name}</h4>
-                              <p className="text-sm text-slate-600">{citizen.id}</p>
+                              <h4 className="font-semibold text-slate-800">
+                                {citizen.name}
+                              </h4>
+                              <p className="text-sm text-slate-600">
+                                {citizen.id}
+                              </p>
                             </div>
                           </div>
                           <Badge className="bg-amber-100 text-amber-800">
@@ -1363,31 +1473,60 @@ export default function AdminDashboard() {
                         </div>
 
                         <div className="space-y-2 mb-4">
-                          <p className="text-sm text-slate-600">📞 {citizen.phone}</p>
+                          <p className="text-sm text-slate-600">
+                            📞 {citizen.phone}
+                          </p>
                           <p className="text-xs text-slate-500">
-                            Registro: {format(citizen.registrationDate, "dd/MM/yyyy", { locale: es })}
+                            Registro:{" "}
+                            {format(citizen.registrationDate, "dd/MM/yyyy", {
+                              locale: es,
+                            })}
                           </p>
                         </div>
 
                         {/* Últimas solicitudes */}
                         <div className="space-y-2">
-                          <h5 className="text-sm font-semibold text-slate-700">Últimas solicitudes:</h5>
-                          {citizen.expediente.requests.slice(0, 2).map((request, idx) => (
-                            <div key={idx} className="text-xs bg-gray-50 p-2 rounded">
-                              <div className="flex justify-between items-center">
-                                <span className="font-medium">{request.type}</span>
-                                <Badge className={STATUS_CONFIG[request.status as keyof typeof STATUS_CONFIG].color}>
-                                  {STATUS_CONFIG[request.status as keyof typeof STATUS_CONFIG].name}
-                                </Badge>
+                          <h5 className="text-sm font-semibold text-slate-700">
+                            Últimas solicitudes:
+                          </h5>
+                          {citizen.expediente.requests
+                            .slice(0, 2)
+                            .map((request, idx) => (
+                              <div
+                                key={idx}
+                                className="text-xs bg-gray-50 p-2 rounded"
+                              >
+                                <div className="flex justify-between items-center">
+                                  <span className="font-medium">
+                                    {request.type}
+                                  </span>
+                                  <Badge
+                                    className={
+                                      STATUS_CONFIG[
+                                        request.status as keyof typeof STATUS_CONFIG
+                                      ].color
+                                    }
+                                  >
+                                    {
+                                      STATUS_CONFIG[
+                                        request.status as keyof typeof STATUS_CONFIG
+                                      ].name
+                                    }
+                                  </Badge>
+                                </div>
+                                <p className="text-gray-600 mt-1">
+                                  {format(request.date, "dd/MM/yyyy", {
+                                    locale: es,
+                                  })}
+                                </p>
                               </div>
-                              <p className="text-gray-600 mt-1">
-                                {format(request.date, "dd/MM/yyyy", { locale: es })}
-                              </p>
-                            </div>
-                          ))}
+                            ))}
                         </div>
 
-                        <Button size="sm" className="w-full mt-3 bg-[#0052CC] hover:bg-blue-700">
+                        <Button
+                          size="sm"
+                          className="w-full mt-3 bg-[#0052CC] hover:bg-blue-700"
+                        >
                           <Eye className="w-4 h-4 mr-2" />
                           Ver Expediente Completo
                         </Button>
@@ -1424,7 +1563,9 @@ export default function AdminDashboard() {
                   <Card className="bg-gradient-to-r from-indigo-50 to-indigo-100 border-indigo-200">
                     <CardContent className="p-4 text-center">
                       <UserPlus className="w-8 h-8 text-indigo-600 mx-auto mb-2" />
-                      <h3 className="font-bold text-indigo-800 text-xl">{staff.length}</h3>
+                      <h3 className="font-bold text-indigo-800 text-xl">
+                        {staff.length}
+                      </h3>
                       <p className="text-sm text-indigo-700">Total Personal</p>
                     </CardContent>
                   </Card>
@@ -1433,7 +1574,7 @@ export default function AdminDashboard() {
                     <CardContent className="p-4 text-center">
                       <CheckCircle className="w-8 h-8 text-green-600 mx-auto mb-2" />
                       <h3 className="font-bold text-green-800 text-xl">
-                        {staff.filter(s => s.status === "activo").length}
+                        {staff.filter((s) => s.status === "activo").length}
                       </h3>
                       <p className="text-sm text-green-700">Activos</p>
                     </CardContent>
@@ -1443,9 +1584,14 @@ export default function AdminDashboard() {
                     <CardContent className="p-4 text-center">
                       <Activity className="w-8 h-8 text-blue-600 mx-auto mb-2" />
                       <h3 className="font-bold text-blue-800 text-xl">
-                        {staff.reduce((total, member) => total + member.activeAssignments, 0)}
+                        {staff.reduce(
+                          (total, member) => total + member.activeAssignments,
+                          0,
+                        )}
                       </h3>
-                      <p className="text-sm text-blue-700">Asignaciones Activas</p>
+                      <p className="text-sm text-blue-700">
+                        Asignaciones Activas
+                      </p>
                     </CardContent>
                   </Card>
 
@@ -1453,7 +1599,7 @@ export default function AdminDashboard() {
                     <CardContent className="p-4 text-center">
                       <Building2 className="w-8 h-8 text-purple-600 mx-auto mb-2" />
                       <h3 className="font-bold text-purple-800 text-xl">
-                        {new Set(staff.map(s => s.department)).size}
+                        {new Set(staff.map((s) => s.department)).size}
                       </h3>
                       <p className="text-sm text-purple-700">Departamentos</p>
                     </CardContent>
@@ -1478,12 +1624,21 @@ export default function AdminDashboard() {
                   {staff
                     .filter(
                       (member) =>
-                        member.name.toLowerCase().includes(staffSearch.toLowerCase()) ||
-                        member.role.toLowerCase().includes(staffSearch.toLowerCase()) ||
-                        member.department.toLowerCase().includes(staffSearch.toLowerCase()),
+                        member.name
+                          .toLowerCase()
+                          .includes(staffSearch.toLowerCase()) ||
+                        member.role
+                          .toLowerCase()
+                          .includes(staffSearch.toLowerCase()) ||
+                        member.department
+                          .toLowerCase()
+                          .includes(staffSearch.toLowerCase()),
                     )
                     .map((member) => (
-                      <Card key={member.id} className="hover:shadow-md transition-shadow">
+                      <Card
+                        key={member.id}
+                        className="hover:shadow-md transition-shadow"
+                      >
                         <CardContent className="p-4">
                           <div className="flex items-start justify-between mb-3">
                             <div className="flex items-center gap-3">
@@ -1491,12 +1646,24 @@ export default function AdminDashboard() {
                                 <UserPlus className="w-6 h-6 text-indigo-600" />
                               </div>
                               <div>
-                                <h4 className="font-semibold text-slate-800">{member.name}</h4>
-                                <p className="text-sm text-slate-600">{member.role}</p>
-                                <p className="text-xs text-slate-500">{member.department}</p>
+                                <h4 className="font-semibold text-slate-800">
+                                  {member.name}
+                                </h4>
+                                <p className="text-sm text-slate-600">
+                                  {member.role}
+                                </p>
+                                <p className="text-xs text-slate-500">
+                                  {member.department}
+                                </p>
                               </div>
                             </div>
-                            <Badge className={member.status === "activo" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}>
+                            <Badge
+                              className={
+                                member.status === "activo"
+                                  ? "bg-green-100 text-green-800"
+                                  : "bg-red-100 text-red-800"
+                              }
+                            >
                               {member.status}
                             </Badge>
                           </div>
@@ -1569,14 +1736,33 @@ export default function AdminDashboard() {
                     <CardContent className="p-4">
                       <div className="space-y-3">
                         {audienceTypes.map((type) => (
-                          <div key={type.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                          <div
+                            key={type.id}
+                            className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                          >
                             <div className="flex items-center gap-3">
-                              <div className={`w-3 h-3 rounded-full ${type.active ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                              <div
+                                className={`w-3 h-3 rounded-full ${type.active ? "bg-green-500" : "bg-red-500"}`}
+                              ></div>
                               <div>
-                                <h4 className="font-semibold text-slate-800">{type.name}</h4>
-                                <p className="text-sm text-slate-600">{type.description}</p>
-                                <Badge className={CATEGORY_CONFIG[type.category as keyof typeof CATEGORY_CONFIG].color}>
-                                  {CATEGORY_CONFIG[type.category as keyof typeof CATEGORY_CONFIG].name}
+                                <h4 className="font-semibold text-slate-800">
+                                  {type.name}
+                                </h4>
+                                <p className="text-sm text-slate-600">
+                                  {type.description}
+                                </p>
+                                <Badge
+                                  className={
+                                    CATEGORY_CONFIG[
+                                      type.category as keyof typeof CATEGORY_CONFIG
+                                    ].color
+                                  }
+                                >
+                                  {
+                                    CATEGORY_CONFIG[
+                                      type.category as keyof typeof CATEGORY_CONFIG
+                                    ].name
+                                  }
                                 </Badge>
                               </div>
                             </div>
@@ -1614,21 +1800,33 @@ export default function AdminDashboard() {
                     <CardContent className="p-4">
                       <div className="space-y-4">
                         <div className="p-4 bg-gray-50 rounded-lg">
-                          <h4 className="font-semibold text-slate-800 mb-2">Estadísticas del Sistema</h4>
+                          <h4 className="font-semibold text-slate-800 mb-2">
+                            Estadísticas del Sistema
+                          </h4>
                           <div className="grid grid-cols-2 gap-4 text-sm">
                             <div>
-                              <span className="text-slate-600">Tiempo promedio de respuesta:</span>
-                              <p className="font-bold text-blue-600">{mockAdminData.stats.avgResponseTime}</p>
+                              <span className="text-slate-600">
+                                Tiempo promedio de respuesta:
+                              </span>
+                              <p className="font-bold text-blue-600">
+                                {mockAdminData.stats.avgResponseTime}
+                              </p>
                             </div>
                             <div>
-                              <span className="text-slate-600">Índice de satisfacción:</span>
-                              <p className="font-bold text-green-600">{mockAdminData.stats.satisfactionRate}</p>
+                              <span className="text-slate-600">
+                                Índice de satisfacción:
+                              </span>
+                              <p className="font-bold text-green-600">
+                                {mockAdminData.stats.satisfactionRate}
+                              </p>
                             </div>
                           </div>
                         </div>
 
                         <div className="p-4 bg-gray-50 rounded-lg">
-                          <h4 className="font-semibold text-slate-800 mb-2">Horarios de Atención</h4>
+                          <h4 className="font-semibold text-slate-800 mb-2">
+                            Horarios de Atención
+                          </h4>
                           <div className="space-y-2 text-sm">
                             <div className="flex justify-between">
                               <span>Audiencias Públicas (Viernes):</span>
@@ -1636,13 +1834,17 @@ export default function AdminDashboard() {
                             </div>
                             <div className="flex justify-between">
                               <span>Atención General:</span>
-                              <span className="font-bold">Lun - Vie, 08:00 - 18:00</span>
+                              <span className="font-bold">
+                                Lun - Vie, 08:00 - 18:00
+                              </span>
                             </div>
                           </div>
                         </div>
 
                         <div className="p-4 bg-gray-50 rounded-lg">
-                          <h4 className="font-semibold text-slate-800 mb-2">Límites y Parámetros</h4>
+                          <h4 className="font-semibold text-slate-800 mb-2">
+                            Límites y Parámetros
+                          </h4>
                           <div className="space-y-2 text-sm">
                             <div className="flex justify-between">
                               <span>Máximo audiencias por día:</span>
@@ -1654,7 +1856,10 @@ export default function AdminDashboard() {
                             </div>
                             <div className="flex justify-between">
                               <span>Audiencias activas:</span>
-                              <span className="font-bold text-green-600">{audienceTypes.filter(t => t.active).length} tipos</span>
+                              <span className="font-bold text-green-600">
+                                {audienceTypes.filter((t) => t.active).length}{" "}
+                                tipos
+                              </span>
                             </div>
                           </div>
                         </div>
@@ -1681,7 +1886,8 @@ export default function AdminDashboard() {
                       🕐 Gestión de Turnos - Viernes
                     </CardTitle>
                     <CardDescription>
-                      Administra los turnos para audiencias públicas de los viernes
+                      Administra los turnos para audiencias públicas de los
+                      viernes
                     </CardDescription>
                   </div>
                   <Button className="bg-[#DC2626] hover:bg-red-700 text-white">
@@ -1696,8 +1902,12 @@ export default function AdminDashboard() {
                   <Card className="bg-gradient-to-r from-green-50 to-green-100 border-green-200">
                     <CardContent className="p-4 text-center">
                       <Calendar className="w-8 h-8 text-green-600 mx-auto mb-2" />
-                      <h3 className="font-bold text-green-800 text-xl">{publicAudienceDates.length}</h3>
-                      <p className="text-sm text-green-700">Viernes Programados</p>
+                      <h3 className="font-bold text-green-800 text-xl">
+                        {publicAudienceDates.length}
+                      </h3>
+                      <p className="text-sm text-green-700">
+                        Viernes Programados
+                      </p>
                     </CardContent>
                   </Card>
 
@@ -1715,7 +1925,10 @@ export default function AdminDashboard() {
                     <CardContent className="p-4 text-center">
                       <UserPlus className="w-8 h-8 text-purple-600 mx-auto mb-2" />
                       <h3 className="font-bold text-purple-800 text-xl">
-                        {turnQueue.filter(t => t.status === "pendiente").length}
+                        {
+                          turnQueue.filter((t) => t.status === "pendiente")
+                            .length
+                        }
                       </h3>
                       <p className="text-sm text-purple-700">Pendientes</p>
                     </CardContent>
@@ -1725,7 +1938,10 @@ export default function AdminDashboard() {
                     <CardContent className="p-4 text-center">
                       <CheckCircle className="w-8 h-8 text-amber-600 mx-auto mb-2" />
                       <h3 className="font-bold text-amber-800 text-xl">
-                        {turnQueue.filter(t => t.status === "completado").length}
+                        {
+                          turnQueue.filter((t) => t.status === "completado")
+                            .length
+                        }
                       </h3>
                       <p className="text-sm text-amber-700">Completados</p>
                     </CardContent>
@@ -1740,18 +1956,28 @@ export default function AdminDashboard() {
                         <div>
                           <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
                             <Activity className="w-5 h-5" />
-                            Monitor de Turnos - {format(monitorDate, "dd/MM/yyyy", { locale: es })}
+                            Monitor de Turnos -{" "}
+                            {format(monitorDate, "dd/MM/yyyy", { locale: es })}
                           </CardTitle>
                           <CardDescription>
                             Control en tiempo real de los turnos del día
                           </CardDescription>
                         </div>
                         <div className="flex gap-2">
-                          <Button size="sm" variant="outline" onClick={refreshTurnMonitor}>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={refreshTurnMonitor}
+                          >
                             <ArrowLeft className="w-4 h-4 mr-1" />
                             Actualizar
                           </Button>
-                          <Button size="sm" variant="outline" onClick={resetDayTurns} className="text-orange-600 hover:text-orange-700">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={resetDayTurns}
+                            className="text-orange-600 hover:text-orange-700"
+                          >
                             <ArrowLeft className="w-4 h-4 mr-1" />
                             Reiniciar
                           </Button>
@@ -1774,27 +2000,39 @@ export default function AdminDashboard() {
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
                             <div>
                               <p className="text-sm">
-                                <strong>🕐 Hora:</strong> {currentTurnActive.time}
+                                <strong>🕐 Hora:</strong>{" "}
+                                {currentTurnActive.time}
                               </p>
                               <p className="text-sm">
-                                <strong>👤 Ciudadano:</strong> {currentTurnActive.ciudadano}
+                                <strong>👤 Ciudadano:</strong>{" "}
+                                {currentTurnActive.ciudadano}
                               </p>
                             </div>
                             <div>
                               <p className="text-sm">
-                                <strong>📞 Teléfono:</strong> {currentTurnActive.telefono}
+                                <strong>📞 Teléfono:</strong>{" "}
+                                {currentTurnActive.telefono}
                               </p>
                               <p className="text-sm">
-                                <strong>📋 Motivo:</strong> {currentTurnActive.motivo}
+                                <strong>📋 Motivo:</strong>{" "}
+                                {currentTurnActive.motivo}
                               </p>
                             </div>
                           </div>
                           <div className="flex gap-2">
-                            <Button size="sm" className="flex-1 bg-green-600 hover:bg-green-700" onClick={completeTurn}>
+                            <Button
+                              size="sm"
+                              className="flex-1 bg-green-600 hover:bg-green-700"
+                              onClick={completeTurn}
+                            >
                               <CheckCircle className="w-4 h-4 mr-2" />
                               Completar Turno
                             </Button>
-                            <Button size="sm" variant="outline" className="text-blue-600 hover:text-blue-700">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="text-blue-600 hover:text-blue-700"
+                            >
                               <Phone className="w-4 h-4 mr-2" />
                               Llamar
                             </Button>
@@ -1803,15 +2041,21 @@ export default function AdminDashboard() {
                       ) : (
                         <div className="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 mb-4 text-center">
                           <Clock className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                          <h4 className="font-bold text-gray-600">No hay turno activo</h4>
-                          <p className="text-sm text-gray-500">Haz clic en "Llamar Siguiente Turno" para comenzar</p>
+                          <h4 className="font-bold text-gray-600">
+                            No hay turno activo
+                          </h4>
+                          <p className="text-sm text-gray-500">
+                            Haz clic en "Llamar Siguiente Turno" para comenzar
+                          </p>
                         </div>
                       )}
 
                       {/* Próximos Turnos */}
                       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
                         <div className="flex items-center justify-between mb-3">
-                          <h4 className="font-bold text-blue-800">📋 PRÓXIMOS TURNOS</h4>
+                          <h4 className="font-bold text-blue-800">
+                            📋 PRÓXIMOS TURNOS
+                          </h4>
                           <Badge className="bg-blue-100 text-blue-800">
                             {nextTurns.length} pendientes
                           </Badge>
@@ -1819,22 +2063,35 @@ export default function AdminDashboard() {
                         {nextTurns.length > 0 ? (
                           <div className="space-y-2">
                             {nextTurns.slice(0, 3).map((turn, idx) => (
-                              <div key={turn.slotId} className={`bg-white p-3 rounded border-2 ${
-                                idx === 0 ? 'border-blue-300 shadow-md' : 'border-gray-200'
-                              }`}>
+                              <div
+                                key={turn.slotId}
+                                className={`bg-white p-3 rounded border-2 ${
+                                  idx === 0
+                                    ? "border-blue-300 shadow-md"
+                                    : "border-gray-200"
+                                }`}
+                              >
                                 <div className="flex justify-between items-start">
                                   <div className="flex-1">
                                     <div className="flex items-center gap-2 mb-1">
-                                      <span className="font-bold text-lg">{turn.time}</span>
+                                      <span className="font-bold text-lg">
+                                        {turn.time}
+                                      </span>
                                       {idx === 0 && (
                                         <Badge className="bg-blue-500 text-white animate-pulse">
                                           ← SIGUIENTE
                                         </Badge>
                                       )}
                                     </div>
-                                    <p className="font-medium text-slate-800">{turn.ciudadano}</p>
-                                    <p className="text-sm text-slate-600">📞 {turn.telefono}</p>
-                                    <p className="text-xs text-slate-500 mt-1">{turn.motivo}</p>
+                                    <p className="font-medium text-slate-800">
+                                      {turn.ciudadano}
+                                    </p>
+                                    <p className="text-sm text-slate-600">
+                                      📞 {turn.telefono}
+                                    </p>
+                                    <p className="text-xs text-slate-500 mt-1">
+                                      {turn.motivo}
+                                    </p>
                                   </div>
                                   <div className="text-right">
                                     <span className="text-xs text-slate-400">
@@ -1848,12 +2105,18 @@ export default function AdminDashboard() {
                         ) : (
                           <div className="text-center py-4">
                             <Clock className="w-8 h-8 text-slate-300 mx-auto mb-2" />
-                            <p className="text-slate-500 text-sm">No hay turnos pendientes</p>
+                            <p className="text-slate-500 text-sm">
+                              No hay turnos pendientes
+                            </p>
                           </div>
                         )}
 
                         {nextTurns.length > 0 && (
-                          <Button size="sm" className="mt-4 w-full bg-blue-600 hover:bg-blue-700 shadow-lg" onClick={callNextTurn}>
+                          <Button
+                            size="sm"
+                            className="mt-4 w-full bg-blue-600 hover:bg-blue-700 shadow-lg"
+                            onClick={callNextTurn}
+                          >
                             <ArrowRight className="w-4 h-4 mr-2" />
                             🔔 Llamar Siguiente Turno
                           </Button>
@@ -1863,7 +2126,9 @@ export default function AdminDashboard() {
                       {/* Cola de Turnos */}
                       <div className="max-h-80 overflow-y-auto">
                         <div className="flex items-center justify-between mb-3">
-                          <h4 className="font-bold text-slate-800">📅 TODOS LOS TURNOS DEL DÍA</h4>
+                          <h4 className="font-bold text-slate-800">
+                            📅 TODOS LOS TURNOS DEL DÍA
+                          </h4>
                           <div className="flex gap-1">
                             <div className="flex items-center gap-1 text-xs">
                               <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
@@ -1882,44 +2147,72 @@ export default function AdminDashboard() {
                         {turnQueue.length > 0 ? (
                           <div className="space-y-2">
                             {turnQueue.map((turn, index) => (
-                              <div key={turn.slotId} className={`p-3 rounded-lg border-2 transition-all duration-200 ${
-                                turn.status === "completado" ? "bg-green-50 border-green-200" :
-                                turn.status === "activo" ? "bg-blue-50 border-blue-300 shadow-md" :
-                                "bg-gray-50 border-gray-200 hover:border-gray-300"
-                              }`}>
+                              <div
+                                key={turn.slotId}
+                                className={`p-3 rounded-lg border-2 transition-all duration-200 ${
+                                  turn.status === "completado"
+                                    ? "bg-green-50 border-green-200"
+                                    : turn.status === "activo"
+                                      ? "bg-blue-50 border-blue-300 shadow-md"
+                                      : "bg-gray-50 border-gray-200 hover:border-gray-300"
+                                }`}
+                              >
                                 <div className="flex justify-between items-start">
                                   <div className="flex items-center gap-3">
-                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm ${
-                                      turn.status === "completado" ? "bg-green-500" :
-                                      turn.status === "activo" ? "bg-blue-500" :
-                                      "bg-gray-400"
-                                    }`}>
+                                    <div
+                                      className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm ${
+                                        turn.status === "completado"
+                                          ? "bg-green-500"
+                                          : turn.status === "activo"
+                                            ? "bg-blue-500"
+                                            : "bg-gray-400"
+                                      }`}
+                                    >
                                       {index + 1}
                                     </div>
                                     <div>
                                       <div className="flex items-center gap-2">
-                                        <span className="font-bold">{turn.time}</span>
-                                        <span className="text-slate-700">{turn.ciudadano}</span>
+                                        <span className="font-bold">
+                                          {turn.time}
+                                        </span>
+                                        <span className="text-slate-700">
+                                          {turn.ciudadano}
+                                        </span>
                                       </div>
-                                      <p className="text-sm text-slate-600">📞 {turn.telefono}</p>
-                                      <p className="text-xs text-slate-500">{turn.motivo}</p>
+                                      <p className="text-sm text-slate-600">
+                                        📞 {turn.telefono}
+                                      </p>
+                                      <p className="text-xs text-slate-500">
+                                        {turn.motivo}
+                                      </p>
                                     </div>
                                   </div>
                                   <div className="text-right">
-                                    <Badge className={
-                                      turn.status === "completado" ? "bg-green-100 text-green-800" :
-                                      turn.status === "activo" ? "bg-blue-100 text-blue-800" :
-                                      "bg-gray-100 text-gray-800"
-                                    }>
-                                      {turn.status === "completado" ? "✅ Completado" :
-                                       turn.status === "activo" ? "🔔 En Atención" :
-                                       "⏳ Pendiente"}
+                                    <Badge
+                                      className={
+                                        turn.status === "completado"
+                                          ? "bg-green-100 text-green-800"
+                                          : turn.status === "activo"
+                                            ? "bg-blue-100 text-blue-800"
+                                            : "bg-gray-100 text-gray-800"
+                                      }
+                                    >
+                                      {turn.status === "completado"
+                                        ? "✅ Completado"
+                                        : turn.status === "activo"
+                                          ? "🔔 En Atención"
+                                          : "⏳ Pendiente"}
                                     </Badge>
-                                    {turn.status === "completado" && turn.completedAt && (
-                                      <p className="text-xs text-slate-400 mt-1">
-                                        {format(new Date(turn.completedAt), "HH:mm", { locale: es })}
-                                      </p>
-                                    )}
+                                    {turn.status === "completado" &&
+                                      turn.completedAt && (
+                                        <p className="text-xs text-slate-400 mt-1">
+                                          {format(
+                                            new Date(turn.completedAt),
+                                            "HH:mm",
+                                            { locale: es },
+                                          )}
+                                        </p>
+                                      )}
                                   </div>
                                 </div>
                               </div>
@@ -1928,8 +2221,14 @@ export default function AdminDashboard() {
                         ) : (
                           <div className="text-center py-8">
                             <Calendar className="w-12 h-12 text-slate-300 mx-auto mb-3" />
-                            <p className="text-slate-500 text-sm">No hay turnos programados para hoy</p>
-                            <Button size="sm" className="mt-3" onClick={refreshTurnMonitor}>
+                            <p className="text-slate-500 text-sm">
+                              No hay turnos programados para hoy
+                            </p>
+                            <Button
+                              size="sm"
+                              className="mt-3"
+                              onClick={refreshTurnMonitor}
+                            >
                               <Plus className="w-4 h-4 mr-2" />
                               Cargar Turnos de Prueba
                             </Button>
@@ -1952,36 +2251,45 @@ export default function AdminDashboard() {
                     </CardHeader>
                     <CardContent className="p-4">
                       <div className="space-y-3">
-                        {publicAudienceDates.slice(0, 6).map((dateInfo, idx) => (
-                          <div key={idx} className="bg-white border border-gray-200 rounded-lg p-3">
-                            <div className="flex justify-between items-center">
-                              <div>
-                                <h4 className="font-semibold text-slate-800">
-                                  {formatPublicAudienceDate(dateInfo.date)}
-                                </h4>
-                                <p className="text-sm text-slate-600">
-                                  {format(dateInfo.date, "EEEE, dd 'de' MMMM", { locale: es })}
-                                </p>
-                              </div>
-                              <div className="text-right">
-                                <Badge className="bg-green-100 text-green-800">
-                                  {dateInfo.availableSlots} slots
-                                </Badge>
-                                <p className="text-xs text-slate-500 mt-1">
-                                  09:00 - 17:00
-                                </p>
-                              </div>
-                            </div>
-                            <Button
-                              size="sm"
-                              className="w-full mt-2 bg-green-600 hover:bg-green-700"
-                              onClick={() => setSelectedManageDate(dateInfo)}
+                        {publicAudienceDates
+                          .slice(0, 6)
+                          .map((dateInfo, idx) => (
+                            <div
+                              key={idx}
+                              className="bg-white border border-gray-200 rounded-lg p-3"
                             >
-                              <Settings className="w-4 h-4 mr-2" />
-                              Gestionar Turnos
-                            </Button>
-                          </div>
-                        ))}
+                              <div className="flex justify-between items-center">
+                                <div>
+                                  <h4 className="font-semibold text-slate-800">
+                                    {formatPublicAudienceDate(dateInfo.date)}
+                                  </h4>
+                                  <p className="text-sm text-slate-600">
+                                    {format(
+                                      dateInfo.date,
+                                      "EEEE, dd 'de' MMMM",
+                                      { locale: es },
+                                    )}
+                                  </p>
+                                </div>
+                                <div className="text-right">
+                                  <Badge className="bg-green-100 text-green-800">
+                                    {dateInfo.availableSlots} slots
+                                  </Badge>
+                                  <p className="text-xs text-slate-500 mt-1">
+                                    09:00 - 17:00
+                                  </p>
+                                </div>
+                              </div>
+                              <Button
+                                size="sm"
+                                className="w-full mt-2 bg-green-600 hover:bg-green-700"
+                                onClick={() => setSelectedManageDate(dateInfo)}
+                              >
+                                <Settings className="w-4 h-4 mr-2" />
+                                Gestionar Turnos
+                              </Button>
+                            </div>
+                          ))}
                       </div>
 
                       <Button className="w-full mt-4 bg-[#0052CC] hover:bg-blue-700">
@@ -2020,16 +2328,22 @@ export default function AdminDashboard() {
                   <Card className="bg-gradient-to-r from-rose-50 to-rose-100 border-rose-200">
                     <CardContent className="p-4 text-center">
                       <BarChart3 className="w-8 h-8 text-rose-600 mx-auto mb-2" />
-                      <h3 className="font-bold text-rose-800 text-xl">{mockAdminData.stats.totalAudiences}</h3>
+                      <h3 className="font-bold text-rose-800 text-xl">
+                        {mockAdminData.stats.totalAudiences}
+                      </h3>
                       <p className="text-sm text-rose-700">Total Audiencias</p>
-                      <p className="text-xs text-rose-600 mt-1">+12% este mes</p>
+                      <p className="text-xs text-rose-600 mt-1">
+                        +12% este mes
+                      </p>
                     </CardContent>
                   </Card>
 
                   <Card className="bg-gradient-to-r from-blue-50 to-blue-100 border-blue-200">
                     <CardContent className="p-4 text-center">
                       <TrendingUp className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-                      <h3 className="font-bold text-blue-800 text-xl">{mockAdminData.stats.avgResponseTime}</h3>
+                      <h3 className="font-bold text-blue-800 text-xl">
+                        {mockAdminData.stats.avgResponseTime}
+                      </h3>
                       <p className="text-sm text-blue-700">Tiempo Promedio</p>
                       <p className="text-xs text-blue-600 mt-1">de respuesta</p>
                     </CardContent>
@@ -2038,7 +2352,9 @@ export default function AdminDashboard() {
                   <Card className="bg-gradient-to-r from-green-50 to-green-100 border-green-200">
                     <CardContent className="p-4 text-center">
                       <CheckCircle className="w-8 h-8 text-green-600 mx-auto mb-2" />
-                      <h3 className="font-bold text-green-800 text-xl">{mockAdminData.stats.satisfactionRate}</h3>
+                      <h3 className="font-bold text-green-800 text-xl">
+                        {mockAdminData.stats.satisfactionRate}
+                      </h3>
                       <p className="text-sm text-green-700">Satisfacción</p>
                       <p className="text-xs text-green-600 mt-1">ciudadana</p>
                     </CardContent>
@@ -2056,24 +2372,35 @@ export default function AdminDashboard() {
                     </CardHeader>
                     <CardContent className="p-4">
                       <div className="space-y-4">
-                        {Object.entries(CATEGORY_CONFIG).map(([key, config]) => {
-                          const count = audiences.filter(a => a.category === key).length;
-                          const percentage = audiences.length > 0 ? Math.round((count / audiences.length) * 100) : 0;
-                          return (
-                            <div key={key}>
-                              <div className="flex justify-between items-center mb-2">
-                                <span className="text-sm font-medium">{config.name}</span>
-                                <span className="text-sm font-bold">{count} ({percentage}%)</span>
+                        {Object.entries(CATEGORY_CONFIG).map(
+                          ([key, config]) => {
+                            const count = audiences.filter(
+                              (a) => a.category === key,
+                            ).length;
+                            const percentage =
+                              audiences.length > 0
+                                ? Math.round((count / audiences.length) * 100)
+                                : 0;
+                            return (
+                              <div key={key}>
+                                <div className="flex justify-between items-center mb-2">
+                                  <span className="text-sm font-medium">
+                                    {config.name}
+                                  </span>
+                                  <span className="text-sm font-bold">
+                                    {count} ({percentage}%)
+                                  </span>
+                                </div>
+                                <div className="w-full bg-gray-200 rounded-full h-2">
+                                  <div
+                                    className="bg-purple-600 h-2 rounded-full transition-all duration-300"
+                                    style={{ width: `${percentage}%` }}
+                                  ></div>
+                                </div>
                               </div>
-                              <div className="w-full bg-gray-200 rounded-full h-2">
-                                <div
-                                  className="bg-purple-600 h-2 rounded-full transition-all duration-300"
-                                  style={{ width: `${percentage}%` }}
-                                ></div>
-                              </div>
-                            </div>
-                          );
-                        })}
+                            );
+                          },
+                        )}
                       </div>
                     </CardContent>
                   </Card>
@@ -2089,17 +2416,31 @@ export default function AdminDashboard() {
                     <CardContent className="p-4">
                       <div className="space-y-4">
                         {Object.entries(STATUS_CONFIG).map(([key, config]) => {
-                          const count = audiences.filter(a => a.status === key).length;
-                          const percentage = audiences.length > 0 ? Math.round((count / audiences.length) * 100) : 0;
+                          const count = audiences.filter(
+                            (a) => a.status === key,
+                          ).length;
+                          const percentage =
+                            audiences.length > 0
+                              ? Math.round((count / audiences.length) * 100)
+                              : 0;
                           return (
-                            <div key={key} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <div
+                              key={key}
+                              className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                            >
                               <div className="flex items-center gap-3">
                                 <config.icon className="w-5 h-5 text-slate-600" />
-                                <span className="font-medium">{config.name}</span>
+                                <span className="font-medium">
+                                  {config.name}
+                                </span>
                               </div>
                               <div className="text-right">
-                                <span className="font-bold text-lg">{count}</span>
-                                <p className="text-xs text-slate-500">{percentage}%</p>
+                                <span className="font-bold text-lg">
+                                  {count}
+                                </span>
+                                <p className="text-xs text-slate-500">
+                                  {percentage}%
+                                </p>
                               </div>
                             </div>
                           );
@@ -2119,14 +2460,25 @@ export default function AdminDashboard() {
                     <CardContent className="p-4">
                       <div className="space-y-3">
                         {staff.slice(0, 4).map((member) => (
-                          <div key={member.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                          <div
+                            key={member.id}
+                            className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                          >
                             <div>
-                              <h4 className="font-semibold text-slate-800">{member.name}</h4>
-                              <p className="text-sm text-slate-600">{member.department}</p>
+                              <h4 className="font-semibold text-slate-800">
+                                {member.name}
+                              </h4>
+                              <p className="text-sm text-slate-600">
+                                {member.department}
+                              </p>
                             </div>
                             <div className="text-right">
-                              <span className="font-bold text-indigo-600">{member.activeAssignments}</span>
-                              <p className="text-xs text-slate-500">asignaciones</p>
+                              <span className="font-bold text-indigo-600">
+                                {member.activeAssignments}
+                              </span>
+                              <p className="text-xs text-slate-500">
+                                asignaciones
+                              </p>
                             </div>
                           </div>
                         ))}
@@ -2146,29 +2498,48 @@ export default function AdminDashboard() {
                       <div className="space-y-4">
                         <div className="bg-white border border-gray-200 rounded-lg p-3">
                           <div className="flex justify-between items-center">
-                            <span className="text-sm font-medium">Audiencias completadas</span>
-                            <span className="font-bold text-green-600">{mockAdminData.stats.completedThisMonth}</span>
+                            <span className="text-sm font-medium">
+                              Audiencias completadas
+                            </span>
+                            <span className="font-bold text-green-600">
+                              {mockAdminData.stats.completedThisMonth}
+                            </span>
                           </div>
                         </div>
 
                         <div className="bg-white border border-gray-200 rounded-lg p-3">
                           <div className="flex justify-between items-center">
-                            <span className="text-sm font-medium">Ciudadanos atendidos</span>
-                            <span className="font-bold text-blue-600">{citizens.length}</span>
+                            <span className="text-sm font-medium">
+                              Ciudadanos atendidos
+                            </span>
+                            <span className="font-bold text-blue-600">
+                              {citizens.length}
+                            </span>
                           </div>
                         </div>
 
                         <div className="bg-white border border-gray-200 rounded-lg p-3">
                           <div className="flex justify-between items-center">
-                            <span className="text-sm font-medium">Audiencias de viernes</span>
-                            <span className="font-bold text-purple-600">{publicAudienceDates.length}</span>
+                            <span className="text-sm font-medium">
+                              Audiencias de viernes
+                            </span>
+                            <span className="font-bold text-purple-600">
+                              {publicAudienceDates.length}
+                            </span>
                           </div>
                         </div>
 
                         <div className="bg-white border border-gray-200 rounded-lg p-3">
                           <div className="flex justify-between items-center">
-                            <span className="text-sm font-medium">Personal activo</span>
-                            <span className="font-bold text-indigo-600">{staff.filter(s => s.status === "activo").length}</span>
+                            <span className="text-sm font-medium">
+                              Personal activo
+                            </span>
+                            <span className="font-bold text-indigo-600">
+                              {
+                                staff.filter((s) => s.status === "activo")
+                                  .length
+                              }
+                            </span>
                           </div>
                         </div>
                       </div>
