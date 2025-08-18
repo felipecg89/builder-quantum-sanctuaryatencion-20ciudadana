@@ -128,7 +128,7 @@ export default function IndexNew() {
               </div>
             </div>
 
-            <h2 className="text-5xl sm:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 mb-8 leading-tight tracking-tight">
+            <h2 className="text-6xl sm:text-8xl font-black text-[#0052CC] mb-8 leading-tight tracking-tight">
               {user ? (
                 <>
                   ¡Hola, <span className="text-blue-600">{user.name}!</span>
