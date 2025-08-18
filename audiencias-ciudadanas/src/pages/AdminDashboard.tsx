@@ -1175,20 +1175,116 @@ export default function AdminDashboard() {
           <TabsContent value="expedientes">
             <Card>
               <CardHeader>
-                <CardTitle>Expedientes de Ciudadanos</CardTitle>
+                <CardTitle className="text-2xl font-bold text-[#0052CC]">
+                  📁 Expedientes de Ciudadanos
+                </CardTitle>
                 <CardDescription>
                   Historial completo de solicitudes y resultados por ciudadano
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-center py-12">
-                  <FileText className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-slate-600 mb-2">
-                    Archivo de Expedientes
-                  </h3>
-                  <p className="text-slate-500">
-                    Consulta el historial completo de cada ciudadano y sus solicitudes.
-                  </p>
+                {/* Estadísticas de Expedientes */}
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                  <Card className="bg-gradient-to-r from-amber-50 to-amber-100 border-amber-200">
+                    <CardContent className="p-4 text-center">
+                      <FileText className="w-8 h-8 text-amber-600 mx-auto mb-2" />
+                      <h3 className="font-bold text-amber-800 text-xl">
+                        {citizens.reduce((total, citizen) => total + citizen.expediente.requests.length, 0)}
+                      </h3>
+                      <p className="text-sm text-amber-700">Total Expedientes</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-gradient-to-r from-green-50 to-green-100 border-green-200">
+                    <CardContent className="p-4 text-center">
+                      <CheckCircle className="w-8 h-8 text-green-600 mx-auto mb-2" />
+                      <h3 className="font-bold text-green-800 text-xl">
+                        {citizens.reduce((total, citizen) =>
+                          total + citizen.expediente.requests.filter(r => r.status === "completada").length, 0)}
+                      </h3>
+                      <p className="text-sm text-green-700">Completados</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-gradient-to-r from-blue-50 to-blue-100 border-blue-200">
+                    <CardContent className="p-4 text-center">
+                      <AlertCircle className="w-8 h-8 text-blue-600 mx-auto mb-2" />
+                      <h3 className="font-bold text-blue-800 text-xl">
+                        {citizens.reduce((total, citizen) =>
+                          total + citizen.expediente.requests.filter(r => r.status === "en_proceso").length, 0)}
+                      </h3>
+                      <p className="text-sm text-blue-700">En Proceso</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-gradient-to-r from-purple-50 to-purple-100 border-purple-200">
+                    <CardContent className="p-4 text-center">
+                      <Users className="w-8 h-8 text-purple-600 mx-auto mb-2" />
+                      <h3 className="font-bold text-purple-800 text-xl">{citizens.length}</h3>
+                      <p className="text-sm text-purple-700">Ciudadanos con Expediente</p>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Lista de Expedientes por Ciudadano */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {citizens.map((citizen) => (
+                    <Card
+                      key={citizen.id}
+                      className="hover:shadow-lg transition-all duration-300 cursor-pointer border-2 hover:border-[#0052CC]"
+                      onClick={() => {
+                        setSelectedCitizen(citizen);
+                        setIsExpedienteOpen(true);
+                      }}
+                    >
+                      <CardContent className="p-4">
+                        <div className="flex items-start justify-between mb-3">
+                          <div className="flex items-center gap-3">
+                            <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center">
+                              <FileText className="w-6 h-6 text-amber-600" />
+                            </div>
+                            <div>
+                              <h4 className="font-semibold text-slate-800">{citizen.name}</h4>
+                              <p className="text-sm text-slate-600">{citizen.id}</p>
+                            </div>
+                          </div>
+                          <Badge className="bg-amber-100 text-amber-800">
+                            {citizen.expediente.requests.length} solicitudes
+                          </Badge>
+                        </div>
+
+                        <div className="space-y-2 mb-4">
+                          <p className="text-sm text-slate-600">📞 {citizen.phone}</p>
+                          <p className="text-xs text-slate-500">
+                            Registro: {format(citizen.registrationDate, "dd/MM/yyyy", { locale: es })}
+                          </p>
+                        </div>
+
+                        {/* Últimas solicitudes */}
+                        <div className="space-y-2">
+                          <h5 className="text-sm font-semibold text-slate-700">Últimas solicitudes:</h5>
+                          {citizen.expediente.requests.slice(0, 2).map((request, idx) => (
+                            <div key={idx} className="text-xs bg-gray-50 p-2 rounded">
+                              <div className="flex justify-between items-center">
+                                <span className="font-medium">{request.type}</span>
+                                <Badge className={STATUS_CONFIG[request.status as keyof typeof STATUS_CONFIG].color}>
+                                  {STATUS_CONFIG[request.status as keyof typeof STATUS_CONFIG].name}
+                                </Badge>
+                              </div>
+                              <p className="text-gray-600 mt-1">
+                                {format(request.date, "dd/MM/yyyy", { locale: es })}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+
+                        <Button size="sm" className="w-full mt-3 bg-[#0052CC] hover:bg-blue-700">
+                          <Eye className="w-4 h-4 mr-2" />
+                          Ver Expediente Completo
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  ))}
                 </div>
               </CardContent>
             </Card>
