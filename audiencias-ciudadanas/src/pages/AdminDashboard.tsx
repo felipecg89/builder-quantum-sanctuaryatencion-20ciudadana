@@ -449,12 +449,32 @@ export default function AdminDashboard() {
     // Si no hay turnos para esa fecha, crear turnos de ejemplo
     if (Object.keys(dateTurnos).length === 0) {
       const sampleNames = [
-        { name: "Juan Pérez", phone: "55 1111 1111", reason: "Solicitud de apoyo social" },
+        {
+          name: "Juan Pérez",
+          phone: "55 1111 1111",
+          reason: "Solicitud de apoyo social",
+        },
         { name: "Ana López", phone: "55 2222 2222", reason: "Consulta médica" },
-        { name: "Carlos Mendoza", phone: "55 3333 3333", reason: "Trámite de licencia" },
-        { name: "María García", phone: "55 4444 4444", reason: "Apoyo alimentario" },
-        { name: "Luis Torres", phone: "55 5555 5555", reason: "Servicios sociales" },
-        { name: "Rosa Morales", phone: "55 6666 6666", reason: "Permiso construcción" }
+        {
+          name: "Carlos Mendoza",
+          phone: "55 3333 3333",
+          reason: "Trámite de licencia",
+        },
+        {
+          name: "María García",
+          phone: "55 4444 4444",
+          reason: "Apoyo alimentario",
+        },
+        {
+          name: "Luis Torres",
+          phone: "55 5555 5555",
+          reason: "Servicios sociales",
+        },
+        {
+          name: "Rosa Morales",
+          phone: "55 6666 6666",
+          reason: "Permiso construcción",
+        },
       ];
 
       dateTurnos = {};
@@ -462,13 +482,13 @@ export default function AdminDashboard() {
       sampleNames.forEach((person, idx) => {
         const hour = startHour + Math.floor(idx * 0.5);
         const minutes = (idx % 2) * 30;
-        const timeSlot = `${hour.toString().padStart(2, '0')}${minutes.toString().padStart(2, '0')}`;
+        const timeSlot = `${hour.toString().padStart(2, "0")}${minutes.toString().padStart(2, "0")}`;
 
         dateTurnos[`slot-${timeSlot}`] = {
           ciudadano: person.name,
           telefono: person.phone,
           motivo: person.reason,
-          status: "pendiente"
+          status: "pendiente",
         };
       });
 
@@ -494,7 +514,9 @@ export default function AdminDashboard() {
     setCurrentTurnActive(null);
 
     // Establecer próximos turnos pendientes
-    const pendingTurns = turnsArray.filter((turn) => turn.status === "pendiente");
+    const pendingTurns = turnsArray.filter(
+      (turn) => turn.status === "pendiente",
+    );
     setNextTurns(pendingTurns.slice(0, 3));
 
     toast({
@@ -509,7 +531,7 @@ export default function AdminDashboard() {
     const nextFriday = new Date(today);
 
     // Calcular días hasta el próximo viernes (después de los ya programados)
-    const existingDates = publicAudienceDates.map(d => d.date.getTime());
+    const existingDates = publicAudienceDates.map((d) => d.date.getTime());
     let daysToAdd = (5 - today.getDay() + 7) % 7;
     if (daysToAdd === 0) daysToAdd = 7; // Si hoy es viernes, tomar el siguiente
 
@@ -523,11 +545,13 @@ export default function AdminDashboard() {
     const newDate: PublicAudienceDate = {
       date: nextFriday,
       availableSlots: 20,
-      bookedSlots: 0
+      bookedSlots: 0,
     };
 
     // Agregar a la lista de fechas
-    setPublicAudienceDates(prev => [...prev, newDate].sort((a, b) => a.date.getTime() - b.date.getTime()));
+    setPublicAudienceDates((prev) =>
+      [...prev, newDate].sort((a, b) => a.date.getTime() - b.date.getTime()),
+    );
 
     toast({
       title: "📅 Nueva fecha agregada",
@@ -542,9 +566,15 @@ export default function AdminDashboard() {
     const dateTurnos = allTurnos[dateKey] || {};
 
     const totalTurnos = Object.keys(dateTurnos).length;
-    const completedTurnos = Object.values(dateTurnos).filter((turn: any) => turn.status === "completado").length;
-    const pendingTurnos = Object.values(dateTurnos).filter((turn: any) => turn.status === "pendiente").length;
-    const activeTurnos = Object.values(dateTurnos).filter((turn: any) => turn.status === "activo").length;
+    const completedTurnos = Object.values(dateTurnos).filter(
+      (turn: any) => turn.status === "completado",
+    ).length;
+    const pendingTurnos = Object.values(dateTurnos).filter(
+      (turn: any) => turn.status === "pendiente",
+    ).length;
+    const activeTurnos = Object.values(dateTurnos).filter(
+      (turn: any) => turn.status === "activo",
+    ).length;
 
     toast({
       title: `📊 Resumen - ${format(dateInfo.date, "dd/MM/yyyy")}`,
@@ -2368,7 +2398,9 @@ export default function AdminDashboard() {
                       <div className="bg-white border-2 border-green-300 rounded-xl p-4 mb-4">
                         <div className="text-center mb-4">
                           <h3 className="text-lg font-bold text-green-800 mb-2">
-                            {format(new Date(), "MMMM yyyy", { locale: es }).toUpperCase()}
+                            {format(new Date(), "MMMM yyyy", {
+                              locale: es,
+                            }).toUpperCase()}
                           </h3>
                           <p className="text-sm text-green-600">
                             Haz clic en una fecha para gestionar turnos
@@ -2378,8 +2410,19 @@ export default function AdminDashboard() {
                         {/* Grid de Calendario */}
                         <div className="grid grid-cols-7 gap-2 mb-4">
                           {/* Encabezados de días */}
-                          {['DOM', 'LUN', 'MAR', 'MIÉ', 'JUE', 'VIE', 'SÁB'].map((day) => (
-                            <div key={day} className="text-center text-xs font-bold text-gray-600 p-2">
+                          {[
+                            "DOM",
+                            "LUN",
+                            "MAR",
+                            "MIÉ",
+                            "JUE",
+                            "VIE",
+                            "SÁB",
+                          ].map((day) => (
+                            <div
+                              key={day}
+                              className="text-center text-xs font-bold text-gray-600 p-2"
+                            >
                               {day}
                             </div>
                           ))}
@@ -2387,127 +2430,168 @@ export default function AdminDashboard() {
 
                         {/* Fechas de audiencias como calendario */}
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                          {publicAudienceDates.slice(0, 6).map((dateInfo, idx) => {
-                            const dayOfWeek = format(dateInfo.date, "EEEE", { locale: es });
-                            const dayNumber = format(dateInfo.date, "d");
-                            const monthYear = format(dateInfo.date, "MMM yyyy", { locale: es });
+                          {publicAudienceDates
+                            .slice(0, 6)
+                            .map((dateInfo, idx) => {
+                              const dayOfWeek = format(dateInfo.date, "EEEE", {
+                                locale: es,
+                              });
+                              const dayNumber = format(dateInfo.date, "d");
+                              const monthYear = format(
+                                dateInfo.date,
+                                "MMM yyyy",
+                                { locale: es },
+                              );
 
-                            // Obtener estado de turnos para esta fecha
-                            const dateKey = format(dateInfo.date, "yyyy-MM-dd");
-                            const savedTurnos = localStorage.getItem("publicAudienceTurnos");
-                            const allTurnos = savedTurnos ? JSON.parse(savedTurnos) : {};
-                            const dateTurnos = allTurnos[dateKey] || {};
-                            const totalTurnos = Object.keys(dateTurnos).length;
-                            const completedTurnos = Object.values(dateTurnos).filter((turn: any) => turn.status === "completado").length;
-                            const pendingTurnos = Object.values(dateTurnos).filter((turn: any) => turn.status === "pendiente").length;
+                              // Obtener estado de turnos para esta fecha
+                              const dateKey = format(
+                                dateInfo.date,
+                                "yyyy-MM-dd",
+                              );
+                              const savedTurnos = localStorage.getItem(
+                                "publicAudienceTurnos",
+                              );
+                              const allTurnos = savedTurnos
+                                ? JSON.parse(savedTurnos)
+                                : {};
+                              const dateTurnos = allTurnos[dateKey] || {};
+                              const totalTurnos =
+                                Object.keys(dateTurnos).length;
+                              const completedTurnos = Object.values(
+                                dateTurnos,
+                              ).filter(
+                                (turn: any) => turn.status === "completado",
+                              ).length;
+                              const pendingTurnos = Object.values(
+                                dateTurnos,
+                              ).filter(
+                                (turn: any) => turn.status === "pendiente",
+                              ).length;
 
-                            // Determinar color del borde según el estado
-                            const getBorderColor = () => {
-                              if (totalTurnos === 0) return "border-green-200";
-                              if (completedTurnos === totalTurnos) return "border-blue-400";
-                              if (completedTurnos > 0) return "border-yellow-400";
-                              return "border-green-300";
-                            };
+                              // Determinar color del borde según el estado
+                              const getBorderColor = () => {
+                                if (totalTurnos === 0)
+                                  return "border-green-200";
+                                if (completedTurnos === totalTurnos)
+                                  return "border-blue-400";
+                                if (completedTurnos > 0)
+                                  return "border-yellow-400";
+                                return "border-green-300";
+                              };
 
-                            return (
-                              <div
-                                key={idx}
-                                className={`bg-gradient-to-br from-green-50 to-green-100 border-2 ${getBorderColor()} rounded-xl p-4 hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105 relative`}
-                                onClick={() => handleViewDateTurns(dateInfo)}
-                              >
-                                {/* Indicador de estado */}
-                                {totalTurnos > 0 && (
-                                  <div className="absolute top-2 right-2">
-                                    {completedTurnos === totalTurnos ? (
-                                      <span className="bg-blue-500 text-white text-xs px-2 py-1 rounded-full font-bold">
-                                        ✅ COMPLETO
+                              return (
+                                <div
+                                  key={idx}
+                                  className={`bg-gradient-to-br from-green-50 to-green-100 border-2 ${getBorderColor()} rounded-xl p-4 hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105 relative`}
+                                  onClick={() => handleViewDateTurns(dateInfo)}
+                                >
+                                  {/* Indicador de estado */}
+                                  {totalTurnos > 0 && (
+                                    <div className="absolute top-2 right-2">
+                                      {completedTurnos === totalTurnos ? (
+                                        <span className="bg-blue-500 text-white text-xs px-2 py-1 rounded-full font-bold">
+                                          ✅ COMPLETO
+                                        </span>
+                                      ) : completedTurnos > 0 ? (
+                                        <span className="bg-yellow-500 text-white text-xs px-2 py-1 rounded-full font-bold">
+                                          ⏳ EN PROGRESO
+                                        </span>
+                                      ) : (
+                                        <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-bold">
+                                          📋 PROGRAMADO
+                                        </span>
+                                      )}
+                                    </div>
+                                  )}
+                                  {/* Encabezado del día */}
+                                  <div className="text-center mb-3">
+                                    <div className="bg-green-600 text-white rounded-lg px-2 py-1 mb-2">
+                                      <p className="text-xs font-bold uppercase">
+                                        {dayOfWeek}
+                                      </p>
+                                    </div>
+                                    <div className="text-center">
+                                      <span className="text-3xl font-black text-green-800">
+                                        {dayNumber}
                                       </span>
-                                    ) : completedTurnos > 0 ? (
-                                      <span className="bg-yellow-500 text-white text-xs px-2 py-1 rounded-full font-bold">
-                                        ⏳ EN PROGRESO
-                                      </span>
-                                    ) : (
-                                      <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-bold">
-                                        📋 PROGRAMADO
-                                      </span>
-                                    )}
-                                  </div>
-                                )}
-                                {/* Encabezado del día */}
-                                <div className="text-center mb-3">
-                                  <div className="bg-green-600 text-white rounded-lg px-2 py-1 mb-2">
-                                    <p className="text-xs font-bold uppercase">{dayOfWeek}</p>
-                                  </div>
-                                  <div className="text-center">
-                                    <span className="text-3xl font-black text-green-800">{dayNumber}</span>
-                                    <p className="text-xs text-green-600 font-semibold">{monthYear}</p>
-                                  </div>
-                                </div>
-
-                                {/* Información de la audiencia */}
-                                <div className="space-y-2">
-                                  <div className="bg-white rounded-lg p-2 border border-green-200">
-                                    <div className="flex items-center justify-between">
-                                      <span className="text-xs font-semibold text-green-700">
-                                        🕘 HORARIO
-                                      </span>
-                                      <span className="text-xs font-bold text-green-800">
-                                        09:00 - 17:00
-                                      </span>
+                                      <p className="text-xs text-green-600 font-semibold">
+                                        {monthYear}
+                                      </p>
                                     </div>
                                   </div>
 
-                                  <div className="bg-white rounded-lg p-2 border border-green-200">
-                                    <div className="flex items-center justify-between">
-                                      <span className="text-xs font-semibold text-green-700">
-                                        📋 TURNOS
-                                      </span>
-                                      <Badge className={`text-white text-xs ${
-                                        totalTurnos === 0 ? "bg-gray-400" :
-                                        completedTurnos === totalTurnos ? "bg-blue-500" :
-                                        completedTurnos > 0 ? "bg-yellow-500" :
-                                        "bg-green-500"
-                                      }`}>
-                                        {totalTurnos > 0 ? `${totalTurnos} turnos` : `${dateInfo.availableSlots} disponibles`}
-                                      </Badge>
-                                    </div>
-                                    {totalTurnos > 0 && (
-                                      <div className="text-xs text-green-600 mt-1">
-                                        Completados: {completedTurnos} | Pendientes: {pendingTurnos}
+                                  {/* Información de la audiencia */}
+                                  <div className="space-y-2">
+                                    <div className="bg-white rounded-lg p-2 border border-green-200">
+                                      <div className="flex items-center justify-between">
+                                        <span className="text-xs font-semibold text-green-700">
+                                          🕘 HORARIO
+                                        </span>
+                                        <span className="text-xs font-bold text-green-800">
+                                          09:00 - 17:00
+                                        </span>
                                       </div>
-                                    )}
+                                    </div>
+
+                                    <div className="bg-white rounded-lg p-2 border border-green-200">
+                                      <div className="flex items-center justify-between">
+                                        <span className="text-xs font-semibold text-green-700">
+                                          📋 TURNOS
+                                        </span>
+                                        <Badge
+                                          className={`text-white text-xs ${
+                                            totalTurnos === 0
+                                              ? "bg-gray-400"
+                                              : completedTurnos === totalTurnos
+                                                ? "bg-blue-500"
+                                                : completedTurnos > 0
+                                                  ? "bg-yellow-500"
+                                                  : "bg-green-500"
+                                          }`}
+                                        >
+                                          {totalTurnos > 0
+                                            ? `${totalTurnos} turnos`
+                                            : `${dateInfo.availableSlots} disponibles`}
+                                        </Badge>
+                                      </div>
+                                      {totalTurnos > 0 && (
+                                        <div className="text-xs text-green-600 mt-1">
+                                          Completados: {completedTurnos} |
+                                          Pendientes: {pendingTurnos}
+                                        </div>
+                                      )}
+                                    </div>
+                                  </div>
+
+                                  {/* Botones de acción */}
+                                  <div className="grid grid-cols-1 gap-2 mt-3">
+                                    <Button
+                                      size="sm"
+                                      className="w-full bg-green-600 hover:bg-green-700 text-white font-bold shadow-md"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleManageCalendarDate(dateInfo);
+                                      }}
+                                    >
+                                      <Settings className="w-4 h-4 mr-2" />
+                                      GESTIONAR TURNOS
+                                    </Button>
+                                    <Button
+                                      size="sm"
+                                      variant="outline"
+                                      className="w-full border-green-600 text-green-600 hover:bg-green-50 font-semibold"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleViewDateTurns(dateInfo);
+                                      }}
+                                    >
+                                      <Eye className="w-4 h-4 mr-2" />
+                                      VER RESUMEN
+                                    </Button>
                                   </div>
                                 </div>
-
-                                {/* Botones de acción */}
-                                <div className="grid grid-cols-1 gap-2 mt-3">
-                                  <Button
-                                    size="sm"
-                                    className="w-full bg-green-600 hover:bg-green-700 text-white font-bold shadow-md"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      handleManageCalendarDate(dateInfo);
-                                    }}
-                                  >
-                                    <Settings className="w-4 h-4 mr-2" />
-                                    GESTIONAR TURNOS
-                                  </Button>
-                                  <Button
-                                    size="sm"
-                                    variant="outline"
-                                    className="w-full border-green-600 text-green-600 hover:bg-green-50 font-semibold"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      handleViewDateTurns(dateInfo);
-                                    }}
-                                  >
-                                    <Eye className="w-4 h-4 mr-2" />
-                                    VER RESUMEN
-                                  </Button>
-                                </div>
-                              </div>
-                            );
-                          })}
+                              );
+                            })}
                         </div>
                       </div>
 
@@ -2517,16 +2601,24 @@ export default function AdminDashboard() {
                           📋 Vista Rápida
                         </h4>
                         <div className="space-y-2">
-                          {publicAudienceDates.slice(0, 3).map((dateInfo, idx) => (
-                            <div key={idx} className="flex items-center justify-between text-sm">
-                              <span className="font-medium">
-                                {format(dateInfo.date, "dd/MM/yyyy")} - {format(dateInfo.date, "EEEE", { locale: es })}
-                              </span>
-                              <Badge className="bg-green-100 text-green-800">
-                                {dateInfo.availableSlots} turnos
-                              </Badge>
-                            </div>
-                          ))}
+                          {publicAudienceDates
+                            .slice(0, 3)
+                            .map((dateInfo, idx) => (
+                              <div
+                                key={idx}
+                                className="flex items-center justify-between text-sm"
+                              >
+                                <span className="font-medium">
+                                  {format(dateInfo.date, "dd/MM/yyyy")} -{" "}
+                                  {format(dateInfo.date, "EEEE", {
+                                    locale: es,
+                                  })}
+                                </span>
+                                <Badge className="bg-green-100 text-green-800">
+                                  {dateInfo.availableSlots} turnos
+                                </Badge>
+                              </div>
+                            ))}
                         </div>
                       </div>
 
