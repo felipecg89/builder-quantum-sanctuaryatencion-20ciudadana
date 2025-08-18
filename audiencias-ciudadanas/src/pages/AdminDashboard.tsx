@@ -2201,7 +2201,7 @@ export default function AdminDashboard() {
                                       {turn.ciudadano}
                                     </p>
                                     <p className="text-sm text-slate-600">
-                                      📞 {turn.telefono}
+                                      ��� {turn.telefono}
                                     </p>
                                     <p className="text-xs text-slate-500 mt-1">
                                       {turn.motivo}
@@ -2438,6 +2438,10 @@ export default function AdminDashboard() {
                                 <Button
                                   size="sm"
                                   className="w-full mt-3 bg-green-600 hover:bg-green-700 text-white font-bold shadow-md"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleManageCalendarDate(dateInfo);
+                                  }}
                                 >
                                   <Settings className="w-4 h-4 mr-2" />
                                   GESTIONAR
