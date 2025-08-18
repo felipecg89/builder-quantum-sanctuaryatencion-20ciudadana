@@ -1566,20 +1566,211 @@ export default function AdminDashboard() {
           <TabsContent value="turnos">
             <Card>
               <CardHeader>
-                <CardTitle>Gestión de Turnos - Viernes</CardTitle>
-                <CardDescription>
-                  Administra los turnos para audiencias públicas de los viernes
-                </CardDescription>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <CardTitle className="text-2xl font-bold text-[#0052CC]">
+                      🕐 Gestión de Turnos - Viernes
+                    </CardTitle>
+                    <CardDescription>
+                      Administra los turnos para audiencias públicas de los viernes
+                    </CardDescription>
+                  </div>
+                  <Button className="bg-[#DC2626] hover:bg-red-700 text-white">
+                    <CalendarDays className="w-4 h-4 mr-2" />
+                    Nuevo Periodo
+                  </Button>
+                </div>
               </CardHeader>
               <CardContent>
-                <div className="text-center py-12">
-                  <Clock className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-slate-600 mb-2">
-                    Sistema de Turnos
-                  </h3>
-                  <p className="text-slate-500">
-                    Gestiona las citas y turnos para las audiencias públicas de los viernes.
-                  </p>
+                {/* Resumen de Turnos */}
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                  <Card className="bg-gradient-to-r from-green-50 to-green-100 border-green-200">
+                    <CardContent className="p-4 text-center">
+                      <Calendar className="w-8 h-8 text-green-600 mx-auto mb-2" />
+                      <h3 className="font-bold text-green-800 text-xl">{publicAudienceDates.length}</h3>
+                      <p className="text-sm text-green-700">Viernes Programados</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-gradient-to-r from-blue-50 to-blue-100 border-blue-200">
+                    <CardContent className="p-4 text-center">
+                      <Clock className="w-8 h-8 text-blue-600 mx-auto mb-2" />
+                      <h3 className="font-bold text-blue-800 text-xl">
+                        {turnQueue.length}
+                      </h3>
+                      <p className="text-sm text-blue-700">Turnos Hoy</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-gradient-to-r from-purple-50 to-purple-100 border-purple-200">
+                    <CardContent className="p-4 text-center">
+                      <UserPlus className="w-8 h-8 text-purple-600 mx-auto mb-2" />
+                      <h3 className="font-bold text-purple-800 text-xl">
+                        {turnQueue.filter(t => t.status === "pendiente").length}
+                      </h3>
+                      <p className="text-sm text-purple-700">Pendientes</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-gradient-to-r from-amber-50 to-amber-100 border-amber-200">
+                    <CardContent className="p-4 text-center">
+                      <CheckCircle className="w-8 h-8 text-amber-600 mx-auto mb-2" />
+                      <h3 className="font-bold text-amber-800 text-xl">
+                        {turnQueue.filter(t => t.status === "completado").length}
+                      </h3>
+                      <p className="text-sm text-amber-700">Completados</p>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Monitor de Turnos del Día */}
+                  <Card className="border-2 border-blue-200">
+                    <CardHeader className="bg-blue-50">
+                      <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
+                        <Activity className="w-5 h-5" />
+                        Monitor de Turnos - {format(monitorDate, "dd/MM/yyyy", { locale: es })}
+                      </CardTitle>
+                      <CardDescription>
+                        Control en tiempo real de los turnos del día
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="p-4">
+                      {/* Turno Actual */}
+                      {currentTurnActive && (
+                        <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4 mb-4">
+                          <h4 className="font-bold text-green-800 mb-2">🔔 TURNO ACTIVO</h4>
+                          <div className="space-y-1">
+                            <p className="text-sm">
+                              <strong>Hora:</strong> {currentTurnActive.time}
+                            </p>
+                            <p className="text-sm">
+                              <strong>Ciudadano:</strong> {currentTurnActive.ciudadano}
+                            </p>
+                            <p className="text-sm">
+                              <strong>Teléfono:</strong> {currentTurnActive.telefono}
+                            </p>
+                          </div>
+                          <Button size="sm" className="mt-3 bg-green-600 hover:bg-green-700" onClick={completeTurn}>
+                            <CheckCircle className="w-4 h-4 mr-2" />
+                            Completar Turno
+                          </Button>
+                        </div>
+                      )}
+
+                      {/* Próximos Turnos */}
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                        <h4 className="font-bold text-blue-800 mb-3">📋 PRÓXIMOS TURNOS</h4>
+                        {nextTurns.length > 0 ? (
+                          <div className="space-y-2">
+                            {nextTurns.slice(0, 3).map((turn, idx) => (
+                              <div key={turn.slotId} className="bg-white p-2 rounded border">
+                                <div className="flex justify-between items-center">
+                                  <div>
+                                    <span className="font-medium">{turn.time}</span>
+                                    <p className="text-sm text-slate-600">{turn.ciudadano}</p>
+                                  </div>
+                                  {idx === 0 && (
+                                    <Badge className="bg-blue-500 text-white">Siguiente</Badge>
+                                  )}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <p className="text-slate-500 text-sm">No hay turnos pendientes</p>
+                        )}
+
+                        {nextTurns.length > 0 && (
+                          <Button size="sm" className="mt-3 w-full bg-blue-600 hover:bg-blue-700" onClick={callNextTurn}>
+                            <ArrowRight className="w-4 h-4 mr-2" />
+                            Llamar Siguiente Turno
+                          </Button>
+                        )}
+                      </div>
+
+                      {/* Cola de Turnos */}
+                      <div className="max-h-64 overflow-y-auto">
+                        <h4 className="font-bold text-slate-800 mb-3">📅 TODOS LOS TURNOS DEL DÍA</h4>
+                        {turnQueue.length > 0 ? (
+                          <div className="space-y-1">
+                            {turnQueue.map((turn) => (
+                              <div key={turn.slotId} className={`p-2 rounded text-sm ${
+                                turn.status === "completado" ? "bg-green-50 border border-green-200" :
+                                turn.status === "activo" ? "bg-blue-50 border border-blue-200" :
+                                "bg-gray-50 border border-gray-200"
+                              }`}>
+                                <div className="flex justify-between items-center">
+                                  <span>{turn.time} - {turn.ciudadano}</span>
+                                  <Badge className={
+                                    turn.status === "completado" ? "bg-green-100 text-green-800" :
+                                    turn.status === "activo" ? "bg-blue-100 text-blue-800" :
+                                    "bg-gray-100 text-gray-800"
+                                  }>
+                                    {turn.status}
+                                  </Badge>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <p className="text-slate-500 text-sm">No hay turnos programados para hoy</p>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Gestión de Fechas */}
+                  <Card className="border-2 border-green-200">
+                    <CardHeader className="bg-green-50">
+                      <CardTitle className="text-lg font-bold text-green-800 flex items-center gap-2">
+                        <Calendar className="w-5 h-5" />
+                        Fechas de Audiencias Públicas
+                      </CardTitle>
+                      <CardDescription>
+                        Próximos viernes programados para audiencias
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="p-4">
+                      <div className="space-y-3">
+                        {publicAudienceDates.slice(0, 6).map((dateInfo, idx) => (
+                          <div key={idx} className="bg-white border border-gray-200 rounded-lg p-3">
+                            <div className="flex justify-between items-center">
+                              <div>
+                                <h4 className="font-semibold text-slate-800">
+                                  {formatPublicAudienceDate(dateInfo.date)}
+                                </h4>
+                                <p className="text-sm text-slate-600">
+                                  {format(dateInfo.date, "EEEE, dd 'de' MMMM", { locale: es })}
+                                </p>
+                              </div>
+                              <div className="text-right">
+                                <Badge className="bg-green-100 text-green-800">
+                                  {dateInfo.availableSlots} slots
+                                </Badge>
+                                <p className="text-xs text-slate-500 mt-1">
+                                  09:00 - 17:00
+                                </p>
+                              </div>
+                            </div>
+                            <Button
+                              size="sm"
+                              className="w-full mt-2 bg-green-600 hover:bg-green-700"
+                              onClick={() => setSelectedManageDate(dateInfo)}
+                            >
+                              <Settings className="w-4 h-4 mr-2" />
+                              Gestionar Turnos
+                            </Button>
+                          </div>
+                        ))}
+                      </div>
+
+                      <Button className="w-full mt-4 bg-[#0052CC] hover:bg-blue-700">
+                        <Plus className="w-4 h-4 mr-2" />
+                        Programar Nueva Fecha
+                      </Button>
+                    </CardContent>
+                  </Card>
                 </div>
               </CardContent>
             </Card>
