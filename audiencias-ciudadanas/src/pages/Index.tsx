@@ -176,6 +176,28 @@ export default function IndexNew() {
                     Mis Audiencias
                   </a>
                 </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-gradient-to-r from-red-600 via-red-700 to-red-800 hover:from-red-700 hover:via-red-800 hover:to-red-900 text-white px-10 py-4 text-lg font-semibold shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 rounded-xl border-0"
+                  onClick={() => {
+                    // Establecer datos de admin para acceso
+                    localStorage.setItem("adminUser", JSON.stringify({
+                      authenticated: true,
+                      role: "admin",
+                      name: "Administrador Municipal",
+                      username: "admin"
+                    }));
+                  }}
+                >
+                  <a href="/AdminDashboard" className="flex items-center gap-3">
+                    <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
+                      <Settings className="w-4 h-4" />
+                    </div>
+                    🏛️ PANEL ADMINISTRATIVO
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </a>
+                </Button>
               </>
             ) : (
               <>
@@ -546,7 +568,7 @@ export default function IndexNew() {
             <p>Trámites disponibles:</p>
             <ul className="list-disc list-inside space-y-2 text-sm">
               <li>Licencias de funcionamiento</li>
-              <li>Permisos de construcci��n</li>
+              <li>Permisos de construcción</li>
               <li>Certificados y constancias</li>
               <li>Licencias de conducir</li>
               <li>Registro civil</li>
