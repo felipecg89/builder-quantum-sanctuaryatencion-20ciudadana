@@ -30,6 +30,8 @@ export default function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/audience-history" element={<AudienceHistory />} />
           <Route path="/turnos" element={<Turnos />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/AdminLogin" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/AdminDashboard" element={<AdminDashboard />} />
 
