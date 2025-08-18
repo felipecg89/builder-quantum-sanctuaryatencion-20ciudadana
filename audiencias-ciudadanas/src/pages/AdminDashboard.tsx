@@ -239,7 +239,7 @@ const mockAdminData = {
       status: "en_proceso",
       priority: "urgente",
       requestDate: new Date("2024-01-23"),
-      assignedTo: "Dr. Martínez - Servicios Médicos",
+      assignedTo: "Dr. Mart��nez - Servicios Médicos",
       assignedDate: new Date("2024-01-24"),
       daysWaiting: 4,
     },
@@ -413,8 +413,48 @@ export default function AdminDashboard() {
     const today = new Date();
     const dateKey = format(today, "yyyy-MM-dd");
     const savedTurnos = localStorage.getItem("publicAudienceTurnos");
-    const allTurnos = savedTurnos ? JSON.parse(savedTurnos) : {};
-    const todayTurnos = allTurnos[dateKey] || {};
+    let allTurnos = savedTurnos ? JSON.parse(savedTurnos) : {};
+    let todayTurnos = allTurnos[dateKey] || {};
+
+    // Si no hay turnos para hoy, crear datos de ejemplo
+    if (Object.keys(todayTurnos).length === 0) {
+      todayTurnos = {
+        "slot-0900": {
+          ciudadano: "María González",
+          telefono: "55 1234 5678",
+          motivo: "Solicitud de apoyo alimentario",
+          status: "pendiente"
+        },
+        "slot-0930": {
+          ciudadano: "Carlos Rodríguez",
+          telefono: "55 9876 5432",
+          motivo: "Apoyo médico urgente",
+          status: "pendiente"
+        },
+        "slot-1000": {
+          ciudadano: "Ana Jiménez",
+          telefono: "55 5555 7777",
+          motivo: "Permiso de construcción",
+          status: "pendiente"
+        },
+        "slot-1030": {
+          ciudadano: "Roberto Morales",
+          telefono: "55 3333 9999",
+          motivo: "Invitación a ceremonia",
+          status: "pendiente"
+        },
+        "slot-1100": {
+          ciudadano: "Laura Martínez",
+          telefono: "55 1111 2222",
+          motivo: "Consulta de trámites",
+          status: "pendiente"
+        }
+      };
+
+      // Guardar los datos de ejemplo
+      allTurnos[dateKey] = todayTurnos;
+      localStorage.setItem("publicAudienceTurnos", JSON.stringify(allTurnos));
+    }
 
     // Convertir a array y ordenar por hora
     const turnsArray = Object.entries(todayTurnos)
@@ -422,23 +462,16 @@ export default function AdminDashboard() {
         slotId,
         time: slotId.replace("slot-", "").replace(/(\d{2})(\d{2})/, "$1:$2"),
         ...turnData,
-        status: "pendiente", // pendiente, activo, completado
+        status: turnData.status || "pendiente",
       }))
       .sort((a, b) => a.time.localeCompare(b.time));
 
     setTurnQueue(turnsArray);
     setMonitorDate(today);
 
-    // Establecer el primer turno pendiente como siguiente
-    const nextPending = turnsArray.find((turn) => turn.status === "pendiente");
-    if (nextPending) {
-      setNextTurns([
-        nextPending,
-        ...turnsArray
-          .filter((t) => t !== nextPending && t.status === "pendiente")
-          .slice(0, 2),
-      ]);
-    }
+    // Establecer próximos turnos pendientes
+    const pendingTurns = turnsArray.filter((turn) => turn.status === "pendiente");
+    setNextTurns(pendingTurns.slice(0, 3));
   };
 
   const callNextTurn = () => {
