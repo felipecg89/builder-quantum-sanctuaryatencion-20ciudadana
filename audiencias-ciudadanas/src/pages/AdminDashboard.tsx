@@ -438,6 +438,120 @@ export default function AdminDashboard() {
     });
   };
 
+  const handleManageCalendarDate = (dateInfo: PublicAudienceDate) => {
+    const dateKey = format(dateInfo.date, "yyyy-MM-dd");
+
+    // Cargar turnos específicos de esa fecha
+    const savedTurnos = localStorage.getItem("publicAudienceTurnos");
+    let allTurnos = savedTurnos ? JSON.parse(savedTurnos) : {};
+    let dateTurnos = allTurnos[dateKey] || {};
+
+    // Si no hay turnos para esa fecha, crear turnos de ejemplo
+    if (Object.keys(dateTurnos).length === 0) {
+      const sampleNames = [
+        { name: "Juan Pérez", phone: "55 1111 1111", reason: "Solicitud de apoyo social" },
+        { name: "Ana López", phone: "55 2222 2222", reason: "Consulta médica" },
+        { name: "Carlos Mendoza", phone: "55 3333 3333", reason: "Trámite de licencia" },
+        { name: "María García", phone: "55 4444 4444", reason: "Apoyo alimentario" },
+        { name: "Luis Torres", phone: "55 5555 5555", reason: "Servicios sociales" },
+        { name: "Rosa Morales", phone: "55 6666 6666", reason: "Permiso construcción" }
+      ];
+
+      dateTurnos = {};
+      const startHour = 9;
+      sampleNames.forEach((person, idx) => {
+        const hour = startHour + Math.floor(idx * 0.5);
+        const minutes = (idx % 2) * 30;
+        const timeSlot = `${hour.toString().padStart(2, '0')}${minutes.toString().padStart(2, '0')}`;
+
+        dateTurnos[`slot-${timeSlot}`] = {
+          ciudadano: person.name,
+          telefono: person.phone,
+          motivo: person.reason,
+          status: "pendiente"
+        };
+      });
+
+      allTurnos[dateKey] = dateTurnos;
+      localStorage.setItem("publicAudienceTurnos", JSON.stringify(allTurnos));
+    }
+
+    // Establecer fecha seleccionada para gestión
+    setSelectedManageDate(dateInfo);
+    setMonitorDate(dateInfo.date);
+
+    // Convertir turnos a array para el monitor
+    const turnsArray = Object.entries(dateTurnos)
+      .map(([slotId, turnData]: [string, any]) => ({
+        slotId,
+        time: slotId.replace("slot-", "").replace(/(\d{2})(\d{2})/, "$1:$2"),
+        ...turnData,
+        status: turnData.status || "pendiente",
+      }))
+      .sort((a, b) => a.time.localeCompare(b.time));
+
+    setTurnQueue(turnsArray);
+    setCurrentTurnActive(null);
+
+    // Establecer próximos turnos pendientes
+    const pendingTurns = turnsArray.filter((turn) => turn.status === "pendiente");
+    setNextTurns(pendingTurns.slice(0, 3));
+
+    toast({
+      title: "📅 Fecha seleccionada",
+      description: `Gestionando turnos para ${format(dateInfo.date, "dd/MM/yyyy", { locale: es })} - ${turnsArray.length} turnos cargados`,
+    });
+  };
+
+  const handleAddNewDate = () => {
+    // Encontrar el próximo viernes disponible
+    const today = new Date();
+    const nextFriday = new Date(today);
+
+    // Calcular días hasta el próximo viernes (después de los ya programados)
+    const existingDates = publicAudienceDates.map(d => d.date.getTime());
+    let daysToAdd = (5 - today.getDay() + 7) % 7;
+    if (daysToAdd === 0) daysToAdd = 7; // Si hoy es viernes, tomar el siguiente
+
+    nextFriday.setDate(today.getDate() + daysToAdd);
+
+    // Asegurar que no sea una fecha ya existente
+    while (existingDates.includes(nextFriday.getTime())) {
+      nextFriday.setDate(nextFriday.getDate() + 7);
+    }
+
+    const newDate: PublicAudienceDate = {
+      date: nextFriday,
+      availableSlots: 20,
+      bookedSlots: 0
+    };
+
+    // Agregar a la lista de fechas
+    setPublicAudienceDates(prev => [...prev, newDate].sort((a, b) => a.date.getTime() - b.date.getTime()));
+
+    toast({
+      title: "📅 Nueva fecha agregada",
+      description: `Audiencia programada para ${format(nextFriday, "dd/MM/yyyy", { locale: es })} - ${format(nextFriday, "EEEE", { locale: es })}`,
+    });
+  };
+
+  const handleViewDateTurns = (dateInfo: PublicAudienceDate) => {
+    const dateKey = format(dateInfo.date, "yyyy-MM-dd");
+    const savedTurnos = localStorage.getItem("publicAudienceTurnos");
+    const allTurnos = savedTurnos ? JSON.parse(savedTurnos) : {};
+    const dateTurnos = allTurnos[dateKey] || {};
+
+    const totalTurnos = Object.keys(dateTurnos).length;
+    const completedTurnos = Object.values(dateTurnos).filter((turn: any) => turn.status === "completado").length;
+    const pendingTurnos = Object.values(dateTurnos).filter((turn: any) => turn.status === "pendiente").length;
+    const activeTurnos = Object.values(dateTurnos).filter((turn: any) => turn.status === "activo").length;
+
+    toast({
+      title: `📊 Resumen - ${format(dateInfo.date, "dd/MM/yyyy")}`,
+      description: `Total: ${totalTurnos} | Pendientes: ${pendingTurnos} | Activos: ${activeTurnos} | Completados: ${completedTurnos}`,
+    });
+  };
+
   const loadTodayTurns = () => {
     const today = new Date();
     const dateKey = format(today, "yyyy-MM-dd");
@@ -726,7 +840,7 @@ export default function AdminDashboard() {
             </div>
             <div>
               <h1 className="text-3xl font-black text-white flex items-center gap-3">
-                🏛️ PANEL ADMINISTRATIVO
+                ���️ PANEL ADMINISTRATIVO
               </h1>
               <p className="text-sm text-white/90 flex items-center gap-2 font-medium">
                 <Settings className="w-4 h-4" />
