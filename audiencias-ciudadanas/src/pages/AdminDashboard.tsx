@@ -2462,10 +2462,20 @@ export default function AdminDashboard() {
                                       <span className="text-xs font-semibold text-green-700">
                                         📋 TURNOS
                                       </span>
-                                      <Badge className="bg-green-500 text-white text-xs">
-                                        {dateInfo.availableSlots} disponibles
+                                      <Badge className={`text-white text-xs ${
+                                        totalTurnos === 0 ? "bg-gray-400" :
+                                        completedTurnos === totalTurnos ? "bg-blue-500" :
+                                        completedTurnos > 0 ? "bg-yellow-500" :
+                                        "bg-green-500"
+                                      }`}>
+                                        {totalTurnos > 0 ? `${totalTurnos} turnos` : `${dateInfo.availableSlots} disponibles`}
                                       </Badge>
                                     </div>
+                                    {totalTurnos > 0 && (
+                                      <div className="text-xs text-green-600 mt-1">
+                                        Completados: {completedTurnos} | Pendientes: {pendingTurnos}
+                                      </div>
+                                    )}
                                   </div>
                                 </div>
 
