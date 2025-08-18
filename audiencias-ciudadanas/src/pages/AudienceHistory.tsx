@@ -251,13 +251,25 @@ export default function AudienceHistory() {
   };
 
   // Filtrar audiencias por usuario actual (incluye mock + creadas por usuario)
-  const savedUserAudiences = JSON.parse(localStorage.getItem("userAudiences") || "[]");
+  const rawSavedAudiences = JSON.parse(localStorage.getItem("userAudiences") || "[]");
+
+  // Convertir strings de fecha de vuelta a objetos Date
+  const savedUserAudiences = rawSavedAudiences.map((audience: any) => ({
+    ...audience,
+    requestDate: audience.requestDate ? new Date(audience.requestDate) : new Date(),
+    audienceDate: audience.audienceDate ? new Date(audience.audienceDate) : null,
+    responses: audience.responses?.map((response: any) => ({
+      ...response,
+      date: response.date ? new Date(response.date) : new Date(),
+    })) || [],
+  }));
+
   const mockUserAudiences = mockAudiences.filter(
     (audience) => audience.userId === user?.phone,
   );
 
   // Si no hay audiencias guardadas y es el usuario de prueba, agregar algunas de ejemplo
-  if (savedUserAudiences.length === 0 && user?.phone === "55 1234 5678") {
+  if (rawSavedAudiences.length === 0 && user?.phone === "55 1234 5678") {
     const exampleAudiences = [
       {
         id: "AUD-" + Date.now().toString().slice(-6),
