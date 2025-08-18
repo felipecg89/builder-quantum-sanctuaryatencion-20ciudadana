@@ -231,7 +231,7 @@ const mockAdminData = {
     },
     {
       id: "AUD-789012",
-      citizen: "Carlos Rodríguez",
+      citizen: "Carlos Rodr��guez",
       phone: "55 9876 5432",
       category: "servicio",
       type: "Servicios sociales",
@@ -745,7 +745,16 @@ export default function AdminDashboard() {
           onValueChange={setActiveTab}
           className="space-y-8"
         >
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-3 min-h-[80px] p-6 bg-white rounded-xl border-2 border-[#0052CC] shadow-lg">
+          <div className="bg-white rounded-2xl border-4 border-[#0052CC] shadow-2xl p-6 mb-6">
+            <div className="text-center mb-6">
+              <h3 className="text-xl font-bold text-[#0052CC] mb-2">
+                🏛️ PANEL DE CONTROL ADMINISTRATIVO
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Selecciona una sección para gestionar el sistema
+              </p>
+            </div>
+            <TabsList className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 h-auto p-4 bg-gray-50 rounded-xl border border-gray-200 shadow-inner">
             <TabsTrigger
               value="audiencias"
               className="flex flex-col items-center gap-1 min-h-[60px] px-3 py-2 mx-0 rounded-lg border border-gray-200 data-[state=active]:bg-[#0052CC] data-[state=active]:text-white data-[state=active]:border-[#0052CC] data-[state=active]:shadow-lg hover:bg-gray-50 hover:border-[#0052CC] transition-all duration-300 group"
@@ -867,6 +876,7 @@ export default function AdminDashboard() {
               </span>
             </TabsTrigger>
           </TabsList>
+          </div>
 
           {/* Gestión de Audiencias */}
           <TabsContent value="audiencias">
