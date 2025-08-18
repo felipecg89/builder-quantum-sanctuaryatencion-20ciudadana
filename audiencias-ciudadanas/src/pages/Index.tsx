@@ -29,6 +29,7 @@ import {
   HelpCircle,
   PartyPopper,
   ClipboardCheck,
+  Settings,
 } from "lucide-react";
 
 export default function IndexNew() {
@@ -545,7 +546,7 @@ export default function IndexNew() {
             <p>Trámites disponibles:</p>
             <ul className="list-disc list-inside space-y-2 text-sm">
               <li>Licencias de funcionamiento</li>
-              <li>Permisos de construcción</li>
+              <li>Permisos de construcci��n</li>
               <li>Certificados y constancias</li>
               <li>Licencias de conducir</li>
               <li>Registro civil</li>
