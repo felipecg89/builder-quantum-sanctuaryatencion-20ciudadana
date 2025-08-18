@@ -109,8 +109,8 @@ export default function IndexNew() {
           </div>
         </header>
 
-        {/* Hero Section */}
-        <section className="relative text-center py-16 sm:py-24 px-4 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 overflow-hidden">
+        {/* Hero Section - Estilo Telmex */}
+        <section className="relative text-center py-16 sm:py-24 px-4 bg-white overflow-hidden border-t-4 border-[#0052CC]">
           {/* Background decorative elements */}
           <div className="absolute inset-0 opacity-30">
             <div className="absolute top-10 left-10 w-72 h-72 bg-blue-400/20 rounded-full blur-3xl animate-pulse"></div>
@@ -222,7 +222,7 @@ export default function IndexNew() {
               </span>
             </div>
             <h3 className="text-4xl sm:text-5xl font-black text-slate-800 mb-6">
-              ¿C��mo funciona?
+              ¿Cómo funciona?
             </h3>
             <p className="text-slate-600 text-xl max-w-2xl mx-auto">
               Proceso simple en 3 pasos para solicitar tu audiencia ciudadana
