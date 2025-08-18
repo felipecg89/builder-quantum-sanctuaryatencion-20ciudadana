@@ -745,7 +745,7 @@ export default function AdminDashboard() {
           onValueChange={setActiveTab}
           className="space-y-8"
         >
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 min-h-[120px] p-6 bg-white rounded-2xl border-4 border-[#0052CC] shadow-2xl">
+          <TabsList className="grid w-full grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2 min-h-[80px] p-4 bg-white rounded-xl border-2 border-[#0052CC] shadow-lg">
             <TabsTrigger
               value="audiencias"
               className="flex flex-col items-center gap-2 min-h-[90px] px-3 py-3 mx-1 my-1 rounded-xl border-2 border-gray-200 data-[state=active]:bg-[#0052CC] data-[state=active]:text-white data-[state=active]:border-[#0052CC] data-[state=active]:shadow-xl hover:bg-gray-50 hover:border-[#0052CC] transition-all duration-300 group"
