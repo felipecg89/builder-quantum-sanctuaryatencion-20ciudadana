@@ -759,9 +759,10 @@ export default function Dashboard() {
                 <span className="hidden sm:inline">Inicio</span>
               </Button>
             )}
-            <span className="text-xs sm:text-sm text-slate-600 truncate max-w-24 sm:max-w-none">
-              Bienvenido, {user.name}
-            </span>
+            <div className="text-right">
+              <p className="text-xs text-white/90 font-medium">Bienvenido</p>
+              <p className="text-xs sm:text-sm font-bold text-white truncate max-w-24 sm:max-w-none">{user.name}</p>
+            </div>
           </div>
         </div>
       </header>
