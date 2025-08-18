@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test - Login Directo a Turnos</title>
+</head>
+<body>
+    <script>
+        // Simular el botón rojo de login directo a turnos
+        const userData = {
+            name: "María González",
+            phone: "55 1234 5678",
+            email: "maria.gonzalez@email.com",
+            address: "Calle Principal 123",
+            authenticated: true
+        };
+        
+        localStorage.setItem("user", JSON.stringify(userData));
+        
+        // Ir directamente a turnos (simulando el botón rojo)
+        window.location.href = "/turnos";
+    </script>
+</body>
+</html>
