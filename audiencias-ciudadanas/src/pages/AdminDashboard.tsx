@@ -52,6 +52,7 @@ import {
   ArrowUp,
   ArrowDown,
   ArrowLeft,
+  ArrowRight,
   TrendingUp,
   Activity,
   UserPlus,
@@ -190,7 +191,7 @@ const mockAdminData = {
       id: "AT-003",
       category: "servicio",
       name: "Servicios médicos",
-      description: "Consultas y tratamientos médicos",
+      description: "Consultas y tratamientos m��dicos",
       active: true,
     },
     {
