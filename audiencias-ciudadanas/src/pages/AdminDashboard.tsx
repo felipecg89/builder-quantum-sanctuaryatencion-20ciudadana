@@ -820,7 +820,7 @@ export default function AdminDashboard() {
                   {staff.filter((s) => s.status === "activo").length}
                 </span>
               </div>
-              <span className="text-xs font-bold tracking-wide group-data-[state=active]:text-white text-slate-700">
+              <span className="text-sm font-bold tracking-wide group-data-[state=active]:text-white text-slate-700 text-center">
                 👨‍💼 Personal
               </span>
             </TabsTrigger>
