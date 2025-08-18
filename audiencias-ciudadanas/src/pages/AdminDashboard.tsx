@@ -323,7 +323,7 @@ export default function AdminDashboard() {
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [audiences, setAudiences] = useState(mockAdminData.recentAudiences);
   const [activeTab, setActiveTab] = useState(() => {
-    // Verificar si se especifica una pesta��a en la URL
+    // Verificar si se especifica una pestaña en la URL
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get("tab") || "audiencias";
   });
@@ -2434,18 +2434,32 @@ export default function AdminDashboard() {
                                   </div>
                                 </div>
 
-                                {/* Botón de acción */}
-                                <Button
-                                  size="sm"
-                                  className="w-full mt-3 bg-green-600 hover:bg-green-700 text-white font-bold shadow-md"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleManageCalendarDate(dateInfo);
-                                  }}
-                                >
-                                  <Settings className="w-4 h-4 mr-2" />
-                                  GESTIONAR
-                                </Button>
+                                {/* Botones de acción */}
+                                <div className="grid grid-cols-1 gap-2 mt-3">
+                                  <Button
+                                    size="sm"
+                                    className="w-full bg-green-600 hover:bg-green-700 text-white font-bold shadow-md"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleManageCalendarDate(dateInfo);
+                                    }}
+                                  >
+                                    <Settings className="w-4 h-4 mr-2" />
+                                    GESTIONAR TURNOS
+                                  </Button>
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    className="w-full border-green-600 text-green-600 hover:bg-green-50 font-semibold"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleViewDateTurns(dateInfo);
+                                    }}
+                                  >
+                                    <Eye className="w-4 h-4 mr-2" />
+                                    VER RESUMEN
+                                  </Button>
+                                </div>
                               </div>
                             );
                           })}
