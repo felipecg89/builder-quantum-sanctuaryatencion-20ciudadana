@@ -748,7 +748,7 @@ export default function AdminDashboard() {
           <TabsList className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-3 min-h-[80px] p-6 bg-white rounded-xl border-2 border-[#0052CC] shadow-lg">
             <TabsTrigger
               value="audiencias"
-              className="flex flex-col items-center gap-1 min-h-[60px] px-2 py-2 mx-1 rounded-lg border border-gray-200 data-[state=active]:bg-[#0052CC] data-[state=active]:text-white data-[state=active]:border-[#0052CC] data-[state=active]:shadow-lg hover:bg-gray-50 hover:border-[#0052CC] transition-all duration-300 group"
+              className="flex flex-col items-center gap-1 min-h-[60px] px-3 py-2 mx-0 rounded-lg border border-gray-200 data-[state=active]:bg-[#0052CC] data-[state=active]:text-white data-[state=active]:border-[#0052CC] data-[state=active]:shadow-lg hover:bg-gray-50 hover:border-[#0052CC] transition-all duration-300 group"
             >
               <div className="relative">
                 <div className="w-8 h-8 rounded-full bg-gray-100 group-data-[state=active]:bg-white flex items-center justify-center transition-all duration-300">
