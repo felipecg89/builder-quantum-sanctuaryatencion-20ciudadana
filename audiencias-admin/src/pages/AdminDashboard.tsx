@@ -879,88 +879,76 @@ export default function AdminDashboard() {
               <CardContent>
                 {/* Resumen de Gestión - Mejorado con mejor espaciado */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-                  <Card className="border-orange-200/50 bg-gradient-to-br from-orange-50 to-orange-100/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                    <CardContent className="p-6">
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-orange-500 rounded-2xl flex items-center justify-center shadow-lg">
-                          <Clock className="w-6 h-6 text-white" />
-                        </div>
-                        <div>
-                          <p className="text-sm font-semibold text-orange-700 mb-1">
-                            Pendientes
-                          </p>
-                          <p className="text-3xl font-bold text-orange-800">
-                            {
-                              audiences.filter((a) => a.status === "pendiente")
-                                .length
-                            }
-                          </p>
-                        </div>
+                  <Card className="bg-white rounded-xl shadow-xl border-0 overflow-hidden hover:shadow-2xl transition-all duration-300">
+                    <div className="bg-[#0052CC] p-3 text-center">
+                      <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center mx-auto mb-1">
+                        <Clock className="w-5 h-5 text-[#0052CC]" />
                       </div>
+                      <p className="text-white font-bold text-xs">PENDIENTES</p>
+                      <p className="text-white font-black text-xl">
+                        {
+                          audiences.filter((a) => a.status === "pendiente")
+                            .length
+                        }
+                      </p>
+                    </div>
+                    <div className="bg-[#DC2626] p-2 text-center">
+                      <p className="text-white font-bold text-xs">REQUIEREN ATENCIÓN</p>
+                    </div>
+                  </Card>
+
+                  <Card className="bg-white rounded-xl shadow-xl border-0 overflow-hidden hover:shadow-2xl transition-all duration-300">
+                    <div className="bg-[#0052CC] p-3 text-center">
+                      <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center mx-auto mb-1">
+                        <UserPlus className="w-5 h-5 text-[#0052CC]" />
+                      </div>
+                      <p className="text-white font-bold text-xs">EN GESTIÓN</p>
+                      <p className="text-white font-black text-xl">
+                        {
+                          audiences.filter((a) => a.status === "en_proceso")
+                            .length
+                        }
+                      </p>
+                    </div>
+                    <CardContent className="p-2 text-center">
+                      <p className="text-gray-600 font-bold text-xs">EN PROCESO</p>
                     </CardContent>
                   </Card>
 
-                  <Card className="border-blue-200/50 bg-gradient-to-br from-blue-50 to-blue-100/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                    <CardContent className="p-6">
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-blue-500 rounded-2xl flex items-center justify-center shadow-lg">
-                          <UserPlus className="w-6 h-6 text-white" />
-                        </div>
-                        <div>
-                          <p className="text-sm font-semibold text-blue-700 mb-1">
-                            En Gestión
-                          </p>
-                          <p className="text-3xl font-bold text-blue-800">
-                            {
-                              audiences.filter((a) => a.status === "en_proceso")
-                                .length
-                            }
-                          </p>
-                        </div>
+                  <Card className="bg-white rounded-xl shadow-xl border-0 overflow-hidden hover:shadow-2xl transition-all duration-300">
+                    <div className="bg-[#0052CC] p-3 text-center">
+                      <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center mx-auto mb-1">
+                        <CheckCircle className="w-5 h-5 text-[#0052CC]" />
                       </div>
+                      <p className="text-white font-bold text-xs">COMPLETADAS</p>
+                      <p className="text-white font-black text-xl">
+                        {
+                          audiences.filter((a) => a.status === "completada")
+                            .length
+                        }
+                      </p>
+                    </div>
+                    <CardContent className="p-2 text-center">
+                      <p className="text-green-600 font-bold text-xs">✓ EXITOSAS</p>
                     </CardContent>
                   </Card>
 
-                  <Card className="border-green-200/50 bg-gradient-to-br from-green-50 to-green-100/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                    <CardContent className="p-6">
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-green-500 rounded-2xl flex items-center justify-center shadow-lg">
-                          <CheckCircle className="w-6 h-6 text-white" />
-                        </div>
-                        <div>
-                          <p className="text-sm font-semibold text-green-700 mb-1">
-                            Completadas
-                          </p>
-                          <p className="text-3xl font-bold text-green-800">
-                            {
-                              audiences.filter((a) => a.status === "completada")
-                                .length
-                            }
-                          </p>
-                        </div>
+                  <Card className="bg-white rounded-xl shadow-xl border-0 overflow-hidden hover:shadow-2xl transition-all duration-300">
+                    <div className="bg-[#0052CC] p-3 text-center">
+                      <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center mx-auto mb-1">
+                        <XCircle className="w-5 h-5 text-[#0052CC]" />
                       </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="border-red-200/50 bg-gradient-to-br from-red-50 to-red-100/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                    <CardContent className="p-6">
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-red-500 rounded-2xl flex items-center justify-center shadow-lg">
-                          <XCircle className="w-6 h-6 text-white" />
-                        </div>
-                        <div>
-                          <p className="text-sm font-semibold text-red-700 mb-1">
-                            Rechazadas
-                          </p>
-                          <p className="text-3xl font-bold text-red-800">
-                            {
-                              audiences.filter((a) => a.status === "rechazada")
-                                .length
-                            }
-                          </p>
-                        </div>
-                      </div>
-                    </CardContent>
+                      <p className="text-white font-bold text-xs">RECHAZADAS</p>
+                      <p className="text-white font-black text-xl">
+                        {
+                          audiences.filter((a) => a.status === "rechazada")
+                            .length
+                        }
+                      </p>
+                    </div>
+                    <div className="bg-[#DC2626] p-2 text-center">
+                      <p className="text-white font-bold text-xs">NO APROBADAS</p>
+                    </div>
                   </Card>
                 </div>
 
