@@ -614,7 +614,7 @@ export default function AdminDashboard() {
             </div>
             <div>
               <h1 className="text-3xl font-black text-white flex items-center gap-3">
-                🏛�� PANEL ADMINISTRATIVO
+                🏛️ PANEL ADMINISTRATIVO
               </h1>
               <p className="text-sm text-white/90 flex items-center gap-2 font-medium">
                 <Settings className="w-4 h-4" />
@@ -1036,26 +1036,136 @@ export default function AdminDashboard() {
               <CardHeader>
                 <div className="flex justify-between items-center">
                   <div>
-                    <CardTitle>Gestión de Ciudadanos</CardTitle>
+                    <CardTitle className="text-2xl font-bold text-[#0052CC]">
+                      👥 Gestión de Ciudadanos
+                    </CardTitle>
                     <CardDescription>
-                      Administra los usuarios ciudadanos del sistema
+                      Base de datos de usuarios registrados en el sistema
                     </CardDescription>
                   </div>
-                  <Button>
+                  <Button className="bg-[#DC2626] hover:bg-red-700 text-white">
                     <Plus className="w-4 h-4 mr-2" />
                     Nuevo Ciudadano
                   </Button>
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-center py-12">
-                  <Users className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-slate-600 mb-2">
-                    Base de Datos de Ciudadanos
-                  </h3>
-                  <p className="text-slate-500">
-                    Gestiona la información de los ciudadanos registrados y sus expedientes.
-                  </p>
+                {/* Estadísticas de Ciudadanos */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                  <Card className="bg-gradient-to-r from-purple-50 to-purple-100 border-purple-200">
+                    <CardContent className="p-4 text-center">
+                      <Users className="w-8 h-8 text-purple-600 mx-auto mb-2" />
+                      <h3 className="font-bold text-purple-800 text-xl">{citizens.length}</h3>
+                      <p className="text-sm text-purple-700">Total Ciudadanos</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-gradient-to-r from-green-50 to-green-100 border-green-200">
+                    <CardContent className="p-4 text-center">
+                      <UserPlus className="w-8 h-8 text-green-600 mx-auto mb-2" />
+                      <h3 className="font-bold text-green-800 text-xl">
+                        {citizens.filter(c => c.status === "activo").length}
+                      </h3>
+                      <p className="text-sm text-green-700">Activos</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-gradient-to-r from-blue-50 to-blue-100 border-blue-200">
+                    <CardContent className="p-4 text-center">
+                      <FileText className="w-8 h-8 text-blue-600 mx-auto mb-2" />
+                      <h3 className="font-bold text-blue-800 text-xl">
+                        {citizens.reduce((total, citizen) => total + citizen.totalRequests, 0)}
+                      </h3>
+                      <p className="text-sm text-blue-700">Total Solicitudes</p>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Búsqueda */}
+                <div className="mb-6">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                    <Input
+                      placeholder="Buscar por nombre, teléfono o email..."
+                      value={citizenSearch}
+                      onChange={(e) => setCitizenSearch(e.target.value)}
+                      className="pl-10"
+                    />
+                  </div>
+                </div>
+
+                {/* Lista de Ciudadanos */}
+                <div className="space-y-4">
+                  {citizens
+                    .filter(
+                      (citizen) =>
+                        citizen.name.toLowerCase().includes(citizenSearch.toLowerCase()) ||
+                        citizen.phone.includes(citizenSearch) ||
+                        citizen.email.toLowerCase().includes(citizenSearch.toLowerCase()),
+                    )
+                    .map((citizen) => (
+                      <Card key={citizen.id} className="hover:shadow-md transition-shadow">
+                        <CardContent className="p-4">
+                          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+                            <div className="lg:col-span-6">
+                              <div className="flex items-center gap-3 mb-2">
+                                <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                  <Users className="w-5 h-5 text-purple-600" />
+                                </div>
+                                <div>
+                                  <h4 className="font-semibold text-lg text-slate-800">
+                                    {citizen.name}
+                                  </h4>
+                                  <p className="text-sm text-slate-600">{citizen.id}</p>
+                                </div>
+                              </div>
+                              <div className="text-sm text-slate-600 space-y-1">
+                                <p>📞 {citizen.phone}</p>
+                                <p>📧 {citizen.email}</p>
+                                <p>📍 {citizen.address}</p>
+                              </div>
+                            </div>
+
+                            <div className="lg:col-span-3">
+                              <Badge className={citizen.status === "activo" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}>
+                                {citizen.status}
+                              </Badge>
+                              <p className="text-xs text-slate-500 mt-1">
+                                Registro: {format(citizen.registrationDate, "dd/MM/yyyy", { locale: es })}
+                              </p>
+                              <p className="text-xs text-slate-500">
+                                Solicitudes: {citizen.totalRequests}
+                              </p>
+                            </div>
+
+                            <div className="lg:col-span-3 flex gap-2">
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => {
+                                  setSelectedCitizen(citizen);
+                                  setIsExpedienteOpen(true);
+                                }}
+                              >
+                                <FileText className="w-4 h-4 mr-1" />
+                                Expediente
+                              </Button>
+                              <Button
+                                size="sm"
+                                className="bg-[#0052CC] hover:bg-blue-700"
+                                onClick={() => {
+                                  setSelectedCitizen(citizen);
+                                  setIsEditCitizenOpen(true);
+                                }}
+                              >
+                                <Edit className="w-4 h-4 mr-1" />
+                                Editar
+                              </Button>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
                 </div>
               </CardContent>
             </Card>
