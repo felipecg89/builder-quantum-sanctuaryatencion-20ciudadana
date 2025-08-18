@@ -760,7 +760,7 @@ export default function AdminDashboard() {
                   </span>
                 )}
               </div>
-              <span className="text-xs font-black tracking-wide group-data-[state=active]:text-white text-gray-700 text-center">
+              <span className="text-xs font-bold tracking-wide group-data-[state=active]:text-white text-gray-700 text-center">
                 AUDIENCIAS
               </span>
             </TabsTrigger>
