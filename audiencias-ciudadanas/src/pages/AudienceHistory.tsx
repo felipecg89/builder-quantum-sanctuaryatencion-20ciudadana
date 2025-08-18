@@ -616,14 +616,14 @@ export default function AudienceHistory() {
         <div className="max-w-7xl mx-auto px-2 sm:px-4 py-4 sm:py-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="flex items-center space-x-3 sm:space-x-4">
-              <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 rounded-full">
-                <Building2 className="w-5 h-5 sm:w-7 sm:h-7 text-white" />
+              <div className="flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-xl shadow-lg border-2 border-[#DC2626]">
+                <Building2 className="w-6 h-6 sm:w-8 sm:h-8 text-[#0052CC]" />
               </div>
               <div>
-                <h1 className="text-lg sm:text-2xl font-bold text-slate-800">
-                  Historial de Audiencias
+                <h1 className="text-lg sm:text-3xl font-black text-white">
+                  HISTORIAL DE AUDIENCIAS
                 </h1>
-                <p className="text-sm sm:text-base text-slate-600">
+                <p className="text-sm sm:text-base text-white/90 font-bold">
                   Bienvenido, {user?.name || "Usuario"}
                 </p>
               </div>
