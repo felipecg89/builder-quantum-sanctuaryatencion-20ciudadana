@@ -71,12 +71,11 @@ export default function Login() {
         {/* Back Button */}
         <div className="mb-6">
           <Button
-            variant="ghost"
             onClick={() => navigate("/")}
-            className="flex items-center gap-2 text-slate-600 hover:text-slate-800 hover:bg-slate-100 p-2"
+            className="flex items-center gap-2 bg-white text-[#0052CC] hover:bg-gray-100 font-bold px-4 py-2 rounded-lg shadow-lg border-2 border-white"
           >
             <ArrowLeft className="w-4 h-4" />
-            Regresar al Inicio
+            REGRESAR AL INICIO
           </Button>
         </div>
 
